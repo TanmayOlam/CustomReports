@@ -1,0 +1,2847 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7fbfc3fd-4940-4384-b2e5-d5e590c7f88e">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="6298"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.row" value="3"/>
+	<property name="net.sf.jasperreports.export.xls.sheet.names.1" value="StringSettlement SnP"/>
+	<property name="ireport.jasperserver.reportUnit" value="/ReportFeb18/String_settlement_sales_and_purchase_Report"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineColor="#1F497D"/>
+			<leftPen lineColor="#1F497D"/>
+			<bottomPen lineColor="#1F497D"/>
+			<rightPen lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+			<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#4F81BD"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="4fb703be-450c-4c12-b8c0-000a8eddf990">
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="date_from" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="date_to" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="Status" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<queryString>
+			<![CDATA[Select * from (SELECT
+CONTRACT_BOOK.NAME AS [Contract_Book],
+ALLOCATION.SEQUENCE_ID AS [Allocation ID],
+CONTRACT_SOURCE.REFERENCE AS [Purchase Ctr. Ref],
+CONTRACT_TARGET.REFERENCE AS [Sales Ctr. Ref],
+ALLOCATION.ALLOCATION_DATE AS [Allocation Date],
+CONTRACT_SOURCE_OPERATION_USER.FIRST_NAME + ' ' + CONTRACT_SOURCE_OPERATION_USER.LAST_NAME AS [Purchase Operation User],
+CONTRACT_TARGET_OPERATION_USER.FIRST_NAME + ' ' + CONTRACT_TARGET_OPERATION_USER.LAST_NAME AS [Sales Operation User],
+ALLOCATION.QUANTITY AS [Match Quantity],
+ALLOCATION.STRING_STATUS AS [Status],
+UPPER(REPLACE(CONVERT(CHAR(11), ALLOCATION.CLOSE_DATE, 106),' ','-')) AS [Close Date],
+ALLOCATION.CLOSE_DATE   AS  'Close Date2' ,
+COMMODITY_ORIGIN_TARGET.NAME AS [Origin],
+GRADE_TARGET.CODE AS [Grade],
+CROPSEASON_SOURCE.CODE AS [Crop Season],
+INTERNAL_PACKING_TARGET.CODE AS [Internal Packing],
+LOCATION_FROM.NAME AS [Location From],
+LOCATION_TO.NAME AS [Location To],
+UPPER(REPLACE(CONVERT(CHAR(11), ALLOCATION.DECLARATION_DATE, 106),' ','-')) AS [Declaration Date],
+ ALLOCATION.DECLARATION_DATE   AS 'Declaration Date2',
+COALESCE(ALLOCATION_CONTRACT_SOURCE_PRICE.AVERAGE_FINAL_CONTRACT_PRICE, CONTRACT_SOURCE_PRICE.CONTRACT_PRICE) AS [Purchase Price],
+CONTRACT_SOURCE_CONTRACT_CURRENCY_DENOMINATION.NAME + '/' + CONTRACT_SOURCE_CONTRACT_UOM.SHORT_NAME AS [Purchase Ctr.Curr/UOM],
+CONTRACT_SOURCE_COUNTERPARTY.NAME AS [Purchase Counterparty],
+CONTRACT_SOURCE_COMMODITY.CODE AS [Purchase_Commodity],
+UPPER(SUBSTRING(DATENAME(MONTH, DATEADD(MONTH, CONVERT(INT,CONTRACT_POSITION_SOURCE.SHIP_MONTH), 0 ) - 1),0,4)) + '-' + CAST(CONTRACT_POSITION_SOURCE.SHIP_YEAR AS NVARCHAR(4))AS [Purchase Shipment Month],
+cast('01-'+UPPER(SUBSTRING(DATENAME(MONTH, DATEADD(MONTH, CONVERT(INT,CONTRACT_POSITION_SOURCE.SHIP_MONTH), 0 ) - 1),0,4)) + '-' + CAST(CONTRACT_POSITION_SOURCE.SHIP_YEAR AS NVARCHAR(4)) as date)AS [Purchase Shipment Month2],
+
+
+
+
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_SOURCE.SHIP_PERIOD_START, 106),' ','-')) AS [Purchase Ship From Date],
+ CONTRACT_SOURCE.SHIP_PERIOD_START  AS [Purchase Ship From Date2],
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_SOURCE.SHIP_PERIOD_END, 106),' ','-')) AS [Purchase Ship To Date],
+CONTRACT_SOURCE.SHIP_PERIOD_END AS [Purchase Ship To Date2],
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_POSITION_PHYSICAL_SOURCE.UNLOAD_DATE_START, 106),' ','-')) AS [Purchase Unload From Date],
+ CONTRACT_POSITION_PHYSICAL_SOURCE.UNLOAD_DATE_START  AS [Purchase Unload From Date2],
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_POSITION_PHYSICAL_SOURCE.UNLOAD_DATE_END, 106),' ','-')) AS [Purchase Unload To Date],
+  CONTRACT_POSITION_PHYSICAL_SOURCE.UNLOAD_DATE_END AS [Purchase Unload To Date2],
+CONTRACT_SOURCE_PROFIT_CENTER.NAME AS [Purchase_Profit_Center],
+CONTRACT_SOURCE_INCOTERM.CODE AS [Purchase Incoterm],
+CONTRACT_SOURCE_PAYMENT_TERM.CODE AS [Purchase Payment Term],
+CONTRACT_SOURCE_BROKER.NAME AS [Purchase Broker],
+CONTRACT_SOURCE.BROKER_REFERENCE AS [Purchase Broker Reference],
+COALESCE(ALLOCATION_CONTRACT_TARGET_PRICE.AVERAGE_FINAL_CONTRACT_PRICE, CONTRACT_TARGET_PRICE.CONTRACT_PRICE) AS [Sales Price],
+CONTRACT_TARGET_CONTRACT_CURRENCY_DENOMINATION.NAME + '/' + CONTRACT_TARGET_CONTRACT_UOM.SHORT_NAME AS [Sales Ctr.Curr/UOM],
+CONTRACT_TARGET_COUNTERPARTY.NAME AS [Sales Counterparty],
+CONTRACT_TARGET_COMMODITY.CODE AS [Sales Commodity],
+UPPER(SUBSTRING(DATENAME(MONTH, DATEADD(MONTH, CONVERT(INT,CONTRACT_POSITION_TARGET.SHIP_MONTH), 0 ) - 1),0,4)) + '-' + CAST(CONTRACT_POSITION_TARGET.SHIP_YEAR AS NVARCHAR(4))AS [Sales Shipment Month],
+cast('01-'+UPPER(SUBSTRING(DATENAME(MONTH, DATEADD(MONTH, CONVERT(INT,CONTRACT_POSITION_TARGET.SHIP_MONTH), 0 ) - 1),0,4)) + '-' + CAST(CONTRACT_POSITION_TARGET.SHIP_YEAR AS NVARCHAR(4)) as date)AS [Sales Shipment Month2],
+
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_TARGET.SHIP_PERIOD_START, 106),' ','-')) AS [Sales Ship From Date],
+ CONTRACT_TARGET.SHIP_PERIOD_START AS [Sales Ship From Date2],
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_TARGET.SHIP_PERIOD_END, 106),' ','-')) AS [Sales Ship To Date],
+ CONTRACT_TARGET.SHIP_PERIOD_END  AS [Sales Ship To Date2],
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_POSITION_PHYSICAL_TARGET.UNLOAD_DATE_START, 106),' ','-')) AS [Sales Unload From Date],
+ CONTRACT_POSITION_PHYSICAL_TARGET.UNLOAD_DATE_START  AS [Sales Unload From Date2],
+
+UPPER(REPLACE(CONVERT(CHAR(11), CONTRACT_POSITION_PHYSICAL_TARGET.UNLOAD_DATE_END, 106),' ','-')) AS [Sales Unload To Date],
+ CONTRACT_POSITION_PHYSICAL_TARGET.UNLOAD_DATE_END  AS [Sales Unload To Date2],
+
+
+CONTRACT_TARGET_PROFIT_CENTER.NAME AS [Sales Profit Center],
+CONTRACT_TARGET_INCOTERM.CODE AS [Sales Incoterm],
+CONTRACT_TARGET_PAYMENT_TERM.CODE AS [Sales Payment Term],
+CONTRACT_TARGET_BROKER.NAME AS [Sales Broker],
+CONTRACT_TARGET.BROKER_REFERENCE AS [Sales Broker Reference],
+STUFF(
+        (SELECT ', ' + ARREF FROM ARHEADER B
+		JOIN STRINGARLINK L ON L.ARID = B.ARID
+		JOIN STR_MAIN SM ON SM.ID = L.STRMAINID
+		JOIN ALLOCATION A ON A.ID = SM.MAIN_ALLOCATION
+		WHERE A.ID = ALLOCATION.ID
+       FOR XML PATH('')),
+        1, 2, ''
+    ) AS SETTLEMENT_DOCUMENT,
+STUFF(
+        (SELECT distinct ', ' + CAST(EXCHRATE AS NVARCHAR(15)) FROM ARHEADER B
+		JOIN STRINGARLINK L ON L.ARID = B.ARID
+		JOIN STR_MAIN SM ON SM.ID = L.STRMAINID
+		JOIN ALLOCATION A ON A.ID = SM.MAIN_ALLOCATION
+		WHERE A.ID = ALLOCATION.ID
+       FOR XML PATH('')),
+        1, 2, ''
+    ) AS SETTLEMENT_DOCUMENT_EXCHANGE_RATE
+FROM ALLOCATION ALLOCATION
+JOIN CONTRACT_POSITION CONTRACT_POSITION_SOURCE ON CONTRACT_POSITION_SOURCE.ID = ALLOCATION.CONTRACT_POSITION_ID_SOURCE
+JOIN CONTRACT_POSITION CONTRACT_POSITION_TARGET ON CONTRACT_POSITION_TARGET.ID = ALLOCATION.CONTRACT_POSITION_ID_TARGET
+JOIN CONTRACT CONTRACT_SOURCE ON CONTRACT_SOURCE.ID = CONTRACT_POSITION_SOURCE.CONTRACT_ID
+JOIN CONTRACT CONTRACT_TARGET ON CONTRACT_TARGET.ID = CONTRACT_POSITION_TARGET.CONTRACT_ID
+JOIN CONTRACT_PHYSICAL CONTRACT_PHYSICAL_SOURCE ON CONTRACT_PHYSICAL_SOURCE.CONTRACT_INTERNAL_ID = CONTRACT_SOURCE.ID
+JOIN CONTRACT_PHYSICAL CONTRACT_PHYSICAL_TARGET ON CONTRACT_PHYSICAL_TARGET.CONTRACT_INTERNAL_ID = CONTRACT_TARGET.ID
+JOIN CONTRACT_INTERNAL CONTRACT_INTERNAL_SOURCE ON CONTRACT_INTERNAL_SOURCE.CONTRACT_ID= CONTRACT_SOURCE.ID
+JOIN CONTRACT_INTERNAL CONTRACT_INTERNAL_TARGET ON CONTRACT_INTERNAL_TARGET.CONTRACT_ID = CONTRACT_TARGET.ID
+LEFT JOIN JC_USER CONTRACT_SOURCE_OPERATION_USER ON CONTRACT_SOURCE_OPERATION_USER.ID = CONTRACT_PHYSICAL_SOURCE.OPERATION_USER_ID
+LEFT JOIN JC_USER CONTRACT_TARGET_OPERATION_USER ON CONTRACT_TARGET_OPERATION_USER.ID = CONTRACT_PHYSICAL_TARGET.OPERATION_USER_ID
+LEFT JOIN JC_COUNTRY COMMODITY_ORIGIN_TARGET ON COMMODITY_ORIGIN_TARGET.ID = ALLOCATION.COUNTRY_ID_TARGET
+LEFT JOIN JC_SPECIFICATION GRADE_TARGET ON GRADE_TARGET.ID = ALLOCATION.SPECIFICATION_ID_TARGET
+LEFT JOIN JC_CROPSEASON CROPSEASON_SOURCE ON CROPSEASON_SOURCE.ID = ALLOCATION.CROP_SEASON_ID_SOURCE
+LEFT JOIN JC_UOM INTERNAL_PACKING_TARGET ON INTERNAL_PACKING_TARGET.ID = ALLOCATION.UOM_ID_TARGET
+LEFT JOIN JC_LOCATION LOCATION_FROM ON LOCATION_FROM.ID = ALLOCATION.PORT_LOCATION_FROM_ID
+LEFT JOIN JC_LOCATION LOCATION_TO ON LOCATION_TO.ID = ALLOCATION.PORT_LOCATION_TO_ID
+LEFT JOIN ALLOCATION_PRICING_UNPRICED ALLOCATION_CONTRACT_SOURCE_PRICE ON ALLOCATION_CONTRACT_SOURCE_PRICE.ID = CONTRACT_POSITION_SOURCE.ID
+LEFT JOIN JC_PROFIT_CENTER CONTRACT_SOURCE_PROFIT_CENTER ON CONTRACT_SOURCE_PROFIT_CENTER.ID = CONTRACT_INTERNAL_SOURCE.PROFIT_CENTER_ID
+JOIN CONTRACT_POSITION_PRICING CONTRACT_SOURCE_PRICE ON CONTRACT_SOURCE_PRICE.CONTRACT_POSITION_ID = CONTRACT_POSITION_SOURCE.ID
+JOIN JC_CURRENCY_DENOMINATION CONTRACT_SOURCE_CONTRACT_CURRENCY_DENOMINATION ON CONTRACT_SOURCE_CONTRACT_CURRENCY_DENOMINATION.ID = CONTRACT_SOURCE_PRICE.CONTRACT_CURRENCY_DENOMINATION_ID
+JOIN JC_UOM CONTRACT_SOURCE_CONTRACT_UOM ON CONTRACT_SOURCE_CONTRACT_UOM.ID = CONTRACT_POSITION_SOURCE.UOM_QUANTITY_ID
+JOIN JC_MEMBER CONTRACT_SOURCE_COUNTERPARTY ON CONTRACT_SOURCE_COUNTERPARTY.ID = CONTRACT_SOURCE.SELLER_ID
+JOIN JC_INVENTORY_ITEM CONTRACT_SOURCE_COMMODITY ON CONTRACT_SOURCE_COMMODITY.ID = CONTRACT_POSITION_SOURCE.INVENTORY_ITEM_ID
+JOIN CONTRACT_POSITION_PHYSICAL CONTRACT_POSITION_PHYSICAL_SOURCE ON CONTRACT_POSITION_PHYSICAL_SOURCE.CONTRACT_POSITION_INTERNAL_ID = CONTRACT_POSITION_SOURCE.ID
+JOIN JC_INCOTERM CONTRACT_SOURCE_INCOTERM ON CONTRACT_SOURCE_INCOTERM.ID = CONTRACT_POSITION_PHYSICAL_SOURCE.INCOTERM_ID
+JOIN JC_PAYMENT_TERM CONTRACT_SOURCE_PAYMENT_TERM ON CONTRACT_SOURCE_PAYMENT_TERM.ID = CONTRACT_PHYSICAL_SOURCE.PAYMENT_TERM_ID
+LEFT JOIN JC_MEMBER CONTRACT_SOURCE_BROKER ON CONTRACT_SOURCE_BROKER.ID = CONTRACT_SOURCE.BROKER_ID
+LEFT JOIN ALLOCATION_PRICING_UNPRICED ALLOCATION_CONTRACT_TARGET_PRICE ON ALLOCATION_CONTRACT_TARGET_PRICE.ID = CONTRACT_POSITION_TARGET.ID
+JOIN CONTRACT_POSITION_PRICING CONTRACT_TARGET_PRICE ON CONTRACT_TARGET_PRICE.CONTRACT_POSITION_ID = CONTRACT_POSITION_TARGET.ID
+JOIN JC_CURRENCY_DENOMINATION CONTRACT_TARGET_CONTRACT_CURRENCY_DENOMINATION ON CONTRACT_TARGET_CONTRACT_CURRENCY_DENOMINATION.ID = CONTRACT_TARGET_PRICE.CONTRACT_CURRENCY_DENOMINATION_ID
+JOIN JC_UOM CONTRACT_TARGET_CONTRACT_UOM ON CONTRACT_TARGET_CONTRACT_UOM.ID = CONTRACT_POSITION_TARGET.UOM_QUANTITY_ID
+JOIN JC_MEMBER CONTRACT_TARGET_COUNTERPARTY ON CONTRACT_TARGET_COUNTERPARTY.ID = CONTRACT_TARGET.BUYER_ID
+JOIN JC_INVENTORY_ITEM CONTRACT_TARGET_COMMODITY ON CONTRACT_TARGET_COMMODITY.ID = CONTRACT_POSITION_TARGET.INVENTORY_ITEM_ID
+JOIN CONTRACT_POSITION_PHYSICAL CONTRACT_POSITION_PHYSICAL_TARGET ON CONTRACT_POSITION_PHYSICAL_TARGET.CONTRACT_POSITION_INTERNAL_ID = CONTRACT_POSITION_TARGET.ID
+JOIN JC_INCOTERM CONTRACT_TARGET_INCOTERM ON CONTRACT_TARGET_INCOTERM.ID = CONTRACT_POSITION_PHYSICAL_TARGET.INCOTERM_ID
+JOIN JC_PAYMENT_TERM CONTRACT_TARGET_PAYMENT_TERM ON CONTRACT_TARGET_PAYMENT_TERM.ID = CONTRACT_PHYSICAL_TARGET.PAYMENT_TERM_ID
+LEFT JOIN JC_MEMBER CONTRACT_TARGET_BROKER ON CONTRACT_TARGET_BROKER.ID = CONTRACT_TARGET.BROKER_ID
+LEFT JOIN JC_PROFIT_CENTER CONTRACT_TARGET_PROFIT_CENTER ON CONTRACT_TARGET_PROFIT_CENTER.ID = CONTRACT_INTERNAL_TARGET.PROFIT_CENTER_ID
+JOIN JC_CONTRACT_BOOK CONTRACT_BOOK ON CONTRACT_BOOK.ID = CONTRACT_SOURCE.CONTRACT_BOOK_ID
+WHERE ALLOCATION.DISCRIMINATOR_TYPE = 'STRING'
+AND JOIN_WITH_EXTERNAL_ALLOC =0
+AND ALLOCATION.ACTIVE =1
+and ALLOCATION.CLOSE_DATE >= $P{date_from}
+AND ALLOCATION.CLOSE_DATE <= $P{date_to}
+)T
+Where CONTRACT_BOOK like $P{ctrbook}
+AND $X{IN,Purchase_Commodity,commodity}
+AND $X{IN,Status,Status}
+AND $X{IN,Purchase_Profit_Center,pc}]]>
+		</queryString>
+		<field name="Contract_Book" class="java.lang.String"/>
+		<field name="Allocation ID" class="java.lang.String"/>
+		<field name="Purchase Ctr. Ref" class="java.lang.String"/>
+		<field name="Sales Ctr. Ref" class="java.lang.String"/>
+		<field name="Allocation Date" class="java.sql.Date"/>
+		<field name="Purchase Operation User" class="java.lang.String"/>
+		<field name="Sales Operation User" class="java.lang.String"/>
+		<field name="Match Quantity" class="java.math.BigDecimal"/>
+		<field name="Status" class="java.lang.String"/>
+		<field name="Close Date" class="java.lang.String"/>
+		<field name="Close Date2" class="java.sql.Date"/>
+		<field name="Origin" class="java.lang.String"/>
+		<field name="Grade" class="java.lang.String"/>
+		<field name="Crop Season" class="java.lang.String"/>
+		<field name="Internal Packing" class="java.lang.String"/>
+		<field name="Location From" class="java.lang.String"/>
+		<field name="Location To" class="java.lang.String"/>
+		<field name="Declaration Date" class="java.lang.String"/>
+		<field name="Declaration Date2" class="java.sql.Date"/>
+		<field name="Purchase Price" class="java.math.BigDecimal"/>
+		<field name="Purchase Ctr.Curr/UOM" class="java.lang.String"/>
+		<field name="Purchase Counterparty" class="java.lang.String"/>
+		<field name="Purchase_Commodity" class="java.lang.String"/>
+		<field name="Purchase Shipment Month" class="java.lang.String"/>
+		<field name="Purchase Shipment Month2" class="java.sql.Date"/>
+		<field name="Purchase Ship From Date" class="java.lang.String"/>
+		<field name="Purchase Ship From Date2" class="java.sql.Date"/>
+		<field name="Purchase Ship To Date" class="java.lang.String"/>
+		<field name="Purchase Ship To Date2" class="java.sql.Date"/>
+		<field name="Purchase Unload From Date" class="java.lang.String"/>
+		<field name="Purchase Unload From Date2" class="java.sql.Date"/>
+		<field name="Purchase Unload To Date" class="java.lang.String"/>
+		<field name="Purchase Unload To Date2" class="java.sql.Date"/>
+		<field name="Purchase_Profit_Center" class="java.lang.String"/>
+		<field name="Purchase Incoterm" class="java.lang.String"/>
+		<field name="Purchase Payment Term" class="java.lang.String"/>
+		<field name="Purchase Broker" class="java.lang.String"/>
+		<field name="Purchase Broker Reference" class="java.lang.String"/>
+		<field name="Sales Price" class="java.math.BigDecimal"/>
+		<field name="Sales Ctr.Curr/UOM" class="java.lang.String"/>
+		<field name="Sales Counterparty" class="java.lang.String"/>
+		<field name="Sales Commodity" class="java.lang.String"/>
+		<field name="Sales Shipment Month" class="java.lang.String"/>
+		<field name="Sales Shipment Month2" class="java.sql.Date"/>
+		<field name="Sales Ship From Date" class="java.lang.String"/>
+		<field name="Sales Ship From Date2" class="java.sql.Date"/>
+		<field name="Sales Ship To Date" class="java.lang.String"/>
+		<field name="Sales Ship To Date2" class="java.sql.Date"/>
+		<field name="Sales Unload From Date" class="java.lang.String"/>
+		<field name="Sales Unload From Date2" class="java.sql.Date"/>
+		<field name="Sales Unload To Date" class="java.lang.String"/>
+		<field name="Sales Unload To Date2" class="java.sql.Date"/>
+		<field name="Sales Profit Center" class="java.lang.String"/>
+		<field name="Sales Incoterm" class="java.lang.String"/>
+		<field name="Sales Payment Term" class="java.lang.String"/>
+		<field name="Sales Broker" class="java.lang.String"/>
+		<field name="Sales Broker Reference" class="java.lang.String"/>
+		<field name="SETTLEMENT_DOCUMENT" class="java.lang.String"/>
+		<field name="SETTLEMENT_DOCUMENT_EXCHANGE_RATE" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="commodity" class="java.util.Collection"/>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="date_from" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="date_to" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Status" class="java.util.Collection"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<queryString>
+		<![CDATA[select 123	as num]]>
+	</queryString>
+	<field name="num" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="107" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" mode="Opaque" x="0" y="27" width="555" height="80" forecolor="#8DB4E2" backcolor="#8DB4E2" uuid="54db2772-ce6b-46fd-ae3f-4ebc2d20f894"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="3643d42d-17ed-4115-9329-3c834db0c596">
+						<datasetParameter name="date_from">
+							<datasetParameterExpression><![CDATA[$P{date_from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="date_to">
+							<datasetParameterExpression><![CDATA[$P{date_to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$P{ctrbook}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="commodity">
+							<datasetParameterExpression><![CDATA[$P{commodity}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="Status">
+							<datasetParameterExpression><![CDATA[$P{Status}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pc">
+							<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="56" uuid="c491e515-d75e-4893-a245-c0f0f71373ce">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="30" backcolor="#8DB4E2" uuid="9835e1dc-adc8-4905-90bb-03ef466faaa1">
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Contract Book ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="24" backcolor="#1F497D" uuid="89ec23c7-8f3a-473d-a836-295a75fa5a2d"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="56" height="25" uuid="031fa590-686d-4094-9b39-61725be0bf2e"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false" isUnderline="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Contract_Book}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="200" uuid="29bb073b-f598-4706-b273-ba90a3e337e3">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="200" height="30" backcolor="#8DB4E2" uuid="275ebe7c-8406-46c4-b250-609324a787f1"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Profit Center]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="200" height="24" backcolor="#1F497D" uuid="86fba3d8-90f0-4a5d-8990-834f2a83dbd6"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="200" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="7048c645-b651-4efa-afee-14d4a5f2bbf8"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase_Profit_Center}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="b8a0e257-5a89-485f-8bb0-0f28c06c22de">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="68" height="30" backcolor="#8DB4E2" uuid="3db7cf25-98d0-41ba-a7cd-4cebe5d5c125"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Commodity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="68" height="24" backcolor="#1F497D" uuid="bc45a8b6-e303-405c-8c05-c092c581dc82"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="68" height="25" uuid="c23dde05-45ff-403c-b102-903cb078b3e6"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase_Commodity}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="49a55673-8688-49a2-b808-505767f67c3b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#8DB4E2" uuid="80dda8f7-e3df-4234-acc0-04a15ffd0546"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grade]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="24" backcolor="#1F497D" uuid="25490e04-646c-4dd1-8316-24ce887b2b44"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="25" uuid="f3027167-49bc-4bb1-be45-02ff8f0437e9"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Grade}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="5baaac80-83e6-4c76-a9ee-1edd94919717">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="30" backcolor="#8DB4E2" uuid="412871e9-8697-4ee9-9db1-07084c9ac870"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Origin]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="24" backcolor="#1F497D" uuid="b970af09-5251-4d3a-bcdc-a760bb130c9a"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="75" height="25" uuid="c1a4c708-6694-4bbf-b4e0-2d348f53f7b9"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Origin}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="85" uuid="b2c2f207-f708-4042-b607-be1e52cb10d9">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="85" height="30" backcolor="#8DB4E2" uuid="a53ad9cf-20d7-4298-b1ca-9a0f7b9cacf8"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Paper Trade Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="85" height="24" backcolor="#1F497D" uuid="815a1371-c786-4d04-ba63-449112808889"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="85" height="25" uuid="363893d7-2761-413c-8651-16d23b24c128"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="69f633ed-b2af-4fd9-9590-08173ec0ce3d">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="60" height="30" backcolor="#8DB4E2" uuid="d8f6da30-d49e-4ea7-8e0d-28b644a812c7"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Realized Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="60" height="24" backcolor="#1F497D" uuid="896e1381-ddbb-48b8-b781-8ef113f2f935"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="60" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="0a73ae3b-41f4-4d58-a258-58113700a526"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Close Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="c8fde096-1a36-461f-aa62-53188f78b231">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#8DB4E2" uuid="1a573f14-0513-4858-92fd-668b7d5d42bc"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[Matched Allocation ID ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="24" backcolor="#1F497D" uuid="cb1b6def-d54c-475d-8ced-4bf96785bf4e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="150" height="25" uuid="72bdc167-4b58-4e36-9a2f-24dfcf892826"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false" isUnderline="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Allocation ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="23529d7f-4f2c-428d-808b-3d44d9cacd59">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="de96d195-bb1d-4313-a06b-01fdf851a346"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Ctr.Ref ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="24" backcolor="#1F497D" uuid="06292081-d386-449a-8451-cc2dd3d817f7"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="25" uuid="9a31d766-f1c1-46ba-b531-dfe485413311"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Ctr. Ref}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="171" uuid="78b276e6-7880-4a8f-bc6f-0c08160856e4">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="171" height="30" backcolor="#8DB4E2" uuid="f537800b-9f22-46d2-b9ba-68411817310c"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Counterparty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="171" height="24" backcolor="#1F497D" uuid="812e294a-b4f2-4dad-84ee-fcf62875de79"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="171" height="25" uuid="5cdab4e4-6bb7-4591-975a-716dd1a77251"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Counterparty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="eb6f145b-9902-4b5c-9517-9c8fda6273c4">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="2801ec5f-f2a6-4e1d-8287-d3cee71e2e41"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Ctr. Ref ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="24" backcolor="#1F497D" uuid="98351f50-cb6c-47d6-a7f8-3cce48975bc3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="25" uuid="c5b7e637-e435-4440-972a-677b5d15906f"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Ctr. Ref}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="171" uuid="c7e22a5c-8c39-47df-b3e2-0efe2c9003aa">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="171" height="30" backcolor="#8DB4E2" uuid="2023152a-6591-43a2-963f-bc41935ffb11"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Counterparty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="171" height="24" backcolor="#1F497D" uuid="33f543ba-f27b-408a-9a27-6e5dac2589a1"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="171" height="25" uuid="a7decc1c-bdd0-4a98-9d14-01ad1677ab1b"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Counterparty}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="1abef32d-c874-48d0-957f-8bde2dda6de7">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="30" backcolor="#8DB4E2" uuid="5ef83746-136b-4015-8b06-664a5b5a7690"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Match Quantity
+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="24" backcolor="#1F497D" uuid="f28f92fc-ff17-488f-9f4d-1ba4814eb1aa"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="69" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="7e811f7c-05d7-4c43-a431-d32a871e02ac"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Match Quantity}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="77" uuid="ee488934-777d-499f-a22a-6063b95425a0">
+						<jr:columnHeader height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="77" height="30" backcolor="#8DB4E2" uuid="16f55247-bd15-4537-af91-5299b965765c"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Price
+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="77" height="24" backcolor="#1F497D" uuid="d5310284-f144-4b52-8d5f-2d768eef00a4"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="77" height="25" uuid="7946bfaf-4d7e-482a-84dd-bcdc145dd5be"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Price}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="430a4f2e-b382-4572-a68c-7a95dad46ed8">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="bf0b5dce-18ad-41b0-9b75-90107ca8bcb0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Ctr.Curr/UOM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="24" backcolor="#1F497D" uuid="400288e4-03f7-46cf-8e30-55fba4f040a7"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="25" uuid="6b51d60f-1d17-4e3e-a48b-49bf22279b31"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Ctr.Curr/UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="c7df229c-ec01-4368-a979-9a8c93f210e6">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="30" backcolor="#8DB4E2" uuid="fe36be4d-4f09-4cab-9f7f-d70a7d9fc1f5"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Price
+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="24" backcolor="#1F497D" uuid="1d337db0-e4ab-47e5-8c33-8c1381665a39"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="75" height="25" uuid="321978eb-5c74-4d98-8d04-c3ee050d6397"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Price}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="10f65394-a33b-4356-8c87-2f5fa7c8afdf">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="a7354ac0-f63f-4452-9fc5-f3ecbea33a90"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Ctr.Curr/UOM
+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="24" backcolor="#1F497D" uuid="839a49e1-cd0a-4318-bb49-6fb90d438c2e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="25" uuid="aa072413-fb19-476b-9a4a-2afcf36ca6f5"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Ctr.Curr/UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63" uuid="65bd9924-6f2e-4c0e-89d9-f881ceb8e174">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="63" height="30" backcolor="#8DB4E2" uuid="ead8a5cc-e198-4f36-bffb-21300926db6a"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Alloc Date ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="63" height="24" backcolor="#1F497D" uuid="d9f9a662-6b59-4ebc-9477-b99484e137e0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="63" height="25" uuid="4c9da590-befb-4ef7-9931-420eaee1efdd"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Allocation Date}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63" uuid="6229228d-673a-4b13-be72-26fe84c054bd">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="63" height="30" backcolor="#8DB4E2" uuid="8d6c40bc-7917-42de-9700-bbd02ffb275b"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Ship Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="63" height="24" backcolor="#1F497D" uuid="ddad12ef-878f-473e-bd88-530e5b6842c8"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="63" height="25" uuid="05e3862e-35b8-4868-9f51-ec99e9dd6db4"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Shipment Month2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="859319d5-957e-45d3-940c-989e5511f22b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="65" height="30" backcolor="#8DB4E2" uuid="ccec41b4-ce00-489b-be4c-eca95fcc1107"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Ship Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="65" height="24" backcolor="#1F497D" uuid="19a8842a-edc0-4008-8922-a954e53d7632"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="65" height="25" uuid="b978ae71-4b50-4c6c-94c4-0798a381dce9"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Shipment Month2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="c59c4b96-88e6-4939-9624-9730b8907608">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="30" backcolor="#8DB4E2" uuid="f1192f26-3634-4a0f-9e10-cca15bb2b283"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Incoterm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="24" backcolor="#1F497D" uuid="ca5b080a-8182-4d83-8ecb-d48fb3812638"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="69" height="25" uuid="b43c4f95-837c-42a3-b466-96f8d7d93fec"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Incoterm}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="8e9e7923-1fde-4772-a521-0a2668f0addc">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="30" backcolor="#8DB4E2" uuid="9e5bcd16-952d-4d67-b09a-50e03205d5d1"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Incoterm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="24" backcolor="#1F497D" uuid="f536f124-df5a-4c65-aa51-0461ddde0412"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="69" height="25" uuid="141e0277-5ae6-4827-9338-852783676cb6"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Incoterm}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="9454d7a0-0559-45dd-8cfa-489d19f33ffb">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#8DB4E2" uuid="5eeb42f9-d4fe-4099-842d-623f44f0d337"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isStrikeThrough="false"/>
+								</textElement>
+								<text><![CDATA[Location From]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="24" backcolor="#1F497D" uuid="c3f8ca1b-6190-4566-824c-2793c5c6603a"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isStrikeThrough="false"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="150" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="fd2c059b-598f-4132-88b1-10d553810200"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Location From}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="eea240b7-3dbb-4f5a-aac1-e80bc1dc69e1">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#8DB4E2" uuid="7bfb20e4-f672-4dbd-83e7-5db65aac34c9"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Location To]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="150" height="24" backcolor="#1F497D" uuid="dffa0b67-bbcb-483e-8a1a-3552972c4d1e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="150" height="25" uuid="625880d0-5d30-4297-8697-7c684c1fc5c7"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Location To}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="19ce02eb-e914-49e0-af91-0199e92c39cf">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#8DB4E2" uuid="3c07e41a-60f7-435d-a901-b0338c9805ca"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice FX Rate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="24" backcolor="#1F497D" uuid="99146c34-bae0-4379-afcc-af5a2e2f2ab3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="25" uuid="af16c53b-3e5b-4ff1-9b85-e833dd0988fe"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SETTLEMENT_DOCUMENT_EXCHANGE_RATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="9bf87c74-4865-4674-98ae-977506c67ab1">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#8DB4E2" uuid="48c2d2d0-731d-434d-81a0-32d71e769809"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Settlement Doc]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="24" backcolor="#1F497D" uuid="4895c9ad-d95c-4154-a23a-83d8d25199e0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="25" uuid="63b6084c-e3bf-438c-85ea-eae0d4f05ac0"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SETTLEMENT_DOCUMENT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="240" uuid="fd2d877e-ba5b-4f9e-b9b2-fefed9e02b7b">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="240" height="30" backcolor="#8DB4E2" uuid="b73ceb6a-bbab-4fad-8dbc-fcdf22bfcc61"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Payment Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="240" height="24" backcolor="#1F497D" uuid="acbed1a4-8ab5-4bcd-8e10-5ce88b280021"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="240" height="25" uuid="ea591df7-7e1a-4fb6-bd13-af2deb58a123"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Payment Term}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="240" uuid="8fc7047b-dc8b-4176-b839-9c74541d20ef">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="240" height="30" backcolor="#8DB4E2" uuid="ab95dc09-ac55-41aa-8392-77a4f19f31ab"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Payment Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="240" height="24" backcolor="#1F497D" uuid="0900aaa8-a500-414d-aaff-e3ea7163bea6"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="240" height="25" uuid="9589fe88-7347-404b-a2f3-03d7af5124d8"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Payment Term}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110" uuid="e3380f50-2f32-4f73-8485-8988e60d49c3">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="110" height="30" backcolor="#8DB4E2" uuid="819509dc-396b-4478-8ab3-7975b4c6a3f1"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Purch Operation User ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="110" height="24" backcolor="#1F497D" uuid="a505b588-7160-42af-9e3c-24de7568fbbc"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="110" height="25" uuid="b7a3bbd9-c06f-4003-b188-2b5da554bc75"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Operation User}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="104" uuid="4ba0f2ef-e98d-49a3-9fa6-7e41a7e46e6d">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="104" height="30" backcolor="#8DB4E2" uuid="26290826-84e3-43ad-9a92-5ed08bb87893"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Operation User ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="104" height="24" backcolor="#1F497D" uuid="1fb03ba6-9aab-45f9-905b-28a31f41258e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="104" height="25" uuid="831ab217-f91e-49bc-b7fd-a89150bdaadd"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Operation User}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="192" uuid="3abb89bb-3143-4c26-acac-23323b2082ec">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="192" height="30" backcolor="#8DB4E2" uuid="e2e7bf49-5b81-4e6b-a625-a3b642d0a447"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Broker]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="192" height="24" backcolor="#1F497D" uuid="3225055e-0815-406d-bd14-5f95c2f301f0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="192" height="25" uuid="95045ffb-2d31-458f-8d0b-b9fd76e7c73d"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Broker}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="f2f58d0f-ee2f-4e9b-8804-0992ff0a2b80">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="120" height="30" backcolor="#8DB4E2" uuid="16a94ac8-b2d8-4545-b455-e5a8cb0ee365"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Broker Refer]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="120" height="24" backcolor="#1F497D" uuid="84ff7849-158e-4416-b9b8-2dc98c94d725"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="120" height="25" uuid="4c68011b-9e72-4eb5-b996-811be28df0c0"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Broker Reference}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="47ea6db1-9672-4a29-b81d-65b43a4a3453">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="68" height="30" backcolor="#8DB4E2" uuid="00391fe5-2435-4449-af4e-878a39cfe492"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Crop Season]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="68" height="24" backcolor="#1F497D" uuid="3ad41d20-3e18-498e-ab22-60436570ecfa"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="68" height="25" uuid="b823c328-63a0-48a6-9cd0-edc91b1923a9"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Crop Season}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="58" uuid="eaf3207e-124d-47a6-bfa5-daf41d562309">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="58" height="30" backcolor="#8DB4E2" uuid="5b364c10-9f13-4418-8cf3-d24c7d51e786"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Internal Packing]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="58" height="24" backcolor="#1F497D" uuid="4f260952-1ced-425d-a555-86b621cb6e1a"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="58" height="25" uuid="ff3c0057-be26-45b8-ab36-42be864574cb"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Internal Packing}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="188" uuid="8a035b1c-cd39-49bc-8b1b-83310e6bd5df">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="188" height="30" backcolor="#8DB4E2" uuid="5d90cb35-65d2-419b-8660-774f7ea3af92"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Broker]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="188" height="24" backcolor="#1F497D" uuid="5c2b90a3-429a-4463-a548-044ff855c3a3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="188" height="25" uuid="4f3bff20-9fc8-48c0-8866-5f1ac851d1e1"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Broker}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="131" uuid="3b0226e9-efa6-4498-ade9-c311402faa39">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="131" height="30" backcolor="#8DB4E2" uuid="6b9984f6-2f41-4f81-9fad-7e90ee765278"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Broker Refer]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="131" height="24" backcolor="#1F497D" uuid="59c30fb9-2868-4fd7-83e3-2ff8142608b3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="131" height="25" uuid="18a8d455-57c9-4484-b03a-7c1c6a36bdcb"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Broker Reference}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="926c960b-b7a5-4303-bbaf-5e801430a4b6">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="30" backcolor="#8DB4E2" uuid="ae3422c0-3ff8-43d7-b263-c15b1d2591e6"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Ship From Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="69" height="24" backcolor="#1F497D" uuid="1812acf6-5ecd-4d6c-b1f1-2e70909f34fb"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="69" height="25" uuid="59839077-1503-4000-bd4c-149a641221e3"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Ship From Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="76" uuid="031a76d0-31e6-418f-ba2f-6e8acf835799">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="76" height="30" backcolor="#8DB4E2" uuid="e66124cc-27f0-4ae7-b2c9-758a52fa127b"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purch Ship To Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="76" height="24" backcolor="#1F497D" uuid="f7bb3d8b-c572-4925-a0d6-f7f2c3f0ab1f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="76" height="25" uuid="1575f666-ca82-4f72-8374-16e43432d867"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Ship To Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="84" uuid="f2b61caf-11b8-495d-bfa1-b151c827727f">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="84" height="30" backcolor="#8DB4E2" uuid="c9848a15-a18e-4777-aee3-3adb0224bedc"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Unload From]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="84" height="24" backcolor="#1F497D" uuid="7c452b4f-f499-405f-8ad2-6bf026d8ddfc"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="84" height="25" uuid="9e7796cd-3d89-4bcf-ad78-a6d79f6473cb"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Unload From Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="84" uuid="c40d5c34-3681-42d5-8430-f03cf6b41070">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="84" height="30" backcolor="#8DB4E2" uuid="b41572d0-51bd-49b7-9589-3c684bfdfaa3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Unload To ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="84" height="24" backcolor="#1F497D" uuid="6456cfe9-7b2b-486b-bdf0-f229560a80e7"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="84" height="25" uuid="b1e7918a-422e-4575-a24e-c4cd9b4ee51e"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Purchase Unload To Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="c3b92eb5-12a9-4caa-8f0d-26ab828bae36">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="78" height="30" backcolor="#8DB4E2" uuid="f5e261c8-8651-4132-8f2f-9bb5e7187483"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Declaration Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="78" height="24" backcolor="#1F497D" uuid="61e67864-142e-4f22-a265-2c6e5edf1397"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="78" height="25" uuid="4dcadf81-495f-47ca-8175-db2b49eeccbd"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Declaration Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="78" uuid="fc261a8d-9d47-4efb-89c6-7aa1b5dab28a">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="78" height="30" backcolor="#8DB4E2" uuid="ba7a3d0a-9f10-4cab-9083-fea25a066b5c"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Ship From Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="78" height="24" backcolor="#1F497D" uuid="bca03c52-d818-4b56-94ed-02c83e9248de"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="78" height="25" uuid="138e4b58-576c-4082-8e34-312bf17671a4"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Ship From Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="75" uuid="f3549b89-769e-4f71-8c1a-d623b0fc1a9e">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="30" backcolor="#8DB4E2" uuid="e0b44cae-39a5-4e1b-aadc-8efcc18211b5"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Ship To Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="75" height="24" backcolor="#1F497D" uuid="ff56aadc-920c-4df5-95f5-c03ee1e6702b"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="75" height="25" uuid="e5153926-991f-4bb9-9456-8a1e84f88dec"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Ship To Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="17d2f1b5-c353-4c17-8e90-9abba2fa7454">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="80" height="30" backcolor="#8DB4E2" uuid="08e446ad-e876-4706-a5eb-587bb71b4178"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Unload From Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="80" height="24" backcolor="#1F497D" uuid="e1a6d030-39bb-4c13-86d1-846d8e43f71f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="25" uuid="faa6a97c-477f-4920-83a2-9134ff5d07c9"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Unload From Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="a1a1e019-29a9-4d7f-b010-fb4b14205d15">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="c1b9823a-2428-4cd1-81d2-defbe9223e39"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Unload To Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="90" height="24" backcolor="#1F497D" uuid="c7bc7b34-3e7f-4d21-a288-e0565c758256"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="25" uuid="f4cb4262-bd14-4aa4-a463-f8053587c5bf"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Unload To Date2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="e7204405-a1d6-4c87-af5d-6509a8cb1687">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="65" height="30" backcolor="#8DB4E2" uuid="b837e26e-52e6-4b21-a2e4-a6a50d602345">
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Commodity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table_CH" height="24" rowSpan="1">
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="65" height="24" backcolor="#1F497D" uuid="094e8bd8-7d86-4a71-8405-b4b845ca5809"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="25" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="65" height="25" uuid="1aa46965-68b3-4dac-86f0-cb2d3d59602d"/>
+								<box leftPadding="1" rightPadding="1">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Sales Commodity}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement mode="Opaque" x="56" y="0" width="4410" height="27" forecolor="#FFFFFF" backcolor="#1F497D" uuid="28e68bf3-01af-491b-ab7f-2ce4a51d793a">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($P{ctrbook}.equals("%")? "All" : $P{ctrbook}," - String settlement sales and purchase report from ",DATEFORMAT($P{date_from},"dd-MMM-yy")," to ",DATEFORMAT($P{date_to},"dd-MMM-yy"))]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="0" y="0" width="56" height="27" backcolor="#1F497D" uuid="643d277c-3e3e-4363-ace0-492e33b77a0a">
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#4F81BD"/>
+				</box>
+				<imageExpression><![CDATA["repo:Logo"]]></imageExpression>
+			</image>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="4466" y="0" width="310" height="27" forecolor="#FFFFFF" backcolor="#1F497D" uuid="63569aa9-d887-4f4f-ae45-9149e365ddee">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="0.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="newder_summary" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5b7682ae-421d-4e0b-8c49-54ecf4864328">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.sheet.names.1" value="Trade_Instruct"/>
+	<property name="ireport.jasperserver.reportUnit" value="/ReportMar18/Trade_Instruct_Report"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="e165af38-623a-4e14-9d7e-505eeb2e0c00">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="exchange" class="java.util.Collection"/>
+		<parameter name="tmonth" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="month_name" class="java.util.Collection"/>
+		<parameter name="trader_group" class="java.util.Collection"/>
+		<queryString>
+			<![CDATA[with   dated as (select   cast(PEOD_DATE as datetime) PEOD_DATE ,cbk from (select distinct EOD_DATE  as PEOD_DATE ,contract_book as cbk from DAILY_PNL_ATTRIBUTION A
+ where EOD_DATE   = $P{asofdate} and contract_book=$P{ctrbook}
+) pnl)
+
+
+select * from(
+
+select COMMODITY,---TIR summary dataset1
+       EXCHANGE,
+       INSTRUMENT_TYPE,
+    --   case
+    --      when Grouping(BROKER) = 1 then 'All Broker'
+		  --else BROKER
+    --      end             as BROKER,
+ BROKER,
+       --Grouping(BROKER)                                      as ORDERBY,
+	   MONTH,
+	   TERMINAL_MONTH,
+       Sum(SOLD_LOT)                                                                      as SOLD_LOT,
+       Sum(Isnull(ADJ_SOLD, 0))                                                           as ADJ_SOLD,
+       Sum(OPEN_SOLD)                                                                     as OPEN_SOLD,
+       Sum(BOT_LOT)                                                                       as BOT_LOT,
+       Sum(Isnull(ADJ_BOT, 0))                                                            as ADJ_BOT,
+       Sum(OPEN_BOT)                                                                      as OPEN_BOT,
+       Sum(REALISED_PL)                                                                   as REALISED_PL,
+       Sum(NET_OPEN)                                                                      as NET_OPEN,
+       Sum(M2M)                                                                           as M2M,
+       Sum(VAL)                                                                           as VAL,
+       Sum(MKTVAL)                                                                        as MKTVAL,
+       --Sum(MKTVAL) / Nullif(Sum(NET_OPEN), 0) / Nullif(Avg(LOT_AMT), 0)                 as MKT_RATE,
+       Max(MKT_RATE)                                                                      as MKT_RATE,
+       Sum(SOLD_VALUE) / nullif(Sum(OPEN_SOLD), 0)                                        as OPEN_SOLD_RATE,
+       Sum(BOT_VALUE) / nullif(Sum(OPEN_BOT), 0)                                          as OPEN_BOT_RATE,
+       ( Sum(SOLD_VALUE) + Sum(BOT_VALUE) ) / nullif(( coalesce(Sum(OPEN_SOLD), 0)
+                                                       + coalesce(Sum(OPEN_BOT), 0) ), 0) as OPEN_NET_RATE,
+       Max(MKT_DATE)                                                                      as MKT_DATE,
+	   CALL_PUT,
+	   STRIKE_PRICE,
+	    $P{asofdate}   as EODDate,
+	   COMPANY,
+      CONTRACT_BOOK,
+      BROKER_ACCOUNT
+
+from   (select    A.COMMODITY,
+                  A.COUNTERPARTY                                                                                                                                                                            as EXCHANGE,
+                  A.INSTRUMENT_TYPE,
+                  A.BROKER                                                                                                                                                                         as BROKER,
+                  case
+                    when A.INSTRUMENT_TYPE = 'FUTURES' then FUTURE_DELIVERY_MONTHNUMBER
+                    when A.INSTRUMENT_TYPE = 'OPTIONS' then OPTION_DELIVERY_MONTHNUMBER
+                  end                                                                                                                                                                                       as MONTH,
+                  case
+                    when A.INSTRUMENT_TYPE = 'FUTURES' then FUTURE_DELIVERY_MONTH
+                    when A.INSTRUMENT_TYPE = 'OPTIONS' then OPTION_DELIVERY_MONTH
+                  end                                                                                                                                                                                       as TERMINAL_MONTH,
+                  Sum(case
+                        when LONG_SHORT = 'SHORT' then CURRENT_POSITION_QUANTITY / nullif(LOT_SIZE, 0)
+                        else 0
+                      end)                                                                                                                                                                                  as SOLD_LOT,
+                  Sum (case
+                          when LONG_SHORT = 'SHORT'
+                               and $P{asofdate}  > A.EXPIRED_DATE then CURRENT_POSITION_QUANTITY / nullif(LOT_SIZE, 0)
+                          when LONG_SHORT = 'SHORT'
+                               and $P{asofdate}  <= A.EXPIRED_DATE then R.REALIZED_QUANTITY / nullif(LOT_SIZE, 0)
+                          else 0
+                       end)                                                                                                                                                                                 as ADJ_SOLD,
+                  Sum(case
+                         when LONG_SHORT = 'SHORT'
+                              and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                         else 0
+                      end)                                                                                                                                                                                  as OPEN_SOLD,
+                  Sum(case
+                         when LONG_SHORT = 'LONG' then CURRENT_POSITION_QUANTITY / nullif(LOT_SIZE, 0)
+                         else 0
+                      end)                                                                                                                                                                                  as BOT_LOT,
+                  Sum (case
+                          when LONG_SHORT = 'LONG'
+                               and $P{asofdate}  > A.EXPIRED_DATE then CURRENT_POSITION_QUANTITY / nullif(LOT_SIZE, 0)
+                          when LONG_SHORT = 'LONG'
+                               and $P{asofdate}  <= A.EXPIRED_DATE then RD.REALIZED_QUANTITY / nullif(LOT_SIZE, 0)
+                          else 0
+                       end)                                                                                                                                                                                 as ADJ_BOT,
+                  Sum(case
+                         when LONG_SHORT = 'LONG'
+                              and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                         else 0
+                      end)                                                                                                                                                                                  as OPEN_BOT,
+                  Sum(( YEARTODATE_REALIZE_PNL ) + case
+                                                                                    when A.INSTRUMENT_TYPE = 'FUTURES' then (
+                                                                                                                            (
+                                                                                                                              case
+                                                                                                                                when LONG_SHORT = 'LONG'
+                                                                                                                                     and $P{asofdate}  > A.EXPIRED_DATE then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) )
+                                                                                                                                else
+                                                                                                                              (
+                                                                                                                                case
+                                                                                                                                  when LONG_SHORT = 'SHORT'
+                                                                                                                                       and $P{asofdate}  > A.EXPIRED_DATE then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) )
+                                                                                                                                  else 0
+                                                                                                                                end
+                                                                                                                              )
+                                                                                                                              end
+                                                                                                                            )
+                                                                                                                             * case
+                                                                                                                                 when LONG_SHORT = 'SHORT' then 1
+                                                                                                                                 else -1
+                                                                                                                               end *
+                                                                                                                            (
+                                                                                                                              case
+                                                                                                                                when A.INSTRUMENT_TYPE = 'FUTURES' then --CURRENT_FUT_MARKET_PRICE
+                                                                                                                              ( A.CURRENT_POSITION_PRICE )
+                                                                                                                                else 0
+                                                                                                                              end
+                                                                                                                            )
+                                                                                                                            ) * LOT_SIZE
+                                                                                    else
+                                                                                      case
+                                                                                        when $P{asofdate}  > A.EXPIRED_DATE then ( A.EXPLAINED_PNL )
+                                                                                        else 0
+                                                                                      end
+                                                                                  end)                                                                                                                      as REALISED_PL,
+                  Sum(case
+                         when LONG_SHORT = 'LONG'
+                              and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                         else 0
+                      end - case
+                               when LONG_SHORT = 'SHORT'
+                                    and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                               else 0
+                            end)                                                                                                                                                                            as NET_OPEN,
+                  ( Avg(case
+                           when A.INSTRUMENT_TYPE = 'FUTURES' then CURRENT_FUT_MARKET_PRICE / coalesce(DENOMINATION_FACTOR, 1)
+                           when A.INSTRUMENT_TYPE = 'OPTIONS' then ( CURRENT_OPT_MARKET_PREMIUM / coalesce(DENOMINATION_FACTOR, 1)--* CURRENT_DELTA
+                                                                    )
+                        end) * Sum(case
+                                      when LONG_SHORT = 'LONG'
+                                           and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                      else 0
+                                   end - case
+                                            when LONG_SHORT = 'SHORT'
+                                                 and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                            else 0
+                                         end) * Avg(LOT_SIZE) ) - ( ( Sum(case
+                                                                             when LONG_SHORT = 'LONG' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE )
+                                                                             else 0
+                                                                          end) / Isnull(Sum(case
+                                                                                               when LONG_SHORT = 'LONG' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                               else null
+                                                                                            end), 1) ) * ( Sum(case
+                                                                                                                  when LONG_SHORT = 'LONG'
+                                                                                                                       and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                                                                                                  else 0
+                                                                                                               end) ) * Avg(LOT_SIZE) - ( Sum(case
+                                                                                                                                                 when LONG_SHORT = 'SHORT' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE )
+                                                                                                                                                 else 0
+                                                                                                                                              end) / Isnull(Sum(case
+                                                                                                                                                                   when LONG_SHORT = 'SHORT' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                                                                                                   else null
+                                                                                                                                                                end), 1) ) * ( Sum(case
+                                                                                                                                                                                      when LONG_SHORT = 'SHORT'
+                                                                                                                                                                                           and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                                                                                                                                                                      else 0
+                                                                                                                                                                                   end) ) * Avg(LOT_SIZE) ) as M2M,
+                  ( ( Sum(case
+                             when LONG_SHORT = 'LONG' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE )
+                             else 0
+                          end) / Isnull(Sum(case
+                                               when LONG_SHORT = 'LONG' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                               else null
+                                            end), 1) ) * ( Sum(case
+                                                                  when LONG_SHORT = 'LONG'
+                                                                       and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                                                  else 0
+                                                               end) ) * Avg(LOT_SIZE) - ( Sum(case
+                                                                                                 when LONG_SHORT = 'SHORT' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE )
+                                                                                                 else 0
+                                                                                              end) / Isnull(Sum(case
+                                                                                                                   when LONG_SHORT = 'SHORT' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                                                   else null
+                                                                                                                end), 1) ) * ( Sum(case
+                                                                                                                                      when LONG_SHORT = 'SHORT'
+                                                                                                                                           and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                                                                                                                      else 0
+                                                                                                                                   end) ) * Avg(LOT_SIZE) )                                                 as VAL,
+                  Avg(case
+                         --sum(CASE
+                         when A.INSTRUMENT_TYPE = 'FUTURES' then CURRENT_FUT_MARKET_PRICE / coalesce(DENOMINATION_FACTOR, 1)
+                         when A.INSTRUMENT_TYPE = 'OPTIONS' then ( CURRENT_OPT_MARKET_PREMIUM / coalesce(DENOMINATION_FACTOR, 1)--* CURRENT_DELTA
+                                                                  )
+                      end) * Sum(case
+                                    when LONG_SHORT = 'LONG'
+                                         and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                    else 0
+                                 end - case
+                                          when LONG_SHORT = 'SHORT'
+                                               and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                          else 0
+                                       end) * Avg(LOT_SIZE)                                                                                                                                                 as MKTVAL,
+                  max(case
+				         when $P{asofdate}  <= A.EXPIRED_DATE AND COALESCE(CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0), 0) = 0 then 0
+                         when A.INSTRUMENT_TYPE = 'FUTURES' then CURRENT_FUT_MARKET_PRICE / coalesce(DENOMINATION_FACTOR, 1)
+                         when A.INSTRUMENT_TYPE = 'OPTIONS' then CURRENT_OPT_MARKET_PREMIUM / coalesce(DENOMINATION_FACTOR, 1) --+ CURRENT_DELTA
+                       end)                                                                                                                                                                                 as MKT_RATE,
+                  Sum(case
+                         when LONG_SHORT = 'SHORT'
+                              and $P{asofdate}  <= A.EXPIRED_DATE then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                         else 0
+                      end)                                                                                                                                                                                  as SOLD_VALUE,
+                  Sum(case
+                         when LONG_SHORT = 'LONG'
+                              and $P{asofdate}  <= A.EXPIRED_DATE then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                         else 0
+                      end)                                                                                                                                                                                  as BOT_VALUE,
+                  case
+                     when Sum(case
+                                 when LONG_SHORT = 'LONG' then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                 else 0
+                              end - case
+                                       when LONG_SHORT = 'SHORT' then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                       else 0
+                                    end) = 0 then 0
+                     else
+                       case
+                          when Sum(case
+                                      when LONG_SHORT = 'SHORT' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                      else 0
+                                   end) / Sum(case
+                                                 when LONG_SHORT = 'SHORT' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                 else null
+                                              end) is null then Sum(case
+                                                                       when LONG_SHORT = 'LONG' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                                                       else 0
+                                                                    end) / Sum(case
+                                                                                  when LONG_SHORT = 'LONG' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                  else null
+                                                                               end)
+                          when Sum(case
+                                      when LONG_SHORT = 'LONG' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                      else 0
+                                   end) / Sum(case
+                                                 when LONG_SHORT = 'LONG' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                 else null
+                                              end) is null then Sum(case
+                                                                       when LONG_SHORT = 'SHORT' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                                                       else 0
+                                                                    end) / Sum(case
+                                                                                  when LONG_SHORT = 'SHORT' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                  else null
+                                                                               end)
+                          else ( ( ( Sum(case
+                                            when LONG_SHORT = 'SHORT' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                            else 0
+                                         end) / Sum(case
+                                                       when LONG_SHORT = 'SHORT' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                       else null
+                                                    end) ) + ( Sum(case
+                                                                      when LONG_SHORT = 'LONG' then ( CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0) ) * ( CURRENT_POSITION_PRICE  )
+                                                                      else 0
+                                                                   end) / Sum(case
+                                                                                 when LONG_SHORT = 'LONG' then ( nullif(CURRENT_OPEN_QUANTITY, 0) / nullif(LOT_SIZE, 0) )
+                                                                                 else null
+                                                                              end) ) ) / 2 )
+                       end
+                  end                                                                                                                                                                                       as OPEN_NET_RATE,
+                  -- A.EOD_DATE                                                                                                       AS MKT_DATE,
+                  case
+                     when Max(A.EXPIRED_DATE) >= Max(A.EOD_DATE) then Max(A.EOD_DATE)
+                     else Max(A.EXPIRED_DATE)
+                  end                                                                                                                                                                                       as MKT_DATE,
+                  case
+                     when Sum(case
+                                 when LONG_SHORT = 'LONG'
+                                      and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                 else 0
+                              end - case
+                                       when LONG_SHORT = 'SHORT'
+                                            and $P{asofdate}  <= A.EXPIRED_DATE then CURRENT_OPEN_QUANTITY / nullif(LOT_SIZE, 0)
+                                       else 0
+                                    end) = 0 then null
+                     else Avg(LOT_SIZE)
+                  end                                                                                                                                                                                       as LOT_AMT,
+				  A.CALL_PUT,
+				  A.STRIKE_PRICE,
+				   A.COMPANY,
+				  A.CONTRACT_BOOK,
+				   case
+                        when A.INSTRUMENT_TYPE = 'FUTURES' then F.BROKER_ACCOUNT
+                        when A.INSTRUMENT_TYPE = 'OPTIONS' then O.BROKER_ACCOUNT
+                     end BROKER_ACCOUNT
+,A.EOD_DATE
+
+
+        from      DAILY_PNL_ATTRIBUTION A
+        join      (select Max(EOD_DATE) EOD_DATE,
+                          POSITION_ID,
+                          INSTRUMENT_TYPE
+                   from   DAILY_PNL_ATTRIBUTION N
+
+ where  N.EOD_DATE <= $P{asofdate}  and  N.EOD_DATE >=  DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate} ), 0)
+                      AND N.CONTRACT_BOOK=$P{ctrbook}
+
+		 and 		     N.INSTRUMENT_TYPE !='IDT' and
+				     N.INSTRUMENT_TYPE !='PHYSICAL' and
+				     N.INSTRUMENT_TYPE !='FOREX' and
+					 N.INSTRUMENT_TYPE !='PAPER'
+
+                   group  by POSITION_ID,
+                             INSTRUMENT_TYPE) N on N.POSITION_ID = A.POSITION_ID
+                                               and N.INSTRUMENT_TYPE = A.INSTRUMENT_TYPE
+                                               and N.EOD_DATE = A.EOD_DATE
+        join      DAILY_CONTRACT_DATA C on A.POSITION_ID = C.POSITION_ID
+                                       and A.INSTRUMENT_TYPE = C.INSTRUMENT_TYPE
+        left join (select distinct
+                          POSITION_ID,
+                          Max(REALIZED_DATE)     as REALIZED_DATE,
+                          Sum(REALIZED_QUANTITY) as REALIZED_QUANTITY
+                   from   DAILY_PNL_REALIZATION
+                   where  Datepart(yyyy, REALIZED_DATE) = Datepart(yyyy, $P{asofdate} )
+                   group  by POSITION_ID) R on A.POSITION_ID = R.POSITION_ID
+                                           and R.REALIZED_DATE <= A.EOD_DATE
+        left join (select distinct
+                          PURCHASE_POSITION_ID,
+                          Max(VALUATION_DATE)    as VALUATION_DATE,
+                          Sum(REALIZED_QUANTITY) as REALIZED_QUANTITY
+                   from   REALIZATION_DETAIL
+                   where  Datepart(yyyy, VALUATION_DATE) = Datepart(yyyy, $P{asofdate} )
+                   group  by PURCHASE_POSITION_ID) RD on A.POSITION_ID = RD.PURCHASE_POSITION_ID
+                                                     and RD.VALUATION_DATE <= A.EOD_DATE
+
+        Left outer join  (select   BROKER_ACCOUNT, contract_Reference
+from BI_VIEW_CONTRACT_FUTURE ) F on ( A.POSITION_REF=F.contract_Reference collate SQL_Latin1_General_CP1_CI_AS and A.INSTRUMENT_TYPE='FUTURES')
+Left outer join  (select   BROKER_ACCOUNT, contract_Reference
+from BI_VIEW_CONTRACT_OPTION ) O on ( A.POSITION_REF=O.contract_Reference collate SQL_Latin1_General_CP1_CI_AS and A.INSTRUMENT_TYPE='OPTIONS')
+join dated p on (A.EOD_DATE=p.PEOD_DATE )
+
+		WHERE     A.POSITION_STATUS ='CONFIRMED'
+		AND $X{IN,CASE
+                            WHEN A.INSTRUMENT_TYPE = 'FUTURES' THEN FUTURE_DELIVERY_MONTH
+                            WHEN A.INSTRUMENT_TYPE = 'OPTIONS' THEN OPTION_DELIVERY_MONTH
+                          END, tmonth}
+		AND NOT EXISTS (SELECT POSITION_ID,
+                                      INSTRUMENT_TYPE,
+                                      CONTRACT_BOOK
+                               FROM   UNCONFIRMED_POSITION_DATA UCFMD
+                               WHERE  A.POSITION_ID = UCFMD.POSITION_ID
+                                      AND A.INSTRUMENT_TYPE = UCFMD.INSTRUMENT_TYPE
+                                      AND A.CONTRACT_BOOK = UCFMD.CONTRACT_BOOK)
+        group     by A.POSITION_ID,
+		             A.COMMODITY,
+                     A.COUNTERPARTY,
+                     A.INSTRUMENT_TYPE,
+                     A.BROKER,
+                     case
+                        when A.INSTRUMENT_TYPE = 'FUTURES' then FUTURE_DELIVERY_MONTH
+                        when A.INSTRUMENT_TYPE = 'OPTIONS' then OPTION_DELIVERY_MONTH
+                     end,
+                     case
+                        when A.INSTRUMENT_TYPE = 'FUTURES' then FUTURE_DELIVERY_MONTHNUMBER
+                        when A.INSTRUMENT_TYPE = 'OPTIONS' then OPTION_DELIVERY_MONTHNUMBER
+                     end,
+					 A.CALL_PUT,
+				     A.STRIKE_PRICE,
+					 A.COMPANY,A.CONTRACT_BOOK
+					  ,case
+                        when A.INSTRUMENT_TYPE = 'FUTURES' then F.BROKER_ACCOUNT
+                        when A.INSTRUMENT_TYPE = 'OPTIONS' then O.BROKER_ACCOUNT
+                     end
+,A.EOD_DATE
+					 ) A join dated p on (A.EOD_DATE=p.PEOD_DATE  and A.CONTRACT_BOOK=p.cbk) 
+					 where A.EOD_DATE   = $P{asofdate}
+					 
+group  by COMMODITY,
+          EXCHANGE,
+          INSTRUMENT_TYPE,
+		  ---ROLLUP(BROKER),
+BROKER,
+		  MONTH,
+		  TERMINAL_MONTH,
+		  CALL_PUT,
+		  STRIKE_PRICE,
+		  COMPANY,
+		  CONTRACT_BOOK,
+          BROKER_ACCOUNT
+		  ,EOD_DATE
+)TK
+where VAL !=0
+ORDER  BY 1,2,3,5,4,6]]>
+		</queryString>
+		<field name="COMMODITY" class="java.lang.String"/>
+		<field name="EXCHANGE" class="java.lang.String"/>
+		<field name="INSTRUMENT_TYPE" class="java.lang.String"/>
+		<field name="BROKER" class="java.lang.String"/>
+		<field name="MONTH" class="java.lang.Integer"/>
+		<field name="TERMINAL_MONTH" class="java.lang.String"/>
+		<field name="SOLD_LOT" class="java.math.BigDecimal"/>
+		<field name="ADJ_SOLD" class="java.math.BigDecimal"/>
+		<field name="OPEN_SOLD" class="java.math.BigDecimal"/>
+		<field name="BOT_LOT" class="java.math.BigDecimal"/>
+		<field name="ADJ_BOT" class="java.math.BigDecimal"/>
+		<field name="OPEN_BOT" class="java.math.BigDecimal"/>
+		<field name="REALISED_PL" class="java.math.BigDecimal"/>
+		<field name="NET_OPEN" class="java.math.BigDecimal"/>
+		<field name="M2M" class="java.math.BigDecimal"/>
+		<field name="VAL" class="java.math.BigDecimal"/>
+		<field name="MKTVAL" class="java.math.BigDecimal"/>
+		<field name="MKT_RATE" class="java.math.BigDecimal"/>
+		<field name="OPEN_SOLD_RATE" class="java.math.BigDecimal"/>
+		<field name="OPEN_BOT_RATE" class="java.math.BigDecimal"/>
+		<field name="OPEN_NET_RATE" class="java.math.BigDecimal"/>
+		<field name="MKT_DATE" class="java.sql.Date"/>
+		<field name="CALL_PUT" class="java.lang.String"/>
+		<field name="STRIKE_PRICE" class="java.math.BigDecimal"/>
+		<field name="EODDate" class="java.sql.Date"/>
+		<field name="COMPANY" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="BROKER_ACCOUNT" class="java.lang.String"/>
+		<group name="EXCHANGE">
+			<groupExpression><![CDATA[$F{EXCHANGE}]]></groupExpression>
+		</group>
+		<group name="TERMINAL_MONTH_SORT">
+			<groupExpression><![CDATA[]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="month_name" class="java.lang.String"/>
+	<parameter name="asofdate" class="java.util.Date"/>
+	<parameter name="exchange" class="java.util.Collection"/>
+	<parameter name="commodity" class="java.util.Collection"/>
+	<parameter name="tmonth" class="java.util.Collection"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="trader_group" class="java.util.Collection"/>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[$P{LE_Filter}]]></defaultValueExpression>
+	</parameter>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,asofdate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.asofdate
+		  AND $X{IN,DPD.PROFIT_CENTER,pc}
+		  AND $X{IN,DPD.MATERIAL_GROUP ,commodity}
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE asofdate
+		FROM DAILY_PNL_ATTRIBUTION DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+				FROM DAILY_PNL_ATTRIBUTION b
+				WHERE b.EOD_DATE <= $P{asofdate}
+				AND $X{IN,b.PROFIT_CENTER,pc}
+				AND $X{IN, b.COMMODITY , commodity}
+				AND b.CONTRACT_BOOK like $P{ctrbook}
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		AND $X{IN,DPA.PROFIT_CENTER,pc}
+		AND $X{IN,DPA.COMMODITY ,commodity}
+		AND DPA.CONTRACT_BOOK like $P{ctrbook}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' asofdate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM DAILY_PNL_ATTRIBUTION DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM DAILY_PNL_ATTRIBUTION b
+						WHERE b.EOD_DATE <= $P{asofdate}
+						AND $X{IN,b.PROFIT_CENTER,pc}
+						AND $X{IN,b.COMMODITY ,commodity}
+						AND b.CONTRACT_BOOK like $P{ctrbook}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND $X{IN,DPA.PROFIT_CENTER,pc}
+				AND $X{IN, DPA.COMMODITY, commodity}
+				AND DPA.CONTRACT_BOOK like $P{ctrbook}
+				) = 0
+	) Y
+WHERE 0 = 0]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="asofdate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="61">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="0" width="802" height="59" uuid="85a74d2c-6c19-454f-88ca-8df7f7973897"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="5115c94d-5021-4872-adde-fc39d9613a21">
+						<datasetParameter name="asofdate">
+							<datasetParameterExpression><![CDATA[$F{asofdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="tmonth">
+							<datasetParameterExpression><![CDATA[$P{tmonth}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="commodity">
+							<datasetParameterExpression><![CDATA[$P{commodity}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="exchange">
+							<datasetParameterExpression><![CDATA[$P{exchange}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pc">
+							<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="trader_group">
+							<datasetParameterExpression><![CDATA[$P{trader_group}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="90" uuid="cbe19ed4-4058-49cc-bfd9-8ad9a61d7bbb">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="65cc58ac-b3f5-438b-945f-cd56b71d20c2">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[EOD DATE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="2a8e6762-4baa-4a1d-b73f-2b9a2c8c9869"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EODDate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="9320a9c8-b5f1-47fe-94fc-ea4c5dc6a2c5">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="d4852d6b-85f4-4f15-8ebd-e814cc202eed">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[COMPANY]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="31656ba1-1594-49cf-a4d7-332794e6b9d8"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMPANY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="98" uuid="cdcb6983-4913-44cc-a45a-cfa15f35700a">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="98" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="f50a742e-0261-4c69-88aa-90bf7ffa9191">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[ CTR BOOK]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="98" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="7c3c337d-151a-4cae-b77d-c5349b1d65ab"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACT_BOOK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="118" uuid="69e4533b-b9d1-45fb-b03c-383c0ef9bbf6">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="118" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="4701037a-065b-40e8-bab9-2bdaf9b33dd5">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[INSTRUMENT TYPE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="118" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="6bb8f474-9710-4ced-aae2-9c8ab6178d5f"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INSTRUMENT_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="278" uuid="8bcc01fc-af87-4c04-a8bf-3f5924141bb4">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="278" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="b2d2d69a-4eea-41f1-a03b-94789c7542da">
+									<property name="local_mesure_unitx" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[EXCHANGE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="278" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="2b6fc539-ec87-46ac-8b3a-ce7d05970536"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EXCHANGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="241" uuid="12a1a64d-56c0-42ac-b2f0-03c2c41fb9e6">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="241" height="20" forecolor="#000000" backcolor="#8DB4E2" uuid="d1fcdede-676e-4a76-928c-4659a20067c8">
+									<property name="local_mesure_unitx" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[PRODUCT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="241" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="fea675f3-c3df-42cc-b9a2-c0f600298ebf"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMMODITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="256" uuid="80ae63d4-439c-4498-bea8-64b17cc449c0">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="256" height="20" backcolor="#8DB4E2" uuid="22cb2c73-9db3-4517-9508-c984f5d0d169">
+									<property name="local_mesure_unitx" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[BROKER]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="256" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="e3fd23f0-4ba0-40bf-914b-4dd8cf2c037e"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isItalic="false" isUnderline="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c23ceb36-66ed-49c8-9a46-e04cee5ffb0b">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="942e7270-c803-4618-ae67-42c8a7d3d71a">
+									<property name="local_mesure_unitx" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[BROKER ACC]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF" uuid="e2a9bec0-2055-4d94-9522-11f2c5207f91"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER_ACCOUNT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b16c5ba4-4589-46ed-80a2-c7dac070dd97">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="8723021f-bf96-4587-9d3d-ebc1565585c8">
+									<property name="local_mesure_unitx" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[TMONTH]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="8af26261-96c9-403e-8992-d98ad9b4e3a4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TERMINAL_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3ae745b1-e3ee-4833-9e15-e1d7e177e727">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="4fdb1906-2076-4618-bdca-6574a88dd9e5">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[PUT CALL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7bd8fa40-d4cf-4953-be1f-ca53b6d31215">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isItalic="false" isUnderline="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CALL_PUT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b6cd385c-f7e4-4b42-af15-088f38b7726e">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="3a66331d-bbbe-47ea-af8a-cccfa277253f">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[STRIKE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00000;(#,##0.00000)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="7c533489-4408-4132-a2ac-815b1669fff6">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" isItalic="false" isUnderline="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{STRIKE_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="359a0764-764a-4058-969e-2abf57e6547a">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="80d4ebd3-8a56-4048-827d-392c931f42d5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SOLD LOT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="653dcb3c-38a8-42da-a398-782e39092d36">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SOLD_LOT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="92fd04c5-373b-438d-86a6-fe8f5e334854">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="6ff9e3cb-7751-4133-87c2-1b368b7a9508">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ADJ SOLD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="e96c2a7c-b74f-4772-a6b1-a5f7917332ac">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ADJ_SOLD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="54d8bccf-5037-4a99-9ad1-2e2ba65042cb">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="0a3c30a3-4ada-4678-bc46-58c0bd466973">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[OPEN SOLD]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4f3f1c4d-98a6-49b1-91c9-c767ea8c738c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OPEN_SOLD}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2e582537-2b09-41a7-bcea-6d2b7d935d48">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="12774d09-8e3c-423e-b6f6-79005ef05e3d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[BOT LOT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="b8ed5020-c9a7-457d-93a6-c59260394c8f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BOT_LOT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="03f9039c-dfc1-436f-ba4f-4bd0c7acaf7d">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="28742054-c60d-4ca5-8409-2c2a9ba7a69d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ADJ BOT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Parent">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="29b8c03a-56d8-426d-bd62-631f72e2d626">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ADJ_BOT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="00978bf0-6453-448c-9c73-c856f602b659">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="7530b7b0-b9d9-4153-80c0-f671f52878b2">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[OPEN BOT]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="02f94393-99d8-4430-82fd-c471f36ead82">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OPEN_BOT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="af10a68d-63b2-4412-b809-e9a9d15b28d0">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="8c40ea57-bfcb-42b0-9f02-d7495ecf32c2"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[REALISED PL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4ebb42ab-872b-4089-b29a-1b076e708183">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{REALISED_PL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f5ce5abd-1a7c-43ca-8ffa-62dfa283132b">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="1e31bb2e-b1d7-4869-b8dd-55df175717f6"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[NET OPEN]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="28c51f6b-5d34-4e9e-a373-8591cdd662bb">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NET_OPEN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="07b3a801-839b-44cc-8b7d-3540ce264838">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="101" height="20" backcolor="#8DB4E2" uuid="431019cd-d976-4027-8fe5-b04ecae54c68"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[M2M]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="101" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="4f8f3ae8-a5e2-4b74-a421-c45a740f0c94">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{M2M}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6587d2e0-a24a-4d10-a63b-fed60cd00bdd">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="4c255887-59b0-4394-892f-dc30122423ce"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[VAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="65b88db7-70a1-49a2-bd73-b50db2493692">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{VAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6c300d8f-d88b-4a1b-8e46-3bbb6c8c5f94">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="eed1ff53-d2a9-4dd3-afd7-ed04e1eee2d9"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MKTVAL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="f646f2e7-4e85-4b2c-8708-99bdcb1ee0d8">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MKTVAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e252197f-be34-4b23-b412-8834134ff5a5">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="8c5d1e2a-ce0b-40e5-bcf9-10405c313a19"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MKT_RATE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="98aaf57b-1b27-4970-af61-05c1ef380a2a">
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MKT_RATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f551be53-47a5-4b39-952a-3d7d45c31685">
+						<jr:columnHeader style="table_CH" height="20" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#8DB4E2" uuid="d27af67c-23a9-460d-a4ce-44d95d60ffaa">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[MKT_DATE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="15" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="90" height="15" isRemoveLineWhenBlank="true" isPrintWhenDetailOverflows="true" uuid="650eea01-664a-42e7-8354-3cf532e894e1">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MKT_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</title>
+</jasperReport>

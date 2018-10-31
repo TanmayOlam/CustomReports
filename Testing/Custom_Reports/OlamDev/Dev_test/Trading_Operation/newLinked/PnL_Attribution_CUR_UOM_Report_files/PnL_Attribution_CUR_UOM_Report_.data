@@ -1,0 +1,3648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PNL_UOM" language="groovy" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="2c0251bd-a562-4363-9e3d-9d75a1b678aa">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="9"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="OLAM_4.7"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<subDataset name="PNL_UOM" uuid="122f33f2-0d3d-47c3-9b76-f85ad08ea6e6">
+		<parameter name="pc" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+		</parameter>
+		<parameter name="company_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{company_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="contract_book_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{contract_book_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="strategy_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{strategy_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="commodity_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{commodity_p}]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT distinct
+INSTRUMENT_TYPE ,
+EOD_DATE ,
+ATTRIBUTION_STATUS ,
+POSITION_REF ,
+ALLOCATION_REF ,
+POSITION_DATE ,
+POSITION_STATUS ,
+LONG_SHORT ,
+CONTRACT_BOOK ,
+COMPANY ,
+PROFIT_CENTER ,
+STRATEGY ,
+SUB_STRATEGY ,
+TRADER ,
+MAIN_TAG ,
+INTERNAL_REFERENCE ,
+COUNTERPARTY ,
+BROKER ,
+BROKER_REFERENCE ,
+COMMODITY ,
+PHYSICAL_DELIVERY_MONTH ,
+PHYSICAL_DELIVERY_MONTHNUMBER ,
+FUTURE_DELIVERY_MONTH ,
+FUTURE_DELIVERY_MONTHNUMBER ,
+ORIGIN ,
+SPECIFICATION ,
+INTERNAL_PACKING ,
+LOCATION_FROM ,
+LOCATION_TO ,
+INCOTERM ,
+SOURCE_POSITION_QUANTITY ,
+PHYSICAL_MARKET_PRICE_INDEX ,
+MARKET_UOM,
+MARKET_CURRENCY,
+CURRENT_PHY_MARKET_PRICE ,
+PRIOR_PHY_MARKET_PRICE ,
+CURRENT_FUT_MARKET_PRICE ,
+PRIOR_FUT_MARKET_PRICE ,
+LOT_SIZE ,
+CURRENT_POSITION_QUANTITY ,
+PRIOR_POSITION_QUANTITY ,
+CURRENT_OPEN_QUANTITY ,
+PRIOR_OPEN_QUANTITY ,
+CURRENT_REALIZED_QUANTITY ,
+POSITION_CURRENCY ,
+POSITION_UOM ,
+CURRENT_POSITION_PRICE ,
+PRIOR_POSITION_PRICE ,
+CURRENT_OTHER_COST ,
+PRIOR_OTHER_COST ,
+CURRENT_FREIGHT_COST ,
+PRIOR_FREIGHT_COST ,
+MARKET_SHIFT_IMPACT ,
+QUANTITY_CHANGE_IMPACT ,
+PRICE_CHANGE_IMPACT ,
+COST_CHANGE_IMPACT ,
+FOREX_SHIFT_IMPACT_WRT_PRICE ,
+REALIZED_PNL ,
+ADJUSTMENT_PNL ,
+INCEPTION_TO_DATE_PNL ,
+PRIOR_INCEPTION_TO_DATE_PNL ,
+EXPLAINED_PNL ,
+UNEXPLAINED_PNL ,
+NOTIONAL_VALUE ,
+YEAR_TO_DATE_PNL ,
+SPECIFICATION_DESC ,
+POS_CREATE_BY ,
+POS_UPDATE_BY ,
+PRIOR_ALLOCATION_QUANTITY ,
+POS_LAST_UPDATE_DATE ,
+REGION_DIFFERENTIAL
+FROM
+[cxcdata_olam47_bi].[dbo].[DAILY_PNL_ATTRIBUTION] d,
+(
+select distinct p.code,u.code 'MARKET_UOM',cur.name 'MARKET_CURRENCY' from [cxcdata_olam47].[dbo].[jc_price_index] p,
+[cxcdata_olam47].[dbo].[jc_price_index_commodity] c,
+  [cxcdata_olam47].[dbo].[JC_UOM] u,[cxcdata_olam47].[dbo].[JC_CURRENCY_DENOMINATION] cur
+where p.id =  c.price_index_id and c.uom_id = u.id and c.currency_denomination_id = cur.id
+) m
+where ((d.physical_market_price_index = m.code COLLATE DATABASE_DEFAULT AND d.future_market_price_index IS NULL)
+            OR (d.future_market_price_index = m.code COLLATE DATABASE_DEFAULT  AND d.physical_market_price_index IS NULL)
+            OR (d.option_market_price_index = m.code COLLATE DATABASE_DEFAULT  AND d.option_market_price_index IS NULL)
+            OR (d.basis_market_price_index = m.code COLLATE DATABASE_DEFAULT  AND d.basis_market_price_index IS NULL))
+   AND COMPANY LIKE $P{company_p}
+   AND CONTRACT_BOOK LIKE $P{contract_book_p}
+   AND EOD_DATE  = $P{asofdate}
+   AND PROFIT_CENTER like $P{pc}
+   AND STRATEGY LIKE $P{strategy_p}
+   AND COMMODITY LIKE $P{commodity_p}
+]]>
+		</queryString>
+		<field name="INSTRUMENT_TYPE" class="java.lang.String"/>
+		<field name="EOD_DATE" class="java.sql.Date"/>
+		<field name="ATTRIBUTION_STATUS" class="java.lang.String"/>
+		<field name="POSITION_REF" class="java.lang.String"/>
+		<field name="ALLOCATION_REF" class="java.lang.String"/>
+		<field name="POSITION_DATE" class="java.sql.Date"/>
+		<field name="POSITION_STATUS" class="java.lang.String"/>
+		<field name="LONG_SHORT" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="COMPANY" class="java.lang.String"/>
+		<field name="PROFIT_CENTER" class="java.lang.String"/>
+		<field name="STRATEGY" class="java.lang.String"/>
+		<field name="SUB_STRATEGY" class="java.lang.String"/>
+		<field name="TRADER" class="java.lang.String"/>
+		<field name="MAIN_TAG" class="java.lang.String"/>
+		<field name="INTERNAL_REFERENCE" class="java.lang.String"/>
+		<field name="COUNTERPARTY" class="java.lang.String"/>
+		<field name="BROKER" class="java.lang.String"/>
+		<field name="BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="COMMODITY" class="java.lang.String"/>
+		<field name="PHYSICAL_DELIVERY_MONTH" class="java.lang.String"/>
+		<field name="PHYSICAL_DELIVERY_MONTHNUMBER" class="java.lang.Integer"/>
+		<field name="FUTURE_DELIVERY_MONTH" class="java.lang.String"/>
+		<field name="FUTURE_DELIVERY_MONTHNUMBER" class="java.lang.Integer"/>
+		<field name="ORIGIN" class="java.lang.String"/>
+		<field name="SPECIFICATION" class="java.lang.String"/>
+		<field name="INTERNAL_PACKING" class="java.lang.String"/>
+		<field name="LOCATION_FROM" class="java.lang.String"/>
+		<field name="LOCATION_TO" class="java.lang.String"/>
+		<field name="INCOTERM" class="java.lang.String"/>
+		<field name="SOURCE_POSITION_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="PHYSICAL_MARKET_PRICE_INDEX" class="java.lang.String"/>
+		<field name="MARKET_UOM" class="java.lang.String"/>
+		<field name="MARKET_CURRENCY" class="java.lang.String"/>
+		<field name="CURRENT_PHY_MARKET_PRICE" class="java.math.BigDecimal"/>
+		<field name="PRIOR_PHY_MARKET_PRICE" class="java.math.BigDecimal"/>
+		<field name="CURRENT_FUT_MARKET_PRICE" class="java.math.BigDecimal"/>
+		<field name="PRIOR_FUT_MARKET_PRICE" class="java.math.BigDecimal"/>
+		<field name="LOT_SIZE" class="java.math.BigDecimal"/>
+		<field name="CURRENT_POSITION_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="PRIOR_POSITION_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="CURRENT_OPEN_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="PRIOR_OPEN_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="CURRENT_REALIZED_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="POSITION_CURRENCY" class="java.lang.String"/>
+		<field name="POSITION_UOM" class="java.lang.String"/>
+		<field name="CURRENT_POSITION_PRICE" class="java.math.BigDecimal"/>
+		<field name="PRIOR_POSITION_PRICE" class="java.math.BigDecimal"/>
+		<field name="CURRENT_OTHER_COST" class="java.math.BigDecimal"/>
+		<field name="PRIOR_OTHER_COST" class="java.math.BigDecimal"/>
+		<field name="CURRENT_FREIGHT_COST" class="java.math.BigDecimal"/>
+		<field name="PRIOR_FREIGHT_COST" class="java.math.BigDecimal"/>
+		<field name="MARKET_SHIFT_IMPACT" class="java.math.BigDecimal"/>
+		<field name="QUANTITY_CHANGE_IMPACT" class="java.math.BigDecimal"/>
+		<field name="PRICE_CHANGE_IMPACT" class="java.math.BigDecimal"/>
+		<field name="COST_CHANGE_IMPACT" class="java.math.BigDecimal"/>
+		<field name="FOREX_SHIFT_IMPACT_WRT_PRICE" class="java.math.BigDecimal"/>
+		<field name="REALIZED_PNL" class="java.math.BigDecimal"/>
+		<field name="ADJUSTMENT_PNL" class="java.math.BigDecimal"/>
+		<field name="INCEPTION_TO_DATE_PNL" class="java.math.BigDecimal"/>
+		<field name="PRIOR_INCEPTION_TO_DATE_PNL" class="java.math.BigDecimal"/>
+		<field name="EXPLAINED_PNL" class="java.math.BigDecimal"/>
+		<field name="UNEXPLAINED_PNL" class="java.math.BigDecimal"/>
+		<field name="NOTIONAL_VALUE" class="java.math.BigDecimal"/>
+		<field name="YEAR_TO_DATE_PNL" class="java.math.BigDecimal"/>
+		<field name="SPECIFICATION_DESC" class="java.lang.String"/>
+		<field name="POS_CREATE_BY" class="java.lang.String"/>
+		<field name="POS_UPDATE_BY" class="java.lang.String"/>
+		<field name="PRIOR_ALLOCATION_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="POS_LAST_UPDATE_DATE" class="java.sql.Date"/>
+		<field name="REGION_DIFFERENTIAL" class="java.math.BigDecimal"/>
+		<group name="INSTRUMENT_TYPE">
+			<groupExpression><![CDATA[$F{INSTRUMENT_TYPE}]]></groupExpression>
+		</group>
+		<group name="CONTRACT_BOOK">
+			<groupExpression><![CDATA[$F{CONTRACT_BOOK}]]></groupExpression>
+		</group>
+		<group name="PROFIT_CENTER">
+			<groupExpression><![CDATA[$F{PROFIT_CENTER}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="pc" class="java.lang.String"/>
+	<parameter name="asofdate" class="java.util.Date">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="company_p" class="java.lang.String"/>
+	<parameter name="contract_book_p" class="java.lang.String"/>
+	<parameter name="strategy_p" class="java.lang.String"/>
+	<parameter name="commodity_p" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 1 AS ROWNUM]]>
+	</queryString>
+	<detail>
+		<band height="754" splitType="Stretch">
+			<componentElement>
+				<reportElement key="" x="0" y="61" width="5710" height="677" uuid="c886b693-c3af-4d4c-b908-acf03f8b74cb">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="PNL_UOM" uuid="194c21dc-4bbc-4a0e-a857-e13fe6434381">
+						<datasetParameter name="asofdate">
+							<datasetParameterExpression><![CDATA[$P{asofdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pc">
+							<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="company_p">
+							<datasetParameterExpression><![CDATA[$P{company_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="contract_book_p">
+							<datasetParameterExpression><![CDATA[$P{contract_book_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="strategy_p">
+							<datasetParameterExpression><![CDATA[$P{strategy_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="commodity_p">
+							<datasetParameterExpression><![CDATA[$P{commodity_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="66" uuid="9f91a528-dbff-44ab-a975-efd34f7bb5ba">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="66" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5dee845a-c3d7-44b0-b0e6-6b9c9e654cc5"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="8" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="66" height="32" backcolor="#8DB4E2" uuid="adbd9ef0-4392-4e46-b940-9d4641a5948f"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Instrument Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="66" height="30" uuid="acc2ca3e-97c5-4bfe-bcca-f71103d04b37">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INSTRUMENT_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="48" uuid="86fe8c9c-4a13-4244-bf9c-864537e5a093">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="48" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="a4e880c8-b606-4700-af86-e9a096761a22"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="48" height="32" backcolor="#8DB4E2" uuid="5f008136-8f44-4ad6-a8e9-9ad1ced103e4"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="48" height="30" uuid="e625d15c-cf08-4ccb-9ef1-3662cd47cf69">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ATTRIBUTION_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="86" uuid="14dc23b0-87fe-4a7f-9474-4b6e438fa7ec">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="86" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6cb8b760-e165-4521-a314-913984dacc5a"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_CH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="86" height="32" backcolor="#8DB4E2" uuid="c797de3a-ff43-44d4-ac6c-bc1ba1bb4c1f"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Position Ref]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="86" height="30" uuid="32edbeb1-0818-4e9c-abe4-59ddcac64a71">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c712728c-9bad-4395-a617-6c2574aea2af">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="b110fe5b-861b-4f57-965a-f2271300da86"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="76df774d-2099-426b-ab44-1fa72f03933d"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Allocation Ref]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="6a30c4b5-00e5-4780-a9c0-0f2fe02c90a9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="56" uuid="4d2b462a-56ab-45f7-b721-ca7af8a81dcc">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="56" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="70d6a647-8362-45e8-87a2-fdabd4bf73be"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="56" height="32" backcolor="#8DB4E2" uuid="a7a1d1f0-8b67-442d-8c8b-399200ab5b43"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Position Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="56" height="30" uuid="163a36ec-8a7e-4d1b-bb6b-10a5f120eec0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="0589d0d8-1e8a-48ca-baf7-6a9fd3e09a7d">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="74" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="af6554fc-6332-4b0b-9548-6d45dcef44d9"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="74" height="32" backcolor="#8DB4E2" uuid="827e7a1b-a8fc-42c3-b7ab-28ef32b28f1e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Position Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="74" height="30" uuid="b79631c9-bc67-4286-8e6e-608897042baa">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="48" uuid="f544eab1-bf47-4023-9e30-d52f63adba45">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="48" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="add17bd4-5254-482a-8ada-a35bcabf2eb1"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="48" height="32" backcolor="#8DB4E2" uuid="c1262a0b-f734-46d6-b745-5ffc2b1a9dd4"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Long Short]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="48" height="30" uuid="144a5b1d-791a-4129-a0e8-1c5aca755adb">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LONG_SHORT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="4ebbede7-4b04-484c-b65d-4f3ae8cdf43c">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6fab93d6-263b-4551-b90c-3d1aed8a0b93"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="eafffeb4-0fb8-4755-8001-f8004e5df754"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trader]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="2f92109e-2906-4b40-8307-57ebb2e1415b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRADER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="13f6cafa-186c-448f-9101-f87c8a9eb031">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="74" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5ec91f17-ca9c-4321-bae8-a0ef1a91497c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="74" height="32" backcolor="#8DB4E2" uuid="9ac5cabc-bfb8-4b26-9263-1307706c841d"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Main Tag]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="74" height="30" uuid="d1e71bbb-f271-4809-a043-b8df681b0b9e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MAIN_TAG}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="290480ab-acdf-405c-9ca8-0d2df5ec6b78">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="97c60923-760e-44d2-9e53-181a9ceb04e6"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="bf3aac70-17d6-47f9-8b60-486b9f7608d7"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Internal ref]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="1113c411-4768-43b8-9b86-df46df757e30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INTERNAL_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="871c8cf7-8a1e-4944-ad03-2172dd5d9865">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="145a57f5-7e57-4994-beb7-af7e821f863e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="f550fc23-9fe3-469c-83ee-8393bd7c13a6"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Counter Party]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="d4592981-aaef-4483-bb10-a2a9949f5170">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COUNTERPARTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="4ce6da4f-1bd7-4fd7-8928-57fdbe9c3c7b">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="68" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5360b373-1b7f-408d-899e-5b53a3982013"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="68" height="32" backcolor="#8DB4E2" uuid="51a0a288-e0f4-40fd-94d4-e912b58c5e31"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Commodity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="68" height="30" uuid="7f2f3ce2-4d0f-4b3f-aa7a-7a38a41c49a0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMMODITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="7f6336f4-95de-407d-9a75-538b0ad7b81d">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="70" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="f5b46ff1-ebd9-47a2-b290-9f741346846b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="70" height="32" backcolor="#8DB4E2" uuid="316dc194-2ea6-47b7-835b-07c963f930c5"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Phy delivery Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="70" height="30" uuid="b60b50fe-9cc5-4132-ac11-c4dbee2fa71d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PHYSICAL_DELIVERY_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="df3127b6-f3f3-4a72-ba10-ec7740dc5d2c">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="68" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="25f84b52-8649-41e4-9ef0-f2faa57ec2a1"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="68" height="32" backcolor="#8DB4E2" uuid="a9462964-b51d-4b09-ac77-a3c5adbe2d1c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Phy delivery monthNum]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="68" height="30" uuid="3f7c8baa-13bf-4c76-8d52-79072e5f39d3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PHYSICAL_DELIVERY_MONTHNUMBER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="66" uuid="4002696e-61a6-4105-ae19-a433f938ff69">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="66" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="fb603513-0073-4475-8725-a21f4290da46"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="66" height="32" backcolor="#8DB4E2" uuid="97b668d9-db5d-4d4e-a170-9d66ac40b111"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Fut Delivery month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="66" height="30" uuid="a8416fc7-a987-4ec8-81ed-438f14d3c344">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURE_DELIVERY_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="66" uuid="b9bc42f4-9444-4210-aadd-4924bdc5d1ad">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="66" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="53f451f6-9624-4fe3-ac10-c4b51a681254"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="66" height="32" backcolor="#8DB4E2" uuid="4872b8ea-0227-4f33-b9d4-8e55341b1978"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Fut Delivery monthNum]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="66" height="30" uuid="ac4e23e6-ba1d-48da-8807-6bd6cc01b9a9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURE_DELIVERY_MONTHNUMBER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="2699a095-18ed-464d-a0d5-c64558119dc6">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="81892d0a-d0f6-404e-9269-e98f6e99ede3"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="767f8464-e0f9-4418-90d4-40f3d5762d33"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Orgin]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="04e1bd5e-303c-416c-a5fa-4798a52fff4e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ORIGIN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="137" uuid="9b8ba80a-a6ac-4745-886f-5dcfc00ab80c">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="137" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="64b4776d-760b-4c6b-8312-5a542a275be0"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="137" height="32" backcolor="#8DB4E2" uuid="705a0a4c-8bda-4a71-b033-c03b97796bce"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Specification]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="137" height="30" uuid="eecc5fc7-9f95-4258-90fa-1e2d157e821d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SPECIFICATION}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="848a5fe0-0091-4f48-9575-21c5221bc4d5">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="79" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ff3f9c3f-8b57-438d-b715-5edc5db266f2"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="79" height="32" backcolor="#8DB4E2" uuid="1d9c8339-b655-4d02-bd85-dde67add9fdb"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Internal packing]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="79" height="30" uuid="94b1328d-538b-4c8a-aa47-155056025259">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INTERNAL_PACKING}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3ae8c837-1a17-47b9-ac06-ad6fc9acf9ba">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="a4d307c0-6240-44bb-a734-37044cf0f6c2"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="ef33adc6-3471-40bf-b2bb-04bc72b2a538"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Location from]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="72769831-3459-4da4-8e98-9925fa528ab0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOCATION_FROM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0bfe5abb-3dac-4b6e-ab7b-f1cf3e079066">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="349bbb02-cc02-4bd4-8172-782cd39e81a1"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="f7122a51-0082-4708-baa6-0d023c7da8b6"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Lcation to]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="9c3e7ce1-5fad-4bdb-acbd-393074fbdcd5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOCATION_TO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="54" uuid="f2cc126b-ac0b-40a1-ad71-569f2e6dd8d5">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="54" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ade954c1-a4c0-404d-b2a7-c0904cba0289"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="54" height="32" backcolor="#8DB4E2" uuid="dddd6daf-e59a-487a-a584-a8832d1a5d85"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Incoterm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="54" height="30" uuid="664cf63d-2677-4b70-9430-1336a0656543">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INCOTERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="73" uuid="81dd72eb-63c3-4e56-8599-0f679b89b5f5">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="73" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="807ecf6f-ea4f-4c13-85db-463311618bf9"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="73" height="32" backcolor="#8DB4E2" uuid="60b90d1b-1765-455f-b334-0d019860bb8b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Source Pos Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="73" height="30" uuid="000290a2-b750-4e12-bb5a-b0f0b9775667">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SOURCE_POSITION_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="872ba1f1-188c-47f9-9f03-e6698deef414">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="79" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1163b88e-7433-4d6c-8119-a395e41b8399"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="79" height="32" backcolor="#8DB4E2" uuid="36290462-0bc4-4298-a7b3-a8e0f90aa6d8"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Phy mrk price index]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="79" height="30" uuid="0cdc0377-a0b1-463e-b270-134d3612a08e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PHYSICAL_MARKET_PRICE_INDEX}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="af9d95f1-f899-4ee8-b706-c00f7e97e711">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="74" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="7cc63ea3-fc59-4982-84e4-dd335e063c83"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="74" height="32" backcolor="#8DB4E2" uuid="460af60a-f4db-4bcd-91f8-7d5c61cfd2bc"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Market UOM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="74" height="30" uuid="f2d6528a-9ddc-444e-9c55-94a19ec84511">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MARKET_UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="8d23cefe-bf50-4a70-a7f0-8619696d5d4b">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="b450b50b-8e00-4957-9b84-d63d27409654"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="4455d1aa-0145-4e9a-b530-dace1ef6cd59"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Market Currency]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="5456e9f9-4648-471c-851b-f8cc6cfb906e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MARKET_CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="81" uuid="60625fd5-9108-4fd6-a504-10c859107e55">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="81" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="0dcd703b-c1a7-4d7f-8473-f8f04b303a9e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="81" height="32" backcolor="#8DB4E2" uuid="5b852f1f-0c6c-4f88-ae94-597244b4146a"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current phy mrk price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="81" height="30" uuid="af624da0-7e62-4782-b112-2ae75cc50f01">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_PHY_MARKET_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="74" uuid="385c44a8-d89f-4c38-83b6-7379aaa22b3d">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="74" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2510d3bf-1f00-48eb-9f18-2c627c4f943f"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="74" height="32" backcolor="#8DB4E2" uuid="ae263101-bcf9-440d-80ad-ce91112f49d3"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Phy Mrk Price ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="74" height="30" uuid="cf93fc43-9fd4-4e79-8fce-cb6375dc718f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_PHY_MARKET_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="382aa2dc-3af4-4025-b480-121ad4bed538">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5c5ec413-b6f2-4ede-a18e-fe9ccef22870"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="fbb88c36-984e-41f5-8562-7cb359902a27"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current Fut Mrk Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="c9c31499-c691-488d-8751-96ce9c71b925">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_FUT_MARKET_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6fa5212d-4b96-4339-a528-0544d7f2fe2a">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="f7d4ee66-508f-46eb-899f-1ac07a14ccc5"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="9f8ae097-9126-4907-b9e7-46db5e92276b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Fut Mrk Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="2ff53d62-ea37-4ba3-8545-8259f5739940">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_FUT_MARKET_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5569acca-1cdd-4dea-8122-a4432b988a4b">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="21e8210c-2664-4135-aae4-3ac80cdec447"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="e5b55627-824d-437d-a338-357b59ec49f7"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Lot Size]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="c16d6bc8-90db-4463-a792-694cb2918c47">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOT_SIZE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b5ebc617-ff01-4bff-ae85-74a829ad3735">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="e465583b-da43-41ec-8c65-8b931d5cb15a"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="2716e2bb-dd8b-4aeb-959d-1c3d008d77ab"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current Pos Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="23d1564b-922e-4bf3-84a0-a20246b3c39f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_POSITION_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d5ebfa5c-f78e-41f1-887c-8138b9f2244c">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="a269c48a-8db9-453f-93a5-eff05b09964d"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="754db25b-7aa3-4d14-8d88-4f7b3f6d9cf4"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Pos Quy]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="0170b8fd-e5a0-44c1-bed5-48401ce92b4c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_POSITION_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cd43d66f-0acb-48f2-ad6c-6e2cc9c51c10">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2d571088-ec5e-48db-8509-0e7a0274ecb1"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="89c66a45-d89b-4c83-9003-8ccb904ae82c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current Open Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="5b70e731-0466-4c8a-8593-894c7182f980">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_OPEN_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1d34babb-9383-49b8-8111-b224e8611ef7">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="c85964e6-0ebd-4699-98e2-57dc245defb7"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="d91f34ef-e65c-44e2-bfce-e559232d133c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Open Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="9c907344-b425-4567-84cb-c5586a0faf51">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_OPEN_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6e0f7b13-ca4b-4f32-a686-6ca1ad2b031d">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="b13752bd-d655-418d-ad4a-b2adc9f95ac9"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="97f945c5-0321-4ad4-9225-d71d9153f366"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Current Realized Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="a9855efb-2974-4fc5-be55-2f0cf54d850e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_REALIZED_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e1514567-033e-48f9-bafc-8bb1e95401c8">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d0afbf73-03d6-4a41-8546-8974a51f564a"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="e94738b2-6200-445a-bc1a-707623165cbd"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Pos Currency]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="48e199fc-6021-419b-9202-8248b5443dd9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="545163ce-00fc-4353-a83f-e60c28defe40">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1946933b-2a90-4287-b3a2-51d9cb9e8b05"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="4d1f3b50-d46a-46f2-ad32-2f971b5af02d"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Possition Uom]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="533d0799-63b5-46c6-bda6-008285b52e42">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5870d21b-8800-42e5-97b9-208299aa77c4">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="3d1c6a2c-885a-48b9-8e09-5245548d95d6"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="4df86f15-7a1e-4305-8f33-ffe02b9102c4"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cur Pos Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="7c9035bf-95ee-489d-a8c6-40e121bd0ed0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_POSITION_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7f1e4db1-fc3f-48d6-a3ed-25ecd9517a96">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="11d29b30-f19a-4740-a5de-b4f9a6d18243"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="e3356b9a-bcb0-4809-a108-705af6a3d80d"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Pos Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="7bdb77f6-b739-4c8b-80e2-5bfa3897c5d5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_POSITION_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1bc0ae20-108f-459e-81e2-8f95494de434">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="3b7caaf9-3032-446d-a9b1-abc76f41a257"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="82b18207-063f-4bd8-b78e-5424c809ff8f"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cur other Cost]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="48a93452-b5c3-497d-adc8-c18103a3ec32">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_OTHER_COST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="e63350cc-7e4d-4b96-b1e5-6e2d39971157">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="dd920c93-a927-4237-94a0-ed63b975c2a9"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="c1d32b19-73a3-43c6-8cfa-827cf03fb891"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior other Cost]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="c6c53034-5e4b-4e38-8729-3c259b4b6978">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_OTHER_COST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="28740429-bb07-4c11-9496-ad3a1d9d42d7">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="9dcbf0e4-dcf2-49e9-b560-8ace07e6cb32"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="f5a9eb21-f5c9-4ba3-87dc-777f9de333c5"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cur Freight Cost]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="11502ff2-8941-48e5-86a7-37dd5b14f699">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CURRENT_FREIGHT_COST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f33db3c5-ffe8-4af8-b47f-716e5e8e0060">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d2e946cb-c69b-4bc2-a1ab-6db05375fff8"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="8b70758b-d152-46c8-8c71-0e42445b2b7b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Freight Cost]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="2421f5fe-a740-4442-ae6f-83fcce6daf2f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_FREIGHT_COST}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="04950429-33d2-4260-8d7a-30ce16a85f00">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6204c36e-e993-49ee-a321-cd66ec15e789"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="3d05f87d-e4f6-46c0-b09c-2f05c785fc22"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Mrk Shift Impact]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="342b283a-c04a-4251-98ce-a9cd851902a7">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MARKET_SHIFT_IMPACT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f80edabc-28d6-4b20-88a1-6a367c9530b2">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1ecd6ffd-2de2-46b6-882a-bdc6591c5fe8"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="c93b9417-5357-49f0-9ca6-a97c3c34d33c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Qty changes Impact]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="a0647132-ccb9-46a7-93f5-c9c2fe1a0707">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{QUANTITY_CHANGE_IMPACT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1756d4cd-0eaf-4305-ac9f-65e3de5a360b">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2e86ab88-6352-4cc2-8fd8-a831406210ce"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="ab773d4c-36fc-473f-9348-858c0f86304e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price change Impact]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="89ce1faf-72b7-4e63-8cb0-bb1f15a40331">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRICE_CHANGE_IMPACT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3baa452f-19ce-429f-8b7c-197b3abb8471">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="68e33ff4-41c0-45a3-86d7-7115b2a956db"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="72d70404-881b-4f0d-9c34-f4c4cb63d134"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cost change impact]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="58b16d27-5fc7-44d0-96ae-19ad89d78da3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COST_CHANGE_IMPACT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ecd9d619-0e29-411a-b230-100a328fb518">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1c6cb7ff-ae97-4808-a4df-0014bd89ab38"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="03c84022-570d-4f71-96c0-abbb65c6687c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Forex shift Impact Wrt Price ]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="f1b2136d-fcbf-4307-896c-a57c863f0846">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FOREX_SHIFT_IMPACT_WRT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="814ff04b-ce7c-4fd3-a9ab-50441b5cbe70">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d6983abf-ef8a-4ccb-932d-bc2ca417a20e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="972cca3f-427e-4680-b433-191202f8674c"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Realized PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="fd839cc6-4f60-43ed-bbdb-7610abf41a40">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{REALIZED_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ddaa5e00-fd21-41eb-afd6-c62d9069a1e1">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="af08d76b-d1cc-44fd-b834-c1c9aa865752"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="bc2db605-73b8-418f-a2fe-14b54dd4cd1b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Adjustment PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="a8d17bac-e066-487a-8679-210738bfb529">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ADJUSTMENT_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="c107ee33-8e74-4b19-8a65-f3c195e1d4e5">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="101" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1910ef42-bc3f-4b28-b910-083a66dc3b37"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="101" height="32" backcolor="#8DB4E2" uuid="28eca480-6f5a-42f1-b3bc-835b39b2937b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Inception to Date PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="101" height="30" uuid="20de10e2-378a-40fb-a207-5594cbcd64dd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INCEPTION_TO_DATE_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="99" uuid="8aee6966-1022-4d67-acbf-377b7359b7e1">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="99" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="b9cf288e-9936-4f6b-91f2-14ee433c0039"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="99" height="32" backcolor="#8DB4E2" uuid="055f48d8-894a-4ae2-9b91-53e470f17abf"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Inception to Date PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="99" height="30" uuid="9de27ad8-6e43-4406-b350-62fff9105997">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_INCEPTION_TO_DATE_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="6bfe2176-a334-452d-b864-1716c62f8091">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ed295d8d-45e4-4751-aef4-e08bc112d203"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="0ff5b48c-764a-46e3-92bb-65ccdf43ecc8"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Explained Pnl]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="c486421d-3773-472c-963a-3206340ebfba">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EXPLAINED_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d1c9efd4-a948-458d-a37f-bffacab43f79">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="89556e05-068c-4d95-9ee0-ffbb3c961e82"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="4c08b6d9-95fc-4913-bf24-19eee8e4d6bd"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[UnExplained PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="f511cb9b-65de-4a06-8a46-f1604621d56f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{UNEXPLAINED_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f17aa5e5-a9e0-4ec4-87e2-8b62a38bc592">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="35a9e633-a685-4f10-9132-b56784681d6b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="bd87a00c-ebbd-47cd-9b7b-b7e9f321a9a4"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Notional Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="9c96127d-17aa-4ea8-8254-4e92f5bb0e15">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NOTIONAL_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="aa659749-0a7a-401d-8717-f0e3baf34e1b">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5ce65055-0c38-4015-a2f8-1a1e7555935b"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="763096c6-860f-43a5-bee7-6844ae0708d7"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Year to Date PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="42cbe791-bd01-4fdd-a3aa-5a3dc4474bf5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{YEAR_TO_DATE_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="132" uuid="671d7669-25cf-41f4-b892-7430716bbefd">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="132" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ea4a6809-59be-4e14-9691-7b41c3d4dc60"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="132" height="32" backcolor="#8DB4E2" uuid="f0af8232-ed2b-4776-b5b1-d7fa6895fa52"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Specification desc]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="132" height="30" uuid="fcc876c2-25ea-4e53-90d2-3a343470e343">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SPECIFICATION_DESC}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="28824dc7-1883-4ca1-a0f7-e7dab87f79ca">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="32206ba0-5944-4772-9681-19bdd13a8a49"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="35fcef7b-81f5-4f79-bdc3-e94207327c42"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[POS Create By]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="17365f0c-9550-4abb-a0c5-f90fe62a1a09">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POS_CREATE_BY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="c9d59ae0-4501-40a7-ad4e-987687c810d4">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="72f7a1b7-f77a-4686-8eed-184ea6c095a7"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="3b63439f-8ac9-439c-80be-81320c2a73ae"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[POS Update By]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="df3c50e6-fcba-4cdc-9456-e94e7f384390">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POS_UPDATE_BY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="0076d8c3-7bfb-40f3-82b0-209159d81724">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d2b85f51-4a3b-4e05-a3db-700831508108"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="e2dee3ec-6375-49ee-820a-6989aabdd640"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Prior Allocation Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="e5ba1728-e109-4351-9f42-4642d90f4a39">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIOR_ALLOCATION_QUANTITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="073a2cc4-c43c-440a-bbea-3e6638b1f520">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="dabf307d-6154-4cb2-a81b-e9005363868f"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="51018385-daff-480d-8578-990cf1fadf17"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[POS Last Update]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="09c5232c-bfdb-48d9-b925-df776a0e698e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POS_LAST_UPDATE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3ef36c35-1a2f-4241-a6e2-47444baae066">
+						<jr:tableFooter style="table_TD" height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="1c27625b-4e68-48d7-8978-ece8082d3673"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader style="table_TH" height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="97a19b18-2514-45f8-84ff-d63ff075ce68"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Region Diff]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="845d9ee8-b182-45ac-a85e-9b013af4e088">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{REGION_DIFFERENTIAL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="7a4d59db-32db-4fb0-90a3-4c5e949643f2">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="83075ae9-979e-4180-973e-06e0350dd5dd"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="7dc21017-7e81-4526-8b91-b6787633b0fa"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Strategy]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="0ae1f474-c16b-48e8-8c91-72c4d5c04494">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{STRATEGY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="5467e229-dc48-446e-bcba-7e6788c89b53">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6828bf0a-6ed6-4bff-a82b-a8bf4496beaf"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="c69e6d60-7d42-4609-9db4-55220b9baa35"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sub Strategy]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="b8ac0289-5f79-4d23-a139-df41a5e38d7f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SUB_STRATEGY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f679b168-2d79-421a-9a6f-61c711f74b2c">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="94d93825-958b-4010-9099-0fedca8fb026"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="c08a4d40-06f8-42b8-8d4e-374ee3d9937a"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="c4221532-9805-4187-ad16-516a2769cfae">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="075d561a-f272-4111-b410-520c50faf16b">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement style="table_TD" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ce337eae-0e45-4303-9f3a-5f14182a8096"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:columnHeader height="32" rowSpan="1">
+							<staticText>
+								<reportElement style="table_CH" mode="Opaque" x="0" y="0" width="90" height="32" backcolor="#8DB4E2" uuid="ec398e5d-e482-461a-aa36-92c1babcd13e"/>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Ref]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table_TD" x="0" y="0" width="90" height="30" uuid="e6c36d95-d281-4f58-a8b0-499e1fbde85b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="30" y="0" width="5703" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="06ffbcba-1c2e-4c6b-b5e0-5c39120f23a4">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="0" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[  Olam International Ltd]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="30" width="887" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="16d66531-2b6f-4751-94d7-7f92da437b10">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($P{company_p}.equals("%")? "All" : $P{company_p}, " - ",$P{contract_book_p}.equals("%")? "All" : $P{contract_book_p},"- PnL Attribution Report as of  ",DATEFORMAT($P{asofdate},"dd-MMM-yy"))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="887" y="31" width="4846" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="fe79b782-9ef6-4edf-b254-f9a754fd857e">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="30" backcolor="#1F497D" uuid="725b2f19-44d2-406f-b3db-8b63586770a4">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#1F497D"/>
+					<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+					<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+					<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+				</box>
+				<imageExpression><![CDATA["repo:OlamLogo"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21">
+			<textField evaluationTime="Report">
+				<reportElement positionType="Float" x="1636" y="0" width="73" height="20" uuid="e7c98c14-b27a-4904-bf72-817db4a0f4a7">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="1500" y="0" width="136" height="20" uuid="444aec55-6cd1-48be-aabe-31d34c67f3d8">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
