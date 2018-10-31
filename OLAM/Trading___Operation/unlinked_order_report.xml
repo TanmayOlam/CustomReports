@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>unlinked_order_report</name>
+    <version>22</version>
+    <label>Unlinked Order Report</label>
+    <description>Unlinked Order Report</description>
+    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+    <updateDate>2017-06-13T07:11:32.650+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="unlinked_order_report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>unlinked_order_report_</name>
+            <version>1</version>
+            <label>Unlinked Order Report</label>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T14:54:21.060+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>contract_from_date</name>
+            <version>1</version>
+            <label>Contract From Date</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T14:57:40.513+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/contract_from_date_files</folder>
+                    <name>contract_from_date</name>
+                    <version>0</version>
+                    <label>contract_from_date</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T14:57:40.513+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>contract_to_date</name>
+            <version>1</version>
+            <label>Contract To Date</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T14:57:40.513+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/contract_to_date_files</folder>
+                    <name>contract_to_date</name>
+                    <version>0</version>
+                    <label>contract_to_date</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T14:57:40.513+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:00:21.697+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:00:21.697+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' LABEL_FIELD,
+       '%'   VALUE_FIELD
+UNION
+SELECT MBRNAME,
+	   MBRNAME    
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE COMPANYID &gt; 0</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:02:34.057+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:02:34.057+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>profitcenter_group</name>
+            <version>1</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:12:28.620+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/profitcenter_group_files</folder>
+                    <name>profitcenter_group</name>
+                    <version>0</version>
+                    <label>profitcenter_group</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:12:28.620+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD, 1 AS SEQ
+UNION
+SELECT SHORTNAME AS VALUE_FIELD,
+       SHORTNAME AS LABEL_FIELD,2 AS SEQ
+FROM JCPROFITCENTERGROUP
+WHERE ISACTIVE=1 ORDER BY SEQ, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>profitcenter</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:04:48.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/profitcenter_files</folder>
+                    <name>profitcenter</name>
+                    <version>0</version>
+                    <label>profitcenter</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:04:48.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERID
+UNION
+SELECT PCNAME AS VALUE_FIELD,
+       PCNAME AS LABEL_FIELD,
+       2      AS ORDERID
+FROM   JCPROFITCENTER A
+       LEFT JOIN JCPROFITCENTERGROUP B
+              ON A.PCGROUPID = B.GROUPID
+WHERE  A.ISACTIVE = 1
+       AND A.PCID &gt; 0
+       AND COALESCE(B.SHORTNAME, '') LIKE $P{profitcenter_group}
+ORDER  BY ORDERID,
+          LABEL_FIELD 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>strategy</name>
+            <version>1</version>
+            <label>Strategy</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:14:46.580+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/strategy_files</folder>
+                    <name>strategy</name>
+                    <version>0</version>
+                    <label>strategy</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:14:46.580+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL_FIELD,
+       '%'   AS VALUE_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT NAME AS LABEL_FIELD,
+       NAME AS VALUE_FIELD,
+       2    AS ORDERBY
+FROM   JCSTRATEGY
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>trader_group</name>
+            <version>1</version>
+            <label>Trader Group</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:32:02.550+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/trader_group_files</folder>
+                    <name>trader_group</name>
+                    <version>0</version>
+                    <label>trader_group</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:32:02.550+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%' AS VALUE, 'ALL' AS LABEL,1 AS SEQ
+UNION
+SELECT NAME AS VALUE,NAME AS LABEL,2 AS SEQ
+FROM JCGRPTRADER
+ORDER BY SEQ,LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>trader</name>
+            <version>1</version>
+            <label>Trader</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:17:03.170+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/trader_files</folder>
+                    <name>trader</name>
+                    <version>0</version>
+                    <label>trader</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:17:03.170+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+     1 AS ORDERBY
+UNION
+SELECT COALESCE(JU.USERNAME,'') AS VALUE_FIELD,
+       JU.FIRST_NAME  +' '+COALESCE(JU.LAST_NAME, '') AS LABEL_FIELD,
+     2 AS ORDERBY
+FROM  JC_USER JU
+LEFT JOIN JCGRPTRADERUSER JT
+     ON JU.ID=JT.USRID
+LEFT JOIN JCGRPTRADER JGR
+     ON JT.GROUPID=JGR.GROUPID
+WHERE JU.ACTIVE =1 AND COALESCE(JGR.NAME,'') LIKE $P{trader_group}
+ORDER BY ORDERBY, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>counterparty_group</name>
+            <version>1</version>
+            <label>Counterparty Group</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:37:26.310+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/counterparty_group_files</folder>
+                    <name>counterparty_group</name>
+                    <version>0</version>
+                    <label>counterparty_group</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:37:26.310+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+     1 AS SEQ
+UNION
+SELECT SHORTNAME,
+       SHORTNAME,
+     2 AS SEQ
+FROM   JCCPGRP
+ORDER BY SEQ,LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>counterparty</name>
+            <version>1</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T15:36:02.543+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/counterparty_files</folder>
+                    <name>counterparty</name>
+                    <version>0</version>
+                    <label>counterparty</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T15:36:02.543+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+     0 AS MBRID,
+     1 AS ORDERBY
+UNION
+SELECT MBRNAME AS VALUE_FIELD, 
+	   MBRSHORTNAME AS LABEL_FIELD,
+	   MBRID,
+2 AS ORDERBY
+FROM   JCMBR M
+     LEFT JOIN JCCPGRP CPG
+      ON M.CPGRPID = CPG.CPGRPID
+where ISACTIVE=1 AND MBRID &gt; 1 
+AND COALESCE(CPG.SHORTNAME,'') like $P{counterparty_group}
+ORDER BY ORDERBY, LABEL_FIELD,MBRID</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>payterm</name>
+            <version>1</version>
+            <label>Payment Term</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:00:26.397+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/payterm_files</folder>
+                    <name>payterm</name>
+                    <version>0</version>
+                    <label>payterm</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:00:26.397+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS SEQ
+UNION
+SELECT CAST(PAYTERMID AS NVARCHAR) AS VALUE_FIELD,
+PAYTERMCODE AS LABEL_FIELD,
+2 AS SEQ
+FROM JCPAYTERMS 
+WHERE ISACTIVE=1
+ORDER BY SEQ</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>ctrterm</name>
+            <version>1</version>
+            <label>Contract Term</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:00:26.397+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/ctrterm_files</folder>
+                    <name>ctrterm</name>
+                    <version>0</version>
+                    <label>ctrterm</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:00:26.397+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD
+UNION
+SELECT TERMID AS VALUE_FIELD,
+TERMID AS LABEL_FIELD FROM JCCTRTERM</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>commodity</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:12:36.373+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:12:36.373+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT IVITEMID AS VALUE_FIELD,
+       IVITEMID AS LABEL_FIELD,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL_FIELD  </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>grade</name>
+            <version>1</version>
+            <label>Grade</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:32:07.957+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/grade_files</folder>
+                    <name>grade</name>
+                    <version>0</version>
+                    <label>grade</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:32:07.957+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       'ALL' AS LABEL,
+     1 as seq
+UNION
+SELECT SPECNAME AS VALUE,
+SPECDESC AS LABEL,
+2 AS SEQ 
+FROM JCSPECS 
+order by SEQ,LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>shipmonth</name>
+            <version>1</version>
+            <label>Shipment Month</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:34:13.383+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/shipmonth_files</folder>
+                    <name>shipmonth</name>
+                    <version>0</version>
+                    <label>shipmonth</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:34:13.383+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       'ALL' AS LABEL
+UNION
+SELECT SHORTNAME AS VALUE,
+LONGNAME AS LABEL 
+FROM JCSHIPMONTHSMAPPING
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files</folder>
+            <name>status</name>
+            <version>1</version>
+            <label>Status</label>
+            <description></description>
+            <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+            <updateDate>2015-09-14T16:40:30.573+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/unlinked_order_report_files/status_files</folder>
+                    <name>status</name>
+                    <version>0</version>
+                    <label>status</label>
+                    <description></description>
+                    <creationDate>2017-07-01T00:28:47.153+08:00</creationDate>
+                    <updateDate>2015-09-14T16:40:30.573+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       'ALL' AS LABEL
+UNION
+SELECT 'Confirmed'   AS VALUE,
+       'Confirmed' AS LABEL
+UNION
+SELECT 'Posted (Not Confirmed)'   AS VALUE,
+       'Posted' AS LABEL
+UNION
+SELECT 'Fulfilled'   AS VALUE,
+       'Fulfilled' AS LABEL
+UNION
+SELECT 'Contract Performed'   AS VALUE,
+       'Contract Performed' AS LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>false</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

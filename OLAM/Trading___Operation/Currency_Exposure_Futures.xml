@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Currency_Exposure_Futures</name>
+    <version>12</version>
+    <label>Currency Exposure - Futures Report</label>
+    <description>Currency Exposure - Futures Report</description>
+    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+    <updateDate>2015-10-30T16:07:11.450+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Currency_Exposure_Futures.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>Currency_Exposure_Futures</name>
+            <version>1</version>
+            <label>Credit Exposure - Future Report</label>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-20T15:36:42.777+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-30T16:00:40.877+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-30T16:00:40.877+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD,2 AS SEQ
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>cmdt</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-20T15:43:30.720+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/cmdt_files</folder>
+                    <name>cmdt</name>
+                    <version>0</version>
+                    <label>cmdt</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-20T15:43:30.720+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT COMMODITYID AS VALUE_FIELD, COMMODITYID AS LABEL_FIELD FROM DIM_COMMODITY ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Unit</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-20T15:45:12.877+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-20T15:45:12.877+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>ctrdatefrom</name>
+            <version>1</version>
+            <label>Contract From Date</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-22T15:01:59.840+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/ctrdatefrom_files</folder>
+                    <name>ctrdatefrom</name>
+                    <version>0</version>
+                    <label>ctrdatefrom</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-22T15:01:59.840+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>ctrdateto</name>
+            <version>1</version>
+            <label>Contract To Date</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-22T15:01:59.840+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/ctrdateto_files</folder>
+                    <name>ctrdateto</name>
+                    <version>0</version>
+                    <label>ctrdateto</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-22T15:01:59.840+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>long_short</name>
+            <version>1</version>
+            <label>Long/Short</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-20T15:39:50.687+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/long_short_files</folder>
+                    <name>long_short</name>
+                    <version>0</version>
+                    <label>long_short</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-20T15:39:50.687+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DISTINCT LONG_SHORT AS VALUE_FIELD, LONG_SHORT AS LABEL_FIELD FROM DAILY_PNL_ATTRIBUTION
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>curr</name>
+            <version>1</version>
+            <label>Currency</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-20T15:48:26.310+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/curr_files</folder>
+                    <name>curr</name>
+                    <version>0</version>
+                    <label>curr</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-20T15:48:26.310+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DISTINCT POSITION_CURRENCY AS VALUE_FIELD, POSITION_CURRENCY AS LABEL_FIELD FROM DAILY_PNL_ATTRIBUTION WHERE POSITION_CURRENCY &lt;&gt; 'USD'
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files</folder>
+            <name>maturity</name>
+            <version>1</version>
+            <label>Maturity</label>
+            <description></description>
+            <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+            <updateDate>2015-10-22T15:07:08.440+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Currency_Exposure_Futures_files/maturity_files</folder>
+                    <name>maturity</name>
+                    <version>0</version>
+                    <label>maturity</label>
+                    <description></description>
+                    <creationDate>2016-12-24T09:26:40.077+08:00</creationDate>
+                    <updateDate>2015-10-22T15:07:08.440+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0 AS ORDERIDX, '%' AS VALUE_FIELD, 'ALL' AS LABEL_FIELD, 0 AS ORDERIDZ
+UNION
+SELECT 1 AS ORDERIDX, SHORTNAME AS VALUE_FIELD, SHORTNAME AS LABEL_FIELD, MONTHNUMBER AS ORDERIDZ FROM BI_MONTHQUARTERMAPPING
+ORDER BY ORDERIDX, ORDERIDZ</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

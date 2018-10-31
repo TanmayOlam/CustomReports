@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Trade_Instruct_1</name>
+    <version>25</version>
+    <label>Trade Instruct Report</label>
+    <description>Trade Instruct Report</description>
+    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+    <updateDate>2017-07-07T11:32:09.540+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Trade_Instruct_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>Trade_Instruct_</name>
+            <version>1</version>
+            <label>Trade Instruct</label>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>asofdate2</name>
+            <version>1</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/asofdate2_files</folder>
+                    <name>asofdate2</name>
+                    <version>0</version>
+                    <label>asofdate2</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>cmd</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/cmd_files</folder>
+                    <name>cmd</name>
+                    <version>0</version>
+                    <label>cmd</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT COMMODITYID AS VALUE_FIELD,
+       COMMODITYID AS LABEL_FIELD
+FROM   DIM_COMMODITY 
+ORDER BY 2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>cp</name>
+            <version>1</version>
+            <label>Exchange</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/cp_files</folder>
+                    <name>cp</name>
+                    <version>0</version>
+                    <label>cp</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CP_SHORTNAME AS VALUE_FIELD,
+       CP_SHORTNAME AS LABEL_FIELD
+FROM   DIM_COUNTERPARTY
+WHERE CP_TYPE = 'EXCHANGE'
+ORDER BY 2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>instrument</name>
+            <version>1</version>
+            <label>Instrument Type</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/instrument_files</folder>
+                    <name>instrument</name>
+                    <version>0</version>
+                    <label>instrument</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'FUTURES' AS VALUE_FIELD,
+       'FUTURES' AS LABEL_FIELD
+UNION
+SELECT 'OPTIONS' AS VALUE_FIELD,
+       'OPTIONS' AS LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>broker</name>
+            <version>1</version>
+            <label>Broker</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/broker_files</folder>
+                    <name>broker</name>
+                    <version>0</version>
+                    <label>broker</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CP_SHORTNAME AS VALUE_FIELD,
+       CP_SHORTNAME AS LABEL_FIELD
+FROM   DIM_COUNTERPARTY
+WHERE CP_TYPE = 'BROKER'</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>tmonth</name>
+            <version>1</version>
+            <label>Terminal Month</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/tmonth_files</folder>
+                    <name>tmonth</name>
+                    <version>0</version>
+                    <label>tmonth</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select SHORTNAME as VALUE_FIELD,
+       SHORTNAME as LABEL_FIELD,
+       MONTHNUMBER
+from   BI_MONTHQUARTERMAPPING
+where  Year(STARTPERIOD) between Year(Getdate()) - 2 and Year(Getdate()) + 2
+order  by 3 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt; 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files</folder>
+            <name>layout_options</name>
+            <version>1</version>
+            <label>Report Format</label>
+            <description></description>
+            <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+            <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Trade_Instruct_1_files/layout_options_files</folder>
+                    <name>layout_options</name>
+                    <version>0</version>
+                    <label>layout_options</label>
+                    <description></description>
+                    <creationDate>2018-02-02T14:15:31.297+08:00</creationDate>
+                    <updateDate>2016-10-20T17:21:56.927+08:00</updateDate>
+                    <item>
+                        <itemLabel>Broker Wise Summary</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Profit Centre Wise Summary</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

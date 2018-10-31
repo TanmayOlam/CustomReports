@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports</folder>
+    <name>Pending_Purchase_and_Sales_report</name>
+    <version>2</version>
+    <label>EOD Pending P&amp;S Report</label>
+    <description>EOD Pending P&amp;S Report</description>
+    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+    <updateDate>2018-09-05T17:41:10.103+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Pending_Purchase_and_Sales_report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Pending_Purchase_and_Sales_report_</name>
+            <version>1</version>
+            <label>Pending Purchase and Sales report</label>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>asofdate</name>
+            <version>2</version>
+            <label>As of date</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>ctrbook</name>
+            <version>2</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Contract_Status</name>
+            <version>2</version>
+            <label>Contract Status</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Contract_Status_files</folder>
+                    <name>Contract_Status</name>
+                    <version>0</version>
+                    <label>Contract_Status</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'Confirmed' AS VALUE_FIELD,  'Confirmed' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'FULFILLED' AS VALUE_FIELD,  'Fulfilled' AS B2B_CROSS_COMMODITY, 2 as seq
+UNION All
+Select 'VOIDED' AS VALUE_FIELD,  'Voided' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'Performed' AS VALUE_FIELD,  'Performed' AS LABEL_FIELD, 4 as seq
+
+order by 3</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Price_Term</name>
+            <version>2</version>
+            <label>Price Term</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Price_Term_files</folder>
+                    <name>Price_Term</name>
+                    <version>0</version>
+                    <label>Price_Term</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'FIXED USD/MT' AS VALUE_FIELD,  'FIXED USD/MT' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'FIXED EUR/MT' AS VALUE_FIELD,  'FIXED EUR/MT' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'BASIS SBO' AS VALUE_FIELD,  'BASIS SBO' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'PTBF USD/MT' AS VALUE_FIELD,  'PTBF USD/MT' AS B2B_CROSS_COMMODITY, 4 as seq
+UNION All
+Select 'PTBF USC/KG' AS VALUE_FIELD,  'PTBF USC/KG' AS LABEL_FIELD, 5 as seq
+order by 3</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Fixing_Status</name>
+            <version>2</version>
+            <label>Fixing Status</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Fixing_Status_files</folder>
+                    <name>Fixing_Status</name>
+                    <version>0</version>
+                    <label>Fixing_Status</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'PTBF' AS VALUE_FIELD,  'Unpriced' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'BASIS' AS VALUE_FIELD,  'Basis' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'Fixed' AS VALUE_FIELD,  'Fixed' AS LABEL_FIELD, 4 as seq</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Linking_Status</name>
+            <version>2</version>
+            <label>Linking Status</label>
+            <description>Linking Status</description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Linking_Status_files</folder>
+                    <name>Linking_Status</name>
+                    <version>0</version>
+                    <label>Linking_Status</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'Linked' AS VALUE_FIELD,  'Linked' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'Unlinked' AS VALUE_FIELD,  'Unlinked' AS LABEL_FIELD, 3 as seq</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Allocation_Type</name>
+            <version>2</version>
+            <label>Allocation Type</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Allocation_Type_files</folder>
+                    <name>Allocation_Type</name>
+                    <version>0</version>
+                    <label>Allocation_Type</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'OPEN' AS VALUE_FIELD,  'OPEN' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'STRING' AS VALUE_FIELD,  'STRING' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'B2B' AS VALUE_FIELD,  'B2B' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'B2B_CROSS_COMMODITY' AS VALUE_FIELD,  'B2B' AS B2B_CROSS_COMMODITY, 4 as seq
+UNION All
+Select 'HALF_ALLOCATION' AS VALUE_FIELD,  'HALF_ALLOCATION' AS LABEL_FIELD, 5 as seq
+order by 3</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>pc_g</name>
+            <version>2</version>
+            <label>PC</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/pc_g_files</folder>
+                    <name>pc_g</name>
+                    <version>0</version>
+                    <label>pc_g</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select distinct  
+  profitcenter    AS VALUE_FIELD,
+  profitcenter    AS  LABEL_FIELD ,2 as seq   from olam_ProfitCenter_Mapping
+union all
+select 'New' as   VALUE_FIELD , 'New'  AS  LABEL_FIELD , 1 as seq
+order by 3</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>pc</name>
+            <version>2</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt; 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Show_Columns</name>
+            <version>2</version>
+            <label>Show Columns</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Show_Columns_files</folder>
+                    <name>Show_Columns</name>
+                    <version>2</version>
+                    <label>Show_Columns</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <item>
+                        <itemLabel>Reduce</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">Reduce</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>All</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">All</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Profit_Center_Group</name>
+            <version>2</version>
+            <label>Profit_Center_Group</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/Profit_Center_Group_files</folder>
+                    <name>Profit_Center_Group</name>
+                    <version>0</version>
+                    <label>Profit_Center_Group</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS VALUE_FIELD,
+       SHORTNAME AS LABEL_FIELD,2 AS SEQ
+FROM JCPROFITCENTERGROUP
+WHERE ISACTIVE=1 ORDER BY SEQ, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>counterparty_group</name>
+            <version>2</version>
+            <label>Counterparty Group</label>
+            <description></description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files/counterparty_group_files</folder>
+                    <name>counterparty_Group</name>
+                    <version>0</version>
+                    <label>counterparty_Group</label>
+                    <description></description>
+                    <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+                    <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT B.SHORTNAME AS VALUE, B.SHORTNAME AS LABEL, 2 AS ORDERBY FROM JCMBR A JOIN JCCPGRP B ON A.CPGRPID = B.CPGRPID WHERE ISACTIVE = 1 ORDER BY ORDERBY, LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Pending_Purchase_and_Sales_report_files</folder>
+            <name>Logo</name>
+            <version>0</version>
+            <label>Logo</label>
+            <description>Logo</description>
+            <creationDate>2018-06-06T13:42:47.537+08:00</creationDate>
+            <updateDate>2018-06-06T13:42:47.537+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

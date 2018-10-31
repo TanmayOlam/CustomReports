@@ -1,0 +1,4289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.1.final using JasperReports Library version 6.0.0  -->
+<!-- 2016-11-17T10:50:39 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="linked_order" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="b42df827-5501-4870-9111-5914e9c43e1a">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="ireport.zoom" value="1.1000000000000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="88348f32-0cba-409c-a747-68e02a2216b9">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+		<parameter name="company_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{company_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="profit_center_group_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{profit_center_group_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="profit_center_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{profit_center_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="strategy_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{strategy_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="counterparty_group_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{counterparty_group_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="counterparty_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{counterparty_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="commodity_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{commodity_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="grade_p" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{grade_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="shipment_month_from" class="java.lang.String" isForPrompting="false"/>
+		<parameter name="LE_Filter" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{LE_Filter}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="QSTR_Filter" class="java.lang.String">
+			<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="cbk" class="java.util.Collection"/>
+		<parameter name="shipment_month_to" class="java.lang.String" isForPrompting="false"/>
+		<queryString language="SQL">
+			<![CDATA[SELECT L2.ALLOCATION_REF,
+       L2.COMPANY,
+       L2.S_SHIP_MONTH,
+       L2.P_SHIP_MONTH,
+       L2.S_PROFIT_CENTER,
+       L2.S_COMMODITY,
+       L2.S_GRADE,
+       L2.S_INCOTERM,
+       L2.S_TRADER,
+       L2.S_CONTRACT_REF,
+       L2.S_BUYER,
+       L2.S_COUNTERPARTY_REFERENCE,
+       L2.S_BROKER,
+       L2.S_BROKER_REFERENCE,
+       L2.ORIGIN,
+       L2.S_QUALITY_BASIS,
+       L2.ALLOCATION_QTY,
+       L2.S_OPEN_QTY,
+       L2.S_AVR_FLAT_PRICE,
+       L2.P_INCOTERM,
+       L2.P_TRADER,
+       L2.P_CONTRACT_REF,
+       L2.P_SELLER,
+       L2.P_COUNTERPARTY_REFERENCE,
+       L2.P_BROKER,
+       L2.P_BROKER_REFERENCE,
+       L2.P_QUALITY_BASIS,
+       L2.P_OPEN_QTY,
+       L2.P_AVR_FLAT_PRICE,
+       L2.SI_DATE,
+       L2.SHIPMENT_TO_DATE,
+       L2.SHIPMENT_FROM_DATE,
+       L2.S_CONTRACT_QTY,
+       L2.P_CONTRACT_QTY,
+       L2.S_MONTHNUMBER,
+       L2.ALLOCATION_TYPE,
+       L2.STRING_STATUS,
+       L2.CONTRACT_BOOK,
+       L2.LINKED_DATE
+FROM   (SELECT DISTINCT ALLOC.ALLOCATION_REF,
+                        COALESCE(PURCHASE.COMPANY, SALES.COMPANY)                                                           AS COMPANY,
+                        SALES.SHIP_MONTH                                                                                    AS S_SHIP_MONTH,
+                        SALES.PROFIT_CENTER                                                                                 AS S_PROFIT_CENTER,
+                        SALES.COMMODITY                                                                                     AS S_COMMODITY,
+                        COALESCE(ALLOC.S_SPECIFICATION, ALLOC.P_SPECIFICATION)                                              AS S_GRADE,
+                        SALES.INCOTERM                                                                                      AS S_INCOTERM,
+                        STRADER.FIRST_NAME + ' ' + STRADER.LAST_NAME                                                        AS S_TRADER,
+                        SALES.CONTRACT_REFERENCE                                                                            AS S_CONTRACT_REF,
+                        SALES.COUNTERPARTY_CODE                                                                             AS S_BUYER,
+                        SALES.COUNTERPARTY_REF                                                                              AS S_COUNTERPARTY_REFERENCE,
+                        SALES.BROKER                                                                                        AS S_BROKER,
+                        SALES.BROKER_REFERENCE                                                                              AS S_BROKER_REFERENCE,
+                        SALES.ORIGIN,
+                        CASE
+                          WHEN SALES.CONTRACT_BOOK = 'RUBBER' THEN SFACTORY.FACTORYSHORTDESC
+                          ELSE SALES.QUALITY_BASIS
+                        END                                                                                                 AS S_QUALITY_BASIS,
+                        ALLOC.ALLOCATION_QTY,
+                        ( SALES.CONTRACT_QTY - COALESCE(Sum(ALLOC.ALLOCATION_QTY)
+                                                          OVER (
+                                                            PARTITION BY ALLOC.S_CONTRACT_ID
+                                                            ORDER BY ALLOC.ALLOCATION_DATE, ALLOC.ALLOCATION_REF 
+															ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) )    AS S_OPEN_QTY,
+                        SALES_PRICE.AVR_FLAT_PRICE                                                                          AS S_AVR_FLAT_PRICE,
+                        PURCHASE.INCOTERM                                                                                   AS P_INCOTERM,
+                        PTRADER.FIRST_NAME + ' ' + PTRADER.LAST_NAME                                                        AS P_TRADER,
+                        PURCHASE.CONTRACT_REFERENCE                                                                         AS P_CONTRACT_REF,
+                        PURCHASE.COUNTERPARTY_CODE                                                                          AS P_SELLER,
+                        PURCHASE.COUNTERPARTY_REF                                                                           AS P_COUNTERPARTY_REFERENCE,
+                        PURCHASE.BROKER                                                                                     AS P_BROKER,
+                        PURCHASE.BROKER_REFERENCE                                                                           AS P_BROKER_REFERENCE,
+                        CASE
+                          WHEN PURCHASE.CONTRACT_BOOK = 'RUBBER' THEN PFACTORY.FACTORYSHORTDESC
+                          ELSE PURCHASE.QUALITY_BASIS
+                        END                                                                                                 AS P_QUALITY_BASIS,
+                        PURCH_PRICE.AVR_FLAT_PRICE                                                                          AS P_AVR_FLAT_PRICE,
+                        PURCHASE.SHIP_MONTH                                                                                 AS P_SHIP_MONTH,
+                        ( PURCHASE.CONTRACT_QTY - COALESCE(Sum(ALLOC.ALLOCATION_QTY)
+                                                             OVER (
+                                                               PARTITION BY ALLOC.P_CONTRACT_ID
+                                                               ORDER BY ALLOC.ALLOCATION_DATE, ALLOC.ALLOCATION_REF 
+															   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) ) AS P_OPEN_QTY,
+                        PURCHASE.PROFIT_CENTER                                                                              AS P_PROFIT_CENTER,
+                        PURCHASE.STRATEGY                                                                                   AS P_STRATEGY,
+                        PURCHASE.COMMODITY                                                                                  AS P_COMMODITY,
+                        COALESCE(ALLOC.P_SPECIFICATION, ALLOC.S_SPECIFICATION)                                              AS P_GRADE,
+                        PURCHASE.QUANTITY_BASIS                                                                             AS P_QUANTITY_BASIS,
+                        SALES.COUNTERPARTY                                                                                  AS S_COUNTERPARTY,
+                        SALES.COUNTERPARTY_GROUP                                                                            AS S_COUNTERPARTY_GROUP,
+                        SALES.PROFIT_CENTER_GROUP                                                                           AS S_PROFIT_CENTER_GROUP,
+                        SALES.STRATEGY                                                                                      AS S_STRATEGY,
+                        MOV.SI_DATE                                                                                         AS SI_DATE,
+                        ALLOC.SHIPMENT_FROM_DATE,
+                        ALLOC.SHIPMENT_TO_DATE,
+                        Lower(ALLOC.ALLOCATION_TYPE)                                                                        AS ALLOCATION_TYPE,
+                        SALES.CONTRACT_BOOK                                                                                 AS CTRBOOKCODE,
+                        SALES.CONTRACT_QTY                                                                                  AS S_CONTRACT_QTY,
+                        PURCHASE.CONTRACT_QTY                                                                               AS P_CONTRACT_QTY,
+                        MON.MONTHNUMBER                                                                                     AS S_MONTHNUMBER,
+                        Lower(ALLOC.STRING_STATUS)                                                                          AS STRING_STATUS,
+                        COALESCE(SALES.CONTRACT_BOOK, PURCHASE.CONTRACT_BOOK)                                               AS CONTRACT_BOOK,
+                        CASE
+                          WHEN ALLOC.ALLOCATION_TYPE LIKE '%B2B%' THEN Cast(ALLOC.ALLOCATION_DATE AS DATE)
+                          WHEN ALLOC.ALLOCATION_TYPE LIKE '%stock%' THEN SETTLE.APPLYDATE
+                        END                                                                                                 AS LINKED_DATE
+        FROM   (SELECT ALLOC.ID                         AS ALLOCATION_ID,
+                       ALLOC.REFERENCE                  AS ALLOCATION_REF,
+                       ALLOC.STRING_STATUS              AS STRING_STATUS,
+                       NULL                             AS STOCK_MATCH_PURCH_ALLOC_ID,
+                       NULL                             AS STOCK_MATCH_SALES_ALLOC_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN PURCH_CONTRACT.ID
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SALES_CONTRACT.ID
+                       END                              AS P_CONTRACT_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN PURCH_CONTRACT.ID
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SALES_CONTRACT.ID
+                       END                              AS S_CONTRACT_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN PURCH_CONTRACT.REFERENCE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SALES_CONTRACT.REFERENCE
+                       END                              AS P_CONTRACT_REF,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN PURCH_CONTRACT.REFERENCE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SALES_CONTRACT.REFERENCE
+                       END                              AS S_CONTRACT_REF,
+                       ALLOC.ALLOCATION_DATE            AS ALLOCATION_DATE,
+                       CASE ALLOC.DISCRIMINATOR_TYPE
+                         WHEN 'B2B' THEN 'B2B Normal'
+                         WHEN 'B2B_CROSS_COMMODITY' THEN 'B2B Cross'
+                         WHEN 'STRING' THEN 'String'
+                         WHEN 'HALF_ALLOCATION' THEN 'Half B2B '
+                                                     + CASE
+                                                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN 'Purchase'
+                                                         ELSE 'Sales'
+                                                       END
+                       END                              AS ALLOCATION_TYPE,
+                       ALLOC.QUANTITY                   AS ALLOCATION_QTY,
+                       ALLOC.SHIPMENT_START_DATE_SOURCE AS SHIPMENT_FROM_DATE,
+                       ALLOC.SHIPMENT_END_DATE_SOURCE   AS SHIPMENT_TO_DATE,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SPEC_SOURCE.CODE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SPEC_TARGET.CODE
+                       END                              AS P_SPECIFICATION,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SPEC_SOURCE.CODE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SPEC_TARGET.CODE
+                       END                              AS S_SPECIFICATION
+                FROM   ALLOCATION ALLOC
+                       LEFT JOIN CONTRACT_POSITION SOURCE
+                              ON ALLOC.CONTRACT_POSITION_ID_SOURCE = SOURCE.ID
+                       LEFT JOIN CONTRACT PURCH_CONTRACT
+                              ON SOURCE.CONTRACT_ID = PURCH_CONTRACT.ID
+                       LEFT JOIN CONTRACT_POSITION TARGET
+                              ON ALLOC.CONTRACT_POSITION_ID_TARGET = TARGET.ID
+                       LEFT JOIN CONTRACT SALES_CONTRACT
+                              ON TARGET.CONTRACT_ID = SALES_CONTRACT.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_SOURCE
+                              ON ALLOC.SPECIFICATION_ID_SOURCE = SPEC_SOURCE.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_TARGET
+                              ON ALLOC.SPECIFICATION_ID_TARGET = SPEC_TARGET.ID
+                WHERE  ALLOC.QUANTITY <> 0
+                       AND ALLOC.ACTIVE = 1
+                       AND ALLOC.DISCRIMINATOR_TYPE <> 'OPEN'
+                       AND ALLOC.DISCRIMINATOR_TYPE <> 'STOCK'
+                UNION
+                SELECT STOCK_MATCHING.ID                           AS ALLOCATION_ID,
+                       STOCK_MATCHING.REFERENCE                    AS ALLOCATION_REF,
+                       NULL                                        AS STRING_STATUS,
+                       STOCK_MATCHING.PURCHASE_STOCK_ALLOCATION_ID AS STOCK_MATCH_PURCH_ALLOC_ID,
+                       STOCK_MATCHING.SALES_STOCK_ALLOCATION_ID    AS STOCK_MATCH_SALES_ALLOC_ID,
+                       PURCH_CONTRACT.ID                           AS P_CONTRACT_ID,
+                       SALES_CONTRACT.ID                           AS S_CONTRACT_ID,
+                       PURCH_CONTRACT.REFERENCE                    AS P_CONTRACT_REF,
+                       SALES_CONTRACT.REFERENCE                    AS S_CONTRACT_REF,
+                       STOCK_MATCHING.CREATED_DATE                 AS ALLOCATION_DATE,
+                       'Stock Matched'                             AS ALLOCATION_TYPE,
+                       STOCK_MATCHING.QUANTITY                     AS ALLOCATION_QTY,
+                       PURCH_CONTRACT.SHIP_PERIOD_START            AS SHIPMENT_FROM_DATE,
+                       PURCH_CONTRACT.SHIP_PERIOD_END              AS SHIPMENT_TO_DATE,
+                       SPEC_SOURCE.CODE                            AS P_SPECIFICATION,
+                       SPEC_TARGET.CODE                            AS S_SPECIFICATION
+                FROM   ALLOCATION_STOCK_MATCHING STOCK_MATCHING
+                       JOIN ALLOCATION PURCH_ALLOC
+                         ON PURCH_ALLOC.ID = STOCK_MATCHING.PURCHASE_STOCK_ALLOCATION_ID
+                       JOIN CONTRACT_POSITION SOURCE
+                         ON PURCH_ALLOC.CONTRACT_POSITION_ID_SOURCE = SOURCE.ID
+                       JOIN CONTRACT PURCH_CONTRACT
+                         ON SOURCE.CONTRACT_ID = PURCH_CONTRACT.ID
+                       JOIN ALLOCATION SALES_ALLOC
+                         ON SALES_ALLOC.ID = STOCK_MATCHING.SALES_STOCK_ALLOCATION_ID
+                       JOIN CONTRACT_POSITION TARGET
+                         ON SALES_ALLOC.CONTRACT_POSITION_ID_SOURCE = TARGET.ID
+                       JOIN CONTRACT SALES_CONTRACT
+                         ON TARGET.CONTRACT_ID = SALES_CONTRACT.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_SOURCE
+                              ON PURCH_ALLOC.SPECIFICATION_ID_SOURCE = SPEC_SOURCE.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_TARGET
+                              ON SALES_ALLOC.SPECIFICATION_ID_TARGET = SPEC_TARGET.ID
+                WHERE  PURCH_ALLOC.ACTIVE = 1
+                       AND SALES_ALLOC.ACTIVE = 1) ALLOC
+               -- Purchase side
+               JOIN BI_VIEW_CONTRACT_PHYSICAL PURCHASE
+                 ON ALLOC.P_CONTRACT_REF = PURCHASE.CONTRACT_REFERENCE
+               LEFT JOIN (SELECT POS.CONTRACT_ID,
+                                Sum(PRICE.CONTRACT_PRICE * PRICE.QUANTITY) / Sum(PRICE.QUANTITY) AS AVR_FLAT_PRICE
+                         FROM   CONTRACT_POSITION POS
+                                JOIN PRICING_POSITION PRICE
+                                  ON POS.ID = PRICE.CONTRACT_POSITION_INTERNAL_ID
+                         WHERE  PRICE.QUANTITY != 0
+                                AND PRICE.CONTRACT_PRICE != 0
+                         GROUP  BY POS.CONTRACT_ID) PURCH_PRICE
+                      ON PURCH_PRICE.CONTRACT_ID = ALLOC.P_CONTRACT_ID
+               LEFT JOIN JCFACTORY PFACTORY
+                      ON PURCHASE.FACTORYID = PFACTORY.FACTORYID
+               LEFT JOIN JC_USER PTRADER
+                      ON PURCHASE.TRADERID = PTRADER.ID
+               -- Sales Side
+               JOIN BI_VIEW_CONTRACT_PHYSICAL SALES
+                 ON ALLOC.S_CONTRACT_REF = SALES.CONTRACT_REFERENCE
+               LEFT JOIN (SELECT POS.CONTRACT_ID,
+                                Sum(PRICE.CONTRACT_PRICE * PRICE.QUANTITY) / Sum(PRICE.QUANTITY) AS AVR_FLAT_PRICE
+                         FROM   CONTRACT_POSITION POS
+                                JOIN PRICING_POSITION PRICE
+                                  ON POS.ID = PRICE.CONTRACT_POSITION_INTERNAL_ID
+                         WHERE  PRICE.QUANTITY != 0
+                                AND PRICE.CONTRACT_PRICE != 0
+                         GROUP  BY POS.CONTRACT_ID) SALES_PRICE
+                      ON SALES_PRICE.CONTRACT_ID = ALLOC.S_CONTRACT_ID
+               LEFT JOIN (SELECT Min(MO.SI_GENERATED_DATE) AS SI_DATE,
+                                 MOG.ALLOCATION_ID         AS ALLOCATION_ID
+                          FROM   MOVEMENT_OPERATION MO
+                                 LEFT JOIN MOVEMENT_OPERATION_GROUP MOG
+                                        ON MO.MOVEMENT_GROUP_ID = MOG.ID
+                          GROUP  BY ALLOCATION_ID) MOV
+                      ON ALLOC.ALLOCATION_ID = MOV.ALLOCATION_ID
+               JOIN JCSHIPMONTHSMAPPING MON
+                 ON SALES.SHIP_MONTH = MON.SHORTNAME
+               LEFT JOIN JCFACTORY SFACTORY
+                      ON SALES.FACTORYID = SFACTORY.FACTORYID
+               LEFT JOIN (SELECT Min(APPLYDATE) AS APPLYDATE,
+                                 ARH.CTRID      AS CTRID
+                          FROM   ARHEADER ARH
+                          GROUP  BY ARH.CTRID) SETTLE
+                      ON SETTLE.CTRID = SALES.CTRID
+               LEFT JOIN JC_USER STRADER
+                      ON SALES.TRADERID = STRADER.ID)L2
+WHERE  L2.COMPANY LIKE $P{company_p}
+       AND COALESCE(L2.S_PROFIT_CENTER_GROUP,'') LIKE $P{profit_center_group_p}
+       AND L2.S_PROFIT_CENTER LIKE $P{profit_center_p}
+       AND L2.S_STRATEGY LIKE $P{strategy_p}
+       AND COALESCE(L2.S_COUNTERPARTY_GROUP,'') LIKE $P{counterparty_group_p}
+       AND L2.S_COUNTERPARTY LIKE $P{counterparty_p}
+       AND L2.S_COMMODITY LIKE $P{commodity_p}
+       AND L2.S_GRADE LIKE $P{grade_p}
+       AND L2.S_MONTHNUMBER >= COALESCE($P{shipment_month_from},L2.S_MONTHNUMBER)
+       AND L2.S_MONTHNUMBER <= COALESCE($P{shipment_month_to},L2.S_MONTHNUMBER)
+       AND $X{IN,CTRBOOKCODE,cbk}
+$P!{QSTR_Filter}
+ORDER  BY COMPANY,
+          S_MONTHNUMBER,
+          S_PROFIT_CENTER,
+          S_COMMODITY,
+          S_GRADE]]>
+		</queryString>
+		<field name="COMPANY" class="java.lang.String"/>
+		<field name="S_SHIP_MONTH" class="java.lang.String"/>
+		<field name="P_SHIP_MONTH" class="java.lang.String"/>
+		<field name="S_PROFIT_CENTER" class="java.lang.String"/>
+		<field name="S_COMMODITY" class="java.lang.String"/>
+		<field name="S_GRADE" class="java.lang.String"/>
+		<field name="S_CONTRACT_REF" class="java.lang.String"/>
+		<field name="S_BUYER" class="java.lang.String"/>
+		<field name="S_COUNTERPARTY_REFERENCE" class="java.lang.String"/>
+		<field name="S_QUALITY_BASIS" class="java.lang.String"/>
+		<field name="ALLOCATION_QTY" class="java.math.BigDecimal"/>
+		<field name="S_OPEN_QTY" class="java.math.BigDecimal"/>
+		<field name="S_AVR_FLAT_PRICE" class="java.math.BigDecimal"/>
+		<field name="P_CONTRACT_REF" class="java.lang.String"/>
+		<field name="P_SELLER" class="java.lang.String"/>
+		<field name="P_COUNTERPARTY_REFERENCE" class="java.lang.String"/>
+		<field name="P_QUALITY_BASIS" class="java.lang.String"/>
+		<field name="P_OPEN_QTY" class="java.math.BigDecimal"/>
+		<field name="P_AVR_FLAT_PRICE" class="java.math.BigDecimal"/>
+		<field name="SI_DATE" class="java.util.Date"/>
+		<field name="SHIPMENT_TO_DATE" class="java.util.Date"/>
+		<field name="SHIPMENT_FROM_DATE" class="java.util.Date"/>
+		<field name="S_CONTRACT_QTY" class="java.math.BigDecimal"/>
+		<field name="P_CONTRACT_QTY" class="java.math.BigDecimal"/>
+		<field name="S_MONTHNUMBER" class="java.lang.Integer"/>
+		<field name="ALLOCATION_TYPE" class="java.lang.String"/>
+		<field name="STRING_STATUS" class="java.lang.String"/>
+		<field name="S_INCOTERM" class="java.lang.String"/>
+		<field name="S_TRADER" class="java.lang.String"/>
+		<field name="S_BROKER" class="java.lang.String"/>
+		<field name="S_BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="ORIGIN" class="java.lang.String"/>
+		<field name="P_INCOTERM" class="java.lang.String"/>
+		<field name="P_TRADER" class="java.lang.String"/>
+		<field name="P_BROKER" class="java.lang.String"/>
+		<field name="P_BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="LINKED_DATE" class="java.util.Date"/>
+		<field name="ALLOCATION_REF" class="java.lang.String"/>
+		<variable name="SUB_GRADE_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="COMPANY" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_GRADE_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="COMPANY" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_GRADE_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="COMPANY" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_CMDT_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_SHIP_MONTH" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_CMDT_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_SHIP_MONTH" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_CMDT_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_SHIP_MONTH" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_PROFIT_CENTER" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_PROFIT_CENTER" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_P_OPEN_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_SHIPMON_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_COMMODITY" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_SHIPMON_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_COMMODITY" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_SHIPMON_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_COMMODITY" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_GRADE" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_GRADE" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="S_GRADE" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_ALLOCATION_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_S_OPEN_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_P_OPEN_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<group name="COMPANY">
+			<groupExpression><![CDATA[$F{COMPANY}]]></groupExpression>
+		</group>
+		<group name="S_SHIP_MONTH">
+			<groupExpression><![CDATA[$F{S_SHIP_MONTH}]]></groupExpression>
+		</group>
+		<group name="S_PROFIT_CENTER">
+			<groupExpression><![CDATA[$F{S_PROFIT_CENTER}]]></groupExpression>
+		</group>
+		<group name="S_COMMODITY">
+			<groupExpression><![CDATA[$F{S_COMMODITY}]]></groupExpression>
+		</group>
+		<group name="S_GRADE">
+			<groupExpression><![CDATA[$F{S_GRADE}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="company_p" class="java.lang.String"/>
+	<parameter name="profit_center_group_p" class="java.lang.String"/>
+	<parameter name="profit_center_p" class="java.lang.String"/>
+	<parameter name="strategy_p" class="java.lang.String"/>
+	<parameter name="counterparty_group_p" class="java.lang.String"/>
+	<parameter name="counterparty_p" class="java.lang.String"/>
+	<parameter name="commodity_p" class="java.lang.String"/>
+	<parameter name="grade_p" class="java.lang.String"/>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="cbk" class="java.util.Collection"/>
+	<parameter name="shipment_month_from" class="java.lang.String"/>
+	<parameter name="shipment_month_to" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT COALESCE(MON.SHIPFROM, MIN_MON.SHORTNAME) AS SHIPFROM,
+       COALESCE(MON.SHIPTO, MAX_MON.SHORTNAME,MON.SHIPFROM)   AS SHIPTO
+FROM   (SELECT Min(L2.S_MONTHNUMBER) AS MIN_MONTHNUMBER,
+               Max(L2.S_MONTHNUMBER) AS MAX_MONTHNUMBER
+        FROM   (SELECT DISTINCT ALLOC.ALLOCATION_REF,
+                        COALESCE(PURCHASE.COMPANY, SALES.COMPANY)                        AS COMPANY,
+                        SALES.SHIP_MONTH                                                 AS S_SHIP_MONTH,
+                        SALES.PROFIT_CENTER                                              AS S_PROFIT_CENTER,
+                        SALES.COMMODITY                                                  AS S_COMMODITY,
+                        COALESCE(ALLOC.S_SPECIFICATION, ALLOC.P_SPECIFICATION)           AS S_GRADE,
+                        SALES.INCOTERM                                                   AS S_INCOTERM,
+                        SALES.CONTRACT_REFERENCE                                         AS S_CONTRACT_REF,
+                        SALES.COUNTERPARTY                                               AS S_BUYER,
+                        SALES.COUNTERPARTY_REF                                           AS S_COUNTERPARTY_REFERENCE,
+                        SALES.BROKER                                                     AS S_BROKER,
+                        SALES.BROKER_REFERENCE                                           AS S_BROKER_REFERENCE,
+                        SALES.ORIGIN,
+                        ALLOC.ALLOCATION_QTY, 
+                        PURCHASE.INCOTERM                                                AS P_INCOTERM,
+                        PURCHASE.CONTRACT_REFERENCE                                      AS P_CONTRACT_REF,
+                        PURCHASE.COUNTERPARTY                                            AS P_SELLER,
+                        PURCHASE.COUNTERPARTY_REF                                        AS P_COUNTERPARTY_REFERENCE,
+                        PURCHASE.BROKER                                                  AS P_BROKER,
+                        PURCHASE.BROKER_REFERENCE                                        AS P_BROKER_REFERENCE,
+                        PURCHASE.SHIP_MONTH                                              AS P_SHIP_MONTH,
+                        PURCHASE.PROFIT_CENTER                                           AS P_PROFIT_CENTER,
+                        PURCHASE.STRATEGY                                                AS P_STRATEGY,
+                        PURCHASE.COMMODITY                                               AS P_COMMODITY,
+                        COALESCE(ALLOC.P_SPECIFICATION, ALLOC.S_SPECIFICATION)           AS P_GRADE,
+                        PURCHASE.QUANTITY_BASIS                                          AS P_QUANTITY_BASIS,
+                        SALES.COUNTERPARTY                                               AS S_COUNTERPARTY,
+                        SALES.COUNTERPARTY_GROUP                                         AS S_COUNTERPARTY_GROUP,
+                        SALES.PROFIT_CENTER_GROUP                                        AS S_PROFIT_CENTER_GROUP,
+                        SALES.STRATEGY                                                   AS S_STRATEGY,
+                        ALLOC.SHIPMENT_FROM_DATE,
+                        ALLOC.SHIPMENT_TO_DATE,
+                        Lower(ALLOC.ALLOCATION_TYPE)                                     AS ALLOCATION_TYPE,
+                        CBK.CTRBOOKCODE,
+                        SALES.CONTRACT_QTY                                               AS S_CONTRACT_QTY,
+                        PURCHASE.CONTRACT_QTY                                            AS P_CONTRACT_QTY,
+                        MON.MONTHNUMBER                                                  AS S_MONTHNUMBER,
+                        Lower(AL.STRING_STATUS)                                          AS STRING_STATUS,
+                        COALESCE(SALES.CONTRACT_BOOK, PURCHASE.CONTRACT_BOOK)            AS CONTRACT_BOOK
+        FROM   BI_VIEW_ALLOCATION ALLOC
+               LEFT JOIN ALLOCATION AL
+                      ON ALLOC.ALLOCATION_ID = AL.ID
+               JOIN      BI_VIEW_CONTRACT_PHYSICAL PURCHASE
+                      ON ALLOC.P_CTRID = PURCHASE.CTRID
+               JOIN      BI_VIEW_CONTRACT_PHYSICAL SALES
+                      ON ALLOC.S_CTRID = SALES.CTRID
+               JOIN      CTRBOOK CBK
+                      ON SALES.CTRBOOKID = CBK.CTRBOOKID
+               JOIN      JCSHIPMONTHSMAPPING MON
+                      ON SALES.SHIP_MONTH = MON.SHORTNAME
+        WHERE  ( ALLOC.ALLOCATION_TYPE NOT LIKE 'OPEN%'
+                 OR EXISTS
+                    (SELECT M.INVLOADMATCHID
+                     FROM   INVOICELOADMATCHTOPURCHASE M
+					 JOIN   LOAD SLOAD ON M.SALESLOADID = SLOAD.ID
+                     WHERE  M.APID IS NOT NULL
+					    AND M.ARID IS NOT NULL
+						AND M.PURCHASELOADID IS NOT NULL
+                        AND AL.CONTRACT_POSITION_ID_SOURCE = SLOAD.CONTRACT_POSITION_ID
+						AND M.INVLOADMATCHID IS NOT NULL) 
+				))L2
+WHERE  L2.COMPANY LIKE $P{company_p}
+       AND COALESCE(L2.S_PROFIT_CENTER_GROUP,'') LIKE $P{profit_center_group_p}
+       AND L2.S_PROFIT_CENTER LIKE $P{profit_center_p}
+       AND L2.S_STRATEGY LIKE $P{strategy_p}
+       AND COALESCE(L2.S_COUNTERPARTY_GROUP,'') LIKE $P{counterparty_group_p}
+       AND L2.S_COUNTERPARTY LIKE $P{counterparty_p}
+       AND L2.S_COMMODITY LIKE $P{commodity_p}
+       AND L2.S_GRADE LIKE $P{grade_p}
+       AND L2.S_MONTHNUMBER >= COALESCE($P{shipment_month_from},L2.S_MONTHNUMBER)
+       AND L2.S_MONTHNUMBER <= COALESCE($P{shipment_month_to},L2.S_MONTHNUMBER)
+       AND $X{IN,CTRBOOKCODE,cbk}
+       )L3
+       JOIN JCSHIPMONTHSMAPPING MIN_MON
+         ON L3.MIN_MONTHNUMBER = MIN_MON.MONTHNUMBER
+       JOIN JCSHIPMONTHSMAPPING MAX_MON
+         ON L3.MAX_MONTHNUMBER = MAX_MON.MONTHNUMBER
+       FULL JOIN (SELECT A.SHORTNAME AS SHIPFROM,
+                         B.SHORTNAME AS SHIPTO
+                  FROM   JCSHIPMONTHSMAPPING A
+                         LEFT JOIN JCSHIPMONTHSMAPPING B
+                                ON B.MONTHNUMBER = $P{shipment_month_to}
+                  WHERE  A.MONTHNUMBER = $P{shipment_month_from}) MON
+        ON 1 = 1]]>
+	</queryString>
+	<field name="SHIPFROM" class="java.lang.String"/>
+	<field name="SHIPTO" class="java.lang.String"/>
+	<variable name="currentpage" class="java.lang.Integer" resetType="Page" incrementType="Page">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER}]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField>
+				<reportElement x="2473" y="30" width="333" height="30" uuid="cf8f21a1-9cf6-45de-a3dc-00e81659a737">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="30" width="864" height="30" uuid="6c5a1b36-b783-4139-862f-efe172e74ce7"/>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report : Linked Orders Detail As On "+DATEFORMAT(TODAY( ),"dd-MMM-yy")+"  Shipment Month " + $F{SHIPFROM}+" To " + $F{SHIPTO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="864" height="30" uuid="2b7d1dc4-3a89-4034-bff1-1f97776af494">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Olam International Ltd]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="240" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="0" width="2806" height="240" uuid="69010606-4fec-4659-b367-e11ed684ab55">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="8b3fa9bd-e0b3-48b5-a57f-04e812e5eed6">
+						<datasetParameter name="company_p">
+							<datasetParameterExpression><![CDATA[$P{company_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="profit_center_group_p">
+							<datasetParameterExpression><![CDATA[$P{profit_center_group_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="profit_center_p">
+							<datasetParameterExpression><![CDATA[$P{profit_center_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="strategy_p">
+							<datasetParameterExpression><![CDATA[$P{strategy_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="counterparty_group_p">
+							<datasetParameterExpression><![CDATA[$P{counterparty_group_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="counterparty_p">
+							<datasetParameterExpression><![CDATA[$P{counterparty_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="commodity_p">
+							<datasetParameterExpression><![CDATA[$P{commodity_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="grade_p">
+							<datasetParameterExpression><![CDATA[$P{grade_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="shipment_month_from">
+							<datasetParameterExpression><![CDATA[$P{shipment_month_from}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="LE_Filter">
+							<datasetParameterExpression><![CDATA[$P{LE_Filter}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="QSTR_Filter">
+							<datasetParameterExpression><![CDATA[$P{QSTR_Filter}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cbk">
+							<datasetParameterExpression><![CDATA[$P{cbk}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="shipment_month_to">
+							<datasetParameterExpression><![CDATA[$P{shipment_month_to}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="71311990-70b3-4a17-a770-79642e042785">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="52e85fdc-2317-45dc-adf9-54f483627b22"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grand Total]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="7a91f588-0fca-44c4-807a-ce72d15c557e"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{COMPANY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8732adea-a02b-49d4-9a2b-78979bff347c"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_SHIP_MONTH}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="5b57a905-238a-4eef-8208-3abd60e7417f"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_PROFIT_CENTER}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="17a8c90f-ca1e-46f0-954d-c10026b690a1"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_COMMODITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField>
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="573bad39-7f3a-400e-ac66-07b4284f154e"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_GRADE}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2a9c48a1-eac3-410a-a10f-d90174980436">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Company]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="7edf30b8-4194-4632-916d-8eaa9ade7e74">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{COMPANY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="29e76191-c071-430e-a12f-7d60c02dcf48">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="5833d482-ffae-47b3-a63d-37576bb48bfa">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="4ad51fd7-5e73-4cd1-8430-2cc7e9fad9a2">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_PROFIT_CENTER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="d04addbc-3d82-43f1-b939-525a6846fec1">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="30" forecolor="#010101" uuid="4b8ac533-9afc-45d9-a40b-45ba178c6d61">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Product]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="55" height="30" forecolor="#010101" uuid="bfa2d744-5137-44b0-adbc-06d08d06e71a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_COMMODITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="65" uuid="64969afb-f50e-4956-9915-20b550aad2d1">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="65" height="30" forecolor="#010101" uuid="c48e957c-a769-4ed6-90b9-0fb5df2c6284">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ship Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="65" height="30" forecolor="#010101" uuid="9ae04e1d-9f0f-48f6-bcc6-a6835b278dee">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_SHIP_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="94" uuid="a290fb7b-c78a-4fd4-bf16-6a009ed72df6">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="94" height="30" forecolor="#010101" uuid="1ee5ddc2-0e84-4aa7-a59b-db789bb6caeb">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grade]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="94" height="30" forecolor="#010101" uuid="a29eb6a3-4371-4407-904c-6a849e1737cd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_GRADE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="52" uuid="387a3d5e-f7aa-4cfe-8980-7a9509ebf451">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="52" height="30" forecolor="#010101" uuid="cbcc6b5d-98d6-4e78-ad19-0b8faacc44e9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="52" height="30" forecolor="#010101" uuid="8dddee15-7927-41b7-8ac1-fac7b8b705bd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_INCOTERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="88" uuid="0546b8d3-c53e-445f-a9a7-0878270d2e2d">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="88" height="30" forecolor="#010101" uuid="a0819dd2-0152-47fa-9893-243ec163d204">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trader]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="88" height="30" forecolor="#010101" uuid="8fdbe048-b312-40cb-bf62-b34a4f637b50">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_TRADER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="83" uuid="a7a30d50-40f5-4018-ae7d-907780df899c">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="83" height="30" forecolor="#010101" uuid="b218b541-c0fb-4550-9793-0a213a74b371">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[SO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="83" height="30" forecolor="#010101" uuid="27eeb9f6-79d6-4773-a690-6cf5a40c271a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_CONTRACT_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="77" uuid="277ddbca-6687-4aca-a9c7-646f171dbb13">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="77" height="30" forecolor="#010101" uuid="e3b281c0-d056-44ba-9299-b7f44237a5be">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Buyer]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="77" height="30" forecolor="#010101" uuid="e7f9dad0-4b5a-4904-a929-5b530bb497e4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_BUYER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110" uuid="2f877570-5821-498b-9679-49171ebbd0f5">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="30" forecolor="#010101" uuid="475f0562-912e-4ce4-9f26-7452a3bedc6a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Party Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="110" height="30" forecolor="#010101" uuid="f7d2629f-a71a-461c-96f8-d4a97d251434">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_COUNTERPARTY_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="110" uuid="f7a29ed4-080e-4353-b5a0-ba801dc7a1d5">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="110" height="30" forecolor="#010101" uuid="fb3e060e-8040-4f73-a236-6a77e0358417">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="110" height="30" forecolor="#010101" uuid="67e06608-c583-4999-8f8d-8c62a5ae06d3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_BROKER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="101" uuid="a3a50449-792d-4966-842d-d91214fe08fc">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="101" height="30" forecolor="#010101" uuid="35134961-e3c2-41df-915b-6f87f7827ca2">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="101" height="30" forecolor="#010101" uuid="930889f1-46d9-4b7a-afa1-76842bd60694">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_BROKER_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="102" uuid="0ceebf69-ba17-4f45-b16e-8f119938c199">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="102" height="30" forecolor="#010101" uuid="336acfc3-634d-4e8c-bd7c-b0d9b5cd655e">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Origin]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="102" height="30" forecolor="#010101" uuid="a17ba6a6-7aeb-444b-8d4b-cd835a5a8b43">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ORIGIN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="71" uuid="70d3b9fe-b830-48e0-aa6a-6a95dc15a15b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="71" height="30" forecolor="#010101" uuid="294d1ef3-26db-4745-8026-50a57897f2b6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Quality]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="71" height="30" forecolor="#010101" uuid="604b3fa9-a164-47c1-b405-93b1baeaf6dd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_QUALITY_BASIS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="80667381-83f9-47e9-aed1-963bb1d8dc31">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="25701f43-670c-45d1-b266-af51dd2210e8">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="d8ecbebc-9644-4c3e-9f78-91a6d9648efc">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_CONTRACT_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="d9776fba-43ad-4a24-a86e-928d9f8c3d57">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="180e2226-029c-4ea1-afdc-8383c1dceaf7">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_ALLOCATION_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="3e49f3ee-3802-49db-ade8-8df2c83a9253">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="06e94dff-ee48-4854-a0a2-30876e39d9f6">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_SHIPMON_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="58dec5f0-dc64-4664-99e4-40204a073bda">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="c4d38966-f0f8-4618-a0d2-419c669c148b">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_CMDT_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="da6d3043-545e-4c0b-aa88-2064e02812a2">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUB_GRADE_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="5e228446-fd93-4ae1-87f1-7cf56f56d6f5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="15d37a3c-717d-4645-9d77-9e9ef8113b60">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="69" uuid="bdf1edb8-d8d9-4f4a-b570-d0712e61f681">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="98c5edb1-2765-4d49-97a3-c0b7fd9a9b9b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_S_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="61412b5b-1a81-4e9f-80ac-c9566ace5751">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="610b408f-561d-4e9a-94cd-fb611b772998">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_SHIPMON_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="674268e1-85f0-49c9-a5fb-d737f356d115">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="519334d2-aeaa-4089-a781-f9636eab8075">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_CMDT_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="540f4a24-e155-40c2-b4a4-c56479500db4">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_GRADE_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="e06eea7a-297c-40f1-800b-25316f95e0c6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Balance]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="69" height="30" forecolor="#010101" uuid="99b087fd-0569-4359-b8c5-e9781d1c2059">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="68" uuid="aed9389f-0edb-4e3a-8f45-96975a2060b5">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="68" height="30" forecolor="#010101" uuid="fb13290c-760e-4a1d-99e6-7671a0bf4bd9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price (USD)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="68" height="30" forecolor="#010101" uuid="e31b9ba2-dfbd-49d6-8d87-17244f023bf5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{S_AVR_FLAT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="55" uuid="1cb09470-4ced-4543-8bc2-57229cda194e">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="55" height="30" forecolor="#010101" uuid="23f27f26-8719-4ee7-ae02-7350677eed89">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="55" height="30" forecolor="#010101" uuid="036f21bc-59f9-47a0-9bc2-3ef497e25779">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_INCOTERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="86" uuid="0cab1c4a-6514-4761-abc0-99bfae27ec9c">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="86" height="30" forecolor="#010101" uuid="91f4a608-48c3-4198-aad5-fc1ed74d1d36">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trader]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="86" height="30" forecolor="#010101" uuid="281f6b10-ad40-4bb3-bb8e-b82d1a3460f4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_TRADER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="79" uuid="50a41039-f2d5-4559-89c4-cd3b6933ef6f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="79" height="30" forecolor="#010101" uuid="e7ff1af2-bfa6-4ebd-abc8-3af2fee6dff4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[PO]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="79" height="30" forecolor="#010101" uuid="cc42859b-b363-4dec-9514-a9b56ab9f339">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_CONTRACT_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="24818d36-3923-4dcc-a4a9-73296c25562d">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="59" height="30" forecolor="#010101" uuid="d6162e88-54c5-4daa-be0d-10adc4757267">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ship Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="59" height="30" forecolor="#010101" uuid="cbf8bbb4-67b7-4535-b2f0-6288d9358cea">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_SHIP_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="2d93a959-bd78-4d5a-83f6-22e705c4177a">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="96" height="30" forecolor="#010101" uuid="78d0b1a7-db72-4fcc-abb8-ea716d65ff2f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Supplier]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="96" height="30" forecolor="#010101" uuid="e94b601b-679b-4fb1-b9f3-55fb31853e26">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_SELLER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="106" uuid="e78e67a6-a0a4-4f50-b920-482b1aa61167">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="106" height="30" forecolor="#010101" uuid="56237152-23c8-49ff-b8a6-7b63d212f58c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Party Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="106" height="30" forecolor="#010101" uuid="5a830090-f04d-4f7a-a236-38d5c846b955">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_COUNTERPARTY_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="106" uuid="c88939f7-6ed8-4745-9d5f-981d5bdbf4a0">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="106" height="30" forecolor="#010101" uuid="0f5872c6-c128-4120-b415-2ea0aa0a5855">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="106" height="30" forecolor="#010101" uuid="590ec0de-173f-4d22-908d-9c524cad1193">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_BROKER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="113" uuid="161ebbcf-1cd4-4e47-b690-47dd86722838">
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="113" height="30" forecolor="#010101" uuid="e61b7741-7367-405b-abf2-6520300b3c83">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="113" height="30" forecolor="#010101" uuid="1faa5087-ea3b-4812-9ee3-3bf43a0f597b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_BROKER_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="72" uuid="10b19aa7-3009-4fe5-a08c-c34042e365df">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="72" height="30" forecolor="#010101" uuid="96fdb9eb-0ac4-4153-9fdb-b1c2022154ac">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Quality]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="72" height="30" forecolor="#010101" uuid="2da359d5-540a-43a0-920e-451b7aca1d8b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_QUALITY_BASIS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="64" uuid="4d72053e-dbdd-4627-bf25-8515c48e5d9a">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="64" height="30" forecolor="#010101" uuid="1bb3ed32-2bc2-4483-834e-aed359568d6c">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="64" height="30" forecolor="#010101" uuid="86c583aa-7426-4de8-ac9c-e8a707bb6e41">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_CONTRACT_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="67" uuid="88003ea7-a1ca-47d7-b3e5-1ff2698720db">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="d0fc6255-50be-41c1-9c3f-49815b8ff587">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_P_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="4e68ee6a-1f54-4362-8620-3525b2c4bf7f">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="6cf25ca3-f1b8-4ec6-bc17-bf1770170cb8">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_SHIPMON_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="a18eba5b-b783-46b3-a7f0-154cde07947a">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="30219cb4-6738-48f6-922a-f59dfcdba53e">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_CMDT_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="8b135059-726a-4422-a3fc-12d42f586790">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_GRADE_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="81307c1e-5100-4fdd-8582-0b3032b1cad7">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Balance]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="67" height="30" forecolor="#010101" uuid="56a007dc-413d-453b-9ed5-ee1c64f0063a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63" uuid="d1148b01-b705-4e0f-a81e-9db6120dc0f3">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="63" height="30" forecolor="#010101" uuid="7d4130dc-f23e-4a93-9f8b-a1d7452d6ec3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price (USD)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="63" height="30" forecolor="#010101" uuid="ea8675a4-65d7-4c02-b186-9ba549a7dc86">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{P_AVR_FLAT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63" uuid="e15af15f-f411-4ade-b655-7e776d30a2d1">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="63" height="30" forecolor="#010101" uuid="1ace9822-3e2e-4630-a923-fef8e517112a">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[SI Sent Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="63" height="30" forecolor="#010101" uuid="37c15201-56da-4095-a9b0-2b5afb98a761">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SI_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="61" uuid="d251d173-8bea-4880-8fae-1fc69564cc16">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="d7651a0b-d483-4533-8e78-5dbd5211664d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Ship Deadline]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="61" height="30" forecolor="#010101" uuid="c1954381-7e98-4598-9443-a27cb13659ef">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SHIPMENT_TO_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="5029b968-0218-41e9-8500-54b82d0a4b30">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="59" height="30" forecolor="#010101" uuid="37013b98-6b35-4d7f-80c5-ac02f3379d11">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Expt Ship Dt.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="59" height="30" forecolor="#010101" uuid="68b0ccc3-bd60-48e6-b904-f73711f1ac92">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{SHIPMENT_FROM_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="77" uuid="cac04642-407f-47de-be81-10870ba6aaab">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="77" height="30" forecolor="#010101" uuid="b1d7ce37-4224-4650-b290-32f47cfe795c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Allocation Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="77" height="30" forecolor="#010101" uuid="1527ac5a-9f71-4d15-a297-504b63abc417">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_TYPE}.equals("string") ? $F{STRING_STATUS}.replace( '_', ' ' ) : $F{ALLOCATION_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="73" uuid="69394151-9a73-48cd-88e8-ee47a20a8f9b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter style="Table 1_TH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="COMPANY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_SHIP_MONTH">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_PROFIT_CENTER">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_COMMODITY">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="S_GRADE">
+							<jr:cell style="Table_TH" height="30">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="73" height="30" forecolor="#010101" uuid="b8d19a4f-8477-4de2-b74c-19f3e8bdacce">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="73" height="30" forecolor="#010101" uuid="e1f066b7-35ad-4bfa-aa07-71d65e0cd827">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{LINKED_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" pattern="" isBlankWhenNull="false">
+				<reportElement key="element-161" positionType="Float" mode="Transparent" x="2733" y="0" width="73" height="20" forecolor="#010101" backcolor="#FFFFFF" uuid="de9690a7-7084-4117-be87-27d0443c667d">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" rotation="None">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1250" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + ($V{currentpage} == null? 1 : $V{currentpage} + 1) + " of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

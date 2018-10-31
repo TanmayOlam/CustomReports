@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1/OLAM</parent>
+    <name>Custom_Reports</name>
+    <label>Custom Reports</label>
+    <description>Custom Reports</description>
+    <creationDate>2017-01-06T18:51:11.950+08:00</creationDate>
+    <updateDate>2017-01-06T15:40:56.423+08:00</updateDate>
+    <folder>EOD_Reports</folder>
+    <resource>Book_Value_Futures_Report</resource>
+    <resource>Book_Value_Futures_Summary_Details</resource>
+    <resource>Book_Value_PnL_Summary</resource>
+    <resource>broker_listing_report_1</resource>
+    <resource>Broker_Wise_Trade_Instruct___Open_only__Report</resource>
+    <resource>Broker_Wise_Trade_Instruct_Report</resource>
+    <resource>Deal_Register</resource>
+    <resource>Deal_Register_Summary_Report</resource>
+    <resource>DN_CN_Register</resource>
+    <resource>Linked_Order_1</resource>
+    <resource>Market_Derivatives_Position_Summary</resource>
+    <resource>Market_Risk_Position_1_3</resource>
+    <resource>Market_Risk_Position_Summary</resource>
+    <resource>PnL_Attribution_CUR_UOM_Report</resource>
+    <resource>String_settlement_costs_Report</resource>
+    <resource>String_settlement_sales_and_purchase_Report</resource>
+    <resource>unlinked_order_report</resource>
+    <permission>
+        <permissionMask>30</permissionMask>
+        <recipient tenantId="organization_1" recipientType="user">Vijay.chakrapani</recipient>
+    </permission>
+</folder>

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>String_settlement_sales_and_purchase_Report</name>
+    <version>8</version>
+    <label>String settlement sales and purchase Report</label>
+    <description>String settlement sales and purchase Report</description>
+    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+    <updateDate>2018-04-09T21:07:50.117+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="String_settlement_sales_and_purchase_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>String_settlement_sales_and_purchase_Report_</name>
+            <version>6</version>
+            <label>String settlement sales and purchase Report</label>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>date_from</name>
+            <version>7</version>
+            <label>Realized Date From</label>
+            <description></description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/date_from_files</folder>
+                    <name>date_from</name>
+                    <version>0</version>
+                    <label>date_from</label>
+                    <description></description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>date_to</name>
+            <version>7</version>
+            <label>Realized Date To</label>
+            <description></description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/date_to_files</folder>
+                    <name>date_to</name>
+                    <version>0</version>
+                    <label>date_to</label>
+                    <description></description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>true</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>ctrbook</name>
+            <version>7</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>7</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>commodity</name>
+            <version>7</version>
+            <label>Commodity</label>
+            <description>Commodity</description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description>Commodity</description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE,
+       IVITEMID AS LABEL,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>Status</name>
+            <version>7</version>
+            <label>Status</label>
+            <description></description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/Status_files</folder>
+                    <name>Status</name>
+                    <version>0</version>
+                    <label>Status</label>
+                    <description></description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'WASHED_OUT' AS VALUE_FIELD,  'WASHED_OUT' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'CIRCLED' AS VALUE_FIELD,  'CIRCLED' AS LABEL_FIELD, 3 as seq 
+UNION All
+Select 'BYPASS' AS VALUE_FIELD,  'BYPASS' AS LABEL_FIELD, 4 as seq
+
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>pc</name>
+            <version>7</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+                    <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt; 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/String_settlement_sales_and_purchase_Report_files</folder>
+            <name>Logo</name>
+            <version>0</version>
+            <label>Logo</label>
+            <description>Logo</description>
+            <creationDate>2018-04-09T19:00:28.150+08:00</creationDate>
+            <updateDate>2018-04-09T19:00:28.150+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

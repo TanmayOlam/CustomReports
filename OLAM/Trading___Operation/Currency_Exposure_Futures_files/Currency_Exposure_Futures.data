@@ -1,0 +1,2364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 5.5.2  -->
+<!-- 2016-12-19T14:33:58 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Currency_Exposure_Futures" pageWidth="1190" pageHeight="842" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6635185d-470c-463c-a188-3df124285389">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="currency_exposure_future_static" uuid="64bc4a0b-f859-4633-8f58-c9557bf03780">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+		<parameter name="LE_Filter" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[$P{LE_Filter}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[" AND DPA.CONTRACT_BOOK IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+		</parameter>
+		<parameter name="long_short" class="java.util.Collection"/>
+		<parameter name="cmdt" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="curr" class="java.util.Collection"/>
+		<parameter name="ctrdatefrom" class="net.sf.jasperreports.types.date.DateRange"/>
+		<parameter name="ctrdateto" class="net.sf.jasperreports.types.date.DateRange"/>
+		<parameter name="maturity" class="java.lang.String"/>
+		<parameter name="ctrbook" class="java.util.Collection"/>
+		<queryString>
+			<![CDATA[SELECT DPA.CONTRACT_BOOK                                                                                                                                                                                                       AS PRODUCT,
+       DPA.PROFIT_CENTER                                                                                                                                                                                                       AS UNIT,
+       'Future'                                                                                                                                                                                                                AS INSTRUMENT_TYPE,
+       'Futures'                                                                                                                                                                                                               AS INSTRUMENT_GROUP,
+       DPA.COMMODITY                                                                                                                                                                                                           AS PRODUCT_GRADE,
+       Cast(DPA.POSITION_CURRENCY AS NVARCHAR(3))                                                                                                                                                                              AS CURRENCY,
+       DPA.POSITION_REF                                                                                                                                                                                                        AS CONTRACT_REF,
+       DPA.POSITION_DATE                                                                                                                                                                                                       AS CONTRACT_DATE,
+       DPA.LAST_TRADE_DATE                                                                                                                                                                                                     AS MATURITY,
+       CASE
+         WHEN DPA.LONG_SHORT = 'SHORT' THEN 'Short'
+         ELSE 'Long'
+       END                                                                                                                                                                                                                     AS LONG_SHORT,
+       Round(DPA.CURRENT_OPEN_QUANTITY / DPA.LOT_SIZE, 0)                                                                                                                                                                      AS LOTS,
+       DPA.CURRENT_POSITION_PRICE * DPA.CURRENT_POSITION_QUANTITY * CASE
+                                                                      WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                      ELSE -1
+                                                                    END                                                                                                                                                        AS CONTRACT_AMT,
+       DPA.CURRENT_POSITION_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                  WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                  ELSE 1
+                                                                END                                                                                                                                                            AS NON_USD_VALUE,
+       DPA.CURRENT_POS_TO_RPT_FXRATE                                                                                                                                                                                           AS EXCH_RATE,
+       ( DPA.CURRENT_POSITION_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                    WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                    ELSE 1
+                                                                  END ) * DPA.CURRENT_POS_TO_RPT_FXRATE                                                                                                                        AS USD_VALUE,
+       DPA.CURRENT_FUT_MARKET_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                    WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                    ELSE 1
+                                                                  END                                                                                                                                                          AS NON_USD_MV,
+       ( DPA.CURRENT_FUT_MARKET_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                      WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                      ELSE 1
+                                                                    END ) * DPA.CURRENT_POS_TO_RPT_FXRATE                                                                                                                      AS USD_MV,
+       ( ( DPA.CURRENT_FUT_MARKET_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                        WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                        ELSE 1
+                                                                      END ) - ( DPA.CURRENT_POSITION_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                                                                                           WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                                                                                           ELSE 1
+                                                                                                                                         END ) ) * CASE
+                                                                                                                                                     WHEN DPA.LONG_SHORT = 'SHORT' THEN -1
+                                                                                                                                                     ELSE 1
+                                                                                                                                                   END                                                                         AS NON_USD_VM,
+       ( ( ( DPA.CURRENT_FUT_MARKET_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                          WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                          ELSE 1
+                                                                        END ) * DPA.CURRENT_POS_TO_RPT_FXRATE ) - ( ( DPA.CURRENT_POSITION_PRICE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                                                                                                                                 WHEN DPA.LONG_SHORT = 'LONG' THEN -1
+                                                                                                                                                                                 ELSE 1
+                                                                                                                                                                               END ) * DPA.CURRENT_POS_TO_RPT_FXRATE ) ) * CASE
+                                                                                                                                                                                                                             WHEN DPA.LONG_SHORT = 'SHORT' THEN -1
+                                                                                                                                                                                                                             ELSE 1
+                                                                                                                                                                                                                           END AS USD_VM,
+       MTHMAP.SHORTNAME                                                                                                                                                                                                        AS MATURITY_MONTH,
+       1                                                                                                                                                                                                                       AS ORDERIDX
+FROM   DAILY_PNL_ATTRIBUTION DPA
+       LEFT JOIN BI_MONTHQUARTERMAPPING MTHMAP
+              ON MTHMAP.STARTPERIOD <= DPA.LAST_TRADE_DATE
+                 AND MTHMAP.ENDPERIOD >= DPA.LAST_TRADE_DATE
+       JOIN (SELECT CONTRACT_BOOK,
+                    Max(EOD_DATE) AS EOD_DATE
+             FROM   DAILY_PNL_ATTRIBUTION
+             GROUP  BY CONTRACT_BOOK) LATEST
+         ON DPA.CONTRACT_BOOK = LATEST.CONTRACT_BOOK
+            AND DPA.EOD_DATE = LATEST.EOD_DATE
+WHERE  DPA.INSTRUMENT_TYPE = 'FUTURES'
+       AND DPA.POSITION_CURRENCY <> DPA.REPORTING_CURRENCY
+       AND $X{IN, DPA.LONG_SHORT, long_short}
+       AND $X{IN, DPA.COMMODITY, cmdt}
+       AND $X{IN, DPA.PROFIT_CENTER, pc}
+       AND $X{IN, DPA.POSITION_CURRENCY, curr}
+       AND $X{IN, DPA.CONTRACT_BOOK, ctrbook}
+       AND $X{[BETWEEN], DPA.POSITION_DATE, ctrdatefrom, ctrdateto}
+       AND MTHMAP.SHORTNAME LIKE $P{maturity}
+       AND DPA.CURRENT_OPEN_QUANTITY > 0
+$P!{QSTR_Filter}
+UNION
+SELECT DPA.CONTRACT_BOOK                                                                                                                                        AS PRODUCT,
+       DPA.PROFIT_CENTER                                                                                                                                        AS UNIT,
+       'Forex'                                                                                                                                                  AS INSTRUMENT_TYPE,
+       'Currency Cover'                                                                                                                                         AS INSTRUMENT_GROUP,
+       DPA.COMMODITY                                                                                                                                            AS PRODUCT_GRADE,
+       Cast(DPA.POSITION_CURRENCY AS NVARCHAR(3))                                                                                                               AS CURRENCY,
+       DPA.POSITION_REF                                                                                                                                         AS CONTRACT_REF,
+       DPA.POSITION_DATE                                                                                                                                        AS CONTRACT_DATE,
+       DPA.EXPIRED_DATE                                                                                                                                         AS MATURITY,
+       CASE
+         WHEN DPA.LONG_SHORT = 'SHORT' THEN 'Short'
+         ELSE 'Long'
+       END                                                                                                                                                      AS LONG_SHORT,
+       NULL                                                                                                                                                     AS LOTS,
+       DPA.CURRENT_POSITION_QUANTITY * CASE
+                                         WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                         ELSE -1
+                                       END                                                                                                                      AS CONTRACT_AMT,
+       DPA.CURRENT_OPEN_QUANTITY * CASE
+                                     WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                     ELSE -1
+                                   END                                                                                                                          AS NON_USD_VALUE,
+       DPA.CURRENT_POSITION_PRICE                                                                                                                               AS EXCH_RATE,
+       ( DPA.CURRENT_OPEN_QUANTITY * DPA.CURRENT_POSITION_PRICE ) * CASE
+                                                                      WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                      ELSE -1
+                                                                    END                                                                                         AS USD_VALUE,
+       ( ( DPA.CURRENT_OPEN_QUANTITY * DPA.CURRENT_POSITION_PRICE ) / DPA.CURRENT_POS_TO_REF_FXRATE ) * CASE
+                                                                                                          WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                                                          ELSE -1
+                                                                                                        END                                                     AS NON_USD_MV,
+       ( DPA.CURRENT_POS_TO_REF_FXRATE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                       WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                       ELSE -1
+                                                                     END )                                                                                      AS USD_MV,
+       ( ( ( ( DPA.CURRENT_OPEN_QUANTITY * DPA.CURRENT_POSITION_PRICE ) / DPA.CURRENT_POS_TO_REF_FXRATE ) * CASE
+                                                                                                              WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                                                              ELSE -1
+                                                                                                            END ) - ( DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                                                                                                    WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                                                                                                    ELSE -1
+                                                                                                                                                  END ) ) * CASE
+                                                                                                                                                              WHEN DPA.LONG_SHORT = 'SHORT' THEN -1
+                                                                                                                                                              ELSE 1
+                                                                                                                                                            END AS NON_USD_VM,
+       ( (( DPA.CURRENT_POS_TO_REF_FXRATE * DPA.CURRENT_OPEN_QUANTITY * CASE
+                                                                          WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                          ELSE -1
+                                                                        END )) - ( ( DPA.CURRENT_OPEN_QUANTITY * DPA.CURRENT_POSITION_PRICE ) * CASE
+                                                                                                                                                  WHEN DPA.LONG_SHORT = 'LONG' THEN 1
+                                                                                                                                                  ELSE -1
+                                                                                                                                                END ) ) * CASE
+                                                                                                                                                            WHEN DPA.LONG_SHORT = 'SHORT' THEN -1
+                                                                                                                                                            ELSE 1
+                                                                                                                                                          END   AS USD_VM,
+       MTHMAP.SHORTNAME                                                                                                                                         AS MATURITY_MONTH,
+       2                                                                                                                                                        AS ORDERIDX
+FROM   DAILY_PNL_ATTRIBUTION DPA
+       LEFT JOIN BI_MONTHQUARTERMAPPING MTHMAP
+              ON MTHMAP.STARTPERIOD <= DPA.EXPIRED_DATE
+                 AND MTHMAP.ENDPERIOD >= DPA.EXPIRED_DATE
+       JOIN (SELECT CONTRACT_BOOK,
+                    Max(EOD_DATE) AS EOD_DATE
+             FROM   DAILY_PNL_ATTRIBUTION
+             GROUP  BY CONTRACT_BOOK) LATEST
+         ON DPA.CONTRACT_BOOK = LATEST.CONTRACT_BOOK
+            AND DPA.EOD_DATE = LATEST.EOD_DATE
+WHERE  DPA.INSTRUMENT_TYPE = 'FOREX'
+       AND DPA.POSITION_CURRENCY <> DPA.REFERENCE_CURRENCY
+       AND $X{IN, DPA.LONG_SHORT, long_short}
+       AND $X{IN, DPA.COMMODITY, cmdt}
+       AND $X{IN, DPA.PROFIT_CENTER, pc}
+       AND $X{IN, DPA.POSITION_CURRENCY, curr}
+       AND $X{IN, DPA.CONTRACT_BOOK, ctrbook}
+       AND $X{[BETWEEN], DPA.POSITION_DATE, ctrdatefrom, ctrdateto}
+       AND MTHMAP.SHORTNAME LIKE $P{maturity}
+       AND DPA.CURRENT_OPEN_QUANTITY > 0
+$P!{QSTR_Filter}
+ORDER  BY PRODUCT_GRADE,
+          UNIT,
+          CURRENCY,
+          MATURITY,
+          ORDERIDX]]>
+		</queryString>
+		<field name="PRODUCT" class="java.lang.String"/>
+		<field name="UNIT" class="java.lang.String"/>
+		<field name="INSTRUMENT_TYPE" class="java.lang.String"/>
+		<field name="INSTRUMENT_GROUP" class="java.lang.String"/>
+		<field name="PRODUCT_GRADE" class="java.lang.String"/>
+		<field name="CURRENCY" class="java.lang.String"/>
+		<field name="CONTRACT_REF" class="java.lang.String"/>
+		<field name="CONTRACT_DATE" class="java.sql.Date"/>
+		<field name="MATURITY" class="java.sql.Date"/>
+		<field name="LONG_SHORT" class="java.lang.String"/>
+		<field name="LOTS" class="java.math.BigDecimal"/>
+		<field name="CONTRACT_AMT" class="java.math.BigDecimal"/>
+		<field name="NON_USD_VALUE" class="java.math.BigDecimal"/>
+		<field name="EXCH_RATE" class="java.math.BigDecimal"/>
+		<field name="USD_VALUE" class="java.math.BigDecimal"/>
+		<field name="NON_USD_MV" class="java.math.BigDecimal"/>
+		<field name="USD_MV" class="java.math.BigDecimal"/>
+		<field name="NON_USD_VM" class="java.math.BigDecimal"/>
+		<field name="USD_VM" class="java.math.BigDecimal"/>
+		<field name="MATURITY_MONTH" class="java.lang.String"/>
+		<field name="ORDERIDX" class="java.lang.Integer"/>
+		<variable name="NON_USD_VALUE_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="EXCH_RATE_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Average">
+			<variableExpression><![CDATA[$F{EXCH_RATE}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_MV_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_VM_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_INSTRUMENT" class="java.math.BigDecimal" resetType="Group" resetGroup="Instrument" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_VALUE_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="EXCH_RATE_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Average">
+			<variableExpression><![CDATA[$F{EXCH_RATE}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_MV_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_VM_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_MATURITY" class="java.math.BigDecimal" resetType="Group" resetGroup="Maturity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_VALUE_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="EXCH_RATE_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Average">
+			<variableExpression><![CDATA[$F{EXCH_RATE}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_MV_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="NON_USD_VM_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{NON_USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_CURR" class="java.math.BigDecimal" resetType="Group" resetGroup="Currency" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="Profit_Center" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="Profit_Center" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="Profit_Center" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_CMDT" class="java.math.BigDecimal" resetType="Group" resetGroup="Commodity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_CMDT" class="java.math.BigDecimal" resetType="Group" resetGroup="Commodity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_CMDT" class="java.math.BigDecimal" resetType="Group" resetGroup="Commodity" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<variable name="USD_VALUE_TOTAL" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VALUE}]]></variableExpression>
+		</variable>
+		<variable name="USD_MV_TOTAL" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_MV}]]></variableExpression>
+		</variable>
+		<variable name="USD_VM_TOTAL" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{USD_VM}]]></variableExpression>
+		</variable>
+		<group name="Commodity">
+			<groupExpression><![CDATA[$F{PRODUCT_GRADE}]]></groupExpression>
+		</group>
+		<group name="Profit_Center">
+			<groupExpression><![CDATA[$F{UNIT}]]></groupExpression>
+		</group>
+		<group name="Currency">
+			<groupExpression><![CDATA[$F{CURRENCY}]]></groupExpression>
+		</group>
+		<group name="Maturity">
+			<groupExpression><![CDATA[$F{MATURITY}]]></groupExpression>
+		</group>
+		<group name="Instrument">
+			<groupExpression><![CDATA[$F{INSTRUMENT_GROUP}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="long_short" class="java.util.Collection"/>
+	<parameter name="cmdt" class="java.util.Collection"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="curr" class="java.util.Collection"/>
+	<parameter name="ctrdatefrom" class="net.sf.jasperreports.types.date.DateRange"/>
+	<parameter name="ctrdateto" class="net.sf.jasperreports.types.date.DateRange"/>
+	<parameter name="maturity" class="java.lang.String"/>
+	<parameter name="ctrbook" class="java.util.Collection"/>
+	<queryString>
+		<![CDATA[SELECT 1 AS ROWNUM]]>
+	</queryString>
+	<variable name="currentpage" class="java.lang.Integer" resetType="Page" incrementType="Page">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER}]]></initialValueExpression>
+	</variable>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="1950" y="30" width="240" height="30" forecolor="#010101" uuid="7c03be38-b353-4555-af3b-9d5e33a6dff5"/>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="270" height="30" forecolor="#010101" uuid="adf20b14-f367-4093-ac5a-aadc400a1878">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Olam International Ltd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="270" height="30" forecolor="#010101" uuid="10805d18-9302-4f54-80ed-f8e39c0f87ab">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Currency Exposure Futures Report]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="78" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 1" positionType="Float" x="0" y="0" width="2190" height="78" forecolor="#010101" uuid="70dc659e-cc08-4e86-9545-a5ac32593085"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="currency_exposure_future_static" uuid="6280b91a-a1ff-4f62-ba1c-0493eaf3a9a7">
+						<datasetParameter name="LE_Filter">
+							<datasetParameterExpression><![CDATA[$P{LE_Filter}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="long_short">
+							<datasetParameterExpression><![CDATA[$P{long_short}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cmdt">
+							<datasetParameterExpression><![CDATA[$P{cmdt}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pc">
+							<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="curr">
+							<datasetParameterExpression><![CDATA[$P{curr}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrdatefrom">
+							<datasetParameterExpression><![CDATA[$P{ctrdatefrom}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrdateto">
+							<datasetParameterExpression><![CDATA[$P{ctrdateto}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="maturity">
+							<datasetParameterExpression><![CDATA[$P{maturity}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$P{ctrbook}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="140d3734-b072-44c6-9008-3868f2c2c2ad">
+						<property name="local_mesure_unitheight" value="pixel"/>
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="56eb7822-d10e-4baf-9fff-291d8436c9f3"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grand Total]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="1838106e-f6bd-44a2-bce8-3d36a1b67687"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{INSTRUMENT_GROUP}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="MMM-yy" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="3c813678-7838-48f8-822d-008add8f4fd8"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="1f1655a0-3803-4072-9f02-88fb4ce5eb54"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{CURRENCY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="e0ea6100-f594-40bc-b7d2-b3ebcf93eb92"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{UNIT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2ad435a7-d18a-4851-84f5-458f7b1fca87"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PRODUCT_GRADE}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="885181dd-9746-4548-b69c-aa9ef9785b40"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Product]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="f9632a71-73aa-488b-ad62-40781422c22f"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{PRODUCT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="0e091ae2-39ec-4d7a-a341-25846471d664">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="30" forecolor="#010101" uuid="5c52c795-a14c-4779-bcc9-cf3ea28df854"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="150" height="30" forecolor="#010101" uuid="6c1f2eea-a02d-4831-b289-e19d9625bfd2"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="fc9dddf1-6efd-4700-b590-bc5fd2fafc02">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2aaac29e-d881-4cc1-b6cb-a20a552db103"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trade Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="76b367a4-42f4-4159-8ad3-4324a0e2349a"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{INSTRUMENT_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="cda26e0b-b0af-4fef-826f-5c304b554a70">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="5ba0d498-07e9-41da-904e-3d0fc6c38fda"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Product Grade]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="bd68663f-fddd-4cbf-8915-9db0a572815c"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{PRODUCT_GRADE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="4a5a57ff-3946-485a-b3dc-d0f032e51abe">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="4df54175-7077-4b8b-a14b-f20f8e6bf9ea"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Currency]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="38b5c5ad-57fd-4e4b-85c4-a2a16fd737d2"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="a2123eaa-4a08-4c60-a67d-2f305585e01c">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="a5d628bb-5781-4e75-af2e-7b4aa487d0aa"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Ref]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8c916bda-fb2b-4dcc-9f44-972043ab0d09"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CONTRACT_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="87c972f0-6be2-49f3-b2d5-301309084341">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8fc1733d-6271-4039-b436-acac245ac59f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="993e964a-8a81-4af5-8710-78d3e4c2f41a"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CONTRACT_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="3ffea8a6-8cb9-454a-8a81-9b74ca3192b2">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="e7686159-912b-4269-860c-4a4f00a83537"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Maturity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="15d29967-f69e-47af-b20f-81093e163214"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{MATURITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="13202fff-ac22-4ef4-a47f-f81521e359ec">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="961e22b8-49a3-48a3-aabb-7439aa86fe56"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Long/Short]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="c8fe9256-6413-47ac-84c0-65f944dc2923"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{LONG_SHORT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="ec5ae1fd-99b2-44e2-9eab-38544bf6b508">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="e259e158-9b1a-4ed7-9d51-a591990a12df"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Lots]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="fd0f53f8-39b0-4ae3-be56-2f71c415d176"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{LOTS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="5ec58395-2cc4-428c-a382-bbc49036bb5e">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="e7248b00-87be-4627-8b96-37927eb60c81"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Amt]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="ecbb747f-ef57-4b1c-9582-eb5d432590cb"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{CONTRACT_AMT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="b2133f39-b379-4aab-a739-6a701fdcddae">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="c1d2a8ce-95e9-47f2-91e2-3777b2bc1f08"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VALUE_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="5b66671c-e5a1-49f0-a69f-1abb7d8e79dd"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VALUE_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="4c0e2d93-c841-43a0-a50e-7766e084e9ae"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VALUE_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="b25c6b16-9ac5-414d-a45a-d7443c99a1e7"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Non USD-Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="bb4e6428-09a4-471b-b54a-0258dbda3836"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{NON_USD_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="e8d91aa6-43b4-4826-bc31-3793f6812eb8">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.0000000000;(#,##0.0000000000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="9b139e5f-043f-4bfd-84d8-4e2df60d54c4"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{EXCH_RATE_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.0000000000;(#,##0.0000000000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="92bd2f21-2304-4fd6-9c62-0a50dfdcf694"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{EXCH_RATE_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.0000000000;(#,##0.0000000000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="d6ef0532-1940-470b-b0fe-8f9b3380f785"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{EXCH_RATE_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="1dcb438d-c2f3-4a8f-aa90-ae8b5201ef47"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Exch Rate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.0000000000;(#,##0.0000000000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="4453349a-0df2-473e-8f05-1dc50d1b2828"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{EXCH_RATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="c9077fcb-2328-408e-b4ed-4b63498b224b">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2483e72f-9145-43e9-8a8f-fde40f536940"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true" isItalic="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{USD_VALUE_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="0f913fdf-6465-49cb-a865-81f7cddfa2b2"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VALUE_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="0108c0d5-72ae-442a-b8b5-e3e728b9258e"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VALUE_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2e084225-b07f-4b0f-b9c7-039d708f2fa3"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VALUE_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="f554af05-71b8-4082-8c85-363ef886a611"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VALUE_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="0d325f3e-a7c1-456e-9b59-7f7717deafec"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VALUE_CMDT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="0c736bc0-4571-45c2-bef8-afe623aff298"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[USD-Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="3bd15759-021b-4f29-8cdb-0140de1c8823"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{USD_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="f2883253-42c9-42dd-82d8-77912e7cf74c">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8ec43bed-dfb2-45dc-b12a-3c68df38b9cb"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_MV_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="15878068-df80-4350-8fb1-933cfff0fee3"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_MV_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="c8190b53-3d62-469a-a8e0-b0c2e7f007ee"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_MV_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="22a93716-7131-419a-863a-bfe73a7b616d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Non USD-MV]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="6e7f54d7-e389-4ffd-9403-ec7f50f62c33"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{NON_USD_MV}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="65deb16b-da80-4372-9527-daddcf8f450b">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2739372b-681c-4836-9014-e9b0d29e2857"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true" isItalic="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{USD_MV_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="db6e3063-ad64-47df-b3d8-5582171cb618"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_MV_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="c9a8de2d-7de7-462c-b02e-f731e355487b"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_MV_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8e8300cb-d8de-453f-9046-2958251533dd"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_MV_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="03a0df44-0124-47d5-a74b-79961b078046"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_MV_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="6d0ba32c-7d09-4a6b-b539-934188b4e8f5"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_MV_CMDT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="03abbe6b-e95b-4aa4-a795-a42724ef73f6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[USD-MV]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="a24830b3-85c7-4edf-9c05-27edbb90e8d8"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{USD_MV}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="1ac76c92-dbd4-4f3f-8e97-9b2b1faa1a2e">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="55210737-9cf7-450b-9099-49ca55e405c4"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VM_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="f1169220-8ac6-4da9-ab88-3eb287528fd8"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VM_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="28cc84a3-2ee3-43d4-9019-14c404428c6e"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{NON_USD_VM_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="74227907-f14b-4806-afdd-c829966b0519"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[Non USD-VM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="7e0df23b-189b-4b4e-96dd-c979f8561c6c"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{NON_USD_VM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="120" uuid="bb702226-6dc1-4783-bf95-4a25e06fe452">
+						<jr:tableFooter style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="eab968f4-0fbc-44b4-a8d1-9e5d9a02a933"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font isBold="true" isItalic="false"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{USD_VM_TOTAL}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupFooter groupName="Instrument">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2f2a3ec2-ab26-4e6a-aba0-6956d8055854"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VM_INSTRUMENT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Maturity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="1ac8203b-dd9c-48d1-b71c-f48d1c0a5578"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VM_MATURITY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Currency">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="c53abcf9-600a-492a-a313-e020f927e788"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VM_CURR}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Profit_Center">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="eecc301a-4694-42ef-bb89-edec70be5f41"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VM_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:groupFooter groupName="Commodity">
+							<jr:cell style="Table_TD" height="30" rowSpan="1">
+								<box>
+									<topPen lineColor="#010101"/>
+									<leftPen lineColor="#010101"/>
+									<bottomPen lineColor="#010101"/>
+									<rightPen lineColor="#010101"/>
+								</box>
+								<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="8019df0f-3fb9-4898-9acd-cb742c998702"/>
+									<box leftPadding="4" rightPadding="4"/>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font isBold="true" isItalic="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{USD_VM_CMDT}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupFooter>
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="248e4c1d-4307-47d0-98ea-cd5f221f68ff"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[USD-VM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField pattern="#,##0.000;(#,##0.000)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="120" height="30" forecolor="#010101" uuid="2a78f582-f5b3-4f90-9e7f-ec54799eb23a"/>
+								<box leftPadding="4" rightPadding="4"/>
+								<textElement textAlignment="Right" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{USD_VM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<textField isStretchWithOverflow="true" evaluationTime="Auto" pattern="" isBlankWhenNull="false">
+				<reportElement key="element-161" positionType="Float" mode="Transparent" x="2070" y="0" width="120" height="20" forecolor="#010101" backcolor="#FFFFFF" uuid="505f041f-d30b-414b-8059-631ad0a933f4">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" rotation="None">
+					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1250" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + ($V{currentpage} == null? 1 : $V{currentpage} + 1) + " of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

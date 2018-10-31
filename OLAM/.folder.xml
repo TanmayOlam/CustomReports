@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1</parent>
+    <name>OLAM</name>
+    <label>OLAM</label>
+    <description></description>
+    <creationDate>2015-10-06T10:57:37.237+08:00</creationDate>
+    <updateDate>2015-10-05T17:15:20.830+08:00</updateDate>
+    <folder>Contract_Book</folder>
+    <folder>Custom_Reports</folder>
+    <folder>Finance</folder>
+    <folder>Forex</folder>
+    <folder>Trading___Operation</folder>
+    <permission>
+        <permissionMask>2</permissionMask>
+        <recipient tenantId="organization_1" recipientType="user">Vijay.chakrapani</recipient>
+    </permission>
+    <permission>
+        <permissionMask>2</permissionMask>
+        <recipient tenantId="organization_1" recipientType="user">Venkat.g</recipient>
+    </permission>
+</folder>

@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Finance</folder>
+    <name>Invoice_Register</name>
+    <version>42</version>
+    <label>Invoice Register Report</label>
+    <description>Invoice Register Report</description>
+    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+    <updateDate>2017-07-06T09:51:47.423+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Invoice_Register_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>Invoice_Register_</name>
+            <version>1</version>
+            <label>Invoice Register</label>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T15:51:51.503+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>datefrom</name>
+            <version>1</version>
+            <label>Date From</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/datefrom_files</folder>
+                    <name>datefrom</name>
+                    <version>0</version>
+                    <label>datefrom</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>dateto</name>
+            <version>1</version>
+            <label>Date To</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/dateto_files</folder>
+                    <name>dateto</name>
+                    <version>0</version>
+                    <label>dateto</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>dateoption</name>
+            <version>1</version>
+            <label>Date Option</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/dateoption_files</folder>
+                    <name>dateoption</name>
+                    <version>0</version>
+                    <label>dateoption</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+                    <item>
+                        <itemLabel>Invoice Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Payment Rec Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Posted Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>BL Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">4</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>invstatus</name>
+            <version>1</version>
+            <label>Invoice Status</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/invstatus_files</folder>
+                    <name>invstatus</name>
+                    <version>0</version>
+                    <label>invstatus</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'Posted' as LABEL, 'Posted' as VALUE
+UNION
+SELECT 'Unposted' AS LABEL, 'Unposted' AS VALUE</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>invtype</name>
+            <version>1</version>
+            <label>Invoice Type</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/invtype_files</folder>
+                    <name>invtype</name>
+                    <version>0</version>
+                    <label>invtype</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:02:58.243+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DOCTYPEID, LONGNAME LABEL, LONGNAME VALUE  FROM XSARDOCTYPE
+WHERE DOCTYPEID NOT IN (2, 3)
+UNION
+SELECT DOCTYPEID, LONGNAME LABEL, LONGNAME VALUE FROM XSAPDOCTYPE
+WHERE DOCTYPEID NOT IN (2, 3)
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT MBRNAME AS LABEL,
+	   CAST(COMPANYID AS VARCHAR) AS VALUE     
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE COMPANYID &gt; 0
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>document_type</name>
+            <version>1</version>
+            <label>Document Type</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2016-01-04T17:54:43.720+08:00</updateDate>
+            <type>3</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/document_type_files</folder>
+                    <name>document_type</name>
+                    <version>0</version>
+                    <label>document_type</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2016-01-04T17:54:43.720+08:00</updateDate>
+                    <item>
+                        <itemLabel>All</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">0</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Purchase</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Sale</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Service</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>pcgrp</name>
+            <version>1</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/pcgrp_files</folder>
+                    <name>pcgrp</name>
+                    <version>0</version>
+                    <label>pcgrp</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL,
+       GROUPID AS VALUE
+FROM   JCPROFITCENTERGROUP
+WHERE  ISACTIVE = 1
+ORDER  BY 
+          LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:17:18.057+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PCNAME AS LABEL,
+	   CAST(PCID AS VARCHAR)  AS VALUE
+FROM   JCPROFITCENTER A
+	LEFT JOIN JCPROFITCENTERGROUP PCG ON PCG.GROUPID = A.PCGROUPID
+WHERE PCID &gt; 0 
+AND A.ISACTIVE = 1
+	AND $X{IN,PCG.GROUPID,pcgrp}
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>cmdty</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/cmdty_files</folder>
+                    <name>cmdty</name>
+                    <version>0</version>
+                    <label>cmdty</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE,
+       IVITEMID AS LABEL
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>cp</name>
+            <version>1</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/cp_files</folder>
+                    <name>cp</name>
+                    <version>0</version>
+                    <label>cp</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT MBRSHORTNAME AS LABEL,
+       Cast(MBRID AS VARCHAR) AS VALUE
+FROM   JCMBR 
+WHERE MBRID &gt; 0 AND ISINTERNAL = 0
+AND ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>billcp</name>
+            <version>1</version>
+            <label>Billing Counteparty</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/billcp_files</folder>
+                    <name>billcp</name>
+                    <version>0</version>
+                    <label>billcp</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CAST(LTRIM(RTRIM(PAYTONAME)) AS VARCHAR(200)) AS LABEL, CAST(PAYTOID AS VARCHAR) AS VALUE
+FROM   APHEADER
+WHERE PAYTOID &gt; 0
+UNION
+SELECT CAST(LTRIM(RTRIM(BILLTONAME)) AS VARCHAR(200)), CAST(BILLTOID AS VARCHAR)
+FROM   ARHEADER 
+WHERE BILLTOID &gt; 0
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>payterm</name>
+            <version>1</version>
+            <label>Payment Term</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/payterm_files</folder>
+                    <name>payterm</name>
+                    <version>0</version>
+                    <label>payterm</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PAYTERMCODE AS LABEL, CAST(PAYTERMID AS VARCHAR) AS VALUE
+FROM   JCPAYTERMS
+WHERE ISACTIVE=1
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>transport</name>
+            <version>1</version>
+            <label>Transport</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/transport_files</folder>
+                    <name>transport</name>
+                    <version>0</version>
+                    <label>transport</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DISTINCT TRANSPORT AS LABEL, TRANSPORT AS VALUE FROM LOAD
+WHERE TRANSPORT IS NOT NULL
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+            <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Invoice_Register_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2018-04-20T21:09:15.343+08:00</creationDate>
+                    <updateDate>2015-10-02T16:41:13.583+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

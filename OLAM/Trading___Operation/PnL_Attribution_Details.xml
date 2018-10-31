@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>PnL_Attribution_Details</name>
+    <version>1</version>
+    <label>PnL Attribution Details</label>
+    <description>PnL Attribution Details</description>
+    <creationDate>2016-03-21T07:18:18.957+08:00</creationDate>
+    <updateDate>2016-03-21T07:18:38.613+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="mainReportJrxml.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/PnL_Attribution_Details_files</folder>
+            <name>mainReportJrxml</name>
+            <version>0</version>
+            <label>mainReportJrxml</label>
+            <creationDate>2016-03-21T07:18:18.957+08:00</creationDate>
+            <updateDate>2016-03-21T07:18:18.957+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/Testing/ReportTesting2DEC15/PnL_Attribution_Details_Report_View</uri>
+    </dataSource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="stateXML.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/PnL_Attribution_Details_files</folder>
+            <name>stateXML</name>
+            <version>0</version>
+            <label>stateXML</label>
+            <creationDate>2016-03-21T07:18:18.957+08:00</creationDate>
+            <updateDate>2016-03-21T07:18:18.957+08:00</updateDate>
+            <fileType>xml</fileType>
+        </localResource>
+    </resource>
+    <alwaysPromptControls>false</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="New_EOD_Market_Risk_Position" language="groovy" pageWidth="1684" pageHeight="1190" orientation="Landscape" columnWidth="1150" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b0dbbdfc-5a83-47ae-a50c-f1b159fe6140">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="866"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Local Func BI"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 1_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 1_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 1_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 1_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 2_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 2_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 2_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 2_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 3_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 3_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 3_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 3_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 4_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 4_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 4_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 4_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 5_CH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 5_CG" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 5_CT" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab 5_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="cbk" class="java.lang.String"/>
+	<parameter name="pc" class="java.lang.String"/>
+	<parameter name="cmd" class="java.lang.String"/>
+	<parameter name="shipmonth" class="java.lang.String">
+		<defaultValueExpression><![CDATA["%"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="futterm" class="java.lang.String">
+		<defaultValueExpression><![CDATA["%"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[' ']]></defaultValueExpression>
+	</parameter>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CONTRACT_BOOK IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="relative_date" class="net.sf.jasperreports.types.date.DateRange"/>
+	<parameter name="asofdate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[$P{relative_date}.getStart()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="origindate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" "]]></defaultValueExpression>
+	</parameter>
+	<parameter name="col_group" class="java.lang.String">
+		<defaultValueExpression><![CDATA['sm']]></defaultValueExpression>
+	</parameter>
+	<parameter name="instrument_type" class="java.lang.String">
+		<defaultValueExpression><![CDATA["%"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,asofdate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.asofdate
+		  AND DPD.PROFIT_CENTER like $P{pc}
+		  AND DPD.MATERIAL_GROUP like $P{cmd}
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE asofdate
+		FROM DAILY_PNL_ATTRIBUTION DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE,
+				CONTRACT_BOOK
+				FROM DAILY_PNL_ATTRIBUTION b
+				WHERE b.EOD_DATE <= $P{asofdate}
+				AND b.PROFIT_CENTER like $P{pc}
+				AND b.COMMODITY like $P{cmd}
+				AND b.CONTRACT_BOOK like $P{cbk}
+				GROUP BY CONTRACT_BOOK
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		AND DPA.CONTRACT_BOOK = BVBV.CONTRACT_BOOK
+		AND DPA.PROFIT_CENTER like $P{pc}
+		AND DPA.COMMODITY like $P{cmd}
+		AND DPA.CONTRACT_BOOK like $P{cbk}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' asofdate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM DAILY_PNL_ATTRIBUTION DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM DAILY_PNL_ATTRIBUTION b
+						WHERE b.EOD_DATE <= $P{asofdate}
+						AND b.PROFIT_CENTER like $P{pc}
+						AND b.COMMODITY like $P{cmd}
+						AND b.CONTRACT_BOOK like $P{cbk}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND DPA.PROFIT_CENTER like $P{pc}
+				AND DPA.COMMODITY like $P{cmd}
+				AND DPA.CONTRACT_BOOK like $P{cbk}
+				) = 0
+	) Y
+WHERE 0 = 0
+$P!{QSTR_Filter}]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="asofdate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<variable name="MAX_DATE" class="java.util.Date" calculation="Highest">
+		<variableExpression><![CDATA[$F{asofdate}]]></variableExpression>
+	</variable>
+	<variable name="MAX_ORIGIN_DATE" class="java.util.Date" calculation="Highest">
+		<variableExpression><![CDATA[$F{origindate}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement uuid="e570fcc5-bc93-4a5b-ab00-9ef70eed2975" mode="Opaque" x="10" y="0" width="30" height="30" backcolor="#1F497D">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+				</box>
+				<imageExpression><![CDATA["repo:olam.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="208bf9a9-873b-4b79-be91-d6752dd2ab96" mode="Opaque" x="40" y="0" width="1290" height="30" forecolor="#FFFFFF" backcolor="#1F497D">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box leftPadding="10">
+					<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Olam Risk System]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ed93206f-6b62-49d6-8fa4-15837415c4c4" mode="Opaque" x="1330" y="0" width="250" height="30" forecolor="#FFFFFF" backcolor="#1F497D">
+					<property name="local_mesure_unity" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.0" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="dbde67fd-e76a-4695-8166-602ea61afe24" mode="Opaque" x="0" y="30" width="1580" height="30" forecolor="#FFFFFF" backcolor="#1F497D">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box leftPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{MAX_DATE} == (new SimpleDateFormat("yyyy-MM-dd").parse("1800-01-01"))) ? "No Data Available" : (CONCATENATE( $P{col_group}.equals( 'sm')?"Market Risk Position Summary by Shipment Month as of "+DATEFORMAT($V{MAX_DATE},"dd-MMM-yy") : $P{col_group}.equals( 'tm')?"Market Risk Position Summary by Terminal Month as of "+DATEFORMAT($V{MAX_DATE},"dd-MMM-yy"):"Market Risk Position Summary by Profit Center as of "+DATEFORMAT($V{MAX_DATE},"dd-MMM-yy"),(($V{MAX_DATE}.equals($V{MAX_ORIGIN_DATE}) || $V{MAX_ORIGIN_DATE} == null ||$V{MAX_ORIGIN_DATE} == (new SimpleDateFormat("yyyy-MM-dd").parse("1900-01-01"))|| $V{MAX_ORIGIN_DATE} == (new SimpleDateFormat("yyyy-MM-dd").parse("1800-01-01")) )?"": " Origin Data as of " + DATEFORMAT($V{MAX_ORIGIN_DATE}, "dd-MMM-yy")) ))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="83898542-9305-4f2c-80d5-c21cb666d683" mode="Opaque" x="0" y="0" width="10" height="30" forecolor="#FFFFFF" backcolor="#1F497D"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="61" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="e3aaab5c-6ddf-46bf-abc3-45fbcd7677ad" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[($F{asofdate} != (new SimpleDateFormat("yyyy-MM-dd").parse("1800-01-01")))]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_market_risk_contract_book_v52.0.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="62">
+			<printWhenExpression><![CDATA[($F{asofdate} != (new SimpleDateFormat("yyyy-MM-dd").parse("1800-01-01")))]]></printWhenExpression>
+			<subreport>
+				<reportElement uuid="6b393b87-302b-47de-a25b-bc6d10cc8706" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[$P{col_group}.equals( "pc" ) || $P{col_group}.equals( "sm" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_Market_Risk_Commodity_v32.0.jrxml"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="9a74a1c8-43bf-4afa-930e-db2dab1012a5" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[$P{col_group}.equals( "tm" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_Market_Risk_FutureTerm_v30.0.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="59">
+			<printWhenExpression><![CDATA[($F{asofdate} != (new SimpleDateFormat("yyyy-MM-dd").parse("1800-01-01")))]]></printWhenExpression>
+			<subreport>
+				<reportElement uuid="e2db18d0-bb20-46ee-bea8-56ac013d8c90" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[$P{col_group}.equals( "pc" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_market_risk_profit_center_v26.0.jrxml"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="c095dcb5-5ee5-4a56-8df6-6c7176a57f22" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[$P{col_group}.equals( "sm" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_Market_Risk_SM_PC_CMD_v19.0.jrxml"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="6774affb-bab6-4fae-8278-20375c6f9b87" x="0" y="0" width="1580" height="43">
+					<printWhenExpression><![CDATA[$P{col_group}.equals( "tm" )]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="instrument_type">
+					<subreportParameterExpression><![CDATA[$P{instrument_type}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cmd">
+					<subreportParameterExpression><![CDATA[$P{cmd}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="shipmonth">
+					<subreportParameterExpression><![CDATA[$P{shipmonth}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="futterm">
+					<subreportParameterExpression><![CDATA[$P{futterm}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pc">
+					<subreportParameterExpression><![CDATA[$P{pc}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="QSTR_Filter">
+					<subreportParameterExpression><![CDATA[$P{QSTR_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="asofdate">
+					<subreportParameterExpression><![CDATA[$F{asofdate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbk">
+					<subreportParameterExpression><![CDATA[$P{cbk}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="origindate">
+					<subreportParameterExpression><![CDATA[$F{origindate}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="LE_Filter">
+					<subreportParameterExpression><![CDATA[$P{LE_Filter}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="col_group">
+					<subreportParameterExpression><![CDATA[$P{col_group}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["/standard/subreports/New_EOD_Market_Risk_TM_PC_FUT_v28.0.jrxml"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement uuid="e5f579c9-8eb0-4c26-8700-1f12e2c9c158" positionType="Float" x="1480" y="5" width="70" height="20">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="4f92c17e-7a50-4f51-81aa-07cca1c8ffdd" positionType="Float" x="1550" y="5" width="30" height="20">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

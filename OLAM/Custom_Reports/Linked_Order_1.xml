@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>Linked_Order_1</name>
+    <version>1</version>
+    <label>Linked Order Summary Report</label>
+    <description>Linked Order Summary Report</description>
+    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+    <updateDate>2018-09-13T19:22:19.470+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Linked_Order_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>Linked_Order_</name>
+            <version>1</version>
+            <label>Linked Order</label>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>company_p</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/company_p_files</folder>
+                    <name>Company</name>
+                    <version>0</version>
+                    <label>Company</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 1, MBRNAME as LABEL, MBRNAME as VALUE
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE  JM.ISACTIVE = 1
+       AND JM.MBRID &gt; 0
+ORDER  BY 1,2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>profit_center_group_p</name>
+            <version>1</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/profit_center_group_p_files</folder>
+                    <name>Profit_Center_Group</name>
+                    <version>0</version>
+                    <label>Profit Center Group</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS VALUE_FIELD,
+       SHORTNAME AS LABEL_FIELD,2 AS SEQ
+FROM JCPROFITCENTERGROUP
+WHERE ISACTIVE=1 ORDER BY SEQ, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>profit_center_p</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/profit_center_p_files</folder>
+                    <name>Profit_Center</name>
+                    <version>0</version>
+                    <label>Profit Center</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PCNAME AS VALUE_FIELD,
+       PCNAME AS LABEL_FIELD,
+       2      AS ORDERID
+FROM   JCPROFITCENTER A
+       LEFT JOIN JCPROFITCENTERGROUP B
+              ON A.PCGROUPID = B.GROUPID
+WHERE  A.ISACTIVE = 1
+       AND A.PCID &gt; 0
+        AND $X{IN,B.SHORTNAME,profit_center_group_p}
+ORDER  BY ORDERID,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>strategy_p</name>
+            <version>1</version>
+            <label>Strategy</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/strategy_p_files</folder>
+                    <name>Strategy</name>
+                    <version>0</version>
+                    <label>Strategy</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT NAME AS LABEL,
+       NAME AS VALUE,
+       2    AS ORDERBY
+FROM   JCSTRATEGY
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>counterparty_group_p</name>
+            <version>1</version>
+            <label>Counterparty Group</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/counterparty_group_p_files</folder>
+                    <name>Counterparty_Group</name>
+                    <version>0</version>
+                    <label>Counterparty Group</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       '' AS LABEL,
+	   3 AS ORDERBY
+UNION
+SELECT B.SHORTNAME AS VALUE,
+       B.SHORTNAME AS LABEL,
+	   2 AS ORDERBY
+FROM   JCMBR A
+       JOIN JCCPGRP B
+         ON A.CPGRPID = B.CPGRPID
+WHERE ISACTIVE = 1 
+ORDER BY ORDERBY,
+LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>counterparty_p</name>
+            <version>1</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/counterparty_p_files</folder>
+                    <name>Counterparty</name>
+                    <version>0</version>
+                    <label>Counterparty</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT A.MBRSHORTNAME AS LABEL,
+       A.MBRNAME AS VALUE,
+       2 AS ORDERID
+FROM   JCMBR A
+       LEFT JOIN JCCPGRP B
+         ON A.CPGRPID = B.CPGRPID
+WHERE  MBRSHORTNAME IS NOT NULL  
+AND $X{IN,B.SHORTNAME,counterparty_group_p}
+AND A.ISACTIVE =1
+ORDER  BY ORDERID, LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>commodity_p</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/commodity_p_files</folder>
+                    <name>Commodity</name>
+                    <version>0</version>
+                    <label>Commodity</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE,
+       IVITEMID AS LABEL,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>grade_p</name>
+            <version>1</version>
+            <label>Grade</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/grade_p_files</folder>
+                    <name>Grade</name>
+                    <version>0</version>
+                    <label>Grade</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       '' AS LABEL, 3 AS SEQ
+UNION
+SELECT GRADE.SPECNAME AS VALUE,
+       GRADE.SPECDESC AS LABEL,
+       2 AS SEQ
+FROM   JCIVITEMS CMDTY
+       LEFT JOIN JCSPECS GRADE
+         ON CMDTY.DEFAULTSPECID = GRADE.SPECID 
+WHERE  $X{IN,CMDTY.IVITEMID,commodity_p}
+AND ISACTIVE =1
+ORDER BY SEQ</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY CBK.NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>shipment_month_from</name>
+            <version>1</version>
+            <label>Shipment Month From</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>4</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/shipment_month_from_files</folder>
+                    <name>shipment_month_from</name>
+                    <version>0</version>
+                    <label>shipment_month_from</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL_FIELD,
+       CAST(MONTHNUMBER AS VARCHAR) AS VALUE_FIELD,
+	   MONTHNUMBER
+FROM   JCSHIPMONTHSMAPPING
+ORDER BY MONTHNUMBER</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>shipment_month_to</name>
+            <version>1</version>
+            <label>Shipment Month To</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>4</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/shipment_month_to_files</folder>
+                    <name>shipment_month_to</name>
+                    <version>0</version>
+                    <label>shipment_month_to</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL_FIELD,
+       CAST(MONTHNUMBER AS VARCHAR) AS VALUE_FIELD,
+	   MONTHNUMBER
+FROM   JCSHIPMONTHSMAPPING
+ORDER BY MONTHNUMBER</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>col_group</name>
+            <version>1</version>
+            <label>Show contracts with linked balance</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/col_group_files</folder>
+                    <name>col_group</name>
+                    <version>0</version>
+                    <label>col_group</label>
+                    <description></description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select 'Yes' as Value_filed, 'Yes' as Label_value
+union all
+select 'No' as Value_filed, 'No' as Label_value
+union all
+select 'Both' as Value_filed, 'Both' as Label_value</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>Label_value</queryVisibleColumn>
+            <queryValueColumn>Value_filed</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>invoice</name>
+            <version>1</version>
+            <label>Show invoiced quantity</label>
+            <description></description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files/invoice_files</folder>
+                    <name>invoice</name>
+                    <version>0</version>
+                    <label>invoice</label>
+                    <description>invoice</description>
+                    <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+                    <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select 'show' as Value_filed, 'Yes' as Label_value
+union all
+select 'suppress' as Value_filed, 'No' as Label_value
+ </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>Label_value</queryVisibleColumn>
+            <queryValueColumn>Value_filed</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="reponew_logo.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>reponew_logo.png</name>
+            <version>0</version>
+            <label>reponew_logo.png</label>
+            <description>reponew_logo.png</description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="OlamLogo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Linked_Order_1_files</folder>
+            <name>OlamLogo</name>
+            <version>0</version>
+            <label>OlamLogo</label>
+            <description>OlamLogo</description>
+            <creationDate>2018-08-07T13:12:44.427+08:00</creationDate>
+            <updateDate>2018-08-07T13:12:44.427+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

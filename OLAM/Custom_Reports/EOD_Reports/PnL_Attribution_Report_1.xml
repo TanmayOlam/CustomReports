@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports</folder>
+    <name>PnL_Attribution_Report_1</name>
+    <version>1</version>
+    <label>PnL Attribution Report</label>
+    <description>Variation Summary and detail report</description>
+    <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+    <updateDate>2018-10-25T18:42:40.757+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="PnL_Attribution_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files</folder>
+            <name>PnL_Attribution_Report_</name>
+            <version>0</version>
+            <label>PnL Attribution Report</label>
+            <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+            <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files</folder>
+            <name>asofdate</name>
+            <version>1</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+            <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+                    <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+            <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+                    <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT CBK.NAME AS VALUE_FIELD, CBK.CODE AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files</folder>
+            <name>p_asofdate</name>
+            <version>1</version>
+            <label>Prior As of date</label>
+            <description></description>
+            <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+            <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files/p_asofdate_files</folder>
+                    <name>p_asofdate</name>
+                    <version>0</version>
+                    <label>p_asofdate</label>
+                    <description></description>
+                    <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+                    <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files</folder>
+            <name>hidden_Date</name>
+            <version>1</version>
+            <label>Prior As of date</label>
+            <description></description>
+            <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+            <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>true</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Attribution_Report_1_files/hidden_Date_files</folder>
+                    <name>hidden_Date</name>
+                    <version>0</version>
+                    <label>hidden_Date</label>
+                    <description></description>
+                    <creationDate>2018-10-25T18:42:12.700+08:00</creationDate>
+                    <updateDate>2018-10-25T18:42:12.700+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT TOP 1 EOD_DATE     AS VALUE_FIELD,  EOD_DATE     AS LABEL_FIELD
+ FROM PNL_ATTRIBUTION_DETAIL_TABLE where EOD_DATE &lt; $P{asofdate} and CONTRACT_BOOK =$P{ctrbook}  ORDER BY EOD_DATE DESC</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

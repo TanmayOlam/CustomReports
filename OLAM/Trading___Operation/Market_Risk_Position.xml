@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Market_Risk_Position</name>
+    <version>52</version>
+    <label>Market Risk Position</label>
+    <description>Market Risk Position</description>
+    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+    <updateDate>2016-10-14T11:51:27.840+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Market_Risk_Position_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>Market_Risk_Position_</name>
+            <version>1</version>
+            <label>Market Risk Position</label>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:09:36.963+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS SEQ
+UNION
+SELECT CBK.NAME AS VALUE_FIELD,
+       CBK.NAME AS LABEL_FIELD,
+       2        AS SEQ
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+       AND CBK.ACTIVE = 1
+ORDER  BY SEQ, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT DISTINCT PROFIT_CENTER_CODE AS VALUE_FIELD,
+                PROFIT_CENTER_CODE AS LABEL_FIELD,
+                2                  AS ORDERBY
+FROM   Z_OLM_STG_ORIGINATION_DETAILS_INVENTORY
+UNION
+SELECT DISTINCT PROFIT_CENTER_CODE AS VALUE_FIELD,
+                PROFIT_CENTER_CODE AS LABEL_FIELD,
+                2                  AS ORDERBY
+FROM   Z_OLM_STG_ORIGINATION_DETAILS_TRANSACTION
+UNION
+SELECT PCNAME AS VALUE_FIELD,
+       PCNAME AS LABEL_FIELD,
+       2      AS ORDERBY
+FROM   JCPROFITCENTER
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>cmd</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/cmd_files</folder>
+                    <name>cmd</name>
+                    <version>0</version>
+                    <label>cmd</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:16:48.473+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT DISTINCT MATERIAL_GROUP_CODE AS VALUE_FIELD,
+                MATERIAL_GROUP_CODE AS LABEL_FIELD,
+                2                   AS ORDERBY
+FROM   Z_OLM_STG_ORIGINATION_DETAILS_INVENTORY
+UNION
+SELECT DISTINCT MATERIAL_GROUP_CODE AS VALUE_FIELD,
+                MATERIAL_GROUP_CODE AS LABEL_FIELD,
+                2                   AS ORDERBY
+FROM   Z_OLM_STG_ORIGINATION_DETAILS_TRANSACTION
+UNION
+SELECT IVITEMID AS VALUE_FIELD,
+       IVITEMID AS LABEL_FIELD,
+       2        AS ORDERBY
+FROM   JCIVITEMS
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>shipmonth</name>
+            <version>1</version>
+            <label>Shipment Month</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/shipmonth_files</folder>
+                    <name>shipmonth</name>
+                    <version>0</version>
+                    <label>shipmonth</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT SHORTNAME AS VALUE_FIELD,
+       SHORTNAME AS LABEL_FIELD,
+       MONTHNUMBER           AS ORDERBY
+FROM   JCSHIPMONTHSMAPPING
+ORDER BY ORDERBY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>futterm</name>
+            <version>1</version>
+            <label>Future Term</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/futterm_files</folder>
+                    <name>futterm</name>
+                    <version>0</version>
+                    <label>futterm</label>
+                    <description>futterm</description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT TERMID AS VALUE_FIELD,
+       TERMID AS LABEL_FIELD,
+       2           AS ORDERBY
+FROM   JCCTRFUTTERM
+ORDER BY ORDERBY, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>instrument</name>
+            <version>1</version>
+            <label>Instrument Type</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+            <type>3</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/instrument_files</folder>
+                    <name>instrument</name>
+                    <version>0</version>
+                    <label>instrument</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+                    <item>
+                        <itemLabel>ALL</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">%</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Physicals</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">Physical</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Futures</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">Futures</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Listed Options</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">Options</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>grouping</name>
+            <version>1</version>
+            <label>Report Grouping List</label>
+            <description></description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+            <type>3</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files/grouping_files</folder>
+                    <name>grouping</name>
+                    <version>0</version>
+                    <label>grouping</label>
+                    <description></description>
+                    <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+                    <updateDate>2015-11-17T17:26:52.950+08:00</updateDate>
+                    <item>
+                        <itemLabel>Profit Center</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Shipment Month / Grade Wise</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Terminal Month / Structure</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_1_contract_book</name>
+            <version>1</version>
+            <label>market_risk_1_contract_book</label>
+            <description>market_risk_1_contract_book</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T12:17:02.523+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_1_contract_book.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_2_contract_book</name>
+            <version>1</version>
+            <label>market_risk_2_contract_book</label>
+            <description>market_risk_2_contract_book</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T12:38:06.117+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_2_contract_book.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_3_contract_book</name>
+            <version>1</version>
+            <label>market_risk_3_contract_book</label>
+            <description>market_risk_3_contract_book</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T15:38:37.837+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_3_contract_book.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_1_commodity</name>
+            <version>1</version>
+            <label>market_risk_1_commodity</label>
+            <description>market_risk_1_commodity</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T17:38:29.563+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_1_commodity.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_2_commodity</name>
+            <version>1</version>
+            <label>market_risk_2_commodity</label>
+            <description>market_risk_2_commodity</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T19:03:21.180+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_2_commodity.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_3_commodity</name>
+            <version>1</version>
+            <label>market_risk_3_commodity</label>
+            <description>market_risk_3_commodity</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-02-16T19:25:33.527+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_3_commodity.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_2_profit</name>
+            <version>1</version>
+            <label>market_risk_2_profit</label>
+            <description>market_risk_2_profit</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-08-23T12:22:29.117+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_2_profit.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>market_risk_3_profit</name>
+            <version>1</version>
+            <label>market_risk_3_profit</label>
+            <description>market_risk_3_profit</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-08-23T12:22:29.117+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/market_risk_3_profit.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="reponew_logo2.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Market_Risk_Position_files</folder>
+            <name>reponew_logo2.png</name>
+            <version>1</version>
+            <label>reponew_logo2.png</label>
+            <description>reponew_logo2.png</description>
+            <creationDate>2017-01-19T01:23:42.577+08:00</creationDate>
+            <updateDate>2016-10-14T11:51:27.840+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

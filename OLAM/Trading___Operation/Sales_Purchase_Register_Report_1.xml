@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Sales_Purchase_Register_Report_1</name>
+    <version>21</version>
+    <label>Sales Purchase Register Report</label>
+    <description>Sales Purchase Register Report</description>
+    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+    <updateDate>2018-01-18T17:15:13.810+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Sales_Purchase_Register_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>Sales_Purchase_Register_Report_</name>
+            <version>1</version>
+            <label>Sales Purchase Register Report</label>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0 AS ORDERIDX, '%' AS VALUE_FIELD, 'ALL' AS LABEL_FIELD
+UNION
+SELECT 1 AS ORDERIDX, GLBOOKNAME AS VALUE_FIELD, MBRNAME AS LABEL_FIELD FROM GLCOMPANY GL JOIN JCMBR MBR ON GL.COMPANYID = MBR.MBRID AND MBR.ISACTIVE = 1
+WHERE MBRID &gt; 0
+ORDER BY ORDERIDX, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>datefrom</name>
+            <version>1</version>
+            <label>Invoice Apply Date From</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/datefrom_files</folder>
+                    <name>datefrom</name>
+                    <version>0</version>
+                    <label>datefrom</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>dateto</name>
+            <version>1</version>
+            <label>Invoice Apply Date To</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/dateto_files</folder>
+                    <name>dateto</name>
+                    <version>0</version>
+                    <label>dateto</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>p_profit_center</name>
+            <version>1</version>
+            <label>Purchase Profit Center</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/p_profit_center_files</folder>
+                    <name>ProfitCenter</name>
+                    <version>0</version>
+                    <label>ProfitCenter</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CAST(PCID AS NVARCHAR(5)) AS VALUE_FIELD, PCNAME AS LABEL_FIELD 
+FROM JCPROFITCENTER
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>p_commodity</name>
+            <version>1</version>
+            <label>Purchase Commodity</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/p_commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE_FIELD, IVITEMDESCN AS LABEL_FIELD FROM JCIVITEMS</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>VALUE_FIELD</queryVisibleColumn>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>s_profit_center</name>
+            <version>1</version>
+            <label>Sales Profit Center</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/s_profit_center_files</folder>
+                    <name>ProfitCenter</name>
+                    <version>0</version>
+                    <label>ProfitCenter</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CAST(PCID AS NVARCHAR(5)) AS VALUE_FIELD, PCNAME AS LABEL_FIELD 
+FROM JCPROFITCENTER
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>s_commodity</name>
+            <version>1</version>
+            <label>Sales Commodity</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/s_commodity_files</folder>
+                    <name>Commodity</name>
+                    <version>0</version>
+                    <label>Commodity</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-10-31T14:59:56.123+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE_FIELD, IVITEMDESCN AS LABEL_FIELD FROM JCIVITEMS</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>VALUE_FIELD</queryVisibleColumn>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files</folder>
+            <name>p_realized_type</name>
+            <version>1</version>
+            <label>Realized Type</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+            <updateDate>2017-11-02T11:30:45.023+08:00</updateDate>
+            <type>3</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Sales_Purchase_Register_Report_1_files/p_realized_type_files</folder>
+                    <name>RealizedType</name>
+                    <version>0</version>
+                    <label>RealizedType</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:23.770+08:00</creationDate>
+                    <updateDate>2017-11-02T11:30:45.023+08:00</updateDate>
+                    <item>
+                        <itemLabel>ALL</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">%</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Realized</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">REALIZED</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Stock</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">STOCK</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>4</controlsLayout>
+</reportUnit>

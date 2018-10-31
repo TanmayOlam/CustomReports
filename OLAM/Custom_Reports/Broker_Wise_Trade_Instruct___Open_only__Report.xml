@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>Broker_Wise_Trade_Instruct___Open_only__Report</name>
+    <version>8</version>
+    <label>Broker Wise Trade Instruct - Open only Report</label>
+    <description>Broker Wise Trade Instruct - Open only Report</description>
+    <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+    <updateDate>2018-09-20T14:43:32.523+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Broker_Wise_Trade_Instruct___Open_only__Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files</folder>
+            <name>Broker_Wise_Trade_Instruct___Open_only__Report_</name>
+            <version>7</version>
+            <label>Broker Wise Trade Instruct - Open only  Report</label>
+            <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+            <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files</folder>
+            <name>asofdate</name>
+            <version>7</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+            <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+                    <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files</folder>
+            <name>ctrbook</name>
+            <version>7</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+            <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+                    <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS SEQ
+UNION
+SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD,2 AS SEQ
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files</folder>
+            <name>tmonth</name>
+            <version>7</version>
+            <label>Terminal Month</label>
+            <description></description>
+            <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+            <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Broker_Wise_Trade_Instruct___Open_only__Report_files/tmonth_files</folder>
+                    <name>tmonth</name>
+                    <version>0</version>
+                    <label>tmonth</label>
+                    <description></description>
+                    <creationDate>2018-04-16T15:36:39.213+08:00</creationDate>
+                    <updateDate>2018-04-16T15:36:39.213+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select SHORTNAME as VALUE_FIELD,
+       SHORTNAME as LABEL_FIELD,
+       MONTHNUMBER
+from   BI_MONTHQUARTERMAPPING
+where  Year(STARTPERIOD) between Year(Getdate()) - 2 and Year(Getdate()) + 2
+order  by 3 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

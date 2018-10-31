@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Book_Value_Report_1</name>
+    <version>30</version>
+    <label>Book Value Report</label>
+    <description>Book Value Report (EOD reports)</description>
+    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+    <updateDate>2017-03-24T13:07:36.213+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Book_Value_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>Book_Value_Report_</name>
+            <version>1</version>
+            <label>Book Value Report</label>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>relative_date</name>
+            <version>1</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files/relative_date_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+                    <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+                    <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD,2 AS SEQ
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>cmdt</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files/cmdt_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+                    <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT COMMODITYID AS VALUE_FIELD, COMMODITY_NAME AS LABEL_FIELD 
+FROM DIM_COMMODITY
+ORDER BY COMMODITYID</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+                    <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt;= 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>layout_option</name>
+            <version>1</version>
+            <label>Report Format</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files/layout_option_files</folder>
+                    <name>layout_option</name>
+                    <version>0</version>
+                    <label>layout_option</label>
+                    <description></description>
+                    <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+                    <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+                    <item>
+                        <itemLabel>BV Summary</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Trade Wise Summary</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Product Wise Summary</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Profit Centre Wise Summary </itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">4</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="olam.jpg.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>olam.jpg</name>
+            <version>1</version>
+            <label>olam.jpg</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="reponew_logo.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>reponew_logo.png</name>
+            <version>1</version>
+            <label>reponew_logo.png</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <fileType>accessGrantSchema</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Book_Value_Report_1_files</folder>
+            <name>Book_Value_Report_Sub_Totals</name>
+            <version>1</version>
+            <label>Book_Value_Report_Sub_Totals</label>
+            <description></description>
+            <creationDate>2017-04-07T23:51:05.290+08:00</creationDate>
+            <updateDate>2016-10-28T13:03:53.967+08:00</updateDate>
+            <referenceUri>/organizations/organization_1/standard/subreports/Book_Value_Report_Sub_Total_.jrxml</referenceUri>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

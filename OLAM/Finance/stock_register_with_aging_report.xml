@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Finance</folder>
+    <name>stock_register_with_aging_report</name>
+    <version>84</version>
+    <label>Stock Register with Aging Report</label>
+    <description>Stock Register with Aging Report</description>
+    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+    <updateDate>2017-07-07T15:43:57.020+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="stock_register_with_aging_report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>stock_register_with_aging_report_</name>
+            <version>1</version>
+            <label>Stock Register with Aging Report</label>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-05T11:41:48.673+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>datefrom</name>
+            <version>1</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/datefrom_files</folder>
+                    <name>datefrom</name>
+                    <version>0</version>
+                    <label>datefrom</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>status</name>
+            <version>1</version>
+            <label>Status</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/status_files</folder>
+                    <name>status</name>
+                    <version>0</version>
+                    <label>status</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION 
+SELECT 1, 'Stock', 'Stock' 
+UNION
+SELECT 2, 'Afloat', 'Afloat'
+ORDER BY 1</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT MBRID, MBRNAME, CAST(MBRID AS VARCHAR) FROM JCMBR M
+JOIN GLCOMPANY G
+ON G.COMPANYID = M.MBRID
+WHERE COMPANYID &gt; 0 AND ISACTIVE = 1
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT OCB.CTRBOOKID, CBK.NAME AS LABEL_FIELD, CAST(OCB.CTRBOOKID AS VARCHAR(10)) AS VALUE_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+	JOIN CTRBOOK OCB ON OCB.CTRBOOKCODE = CBK.CODE
+WHERE  LOWER(USR.USERNAME) = LOWER($P{LOGGEDINUSERNAME})
+	AND CBK.ACTIVE = 1 
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT PCID, PCNAME, CAST(PCID AS VARCHAR) FROM JCPROFITCENTER
+WHERE  PCID &gt; 0 AND ISACTIVE = 1
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>cmdty</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/cmdty_files</folder>
+                    <name>cmdty</name>
+                    <version>0</version>
+                    <label>cmdty</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT 1, IVITEMID, IVITEMID FROM JCIVITEMS
+WHERE ISACTIVE = 1
+ORDER BY 1</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>loc</name>
+            <version>1</version>
+            <label>Location</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/loc_files</folder>
+                    <name>loc</name>
+                    <version>0</version>
+                    <label>loc</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:50:00.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT 1, COUNTRYNAME, COUNTRYNAME FROM JCCOUNTRY
+ORDER BY 1, 2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files</folder>
+            <name>vessel</name>
+            <version>1</version>
+            <label>Vessel</label>
+            <description></description>
+            <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+            <updateDate>2015-10-07T12:59:13.710+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/stock_register_with_aging_report_files/vessel_files</folder>
+                    <name>vessel</name>
+                    <version>0</version>
+                    <label>vessel</label>
+                    <description></description>
+                    <creationDate>2018-10-31T01:28:11.147+08:00</creationDate>
+                    <updateDate>2015-10-07T12:59:13.710+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0,
+       'ALL' LABEL,
+       '%'   VALUE
+UNION
+SELECT 1,
+       VESSEL_NAME AS LABEL,
+       MOV.NOM_TRANSPORT AS VALUE
+FROM   TRANSPORT_CONTRACT_VESSEL_DETAILS TCD
+       LEFT JOIN MOVEMENT_TRANSPORT_CONTRACT_VESSEL_MAPPING MT
+              ON TCD.ID = MT.TRANSPORT_CONTRACT_VESSEL_ID
+       LEFT JOIN BI_VIEW_CONTRACT_MOVEMENT MOV
+              ON MOV.MOVEMENT_ID = MT.MOVEMENT_OPERATION_ID
+ORDER  BY 1,
+          2 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

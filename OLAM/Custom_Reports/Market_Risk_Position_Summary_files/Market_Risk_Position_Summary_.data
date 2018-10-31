@@ -1,0 +1,2159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Market Risk Position Summary" language="groovy" pageWidth="2000" pageHeight="1500" orientation="Landscape" columnWidth="1960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2d90c273-680b-4e16-ac54-86e6111a165a">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/TEST/_Market_Risk_Position_Summary"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="OUTRIGHT_Condation" mode="Opaque" backcolor="#FFFFFF" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#1F497D" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Basis_Condation" mode="Opaque" backcolor="#FFFFFF" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#1F497D" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="G_Total_OUTRIGHT" mode="Opaque" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000" backcolor="#1F497D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#1F497D"/>
+		</conditionalStyle>
+	</style>
+	<style name="G_Total_Basis" mode="Opaque" fontName="Arial" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="true">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000" backcolor="#1F497D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#1F497D"/>
+		</conditionalStyle>
+	</style>
+	<style name="Total_OUTRIGHT_Position" mode="Opaque" backcolor="#FFFFFF" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#1F497D" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Total_Basis_Position" mode="Opaque" backcolor="#FFFFFF" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#1F497D" backcolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="G_Total_OUTRIGHT_Position" mode="Opaque" fontName="Arial">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000" backcolor="#1F497D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{OUTRIGHTQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#1F497D"/>
+		</conditionalStyle>
+	</style>
+	<style name="G_Total_Basis_Position" mode="Opaque" fontName="Arial" isBold="true" isItalic="true" isUnderline="true" isStrikeThrough="true">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style forecolor="#FF0000" backcolor="#1F497D"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{BASISQTYMeasure}.intValue() >= 0]]></conditionExpression>
+			<style forecolor="#FFFFFF" backcolor="#1F497D"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="New Dataset 1" uuid="3fe64b31-0116-404e-814b-c528e489b2c6">
+		<parameter name="cbk" class="java.lang.String"/>
+		<parameter name="cmd" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="eoddate" class="java.util.Date"/>
+		<parameter name="LE_Filter" class="java.lang.String">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT Sum(QTY)                                AS OUTRIGHTQTY,
+0  as BASISQTY,
+       CTR.CONTRACT_BOOK,
+      -- CTR.CONTRACT_BOOK + ' ' + CTR.COMMODITY AS COMMODITY,
+	   CASE
+                WHEN CTR.FUTURE_EXCHANGE='' THEN CTR.COMMODITY+' - '+'No Exchange'
+				  WHEN CTR.FUTURE_EXCHANGE IS NULL THEN CTR.COMMODITY+' - '+'No Exchange'
+                 ELSE CTR.COMMODITY+' - '+CTR.FUTURE_EXCHANGE
+               END      AS COMMODITY,
+
+
+       NULL                                    AS POSITION_TYPE,
+       1                                       AS FLAG,
+       51                                      AS ORDERBY,
+       'Outright Position'                     AS POSITION,
+       CTR.SHIP_MONTH,
+	   CTR.TERM_MONTH,
+       CTR.MONTHNUMBER,
+	   CTR.PROFIT_CENTER
+	   ,CTR.FUTURE_EXCHANGE --tkk
+FROM   (SELECT Sum(CASE
+                     WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+                     ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+                   END) AS QTY,
+               A.CONTRACT_BOOK,
+               A.COMMODITY,
+               CASE
+                 WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 1)
+                      + Lower(RIGHT(CONVERT(VARCHAR(3), FUTURE_DELIVERY_MONTH, 113), 2))
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 2)
+               END      AS SHIP_MONTH,
+			   CASE
+                 WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 1)
+                      + Lower(RIGHT(CONVERT(VARCHAR(3), FUTURE_DELIVERY_MONTH, 113), 2))
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 2)
+               END      AS TERM_MONTH,
+               CASE
+                 WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE FUTURE_DELIVERY_MONTHNUMBER
+               END      AS MONTHNUMBER,
+			   A.PROFIT_CENTER
+			   ,CTR.FUTURE_EXCHANGE --tkk
+        FROM   DAILY_PNL_ATTRIBUTION A
+               LEFT JOIN DAILY_CONTRACT_DATA CTR
+                      ON A.POSITION_ID = CTR.POSITION_ID
+        WHERE  A.INSTRUMENT_TYPE = 'FUTURES'
+
+		AND EOD_DATE  = $P{eoddate}
+        AND CONTRACT_BOOK like $P{cbk}
+
+		 AND  $X{IN,COMMODITY,cmd}
+
+		 AND  $X{IN,PROFIT_CENTER,pc}
+
+        $P!{QSTR_Filter}
+        GROUP  BY A.COMMODITY,
+                  CASE
+                    WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 1)
+                         + Lower(RIGHT(CONVERT(VARCHAR(3), FUTURE_DELIVERY_MONTH, 113), 2))
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 1)
+                         + Lower(RIGHT(CONVERT(VARCHAR(3), FUTURE_DELIVERY_MONTH, 113), 2))
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), FUTURE_DELIVERY_MONTH, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN FUTURE_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE FUTURE_DELIVERY_MONTHNUMBER
+                  END,
+                  A.CONTRACT_BOOK,
+				  A.PROFIT_CENTER,
+				  CTR.FUTURE_EXCHANGE	,		 --
+				  FUTURE_DELIVERY_MONTHNUMBER,
+				  FUTURE_DELIVERY_MONTH
+        UNION ALL
+        SELECT Sum(CASE
+                     WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * CURRENT_DELTA * UOM_FACTOR_FROM_POS_TO_RPT )
+                     ELSE -( CURRENT_OPEN_QUANTITY * CURRENT_DELTA * UOM_FACTOR_FROM_POS_TO_RPT )
+                   END) AS QTY,
+               A.CONTRACT_BOOK,
+               A.COMMODITY,
+               CASE
+                 WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 1)
+                      + Lower(RIGHT(CONVERT(VARCHAR(3), OPTION_DELIVERY_MONTH, 113), 2))
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 2)
+               END      AS SHIP_MONTH,
+			   CASE
+                 WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 1)
+                      + Lower(RIGHT(CONVERT(VARCHAR(3), OPTION_DELIVERY_MONTH, 113), 2))
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 2)
+               END      AS TERM_MONTH,
+               CASE
+                 WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE OPTION_DELIVERY_MONTHNUMBER
+               END      AS MONTHNUMBER,
+			   PROFIT_CENTER
+			   ,CTR.FUTURE_EXCHANGE	--tkk
+        FROM   DAILY_PNL_ATTRIBUTION A
+               LEFT JOIN DAILY_CONTRACT_DATA CTR
+                      ON A.POSITION_ID = CTR.POSITION_ID
+        WHERE  A.INSTRUMENT_TYPE = 'OPTIONS'
+
+		AND EOD_DATE  = $P{eoddate}
+        AND CONTRACT_BOOK like $P{cbk}
+
+		 AND  $X{IN,COMMODITY,cmd}
+         AND  $X{IN,PROFIT_CENTER,pc}
+
+
+        $P!{QSTR_Filter}
+        GROUP  BY A.COMMODITY,
+                  CASE
+                    WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 1)
+                         + Lower(RIGHT(CONVERT(VARCHAR(3), OPTION_DELIVERY_MONTH, 113), 2))
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 1)
+                         + Lower(RIGHT(CONVERT(VARCHAR(3), OPTION_DELIVERY_MONTH, 113), 2))
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), OPTION_DELIVERY_MONTH, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN OPTION_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE OPTION_DELIVERY_MONTHNUMBER
+                  END,
+                  A.CONTRACT_BOOK,
+				  A.PROFIT_CENTER,
+				  CTR.FUTURE_EXCHANGE	,
+				  OPTION_DELIVERY_MONTHNUMBER,
+				  OPTION_DELIVERY_MONTH
+        UNION ALL
+        SELECT --Sum(( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )) AS QTY,
+				Sum(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+					 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+				   END)                            AS QTY,
+               A.CONTRACT_BOOK,
+               A.COMMODITY,
+               CASE
+                 WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                      + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+               END                                                         AS SHIP_MONTH,
+			   CASE
+				 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+				 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+					  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+					  + '-'
+					  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+			   END                                 AS TERM_MONTH,
+               CASE
+                 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+               END                                                         AS MONTHNUMBER,
+			   PROFIT_CENTER
+			    ,CTR.FUTURE_EXCHANGE
+        FROM   DAILY_PNL_ATTRIBUTION A
+               LEFT JOIN DAILY_CONTRACT_DATA CTR
+                      ON A.POSITION_ID = CTR.POSITION_ID
+        WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+		AND EOD_DATE  = $P{eoddate}
+               --AND LONG_SHORT = 'LONG'
+               --AND A.ALLOCATION_TYPE <> 'STOCK'
+               AND CTR_TYPE = 'PAPER'
+        AND CONTRACT_BOOK like $P{cbk}
+
+		 AND  $X{IN,COMMODITY,cmd}
+         AND  $X{IN,PROFIT_CENTER,pc}
+
+        $P!{QSTR_Filter}
+        GROUP  BY A.COMMODITY,
+                  CASE
+                    WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                         + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+                  END,
+				  CASE
+					 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+					 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+						  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+						  + '-'
+						  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+				   END ,
+                  CASE
+                    WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+                  END,
+                  A.CONTRACT_BOOK,
+				  A.PROFIT_CENTER,
+				  	 CTR.FUTURE_EXCHANGE	,
+
+				  PHYSICAL_DELIVERY_MONTHNUMBER,
+				  PHYSICAL_DELIVERY_MONTH,
+				  FUTURE_DELIVERY_MONTHNUMBER,
+				  FUTURE_DELIVERY_MONTH
+        UNION ALL
+		--Net Fixed Price 360215 - Start
+		SELECT Sum(QUANTITY)  AS QTY,
+               CONTRACT_BOOK,
+               MATERIAL_GROUP AS COMMODITY,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                + '-'
+                                                                                                                                                + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS SHIP_MONTH,
+			   CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                + '-'
+                                                                                                                                                + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END           AS TERM_MONTH,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+                 ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+               END            AS MONTHNUMBER,
+			   PROFIT_CENTER
+			    ,'' AS FUTURE_EXCHANGE
+        FROM   DM_POSITION_DATA A
+        WHERE  A.ORIGIN_DATA_TYPE = 'IV'
+
+        AND CONTRACT_BOOK like $P{cbk}
+
+		AND  $X{IN,MATERIAL_GROUP,cmd}
+
+		 AND  $X{IN,PROFIT_CENTER,pc}
+        $P!{QSTR_Filter}
+        GROUP  BY CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                   + '-'
+                                                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                   + '-'
+                                                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+                    ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+                  END,
+                  MATERIAL_GROUP,
+                  CONTRACT_BOOK,
+				  PROFIT_CENTER,
+				   --FUTURE_EXCHANGE, --tkk
+				  DELIVERY_MONTH_AND_YEAR
+
+        UNION ALL
+        SELECT Sum(CASE
+                     WHEN LONG_SHORT = 'Long' THEN QUANTITY
+                     ELSE -QUANTITY
+                   END)       AS QTY,
+               CONTRACT_BOOK,
+               MATERIAL_GROUP AS COMMODITY,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS SHIP_MONTH,
+			   CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS TERM_MONTH,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+               END            AS MONTHNUMBER,
+			   PROFIT_CENTER
+			   ,'' AS FUTURE_EXCHANGE --tkk
+        FROM   DM_POSITION_DATA A
+        WHERE  A.ORIGIN_DATA_TYPE IN ( 'PO', 'SO' )
+
+               AND PRICED_UNPRICED = 'Priced'
+        AND CONTRACT_BOOK like $P{cbk}
+		AND  $X{IN,MATERIAL_GROUP,cmd}
+		 AND  $X{IN,PROFIT_CENTER,pc}
+        $P!{QSTR_Filter}
+        GROUP  BY CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+                  END,
+                  MATERIAL_GROUP,
+                  CONTRACT_BOOK,
+				  PROFIT_CENTER,
+				    --FUTURE_EXCHANGE,--tkk
+				  DELIVERY_MONTH_AND_YEAR
+        UNION ALL
+        SELECT
+--SELECT Sum(CASE
+--             WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+--             ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+--           END)                            AS QTY,
+			CASE WHEN B.TOTAL_FIXED_PRICE_QTY > 0 and A.ALLOCATION_TYPE = 'STOCK' THEN
+
+				   ISNULL(MAX(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN B.TOTAL_FIXED_PRICE_QTY
+					 ELSE -B.TOTAL_FIXED_PRICE_QTY
+				   END),0)
+				   ELSE
+				   Sum(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+					 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+				   END)
+			END
+		   AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY AS COMMODITY,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 'Purchase Contract - Fixed Price'
+       --  ELSE 'Sales Contract - Fixed Price'
+       --END                                 AS POSITION_TYPE,
+       --0                                   AS FLAG,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 23
+       --  ELSE 25
+       --END                                 AS ORDERBY,
+       --'OIL Position'                      AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                 AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                 AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                 AS MONTHNUMBER,
+	   PROFIT_CENTER
+	    ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		----360215 - Start
+	   LEFT JOIN (
+					SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+					FROM
+					(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  POSITION_ID,
+							  ALLOCATION_ID,
+							  PRICING_ID
+							FROM DAILY_PNL_REALIZATION DPR
+							WHERE REALIZED_DATE <= $P{eoddate}
+							GROUP BY POSITION_ID,
+									 ALLOCATION_ID,
+									 PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID
+					) B1
+					GROUP BY POSITION_ID, ALLOCATION_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID
+		--360215 - End
+
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       --AND A.ALLOCATION_TYPE <> 'STOCK'
+	   AND A.ALLOCATION_TYPE IS NOT NULL
+       AND ( PRICING_TYPE = 'PRICED'
+              OR ( PRICING_TYPE = 'UNPRICED'
+                   AND A.ALLOCATION_ID <> PRICING_ID ) )
+				   AND CTR_TYPE <> 'PAPER'	-- by Vishal
+				   --360748
+		AND NOT EXISTS(SELECT 1 FROM DUMP_BI_FINANCIAL_LOAD_DETAILS WHERE B.POSITION_ID = A.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.LONG_SHORT = 'LONG' and allocation_type = 'STOCK')
+AND CONTRACT_BOOK like $P{cbk}
+
+AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,A.POSITION_ID,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          LONG_SHORT,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		    FUTURE_EXCHANGE,--tkk
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH,B.TOTAL_FIXED_PRICE_QTY,A.ALLOCATION_TYPE
+				  --360215-start
+				  UNION ALL
+				  SELECT  SUM(QTY) QTY
+		,CONTRACT_BOOK
+		,COMMODITY
+		--,POSITION_TYPE
+		--,FLAG
+		--,ORDERBY
+		--,POSITION
+		,SHIP_MONTH
+		,SHIP_MONTH AS TERM_MONTH
+		,MONTHNUMBER
+		,PROFIT_CENTER
+		,FUTURE_EXCHANGE
+		FROM
+		(
+SELECT A.POSITION_ID,ISNULL(MAX(CASE
+             WHEN ( PRICING_TYPE = 'PRICED'
+                     OR ( PRICING_TYPE = 'UNPRICED'
+                          AND A.ALLOCATION_ID <> PRICING_ID ) ) THEN
+               CASE
+                 WHEN LONG_SHORT = 'LONG' THEN B.TOTAL_FIXED_PRICE_QTY--( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+                 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+               END
+           END),0)                            AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY AS COMMODITY,
+       --'Stock - Fixed Price'               AS POSITION_TYPE,
+       --0                                   AS FLAG,
+       --21                                  AS ORDERBY,
+       --'OIL Position'                      AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                      AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                      AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                      AS MONTHNUMBER,
+	   PROFIT_CENTER
+	    ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		--360748
+			   ----360215 - Start
+			   LEFT JOIN (
+					--SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+					--FROM
+					--(
+				SELECT POSITION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY--,pricing_id
+					FROM
+					(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  --X.TOTAL_FIXED_PRICE_QTY TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY,X.pricing_id
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID,pricing_id) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  PURCHASE_POSITION_ID POSITION_ID,
+							  PURCHASE_ALLOCATION_ID ALLOCATION_ID,
+							  PURCHASE_PRICING_ID PRICING_ID
+							FROM REALIZATION_DETAIL DPR
+							WHERE VALUATION_DATE <= $P{eoddate}
+							GROUP BY PURCHASE_POSITION_ID,
+									 PURCHASE_ALLOCATION_ID,
+									 PURCHASE_PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID AND X.PRICING_ID = y.PRICING_ID
+					) B1
+					GROUP BY POSITION_ID--, ALLOCATION_ID, PRICING_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID --AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.PRICING_ID = B.PRICING_ID
+		--360215 - End
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       AND A.ALLOCATION_TYPE = 'STOCK'
+--360215 - Start
+AND LONG_SHORT = 'LONG'
+--INVPOST AND EXISTS (SELECT POSITION_ID FROM DUMP_BI_FINANCIAL_LOAD_DETAILS B WHERE A.POSITION_ID = B.POSITION_ID AND B.TOTAL_FIXED_PRICE_QTY > 0 )
+--360215 - End
+AND CONTRACT_BOOK like $P{cbk}
+
+ AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                      + '-'
+                                                                                                                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+																													   + '-'
+																													   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		   CTR.FUTURE_EXCHANGE,--tkk
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH,A.POSITION_ID
+  ) T
+		  GROUP BY CONTRACT_BOOK
+		,COMMODITY
+		--,POSITION_TYPE
+		--,FLAG
+		--,ORDERBY
+		--,POSITION
+		,SHIP_MONTH
+		,SHIP_MONTH
+		,MONTHNUMBER
+		,PROFIT_CENTER
+		,FUTURE_EXCHANGE --tkk
+		--Net Fixed Price 360215 - End
+
+  --Removed Unpriced Section
+				  ) CTR
+GROUP  BY CTR.COMMODITY,
+          CTR.SHIP_MONTH,
+		  CTR.TERM_MONTH,
+          CTR.MONTHNUMBER,
+          CTR.CONTRACT_BOOK,
+		  CTR.PROFIT_CENTER
+ ,CTR.FUTURE_EXCHANGE --tkk
+
+
+
+		  UNION ALL
+
+
+
+
+
+SELECT
+0 as qty3,
+Sum(QTY)                                AS QTY,
+       CTR.CONTRACT_BOOK,
+        -- CTR.CONTRACT_BOOK + ' ' + CTR.COMMODITY AS COMMODITY,		       CTR.CONTRACT_BOOK + ' ' + CTR.COMMODITY AS COMMODITY,
+	   CASE
+                WHEN CTR.FUTURE_EXCHANGE='' THEN CTR.COMMODITY+' - '+'No Exchange'
+				  WHEN CTR.FUTURE_EXCHANGE IS NULL THEN CTR.COMMODITY+' - '+'No Exchange'
+                 ELSE CTR.COMMODITY+' - '+CTR.FUTURE_EXCHANGE
+               END      AS COMMODITY,
+       NULL                                    AS POSITION_TYPE,
+       1                                       AS FLAG,
+       52                                      AS ORDERBY,
+       'Basis Position (Balance to Buy/Sell)'  AS POSITION,
+       CTR.SHIP_MONTH,
+	   CTR.TERM_MONTH,
+       CTR.MONTHNUMBER,
+	   CTR.PROFIT_CENTER
+	   ,CTR.FUTURE_EXCHANGE
+FROM   (
+
+		--Net Fixed Price 360215 - Start
+		SELECT Sum(QUANTITY)  AS QTY,
+               CONTRACT_BOOK,
+               MATERIAL_GROUP AS COMMODITY,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                + '-'
+                                                                                                                                                + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS SHIP_MONTH,
+			   CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                + '-'
+                                                                                                                                                + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END           AS TERM_MONTH,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+                 ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+               END            AS MONTHNUMBER,
+			   PROFIT_CENTER
+			   ,'' as FUTURE_EXCHANGE
+        FROM   DM_POSITION_DATA A
+        WHERE  A.ORIGIN_DATA_TYPE = 'IV'
+
+        AND CONTRACT_BOOK like $P{cbk}
+
+	     AND  $X{IN,MATERIAL_GROUP,cmd}
+		 AND  $X{IN,PROFIT_CENTER,pc}
+
+
+        $P!{QSTR_Filter}
+        GROUP  BY CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                   + '-'
+                                                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                                                   + '-'
+                                                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+                    ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+                  END,
+                  MATERIAL_GROUP,
+                  CONTRACT_BOOK,
+				  PROFIT_CENTER,
+				   -- FUTURE_EXCHANGE,
+				  DELIVERY_MONTH_AND_YEAR
+
+        UNION ALL
+        SELECT Sum(CASE
+                     WHEN LONG_SHORT = 'Long' THEN QUANTITY
+                     ELSE -QUANTITY
+                   END)       AS QTY,
+               CONTRACT_BOOK,
+               MATERIAL_GROUP AS COMMODITY,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS SHIP_MONTH,
+			   CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS TERM_MONTH,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+               END            AS MONTHNUMBER,
+			   PROFIT_CENTER
+			   ,'' as FUTURE_EXCHANGE --tkk
+        FROM   DM_POSITION_DATA A
+        WHERE  A.ORIGIN_DATA_TYPE IN ( 'PO', 'SO' )
+
+               AND PRICED_UNPRICED = 'Priced'
+        AND CONTRACT_BOOK like $P{cbk}
+
+ AND  $X{IN,MATERIAL_GROUP,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+        $P!{QSTR_Filter}
+        GROUP  BY CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+                  END,
+                  MATERIAL_GROUP,
+                  CONTRACT_BOOK,
+				  PROFIT_CENTER,
+				  --  FUTURE_EXCHANGE, --tkk
+				  DELIVERY_MONTH_AND_YEAR
+        UNION ALL
+        SELECT
+--SELECT Sum(CASE
+--             WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+--             ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+--           END)                            AS QTY,
+			CASE WHEN B.TOTAL_FIXED_PRICE_QTY > 0 and A.ALLOCATION_TYPE = 'STOCK' THEN
+
+				   ISNULL(MAX(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN B.TOTAL_FIXED_PRICE_QTY
+					 ELSE -B.TOTAL_FIXED_PRICE_QTY
+				   END),0)
+				   ELSE
+				   Sum(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+					 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+				   END)
+			END
+		   AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY AS COMMODITY,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 'Purchase Contract - Fixed Price'
+       --  ELSE 'Sales Contract - Fixed Price'
+       --END                                 AS POSITION_TYPE,
+       --0                                   AS FLAG,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 23
+       --  ELSE 25
+       --END                                 AS ORDERBY,
+       --'OIL Position'                      AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                 AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                 AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                 AS MONTHNUMBER,
+	   PROFIT_CENTER
+	    ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		----360215 - Start
+	   LEFT JOIN (
+					SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+					FROM
+					(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  POSITION_ID,
+							  ALLOCATION_ID,
+							  PRICING_ID
+							FROM DAILY_PNL_REALIZATION DPR
+							WHERE REALIZED_DATE <= $P{eoddate}
+							GROUP BY POSITION_ID,
+									 ALLOCATION_ID,
+									 PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID
+					) B1
+					GROUP BY POSITION_ID, ALLOCATION_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID
+		--360215 - End
+
+
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       --AND A.ALLOCATION_TYPE <> 'STOCK'
+	   AND A.ALLOCATION_TYPE IS NOT NULL
+       AND ( PRICING_TYPE = 'PRICED'
+              OR ( PRICING_TYPE = 'UNPRICED'
+                   AND A.ALLOCATION_ID <> PRICING_ID ) )
+				   AND CTR_TYPE <> 'PAPER'	-- by Vishal
+				   --360748
+		AND NOT EXISTS(SELECT 1 FROM DUMP_BI_FINANCIAL_LOAD_DETAILS WHERE B.POSITION_ID = A.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.LONG_SHORT = 'LONG' and allocation_type = 'STOCK')
+AND CONTRACT_BOOK like $P{cbk}
+
+ AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,A.POSITION_ID,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          LONG_SHORT,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		    FUTURE_EXCHANGE, --tkk
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH,B.TOTAL_FIXED_PRICE_QTY,A.ALLOCATION_TYPE
+				  --360215-start
+				  UNION ALL
+				  SELECT  SUM(QTY) QTY
+		,CONTRACT_BOOK
+		,COMMODITY
+		--,POSITION_TYPE
+		--,FLAG
+		--,ORDERBY
+		--,POSITION
+		,SHIP_MONTH
+		,SHIP_MONTH AS TERM_MONTH
+		,MONTHNUMBER
+		,PROFIT_CENTER
+		,FUTURE_EXCHANGE
+		FROM
+		(
+SELECT A.POSITION_ID,ISNULL(MAX(CASE
+             WHEN ( PRICING_TYPE = 'PRICED'
+                     OR ( PRICING_TYPE = 'UNPRICED'
+                          AND A.ALLOCATION_ID <> PRICING_ID ) ) THEN
+               CASE
+                 WHEN LONG_SHORT = 'LONG' THEN B.TOTAL_FIXED_PRICE_QTY--( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+                 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+               END
+           END),0)                            AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY AS COMMODITY,
+       --'Stock - Fixed Price'               AS POSITION_TYPE,
+       --0                                   AS FLAG,
+       --21                                  AS ORDERBY,
+       --'OIL Position'                      AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                      AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                      AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                      AS MONTHNUMBER,
+	   PROFIT_CENTER
+	   ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		--360748
+			   ----360215 - Start
+			   LEFT JOIN (
+					--SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+					--FROM
+					--(
+				SELECT POSITION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY--,pricing_id
+					FROM
+					(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  --X.TOTAL_FIXED_PRICE_QTY TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY,X.pricing_id
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID,pricing_id) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  PURCHASE_POSITION_ID POSITION_ID,
+							  PURCHASE_ALLOCATION_ID ALLOCATION_ID,
+							  PURCHASE_PRICING_ID PRICING_ID
+							FROM REALIZATION_DETAIL DPR
+							WHERE VALUATION_DATE <= $P{eoddate}
+							GROUP BY PURCHASE_POSITION_ID,
+									 PURCHASE_ALLOCATION_ID,
+									 PURCHASE_PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID AND X.PRICING_ID = y.PRICING_ID
+					) B1
+					GROUP BY POSITION_ID--, ALLOCATION_ID, PRICING_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID --AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.PRICING_ID = B.PRICING_ID
+		--360215 - End
+
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       AND A.ALLOCATION_TYPE = 'STOCK'
+--360215 - Start
+AND LONG_SHORT = 'LONG'
+--INVPOST AND EXISTS (SELECT POSITION_ID FROM DUMP_BI_FINANCIAL_LOAD_DETAILS B WHERE A.POSITION_ID = B.POSITION_ID AND B.TOTAL_FIXED_PRICE_QTY > 0 )
+--360215 - End
+AND CONTRACT_BOOK like $P{cbk}
+
+ AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                      + '-'
+                                                                                                                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+																													   + '-'
+																													   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		   FUTURE_EXCHANGE,
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH,A.POSITION_ID
+  ) T
+		  GROUP BY CONTRACT_BOOK
+		,COMMODITY
+		--,POSITION_TYPE
+		--,FLAG
+		--,ORDERBY
+		--,POSITION
+		,SHIP_MONTH
+		,SHIP_MONTH
+		,MONTHNUMBER
+		,PROFIT_CENTER
+		,FUTURE_EXCHANGE
+		--Net Fixed Price 360215 - End
+        UNION ALL
+		--Net Differentials 360215 - Start
+		SELECT Sum(CASE
+                     WHEN LONG_SHORT = 'Long' THEN QUANTITY
+                     ELSE -QUANTITY
+                   END)       AS QTY,
+               CONTRACT_BOOK,
+               MATERIAL_GROUP AS COMMODITY,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS SHIP_MONTH,
+			   CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                      + '-'
+                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+               END            AS TERM_MONTH,
+               CASE
+                 WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                 ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+               END            AS MONTHNUMBER,
+			   PROFIT_CENTER
+			    ,'' as FUTURE_EXCHANGE
+        FROM   DM_POSITION_DATA A
+        WHERE  A.ORIGIN_DATA_TYPE IN ( 'PO', 'SO' )
+
+               AND PRICED_UNPRICED = 'Unpriced'
+        AND CONTRACT_BOOK like $P{cbk}
+
+
+	   AND  $X{IN,MATERIAL_GROUP,cmd}
+       AND  $X{IN,PROFIT_CENTER,pc}
+
+
+        $P!{QSTR_Filter}
+        GROUP  BY CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+				  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+                    ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 3)
+                         + '-'
+                         + RIGHT(RIGHT(CONVERT(VARCHAR(11), DELIVERY_MONTH_AND_YEAR, 113), 8), 2)
+                  END,
+                  CASE
+                    WHEN Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '') < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+                    ELSE Replace(LEFT(DELIVERY_MONTH_AND_YEAR, 7), '-', '')
+                  END,
+                  MATERIAL_GROUP,
+                  CONTRACT_BOOK,
+				  PROFIT_CENTER,
+				  --  FUTURE_EXCHANGE,
+				  DELIVERY_MONTH_AND_YEAR
+        UNION ALL
+			--360215 Start
+			SELECT ISNULL(SUM(CASE
+             WHEN PRICING_TYPE = 'UNPRICED'
+                  AND BASIS_MARKET_PRICE_INDEX IS NOT NULL
+                  AND BASIS_MARKET_PRICE_INDEX <> 'NA'
+                  AND A.ALLOCATION_ID = A.PRICING_ID THEN
+               CASE
+                 WHEN LONG_SHORT = 'LONG' THEN B.TOTAL_PROV_PRICE_QTY--( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+                 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+               END
+           END),0)                                 AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY      AS COMMODITY,
+       --'Stock - Differential Price' AS POSITION_TYPE,
+       --0                                        AS FLAG,
+       --22                                       AS ORDERBY,
+       --'OIL Position'                           AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                      AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                   + '-'
+                                                                                                                   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                      AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                      AS MONTHNUMBER,
+	   A.PROFIT_CENTER
+	    ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		--360748
+			   ----360215 - Start
+			   LEFT JOIN (
+					SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+					FROM
+					(
+				--SELECT POSITION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY--,pricing_id
+				--	FROM
+				--	(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_PROV_PRICE_QTY,
+							  --X.TOTAL_FIXED_PRICE_QTY TOTAL_FIXED_PRICE_QTY,
+							  --X.TOTAL_PROV_PRICE_QTY
+							  X.pricing_id
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY,pricing_id
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID,pricing_id) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  PURCHASE_POSITION_ID POSITION_ID,
+							  PURCHASE_ALLOCATION_ID ALLOCATION_ID,
+							  PURCHASE_PRICING_ID PRICING_ID
+							FROM REALIZATION_DETAIL DPR
+							WHERE VALUATION_DATE <= $P{eoddate}
+							GROUP BY PURCHASE_POSITION_ID,
+									 PURCHASE_ALLOCATION_ID,
+									 PURCHASE_PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID AND X.PRICING_ID = y.PRICING_ID
+					) B1
+					GROUP BY POSITION_ID, ALLOCATION_ID, PRICING_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.PRICING_ID = B.PRICING_ID
+		--360215 - End
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       AND A.ALLOCATION_TYPE = 'STOCK'
+--360215 - Start
+AND LONG_SHORT = 'LONG'
+--AND EXISTS (SELECT POSITION_ID FROM DUMP_BI_FINANCIAL_LOAD_DETAILS B WHERE A.POSITION_ID = B.POSITION_ID AND B.TOTAL_PROV_PRICE_QTY > 0 )
+--AND NOT EXISTS (SELECT POSITION_ID FROM DAILY_PNL_REALIZATION B WHERE A.POSITION_ID = B.POSITION_ID)
+--360215 - End
+AND CONTRACT_BOOK like $P{cbk}
+
+
+ AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+                                                                                                                      + '-'
+                                                                                                                      + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN LEFT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 3)
+																													   + '-'
+																													   + RIGHT(RIGHT(CONVERT(VARCHAR(11), (CAST($P{eoddate} AS DATE)), 113), 8), 2)
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '')
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		    FUTURE_EXCHANGE,
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH
+UNION ALL
+SELECT
+			CASE WHEN B.TOTAL_PROV_PRICE_QTY > 0 and A.ALLOCATION_TYPE = 'STOCK' THEN
+					Sum(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+					 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+				   END)
+				   -
+				   ISNULL(MAX(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN B.TOTAL_PROV_PRICE_QTY
+					 ELSE -B.TOTAL_PROV_PRICE_QTY
+				   END),0)
+				   ELSE
+				   Sum(CASE
+					 WHEN A.LONG_SHORT = 'LONG' THEN ( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+					 ELSE -( CURRENT_OPEN_QUANTITY * UOM_FACTOR_FROM_POS_TO_RPT )
+				   END)
+			END
+		   AS QTY,
+       A.CONTRACT_BOOK,
+	   COMMODITY,
+       --A.CONTRACT_BOOK + ' ' + A.COMMODITY AS COMMODITY,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 'Purchase Contract - Differential Price'
+       --  ELSE 'Sales Contract - Differential Price'
+       --END                                 AS POSITION_TYPE,
+       --0                                   AS FLAG,
+       --CASE
+       --  WHEN A.LONG_SHORT = 'LONG' THEN 24
+       --  ELSE 26
+       --END                                 AS ORDERBY,
+       --'OIL Position'                      AS POSITION,
+       CASE
+         WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+       END                                 AS SHIP_MONTH,
+	   CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+         ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+              + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+              + '-'
+              + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+       END                                 AS TERM_MONTH,
+       CASE
+         WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+         ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+       END                                 AS MONTHNUMBER,
+	   PROFIT_CENTER
+	    ,CTR.FUTURE_EXCHANGE
+FROM   DAILY_PNL_ATTRIBUTION A
+       LEFT JOIN DAILY_CONTRACT_DATA CTR
+              ON A.POSITION_ID = CTR.POSITION_ID
+		----360215 - Start
+	   LEFT JOIN (
+					SELECT POSITION_ID, ALLOCATION_ID, SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY, SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+					FROM
+					(
+						SELECT
+							  X.POSITION_ID,
+							  X.ALLOCATION_ID,
+							  X.TOTAL_FIXED_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_FIXED_PRICE_QTY,
+							  X.TOTAL_PROV_PRICE_QTY - ISNULL(Y.REALIZED_QUANTITY, 0) TOTAL_PROV_PRICE_QTY
+							  --X.TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  T1.ALLOCATION_ID,
+							  POSITION_ID,
+							  SUM(TOTAL_FIXED_PRICE_QTY) AS TOTAL_FIXED_PRICE_QTY,
+							  SUM(TOTAL_PROV_PRICE_QTY) AS TOTAL_PROV_PRICE_QTY
+							FROM (SELECT
+							  ALLOCATION_ID,
+							  POSITION_ID,
+							  LOAD_ID,
+							  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+							  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+							FROM DUMP_BI_FINANCIAL_LOAD_DETAILS D
+							WHERE DOCUMENT_DATE <= $P{eoddate}-- AND ALLOCATION_ID <> PRICING_ID
+							GROUP BY ALLOCATION_ID,
+									 POSITION_ID,
+									 pricing_id,
+									 LOAD_ID) T1
+							GROUP BY T1.ALLOCATION_ID,
+									 POSITION_ID) X
+							LEFT JOIN (SELECT
+							  SUM(REALIZED_QUANTITY) REALIZED_QUANTITY,
+							  POSITION_ID,
+							  ALLOCATION_ID,
+							  PRICING_ID
+							FROM DAILY_PNL_REALIZATION DPR
+							WHERE REALIZED_DATE <= $P{eoddate}
+							GROUP BY POSITION_ID,
+									 ALLOCATION_ID,
+									 PRICING_ID) Y
+							  ON X.POSITION_ID = Y.POSITION_ID
+							  AND X.ALLOCATION_ID = y.ALLOCATION_ID
+					) B1
+					GROUP BY POSITION_ID, ALLOCATION_ID
+					) B
+				ON A.POSITION_ID = B.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID
+		--360215 - End
+
+
+WHERE  A.INSTRUMENT_TYPE = 'PHYSICAL'
+AND EOD_DATE  = $P{eoddate}
+       --AND A.ALLOCATION_TYPE <> 'STOCK'
+	   AND A.ALLOCATION_TYPE IS NOT NULL
+       AND PRICING_TYPE = 'UNPRICED'
+       AND BASIS_MARKET_PRICE_INDEX IS NOT NULL
+       AND BASIS_MARKET_PRICE_INDEX <> 'NA'
+       AND A.ALLOCATION_ID = PRICING_ID
+	   --360748
+		AND NOT EXISTS(SELECT 1 FROM DUMP_BI_FINANCIAL_LOAD_DETAILS WHERE B.POSITION_ID = A.POSITION_ID AND A.ALLOCATION_ID = B.ALLOCATION_ID AND A.LONG_SHORT = 'LONG' and allocation_type = 'STOCK')
+AND CONTRACT_BOOK like $P{cbk}
+
+
+ AND  $X{IN,COMMODITY,cmd}
+ AND  $X{IN,PROFIT_CENTER,pc}
+
+$P!{QSTR_Filter}
+GROUP  BY A.COMMODITY,
+          CASE
+            WHEN PHYSICAL_DELIVERY_MONTHNUMBER < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+            ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 1)
+                 + Lower(RIGHT(CONVERT(VARCHAR(3), PHYSICAL_DELIVERY_MONTH, 113), 2))
+                 + '-'
+                 + RIGHT(RIGHT(CONVERT(VARCHAR(11), PHYSICAL_DELIVERY_MONTH, 113), 8), 2)
+          END,
+		  CASE
+			 WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 'Expired'
+			 ELSE LEFT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 1)
+				  + Lower(RIGHT(CONVERT(VARCHAR(3), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 2))
+				  + '-'
+				  + RIGHT(RIGHT(CONVERT(VARCHAR(11), ISNULL(FUTURE_DELIVERY_MONTH,PHYSICAL_DELIVERY_MONTH), 113), 8), 2)
+		   END,
+          CASE
+            WHEN ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER) < Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{eoddate} AS DATE)), 111), 7), '/', '') THEN 1
+            ELSE ISNULL(FUTURE_DELIVERY_MONTHNUMBER,PHYSICAL_DELIVERY_MONTHNUMBER)
+          END,
+          LONG_SHORT,
+          A.CONTRACT_BOOK,
+		  PROFIT_CENTER,
+		    CTR.FUTURE_EXCHANGE,
+		  --
+		  PHYSICAL_DELIVERY_MONTHNUMBER,
+		  PHYSICAL_DELIVERY_MONTH,
+		  FUTURE_DELIVERY_MONTHNUMBER,
+		  FUTURE_DELIVERY_MONTH,B.TOTAL_PROV_PRICE_QTY,A.ALLOCATION_TYPE
+		--Net Differentials 360215 - End
+				  )CTR
+GROUP  BY CTR.COMMODITY,
+          CTR.SHIP_MONTH,
+		  CTR.TERM_MONTH,
+          CTR.MONTHNUMBER,
+          CTR.CONTRACT_BOOK,
+		  CTR.PROFIT_CENTER
+		  , CTR.FUTURE_EXCHANGE]]>
+		</queryString>
+		<field name="OUTRIGHTQTY" class="java.math.BigDecimal"/>
+		<field name="BASISQTY" class="java.math.BigDecimal"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="COMMODITY" class="java.lang.String"/>
+		<field name="POSITION_TYPE" class="java.lang.Integer"/>
+		<field name="FLAG" class="java.lang.Integer"/>
+		<field name="ORDERBY" class="java.lang.Integer"/>
+		<field name="POSITION" class="java.lang.String"/>
+		<field name="SHIP_MONTH" class="java.lang.String"/>
+		<field name="TERM_MONTH" class="java.lang.String"/>
+		<field name="MONTHNUMBER" class="java.lang.Integer"/>
+		<field name="PROFIT_CENTER" class="java.lang.String"/>
+		<field name="FUTURE_EXCHANGE" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="cbk" class="java.lang.String"/>
+	<parameter name="cmd" class="java.util.Collection"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="eoddate" class="java.util.Date"/>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[' ']]></defaultValueExpression>
+	</parameter>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CONTRACT_BOOK IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,eoddate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.eoddate
+		   AND  $X{IN,DPD.MATERIAL_GROUP ,cmd}
+           AND  $X{IN,DPD.PROFIT_CENTER,pc}
+
+
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE eoddate
+		FROM DAILY_PNL_ATTRIBUTION DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+				FROM DAILY_PNL_ATTRIBUTION b
+				WHERE b.EOD_DATE <= $P{eoddate}
+				 AND  $X{IN,b.COMMODITY,cmd}
+                 AND  $X{IN,b.PROFIT_CENTER,pc}
+				AND b.CONTRACT_BOOK like $P{cbk}
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		 AND  $X{IN,DPA.COMMODITY,cmd}
+         AND  $X{IN,DPA.PROFIT_CENTER,pc}
+		AND DPA.CONTRACT_BOOK like $P{cbk}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' eoddate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM DAILY_PNL_ATTRIBUTION DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM DAILY_PNL_ATTRIBUTION b
+						WHERE b.EOD_DATE <= $P{eoddate}
+						 AND  $X{IN,b.PROFIT_CENTER,pc}
+						 AND  $X{IN,b.COMMODITY,cmd}
+						 AND  b.CONTRACT_BOOK like $P{cbk}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND  $X{IN,DPA.COMMODITY,cmd}
+                AND  $X{IN,DPA.PROFIT_CENTER,pc}
+				AND DPA.CONTRACT_BOOK like $P{cbk}
+				) = 0
+	) Y
+WHERE 0 = 0
+$P!{QSTR_Filter}]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="eoddate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<variable name="variable1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="30" y="0" width="2645" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="da0f75fa-e796-454c-8dee-d9d536b252e4">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="0" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ Olam International Ltd]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="30" backcolor="#1F497D" uuid="9031a9b5-ce1d-4378-95f9-18db46f4ea71">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#1F497D"/>
+					<leftPen lineWidth="1.5" lineColor="#1F497D"/>
+					<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+					<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+				</box>
+				<imageExpression><![CDATA["repo:OlamLogo"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<summary>
+		<band height="155">
+			<crosstab isRepeatColumnHeaders="false" isRepeatRowHeaders="false" ignoreWidth="true">
+				<reportElement mode="Transparent" x="0" y="30" width="3181" height="125" uuid="ccd85aac-9ce4-42f1-bdcb-69715318e388">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<crosstabDataset>
+					<dataset>
+						<datasetRun subDataset="New Dataset 1" uuid="59cb497f-fc29-4614-be7d-1294eb09c932">
+							<datasetParameter name="cbk">
+								<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="cmd">
+								<datasetParameterExpression><![CDATA[$P{cmd}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pc">
+								<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="eoddate">
+								<datasetParameterExpression><![CDATA[$F{eoddate}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="LE_Filter">
+								<datasetParameterExpression><![CDATA[$P{LE_Filter}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="QSTR_Filter">
+								<datasetParameterExpression><![CDATA[$P{QSTR_Filter}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+				</crosstabDataset>
+				<crosstabHeaderCell>
+					<cellContents mode="Transparent">
+						<box>
+							<pen lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineWidth="2.5" lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineColor="#1F497D"/>
+						</box>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="161" height="50" backcolor="#A2C2E8" uuid="b5362ece-3e2e-4334-874b-0a291ad84e5a"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="2.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Left" verticalAlignment="Middle">
+								<font fontName="Arial" size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Product - Exchange]]></text>
+						</staticText>
+						<staticText>
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="161" y="0" width="203" height="50" backcolor="#A2C2E8" uuid="80dc7371-5d28-4369-a1c5-b2ca72e02185"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+								<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="12" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Profit Center]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="COMMODITY" width="161" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{COMMODITY}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineWidth="2.5" lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="161" height="30" backcolor="#A2C2E8" uuid="4702abfb-bb24-4de4-9f58-e6db72b7ea32"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="1.0" lineColor="#1F497D"/>
+									<topPen lineWidth="1.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{COMMODITY}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineWidth="2.5" lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="364" height="31" forecolor="#FFFFFF" backcolor="#1F497D" uuid="8510e94e-73fb-4201-8440-97dc568d9420"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="1.0" lineColor="#1F497D"/>
+									<topPen lineWidth="1.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Grand Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PROFIT_CENTER" width="203" totalPosition="Start">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{PROFIT_CENTER}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<textField>
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="203" height="30" uuid="96c5d690-9072-406c-b81a-3dc581ecabbc"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="1.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.5" lineColor="#1F497D"/>
+									<leftPen lineWidth="2.5" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{PROFIT_CENTER}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="TERM_MONTH" height="50" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{MONTHNUMBER}+"  "+$F{TERM_MONTH}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="68" height="50" isPrintWhenDetailOverflows="true" backcolor="#A2C2E8" uuid="35b9d73d-3416-41c3-a834-98fa5c918035"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1">
+									<pen lineWidth="1.0" lineColor="#1F497D"/>
+									<topPen lineWidth="1.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="1.25" lineColor="#1F497D"/>
+									<bottomPen lineWidth="2.5" lineColor="#1F497D"/>
+									<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+								</box>
+								<textElement>
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Outright Position "+(($V{TERM_MONTH} != null && $V{TERM_MONTH}.length() == 14) ? $V{TERM_MONTH}.substring(8) : "Expired")]]></textFieldExpression>
+							</textField>
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="68" y="0" width="68" height="50" forecolor="#000000" backcolor="#A2C2E8" uuid="0f81405e-9a1a-4449-b4a5-1e73abf1acf1"/>
+								<box>
+									<pen lineColor="#1F497D"/>
+									<topPen lineColor="#1F497D"/>
+									<leftPen lineColor="#1F497D"/>
+									<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+									<rightPen lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Basis Position "+(($V{TERM_MONTH} != null && $V{TERM_MONTH}.length() == 14) ? $V{TERM_MONTH}.substring(8) : "Expired")]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
+							<box>
+								<pen lineWidth="1.0" lineStyle="Solid" lineColor="#1F497D"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+								<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="86" height="50" backcolor="#A2C2E8" uuid="57f50f97-b0ee-4b26-80f5-1c159653b2e0"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineColor="#1F497D"/>
+									<topPen lineColor="#1F497D"/>
+									<leftPen lineColor="#1F497D"/>
+									<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+									<rightPen lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Outright Position]]></text>
+							</staticText>
+							<staticText>
+								<reportElement mode="Opaque" x="86" y="0" width="88" height="50" backcolor="#A2C2E8" uuid="6a0badac-7033-489a-b1ce-c288e6403904"/>
+								<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+									<pen lineWidth="2.0" lineColor="#1F497D"/>
+									<topPen lineWidth="2.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="2.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="2.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="2.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Basis Position]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="OUTRIGHTQTYMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{OUTRIGHTQTY}]]></measureExpression>
+				</measure>
+				<measure name="BASISQTYMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{BASISQTY}]]></measureExpression>
+				</measure>
+				<crosstabCell width="136" height="30">
+					<cellContents mode="Opaque">
+						<box>
+							<pen lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineColor="#1F497D"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)">
+							<reportElement mode="Opaque" x="0" y="0" width="68" height="30" uuid="8e35db64-ec78-4b04-b7ed-ae859baa8cde"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="0.5" lineColor="#1F497D"/>
+								<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+								<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="12"/>
+								<paragraph rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{OUTRIGHTQTYMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0;(#,##0)">
+							<reportElement mode="Opaque" x="68" y="0" width="68" height="30" uuid="4e893ac6-178b-43b5-839e-7a7ee8df83f6"/>
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineWidth="0.5" lineColor="#1F497D"/>
+								<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+								<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="12"/>
+								<paragraph rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{BASISQTYMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="136" height="31" rowTotalGroup="COMMODITY">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)">
+							<reportElement mode="Opaque" x="0" y="0" width="68" height="31" forecolor="#FFFFFF" backcolor="#1F497D" uuid="c21758a1-05a7-42d4-aa04-62a532d22e10"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="1.25" lineColor="#1F497D"/>
+								<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single" rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{OUTRIGHTQTYMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+							<reportElement mode="Opaque" x="68" y="0" width="68" height="31" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5e78a8ea-ec8e-492d-9f5d-e9d82ea4c801"/>
+							<box>
+								<pen lineColor="#1F497D"/>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single" rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{BASISQTYMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="175" height="30" columnTotalGroup="TERM_MONTH">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
+						<box>
+							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineWidth="2.5" lineColor="#1F497D"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)">
+							<reportElement mode="Opaque" x="0" y="0" width="86" height="30" uuid="fd738529-543b-4d64-9747-918a69d552eb"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="0.5" lineColor="#1F497D"/>
+								<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+								<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="12"/>
+								<paragraph rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{OUTRIGHTQTYMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0;(#,##0)">
+							<reportElement mode="Opaque" x="86" y="0" width="88" height="30" uuid="66ec9bd3-6902-4683-80f3-698bca3b08f4"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<topPen lineWidth="0.0"/>
+								<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle">
+								<font fontName="Arial" size="12"/>
+								<paragraph rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{BASISQTYMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="175" height="31" rowTotalGroup="COMMODITY" columnTotalGroup="TERM_MONTH">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
+						<box>
+							<pen lineWidth="1.0" lineStyle="Solid" lineColor="#1F497D"/>
+							<topPen lineWidth="1.0" lineColor="#1F497D"/>
+							<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+							<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+							<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="86" y="0" width="88" height="31" forecolor="#FFFFFF" backcolor="#1F497D" uuid="84ed8967-ec87-4190-82dd-657e3883d1f1"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+								<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single" rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{BASISQTYMeasure}]]></textFieldExpression>
+						</textField>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="86" height="31" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d471511b-ff35-4354-84bf-05c58300ba57"/>
+							<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+								<pen lineWidth="1.0" lineColor="#1F497D"/>
+								<topPen lineWidth="1.0" lineColor="#1F497D"/>
+								<leftPen lineWidth="1.0" lineColor="#1F497D"/>
+								<bottomPen lineWidth="1.0" lineColor="#1F497D"/>
+								<rightPen lineWidth="1.0" lineColor="#1F497D"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single" rightIndent="1"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{OUTRIGHTQTYMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="136" height="0" rowTotalGroup="PROFIT_CENTER">
+					<cellContents>
+						<box>
+							<pen lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineColor="#1F497D"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="175" height="0" rowTotalGroup="PROFIT_CENTER" columnTotalGroup="TERM_MONTH">
+					<cellContents>
+						<box>
+							<pen lineColor="#1F497D"/>
+							<topPen lineColor="#1F497D"/>
+							<leftPen lineColor="#1F497D"/>
+							<bottomPen lineColor="#1F497D"/>
+							<rightPen lineColor="#1F497D"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+			<textField>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="2675" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d5612f2d-fa29-4aca-b296-88934c9429a8"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="2.5" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($F{CONTRACT_BOOK}," - Market Risk Position Summary as of  ",DATEFORMAT($F{eoddate},"dd-MMM-yy"))]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

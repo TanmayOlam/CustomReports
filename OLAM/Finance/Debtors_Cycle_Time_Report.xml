@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Finance</folder>
+    <name>Debtors_Cycle_Time_Report</name>
+    <version>28</version>
+    <label>Debtors Cycle Time Report</label>
+    <description>Debtors Cycle Time Report</description>
+    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+    <updateDate>2015-12-29T11:20:25.617+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Debtors_Cycle_Time_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>Debtors_Cycle_Time_Report_</name>
+            <version>1</version>
+            <label>Debtors Cycle Time Report</label>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T12:47:18.933+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>invdatefrom</name>
+            <version>1</version>
+            <label>Date From</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T12:55:13.613+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/invdatefrom_files</folder>
+                    <name>invdatefrom</name>
+                    <version>0</version>
+                    <label>invdatefrom</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T12:55:13.613+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>invdateto</name>
+            <version>1</version>
+            <label>Date To</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T12:55:13.613+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/invdateto_files</folder>
+                    <name>invdateto</name>
+                    <version>0</version>
+                    <label>invdateto</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T12:55:13.613+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>dateoption</name>
+            <version>1</version>
+            <label>Date Option</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-19T19:36:45.477+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/dateoption_files</folder>
+                    <name>dateoption</name>
+                    <version>0</version>
+                    <label>dateoption</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-19T19:36:45.477+08:00</updateDate>
+                    <item>
+                        <itemLabel>Invoice Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Fund In Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Doc Negotiation Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Doc Presentation Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">4</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>BL Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">5</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>invtype</name>
+            <version>1</version>
+            <label>Invoice Type</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/invtype_files</folder>
+                    <name>invtype</name>
+                    <version>0</version>
+                    <label>invtype</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DOCTYPEID, LONGNAME AS LABEL, LONGNAME AS VALUE FROM XSARDOCTYPE
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 1, MBRNAME AS LABEL, CAST(MBRID AS VARCHAR) AS VALUE FROM JCMBR M
+JOIN GLCOMPANY G
+ON G.COMPANYID = M.MBRID
+WHERE COMPANYID &gt; 0
+AND ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:04:45.213+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CTRBOOKID, CTRBOOKNAME AS LABEL, CAST(CTRBOOKID AS VARCHAR) AS VALUE FROM CTRBOOK M
+WHERE CTRBOOKID &gt; 0
+AND ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>pcgrp</name>
+            <version>1</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/pcgrp_files</folder>
+                    <name>pcgrp</name>
+                    <version>0</version>
+                    <label>pcgrp</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT GROUPID, SHORTNAME AS LABEL, SHORTNAME AS VALUE FROM JCPROFITCENTERGROUP
+WHERE GROUPID &gt; 0
+AND ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PCID, PCNAME AS LABEL, CAST(PCID AS VARCHAR) AS VALUE FROM JCPROFITCENTER
+WHERE PCID &gt; 0 AND ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>cmdty</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/cmdty_files</folder>
+                    <name>cmdty</name>
+                    <version>0</version>
+                    <label>cmdty</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 1, IVITEMID AS LABEL, IVITEMID AS VALUE FROM JCIVITEMS
+WHERE ISACTIVE=1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>cp</name>
+            <version>1</version>
+            <label>Contractual Counterparty</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/cp_files</folder>
+                    <name>cp</name>
+                    <version>0</version>
+                    <label>cp</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT MBRNAME AS LABEL, Cast(MBRID AS VARCHAR) AS VALUE 
+FROM   JCMBR 
+WHERE MBRID &gt; 0 AND ISINTERNAL = 0
+AND ISACTIVE =1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>payterm</name>
+            <version>1</version>
+            <label>Payment Term</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/payterm_files</folder>
+                    <name>payterm</name>
+                    <version>0</version>
+                    <label>payterm</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PAYTERMID, PAYTERMCODE AS LABEL, CAST(PAYTERMID AS VARCHAR) AS VALUE FROM JCPAYTERMS
+WHERE ISACTIVE =1
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files</folder>
+            <name>transport</name>
+            <version>1</version>
+            <label>Vessel</label>
+            <description></description>
+            <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+            <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Debtors_Cycle_Time_Report_files/transport_files</folder>
+                    <name>transport</name>
+                    <version>0</version>
+                    <label>transport</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:59:55.143+08:00</creationDate>
+                    <updateDate>2015-10-07T13:19:26.853+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DISTINCT TRANSPORT AS LABEL, TRANSPORT AS VALUE FROM LOAD
+WHERE TRANSPORT IS NOT NULL
+ORDER BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>Book_Value_Futures_Report</name>
+    <version>0</version>
+    <label>Book Value Futures Report</label>
+    <description>Book Value Futures Report</description>
+    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+    <updateDate>2017-02-16T16:02:31.747+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Book_Value_Futures_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>Book_Value_Futures_Report_</name>
+            <version>0</version>
+            <label>Book Value Futures Report</label>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>asofdate</name>
+            <version>0</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>2</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>ctrbook</name>
+            <version>0</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1 
+ORDER BY CBK.NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>commodity</name>
+            <version>0</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT COMMODITYID AS VALUE_FIELD,
+       COMMODITYID AS LABEL_FIELD
+FROM   DIM_COMMODITY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>tmonth</name>
+            <version>0</version>
+            <label>Terminal Month</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/tmonth_files</folder>
+                    <name>tmonth</name>
+                    <version>0</version>
+                    <label>tmonth</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT FUTURE_DELIVERY_MONTH AS VALUE_FIELD,
+       FUTURE_DELIVERY_MONTH AS LABEL_FIELD,
+	   FUTURE_DELIVERY_MONTHNUMBER AS ORDERBY
+FROM   DAILY_PNL_ATTRIBUTION
+WHERE FUTURE_DELIVERY_MONTH IS NOT NULL
+UNION
+SELECT FUTURE_DELIVERY_MONTH AS VALUE_FIELD,
+       OPTION_DELIVERY_MONTH AS LABEL_FIELD,
+	   OPTION_DELIVERY_MONTHNUMBER AS ORDERBY
+FROM   DAILY_PNL_ATTRIBUTION 
+WHERE OPTION_DELIVERY_MONTH IS NOT NULL
+ORDER BY ORDERBY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>exchange</name>
+            <version>0</version>
+            <label>Exchange</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/exchange_files</folder>
+                    <name>exchange</name>
+                    <version>0</version>
+                    <label>exchange</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CP_SHORTNAME AS VALUE_FIELD,
+       CP_SHORTNAME AS LABEL_FIELD
+FROM   DIM_COUNTERPARTY
+WHERE CP_TYPE = 'EXCHANGE'</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>pc</name>
+            <version>0</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+                    <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt; 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="olam.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_Futures_Report_files</folder>
+            <name>olam.png</name>
+            <version>0</version>
+            <label>olam.png</label>
+            <description>olam.png</description>
+            <creationDate>2017-03-09T14:59:13.940+08:00</creationDate>
+            <updateDate>2017-03-09T14:59:13.940+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

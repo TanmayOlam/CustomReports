@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c7e2c95-84b9-4ba0-adcb-1e8c2b14b01e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.sheet.names.1" value="String_Settlement_cost"/>
+	<property name="ireport.jasperserver.reportUnit" value="/1_ReportJan18/String_Settlement_cost"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="TableBg" mode="Opaque" backcolor="#1F497D">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="b84fa897-d517-49ec-8900-01ec3bca676e">
+		<parameter name="asofdate" class="java.util.Date"/>
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="drilldown_path" class="java.lang.String">
+			<defaultValueExpression><![CDATA["/standard/Custom/Drilldown_Report/Cost_string_settlement_costs_report"]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select  PROFIT_CENTER,CONTRACT_BOOK,POSITION_REF,COSTSHORTNAME
+,sum(COST_AMOUNT_WITH_POL) as 'COST_AMOUNT_WITH_POL'
+,sum(TOTAL_REALIZED_QUANTITY) as 'TOTAL_REALIZED_QUANTITY'
+,avg(ACTUALPRICE) as 'ACTUALPRICE'
+,avg(BUDGETPRICE) as 'BUDGET_PRICE'
+from(
+select PROFIT_CENTER,CONTRACT_BOOK,POSITION_REF,COSTSHORTNAME
+,COST_AMOUNT *(-1) as 'COST_AMOUNT_WITH_POL'
+,BUDGET_PRICE as BUDGETPRICE
+,ACTUAL_PRICE
+, isnull(ACTUAL_PRICE,0) *(-1) as 'ACTUALPRICE'
+,TOTAL_REALIZED_QUANTITY
+,COST_AMOUNT
+,BUDGET_PRICE
+from (
+SELECT
+       A.PROFIT_CENTER,A.LONG_SHORT,A.CONTRACT_BOOK,A.POSITION_REF,A.ALLOCATION_REF,A.PRICING_REF,A.CURRENT_POSITION_QUANTITY - A.CURRENT_OPEN_QUANTITY AS TOTAL_REALIZED_QUANTITY,
+       COST.COSTSHORTNAME,C.COST_TYPE,
+       C.CURRENT_BUDGET_PRICE * C.CURRENT_COSTTOHOME_FXRATE AS BUDGET_PRICE,
+       CASE WHEN C.TOTAL_ACTUAL_AMOUNT_INHOME <> 0 THEN C.TOTAL_ACTUAL_AMOUNT_INHOME/A.allocation_qty ELSE NULL END AS ACTUAL_PRICE,
+       (((C.CURRENT_BUDGET_PRICE * C.CURRENT_COSTTOHOME_FXRATE * C.CURRENT_COST_QUANTITY) + C.TOTAL_ACTUAL_AMOUNT_INHOME)/A.allocation_qty)
+           * (A.CURRENT_POSITION_QUANTITY - A.CURRENT_OPEN_QUANTITY) AS COST_AMOUNT
+FROM DAILY_COST_ATTRIBUTION C
+JOIN cxcdata_olam47.DBO.JCCOST COST ON COST.COSTID = CAST(C.COST_ID AS INT)
+JOIN DAILY_PNL_ATTRIBUTION A ON C.LOAD_ID = A.POSITION_ID AND C.ALLOCATION_ID = A.ALLOCATION_ID AND C.EOD_DATE = A.EOD_DATE
+WHERE A.ALLOCATION_TYPE = 'STRING' AND A.CURRENT_OPEN_QUANTITY <> A.CURRENT_POSITION_QUANTITY
+AND C.EOD_DATE =  $P{asofdate} AND C.COST_TYPE NOT IN ('FREIGHT','INSURANCE') AND C.IS_REALIZED_APPLICABLE = 1
+  AND
+  C.CONTRACT_BOOK= $P{ctrbook}
+  AND $X{IN,A.PROFIT_CENTER,pc}
+)T
+)K
+where  1 =case when ABS(K.ACTUALPRICE) = 0 and  ABS(K.BUDGET_PRICE) = 0 then 0 else 1 end
+
+group by K.CONTRACT_BOOK,K.POSITION_REF, K.COSTSHORTNAME,K.PROFIT_CENTER
+
+
+]]>
+		</queryString>
+		<field name="PROFIT_CENTER" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="POSITION_REF" class="java.lang.String"/>
+		<field name="COSTSHORTNAME" class="java.lang.String"/>
+		<field name="COST_AMOUNT_WITH_POL" class="java.math.BigDecimal"/>
+		<field name="TOTAL_REALIZED_QUANTITY" class="java.math.BigDecimal"/>
+		<field name="ACTUALPRICE" class="java.math.BigDecimal"/>
+		<field name="BUDGET_PRICE" class="java.math.BigDecimal"/>
+		<variable name="sum_POL" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{COST_AMOUNT_WITH_POL}]]></variableExpression>
+		</variable>
+		<variable name="sum_tot_qty" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{TOTAL_REALIZED_QUANTITY}]]></variableExpression>
+		</variable>
+		<variable name="Tot_Avg_actual_price" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{ACTUALPRICE}]]></variableExpression>
+		</variable>
+		<variable name="Tot_But_Price" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{BUDGET_PRICE}]]></variableExpression>
+		</variable>
+	</subDataset>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="asofdate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="commodity" class="java.util.Collection"/>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,asofdate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.asofdate
+		  AND $X{IN,DPD.PROFIT_CENTER,pc}
+		  AND $X{IN,DPD.MATERIAL_GROUP ,commodity}
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE asofdate
+		FROM DAILY_PNL_ATTRIBUTION DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+				FROM DAILY_PNL_ATTRIBUTION b
+				WHERE b.EOD_DATE <= $P{asofdate}
+				AND $X{IN,b.PROFIT_CENTER,pc}
+				AND $X{IN, b.COMMODITY , commodity}
+				AND b.CONTRACT_BOOK like $P{ctrbook}
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		AND $X{IN,DPA.PROFIT_CENTER,pc}
+		AND $X{IN,DPA.COMMODITY ,commodity}
+		AND DPA.CONTRACT_BOOK like $P{ctrbook}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' asofdate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM DAILY_PNL_ATTRIBUTION DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM DAILY_PNL_ATTRIBUTION b
+						WHERE b.EOD_DATE <= $P{asofdate}
+						AND $X{IN,b.PROFIT_CENTER,pc}
+						AND $X{IN,b.COMMODITY ,commodity}
+						AND b.CONTRACT_BOOK like $P{ctrbook}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND $X{IN,DPA.PROFIT_CENTER,pc}
+				AND $X{IN, DPA.COMMODITY, commodity}
+				AND DPA.CONTRACT_BOOK like $P{ctrbook}
+				) = 0
+	) Y
+WHERE 0 = 0]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="asofdate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="133" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table" style="table" x="0" y="27" width="555" height="100" uuid="0656b6f3-3d03-4312-9566-37ef4b9c91c8"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="New Dataset 1" uuid="3a00e499-426d-4c3c-9d6e-4fc1789fc9d1">
+						<datasetParameter name="asofdate">
+							<datasetParameterExpression><![CDATA[$F{asofdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="pc">
+							<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="56" uuid="cf26ffe1-1802-45bf-afc2-76da3beee66d">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="56" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="d65ddfbb-7353-457c-8c30-43f7d4559d8f">
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[ BOOK]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="56" height="20" backcolor="#1F497D" uuid="31f7a01b-fe65-459d-9e9e-baa4a9cda6ff"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="56" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="cb3149c1-1f78-4279-a0fa-bf65da17062d"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACT_BOOK}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="225" uuid="28ca7a2c-c76f-4c1e-a94f-f0c542659c57">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="225" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="4ff41f14-aee8-4666-818c-d666cd759938"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[PROFIT CENTER]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="225" height="20" backcolor="#1F497D" uuid="361cf681-311f-4fdd-8360-2c0be1df1f8d"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="225" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="031e57cd-c854-4ee0-ba45-91dbd4e2ebbb"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PROFIT_CENTER}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="57e8becb-9588-473e-8731-9a7ea1c37b4d">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="caa8192b-4f12-4f7e-9702-7d31b3c9f1c3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[POSITION REF]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="20" backcolor="#1F497D" uuid="36641b3a-07f2-4e8e-aaa4-6248b9b41e70"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="76cfa6ed-c106-420d-a018-634835f29f69"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSITION_REF}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="225" uuid="fa1413d0-05c7-4552-a723-7dcbf149ebe1">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="225" height="30" backcolor="#8DB4E2" uuid="f3facc08-b725-4191-830d-3e80ca074c68"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[COST SHORT NAME]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="225" height="20" backcolor="#1F497D" uuid="778f0df3-e0f8-409b-88e4-2107312f094e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement>
+									<font fontName="Arial"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="225" height="20" uuid="b46bde80-ea21-447b-93c6-d3b0184398ad"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COSTSHORTNAME}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="135" uuid="f66f9a46-67ae-43a3-8b55-56044f52c793">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="30" backcolor="#8DB4E2" uuid="ebecd963-3bd7-49d6-a3c1-c71b15f21363"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SUM OF COST AMOUNT WITH POL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="#,##0.00;(#,##0.00)">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FF0000" backcolor="#1F497D" uuid="031ccfd6-1831-4e4b-9db1-e8ebfb3aa442">
+									<printWhenExpression><![CDATA[$V{sum_POL}.intValue() < 0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="13" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sum_POL}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FFFFFF" backcolor="#1F497D" uuid="b0fb3903-e3b2-40df-ae55-cfad123c9f29">
+									<printWhenExpression><![CDATA[$V{sum_POL}.intValue() > 0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sum_POL}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="###0.0000000000;(###0.0000000000)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="135" height="20" uuid="0d8703f9-a4dc-494f-9a5f-951fb983858f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COST_AMOUNT_WITH_POL}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+							<textField pattern="###0.0000000000;(###0.0000000000)" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FF0000" uuid="a68712c1-7c48-4dee-b01a-b8c0e71fa292">
+									<printWhenExpression><![CDATA[$F{COST_AMOUNT_WITH_POL}.intValue()<0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COST_AMOUNT_WITH_POL}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="136" uuid="b0a082ab-cd4e-43e3-b536-7035da061fe0">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="136" height="30" backcolor="#8DB4E2" uuid="cedebdfb-de3c-40e9-b42b-cf1c14171515"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SUM OF TOTAL REALIZED QTY]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="136" height="20" forecolor="#FFFFFF" backcolor="#1F497D" uuid="eca698e5-f5b3-4e14-8c86-58effaa0f7d0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{sum_tot_qty}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="136" height="20" uuid="84c7b37f-378c-4d47-8223-0f7801508556"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TOTAL_REALIZED_QUANTITY}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="135" uuid="73ba05ca-9a16-45be-a261-353e807126f8">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="30" backcolor="#8DB4E2" uuid="06665b90-bfda-41cb-bde8-51b872a72218"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[AVERAGE OF ACTUAL PRICE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="false">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5f555dab-3a61-4166-a429-116d0e3c28f7">
+									<printWhenExpression><![CDATA[$V{Tot_Avg_actual_price}.intValue()>0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Tot_Avg_actual_price}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FF0000" backcolor="#1F497D" uuid="e27d64ec-449b-4de9-98e8-8c757964588b">
+									<printWhenExpression><![CDATA[$V{Tot_Avg_actual_price}.intValue()<0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Tot_Avg_actual_price}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="###0.0000000000;(###0.0000000000)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="135" height="20" uuid="b5705d13-3f18-4445-9daa-076ff21ecc4a"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ACTUALPRICE}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+							<textField pattern="#,##0.0000000000;(#,##0.0000000000)" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement mode="Opaque" x="0" y="0" width="135" height="20" forecolor="#FF0000" uuid="7ae44436-bf59-45f3-917a-6d0320b1cebf">
+									<printWhenExpression><![CDATA[$F{ACTUALPRICE}.intValue()<0]]></printWhenExpression>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ACTUALPRICE}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{pc}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="136" uuid="4098a57f-f764-4d71-bbcb-badd6b0ffb8a">
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#1F497D"/>
+								<leftPen lineColor="#1F497D"/>
+								<bottomPen lineColor="#1F497D"/>
+								<rightPen lineColor="#1F497D"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="136" height="30" backcolor="#8DB4E2" uuid="ccce9b1e-0c54-4557-84a6-4d1c7234bf4d">
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[AVERAGE OF BUDGET PRICE]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="TableBg" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="136" height="20" forecolor="#FFFFFF" backcolor="#1F497D" uuid="9d7c49bf-c87b-48d1-9166-9f79f2646d7f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="13" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Tot_But_Price}]]></textFieldExpression>
+							</textField>
+						</jr:columnFooter>
+						<jr:detailCell style="table_TD" height="20" rowSpan="1">
+							<box>
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="###0.0000000000;(###0.0000000000)" isBlankWhenNull="true" hyperlinkType="ReportExecution" hyperlinkTarget="Blank">
+								<reportElement x="0" y="0" width="136" height="20" uuid="2343ff96-59f6-4926-9695-629cd63a0808"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="11"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BUDGET_PRICE}]]></textFieldExpression>
+								<hyperlinkParameter name="_report">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="asofdate">
+									<hyperlinkParameterExpression><![CDATA[$P{asofdate}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="ctrbook">
+									<hyperlinkParameterExpression><![CDATA[$P{ctrbook}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+								<hyperlinkParameter name="pc">
+									<hyperlinkParameterExpression><![CDATA[$P{drilldown_path}]]></hyperlinkParameterExpression>
+								</hyperlinkParameter>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement mode="Opaque" x="56" y="0" width="1082" height="27" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d9dc07b5-224b-4254-92fe-b2794c120c5a">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($F{CONTRACT_BOOK}.equals("%")? "All" : $F{CONTRACT_BOOK}," - Paper Trade Cost Report as of  ",DATEFORMAT($F{asofdate},"dd-MMM-yy"))]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="0" y="0" width="56" height="27" backcolor="#1F497D" uuid="0d5718b1-9c2c-4b5d-9b45-b0fda7f840ab">
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineStyle="Solid" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#4F81BD"/>
+				</box>
+				<imageExpression><![CDATA["repo:Logo"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

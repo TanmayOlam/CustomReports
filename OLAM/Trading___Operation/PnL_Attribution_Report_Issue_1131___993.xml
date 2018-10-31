@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>PnL_Attribution_Report_Issue_1131___993</name>
+    <version>3</version>
+    <label>PnL Attribution Report</label>
+    <description>PnL Attribution Report (EOD) Report</description>
+    <creationDate>2016-11-18T09:56:10.967+08:00</creationDate>
+    <updateDate>2016-06-08T11:41:52.040+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="mainReportJrxml.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/PnL_Attribution_Report_Issue_1131___993_files</folder>
+            <name>mainReportJrxml</name>
+            <version>1</version>
+            <label>mainReportJrxml</label>
+            <creationDate>2016-11-18T09:56:10.967+08:00</creationDate>
+            <updateDate>2016-06-08T11:32:41.697+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/User_Adhoc_Report/PnL_Attribution_Report_View_Issue_1131</uri>
+    </dataSource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="stateXML.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/PnL_Attribution_Report_Issue_1131___993_files</folder>
+            <name>stateXML</name>
+            <version>1</version>
+            <label>stateXML</label>
+            <creationDate>2016-11-18T09:56:10.967+08:00</creationDate>
+            <updateDate>2016-06-08T11:32:41.697+08:00</updateDate>
+            <fileType>xml</fileType>
+        </localResource>
+    </resource>
+    <alwaysPromptControls>false</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

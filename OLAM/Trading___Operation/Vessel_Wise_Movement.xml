@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>Vessel_Wise_Movement</name>
+    <version>19</version>
+    <label>Vessel Wise Movement</label>
+    <description>Vessel Wise Movement</description>
+    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+    <updateDate>2016-07-29T18:02:13.877+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Vessel_Wise_Movement_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>Vessel_Wise_Movement_</name>
+            <version>1</version>
+            <label>Vessel Wise Movement</label>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T12:37:12.797+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:16:32.433+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:16:32.433+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2016-07-29T18:00:44.450+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2016-07-29T18:00:44.450+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%' AS VALUE,
+'ALL' AS LABEL
+UNION
+SELECT PCNAME AS VALUE,
+       PCNAME AS LABEL
+FROM   JCPROFITCENTER
+WHERE  ISACTIVE = 1
+ORDER  BY LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:21:09.727+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:21:09.727+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>
+SELECT 'ALL' LABEL_FIELD,
+       '%'   VALUE_FIELD
+UNION
+SELECT MBRNAME,
+	   MBRNAME    
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE COMPANYID &gt; 0</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>cmd</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:23:18.903+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/cmd_files</folder>
+                    <name>cmd</name>
+                    <version>0</version>
+                    <label>cmd</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:23:18.903+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT IVITEMID AS VALUE_FIELD,
+       IVITEMID AS LABEL_FIELD,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL_FIELD 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>shipmonth</name>
+            <version>1</version>
+            <label>Shipment Month</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:30:03.057+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/shipmonth_files</folder>
+                    <name>shipmonth</name>
+                    <version>0</version>
+                    <label>shipmonth</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:30:03.057+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   0 AS ORDERBY
+UNION
+SELECT SHORTNAME AS VALUE_FIELD,
+       SHORTNAME AS LABEL_FIELD,
+	   SEQID AS ORDERBY
+FROM   JCSHIPMONTHSMAPPING
+ORDER BY ORDERBY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>transport</name>
+            <version>1</version>
+            <label>Transport</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:42:50.000+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/transport_files</folder>
+                    <name>transport</name>
+                    <version>0</version>
+                    <label>transport</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:42:50.000+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   0 AS ORDERBY
+UNION
+SELECT TRANSPORT AS VALUE_FIELD,
+       TRANSPORT AS LABEL_FIELD,
+	   1 AS ORDERBY
+FROM   BI_VIEW_CONTRACT_MOVEMENT
+WHERE MODE_OF_TRANSPORT = 'VESSEL'
+AND TRANSPORT IS NOT NULL
+ORDER BY ORDERBY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files</folder>
+            <name>tripno</name>
+            <version>1</version>
+            <label>Trip No</label>
+            <description></description>
+            <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+            <updateDate>2015-09-17T13:44:21.340+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/Vessel_Wise_Movement_files/tripno_files</folder>
+                    <name>tripno</name>
+                    <version>0</version>
+                    <label>tripno</label>
+                    <description></description>
+                    <creationDate>2016-11-19T16:05:44.243+08:00</creationDate>
+                    <updateDate>2015-09-17T13:44:21.340+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   0 AS ORDERBY
+UNION
+SELECT TRIP_NO AS VALUE_FIELD,
+       TRIP_NO AS LABEL_FIELD,
+	   1 AS ORDERBY
+FROM   BI_VIEW_CONTRACT_MOVEMENT
+WHERE MODE_OF_TRANSPORT = 'VESSEL'
+AND TRANSPORT IS NOT NULL
+ORDER BY ORDERBY</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

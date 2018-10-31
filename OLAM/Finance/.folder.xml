@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1/OLAM</parent>
+    <name>Finance</name>
+    <label>Finance</label>
+    <description></description>
+    <creationDate>2015-10-06T11:01:56.237+08:00</creationDate>
+    <updateDate>2015-10-05T16:32:00.400+08:00</updateDate>
+    <resource>Debtors_Cycle_Time_Report</resource>
+    <resource>Direct_Cost_Register_Report</resource>
+    <resource>DN_CN_Register</resource>
+    <resource>Invoice_Register</resource>
+    <resource>stock_register_with_aging_report</resource>
+</folder>

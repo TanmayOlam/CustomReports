@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Finance</folder>
+    <name>Direct_Cost_Register_Report</name>
+    <version>64</version>
+    <label>Direct Cost Register Report</label>
+    <description>Direct Cost Register Report</description>
+    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+    <updateDate>2017-08-15T09:59:12.133+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Direct_Cost_Register_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>Direct_Cost_Register_Report_</name>
+            <version>1</version>
+            <label>Direct Cost Register Report</label>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T15:19:59.537+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>pc</name>
+            <version>1</version>
+            <label>Profit Centre</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T15:49:44.187+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T15:49:44.187+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT PCNAME AS VALUE_FIELD,
+       PCNAME AS LABEL_FIELD,
+       2                  AS ORDERBY
+FROM JCPROFITCENTER
+WHERE ISACTIVE =1 
+ORDER  BY ORDERBY,
+          VALUE_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>cmd</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T15:49:44.187+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/cmd_files</folder>
+                    <name>cmd</name>
+                    <version>0</version>
+                    <label>cmd</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T15:49:44.187+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT IVITEMID AS VALUE_FIELD,
+       IVITEMID AS LABEL_FIELD,
+       2                  AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>cp</name>
+            <version>1</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:04:15.370+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/cp_files</folder>
+                    <name>cp</name>
+                    <version>0</version>
+                    <label>cp</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:04:15.370+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT MBRSHORTNAME AS VALUE_FIELD,
+       MBRSHORTNAME AS LABEL_FIELD,
+       2                  AS ORDERBY
+FROM   JCMBR
+WHERE ISACTIVE =1
+AND MBRID &gt; 1000
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>type</name>
+            <version>1</version>
+            <label>Type</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:10:03.140+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/type_files</folder>
+                    <name>type</name>
+                    <version>0</version>
+                    <label>type</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:10:03.140+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT 'Booked' AS VALUE_FIELD,
+       'Booked' AS LABEL_FIELD,
+       2        AS ORDERBY
+UNION
+SELECT 'Unbooked' AS VALUE_FIELD,
+       'Unbooked' AS LABEL_FIELD,
+       3          AS ORDERBY
+UNION
+SELECT 'Last Year' AS VALUE_FIELD,
+       'Last Year' AS LABEL_FIELD,
+       4           AS ORDERBY </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>month</name>
+            <version>1</version>
+            <label>Month</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:17:09.157+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/month_files</folder>
+                    <name>month</name>
+                    <version>0</version>
+                    <label>month</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:17:09.157+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       0     AS ORDERBY
+UNION
+SELECT LEFT(SHORTNAME,3)+'-'+RIGHT(SHORTNAME,4) AS VALUE_FIELD,
+       LEFT(SHORTNAME,3)+'-'+RIGHT(SHORTNAME,4) AS LABEL_FIELD,
+       SEQID                  AS ORDERBY
+FROM   JCSHIPMONTHSMAPPING
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>sterm</name>
+            <version>1</version>
+            <label>Sales Incoterm</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:17:09.157+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/sterm_files</folder>
+                    <name>sterm</name>
+                    <version>0</version>
+                    <label>sterm</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:17:09.157+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       0     AS ORDERBY
+UNION
+SELECT CTRBASISID AS VALUE_FIELD,
+       CTRBASISID AS LABEL_FIELD,
+       1                  AS ORDERBY
+FROM   JCCTRBASIS
+where ISINCOTERM =1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>pterm</name>
+            <version>1</version>
+            <label>Purchase Incoterm</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/pterm_files</folder>
+                    <name>pterm</name>
+                    <version>0</version>
+                    <label>pterm</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       0     AS ORDERBY
+UNION
+SELECT CTRBASISID AS VALUE_FIELD,
+       CTRBASISID AS LABEL_FIELD,
+       1                  AS ORDERBY
+FROM   JCCTRBASIS
+where ISINCOTERM =1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>trader</name>
+            <version>1</version>
+            <label>Trader</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/trader_files</folder>
+                    <name>trader</name>
+                    <version>0</version>
+                    <label>trader</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT USERNAME AS VALUE_FIELD,
+       USERNAME AS LABEL_FIELD,
+       2                  AS ORDERBY
+FROM   JC_USER
+WHERE ACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>opsuser</name>
+            <version>1</version>
+            <label>Operation User</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/opsuser_files</folder>
+                    <name>opsuser</name>
+                    <version>0</version>
+                    <label>opsuser</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:24:27.703+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT FIRST_NAME+' '+LAST_NAME AS VALUE_FIELD,
+       FIRST_NAME+' '+LAST_NAME AS LABEL_FIELD,
+       2                  AS ORDERBY
+FROM   JC_USER
+WHERE ACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>filter</name>
+            <version>1</version>
+            <label>Show Cost</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2015-11-06T16:25:19.317+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/filter_files</folder>
+                    <name>filter</name>
+                    <version>0</version>
+                    <label>filter</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2015-11-06T16:25:19.317+08:00</updateDate>
+                    <item>
+                        <itemLabel>ALL</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">0</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Actual Greater than Budget</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>cbk</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description>contract book</description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2016-08-23T14:34:13.977+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/cbk_files</folder>
+                    <name>cbk</name>
+                    <version>0</version>
+                    <label>cbk</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2016-08-23T14:34:13.977+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 
+	NULL AS VALUE,
+	'ALL' AS LABEL
+UNION
+SELECT 
+	CTRBOOKID AS VALUE,
+	CTRBOOKCODE AS LABEL
+FROM CTRBOOK
+WHERE CTRBOOKID NOT IN (-100,0)
+ORDER BY VALUE</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files</folder>
+            <name>financial_month_filter</name>
+            <version>1</version>
+            <label>Financial Month</label>
+            <description></description>
+            <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+            <updateDate>2016-08-23T14:34:13.977+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Finance/Direct_Cost_Register_Report_files/financial_month_filter_files</folder>
+                    <name>financial_month_filter</name>
+                    <version>0</version>
+                    <label>financial_month_filter</label>
+                    <description></description>
+                    <creationDate>2018-10-03T13:15:06.017+08:00</creationDate>
+                    <updateDate>2016-08-23T14:34:13.977+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DISTINCT
+	A.PERIOD AS VALUE,
+	C.SHORTNAME AS LABEL
+FROM CTRCOSTMECHDR A
+	JOIN XSMONTHENDSTATUS B
+		ON B.STATUSID = A.STATUSID
+	JOIN JCSHIPMONTHSMAPPING C
+		ON C.MONTHNUMBER = A.PERIOD
+WHERE B.STATUSID &lt;&gt; 3
+	AND A.CTRBOOKID LIKE ISNULL($P{cbk}, '%')
+ORDER BY A.PERIOD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

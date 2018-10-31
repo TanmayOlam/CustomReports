@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Trading___Operation</folder>
+    <name>broker_listing_report</name>
+    <version>15</version>
+    <label>Broker Listing</label>
+    <description>Broker Listing</description>
+    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+    <updateDate>2015-10-19T12:43:09.540+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="broker_listing_report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>broker_listing_report_</name>
+            <version>1</version>
+            <label>Broker_Listing_Static_Report</label>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T20:59:22.953+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>contract_from_date</name>
+            <version>1</version>
+            <label>From Contract Date</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:05:19.150+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/contract_from_date_files</folder>
+                    <name>contract_from_date</name>
+                    <version>0</version>
+                    <label>contract_from_date</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:05:19.150+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>contract_to_date</name>
+            <version>1</version>
+            <label>To Contract Date</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/contract_to_date_files</folder>
+                    <name>contract_to_date</name>
+                    <version>0</version>
+                    <label>contract_to_date</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT MBRNAME      AS VALUE_FIELD,
+       MBRSHORTNAME AS LABEL_FIELD,
+       2            AS ORDERBY
+FROM   (SELECT DISTINCT COMPANYID,
+                        MBRSHORTNAME,
+                        MBRNAME
+        FROM   FXCTR F
+               JOIN JCMBR M
+                 ON F.COMPANYID = M.MBRID
+        WHERE  M.ISACTIVE = 1) A
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS SEQ
+UNION
+SELECT CBK.NAME AS VALUE_FIELD,
+       CBK.NAME AS LABEL_FIELD,
+       2        AS SEQ
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+       AND CBK.ACTIVE = 1
+ORDER  BY SEQ, LABEL_FIELD
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>profitcenter</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/profitcenter_files</folder>
+                    <name>profitcenter</name>
+                    <version>0</version>
+                    <label>profitcenter</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:13:28.960+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT PCNAME AS VALUE_FIELD,
+       PCNAME AS LABEL_FIELD,
+       2      AS ORDERBY
+FROM   JCPROFITCENTER
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>trader</name>
+            <version>1</version>
+            <label>Trader</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:15:36.610+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/trader_files</folder>
+                    <name>trader</name>
+                    <version>0</version>
+                    <label>trader</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:15:36.610+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT ID                                         AS VALUE_FIELD,
+       FIRST_NAME + ' ' + COALESCE(LAST_NAME, '') AS LABEL_FIELD,
+       2                                          AS ORDERBY
+FROM   JC_USER
+WHERE  ACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>broker</name>
+            <version>1</version>
+            <label>Broker</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:18:06.963+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/broker_files</folder>
+                    <name>broker</name>
+                    <version>0</version>
+                    <label>broker</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:18:06.963+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+       1     AS ORDERBY
+UNION
+SELECT B.MBRSHORTNAME AS VALUE_FIELD,
+       B.MBRNAME      AS LABEL_FIELD,
+       2              AS ORDERBY
+FROM   JCMBRFUTBROKER A
+       JOIN JCMBR B
+         ON A.MBRID = B.MBRID
+WHERE  B.ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL_FIELD </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>ctrtype</name>
+            <version>1</version>
+            <label>Trade Type</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:21:09.927+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/ctrtype_files</folder>
+                    <name>ctrtype</name>
+                    <version>0</version>
+                    <label>ctrtype</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:21:09.927+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%' AS VALUE , 'ALL' AS LABEL
+UNION
+SELECT 'Futures' AS VALUE, 'Futures' AS LABEL
+UNION
+SELECT 'Options' AS VALUE, 'Options' AS LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>ctrterm</name>
+            <version>1</version>
+            <label>Contract Term</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:28:42.713+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/ctrterm_files</folder>
+                    <name>ctrterm</name>
+                    <version>0</version>
+                    <label>ctrterm</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:28:42.713+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE,
+       'ALL' AS LABEL,
+       1     AS ORDERBY
+UNION
+SELECT TERMID AS VALUE,
+       TERMID AS LABEL,
+       2 AS ORDERBY
+FROM   JCCTRTERM
+ORDER  BY ORDERBY,
+          LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files</folder>
+            <name>trade_type</name>
+            <version>1</version>
+            <label>Call/Put</label>
+            <description></description>
+            <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+            <updateDate>2015-09-28T21:31:15.923+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Trading___Operation/broker_listing_report_files/trade_type_files</folder>
+                    <name>trade_type</name>
+                    <version>0</version>
+                    <label>trade_type</label>
+                    <description></description>
+                    <creationDate>2017-01-14T03:42:51.067+08:00</creationDate>
+                    <updateDate>2015-09-28T21:31:15.923+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%' AS VALUE , 'ALL' AS LABEL
+UNION
+SELECT 'Call' AS VALUE, 'Call' AS LABEL
+UNION
+SELECT 'Put' AS VALUE, 'Put' AS LABEL
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

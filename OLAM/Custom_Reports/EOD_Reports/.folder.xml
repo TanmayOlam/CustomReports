@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1/OLAM/Custom_Reports</parent>
+    <name>EOD_Reports</name>
+    <label>EOD Reports</label>
+    <description>EOD Reports</description>
+    <creationDate>2018-03-28T13:59:35.180+08:00</creationDate>
+    <updateDate>2018-03-28T13:59:35.180+08:00</updateDate>
+    <resource>Market_Report</resource>
+    <resource>Pending_Purchase_and_Sales_report</resource>
+    <resource>PnL_Attribution_Report_1</resource>
+    <resource>PnL_Change</resource>
+    <resource>PnL_Summary_Reports_Consolidated</resource>
+    <resource>Trading_Position_Summary</resource>
+</folder>

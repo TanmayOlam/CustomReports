@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PnL Attribution Report Issue 1131 &amp; 993" pageWidth="612" pageHeight="792" orientation="Landscape" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" isIgnorePagination="true" uuid="16cb343a-2978-440e-810e-3235aef35166">
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.html.border.collapse" value="separate"/>
+	<property name="net.sf.jasperreports.export.docx.frames.as.nested.tables" value="false"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.actual.size" value="true"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.group.indent" value="0"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.min.group.label.width" value="100"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.detail.band.height" value="25"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.header.band.height" value="25"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.row.header.width" value="125"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.cell.width" value="100"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.cell.height" value="20"/>
+	<property name="com.jaspersoft.ji.adhoc" value="1"/>
+	<property name="com.jaspersoft.ji.adhoc.preferredDataStrategy" value="domainDataStrategy"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<property name="net.sf.jasperreports.text.truncate.suffix" value="..."/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<import value="com.jaspersoft.ji.adhoc.service.AdhocEngineServiceImpl"/>
+	<import value="com.jaspersoft.ji.adhoc.jr.AdhocReportUtils"/>
+	<style name="ReportDefault" isDefault="true" mode="Transparent" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11">
+		<box>
+			<pen lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableBaseFrameStyle" mode="Transparent">
+		<box padding="0">
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableFrameStyle" style="TableBaseFrameStyle">
+		<box padding="1">
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnHeaderFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnFooterFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnHeaderTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#D5DEE8" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="1.0" lineStyle="Solid"/>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<rightPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="TableGroupHeaderFrameStyle" style="TableBaseFrameStyle" mode="Opaque" backcolor="#E3E9EF">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="TableGroupHeaderTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#E3E9EF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableGroupFooterFrameStyle" style="TableBaseFrameStyle" mode="Opaque" backcolor="#E7ECF2">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="TableGroupFooterTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#E7ECF2" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="TableSummaryFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableSummaryTextNoBorderStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" fontName="DejaVu Sans" isBold="true">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="TableSummaryTextStyle" style="TableSummaryTextNoBorderStyle">
+		<box>
+			<pen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="TableTitleFrameStyle" style="TableFrameStyle">
+		<box topPadding="0" bottomPadding="0">
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableTitleTextStyle" style="ReportDefault" mode="Opaque" forecolor="#333333" backcolor="#FFFFFF" hAlign="Center" fontSize="18" isBold="false">
+		<box bottomPadding="8">
+			<pen lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableDetailFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableDetailTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="false">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="1.0" lineStyle="Solid"/>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="ChartReportTitle" style="ReportDefault" mode="Opaque" forecolor="#333333" backcolor="#FFFFFF" hAlign="Center" fontSize="18" isBold="false">
+		<box>
+			<pen lineColor="#000000"/>
+			<topPen lineWidth="0.0" lineStyle="Solid"/>
+		</box>
+	</style>
+	<style name="ChartTitle" forecolor="#000000" fontName="DejaVu Sans" fontSize="12" isBold="true"/>
+	<style name="ChartSubtitle" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartLegend" forecolor="#000000" backcolor="#FFFFFF" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartSeriesColor0" backcolor="#87C4FE"/>
+	<style name="ChartSeriesColor1" backcolor="#E96270"/>
+	<style name="ChartSeriesColor2" backcolor="#D1D1D1"/>
+	<style name="ChartSeriesColor3" backcolor="#FFEE99"/>
+	<style name="ChartSeriesColor4" backcolor="#6164FF"/>
+	<style name="ChartSeriesColor5" backcolor="#B0E992"/>
+	<style name="ChartSeriesColor6" backcolor="#AE9CEA"/>
+	<style name="ChartSeriesColor7" backcolor="#F5B05E"/>
+	<style name="ChartSeriesColor8" backcolor="#589EE1"/>
+	<style name="ChartSeriesColor9" backcolor="#AE4E59"/>
+	<style name="ChartSeriesColor10" backcolor="#747474"/>
+	<style name="ChartSeriesColor11" backcolor="#E2DC77"/>
+	<style name="ChartSeriesColor12" backcolor="#4749A5"/>
+	<style name="ChartSeriesColor13" backcolor="#81B963"/>
+	<style name="ChartSeriesColor14" backcolor="#7764B4"/>
+	<style name="ChartSeriesColor15" backcolor="#F27B4C"/>
+	<style name="ChartCategoryAxisLabelFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="11" isBold="true"/>
+	<style name="ChartCategoryAxisTickFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartValueAxisLabelFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="11" isBold="true"/>
+	<style name="ChartValueAxisTickFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartContext" backcolor="#D1CA67"/>
+	<style name="CrosstabElementStyle" mode="Transparent" forecolor="#000033" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="DejaVu Sans" fontSize="11">
+		<box bottomPadding="1" rightPadding="1">
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="CrosstabBaseCellStyle" mode="Transparent">
+		<box padding="0">
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabBaseTextStyle" mode="Opaque" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Top" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<rightPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="CrosstabTitleTextStyle" style="CrosstabBaseTextStyle" forecolor="#333333" fontSize="18" isBold="false">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="CrosstabHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D5DEE8"/>
+	<style name="CrosstabHeaderLabelStyle" style="CrosstabHeaderTextStyle" mode="Transparent">
+		<box>
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabMeasureHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D3C8EB"/>
+	<style name="CrosstabMeasureHeaderLabelStyle" style="CrosstabMeasureHeaderTextStyle" mode="Transparent">
+		<box>
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabColumnMeasureHeaderTextStyle" style="CrosstabMeasureHeaderTextStyle"/>
+	<style name="CrosstabRowMeasureHeaderTextStyle" style="CrosstabMeasureHeaderTextStyle" isBold="false"/>
+	<style name="CrosstabDimensionHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#E7ECF2" isBold="false"/>
+	<style name="CrosstabDetailTextStyle" style="CrosstabBaseTextStyle" backcolor="#FFFFFF" hAlign="Right" isBold="false">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{CROSSTAB_TOTAL_DISCRIMINATOR}]]></conditionExpression>
+			<style backcolor="#F0F4F8" hAlign="Right" isBold="true">
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+				</box>
+			</style>
+		</conditionalStyle>
+	</style>
+	<style name="CrosstabDummyHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D4D4D4"/>
+	<parameter name="REPORT_TITLE" class="java.lang.String" isForPrompting="false">
+		<property name="net.sf.jasperreports.data.cache.included" value="true"/>
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Collator" class="java.text.Collator" isForPrompting="false">
+		<defaultValueExpression><![CDATA[java.text.Collator.getInstance($P{REPORT_LOCALE})]]></defaultValueExpression>
+	</parameter>
+	<field name="PNL_ATTRIBUTION.ADJUSTMENT_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[ADJUSTMENT_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_IF_or_and_equals_IS_FX_CLOSEOUT_1_equals_INSTRUMENT_TYPE_FOREX_notEqual_INSTRUMENT_TYPE_FOREX_IF_equals_LONG_SHORT_LONG_REALIZED_QTY_0_REALIZED_QTY_0_IF_or_and_equals_IS_FX_CLOSEOUT_1_equals_INSTRUMENT_TYPE_FOREX_notEqual_INSTRUMENT_TYPE_FOREX_IF_equals_LONG_SHORT_LONG_REALIZED_QTY_0_REALIZED_QTY_IF_IsNull_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_0_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_IF_or_and_equals_IS_FX_CLOSEOUT_1_equals_INSTRUMENT_TYPE_FOREX_notEqual_INSTRUMENT_TYPE_FOREX_IF_equals_LONG_SHORT_LONG_REALIZED_QTY_0_REALIZED_QTY_0_IF_or_and_equals_IS_FX_CLOSEOUT_1_equals_INSTRUMENT_TYPE_FOREX_notEqual_INSTRUMENT_TYPE_FOREX_IF_equals_LONG_SHORT_LONG_REALIZED_QTY_0_REALIZED_QTY_IF_IsNull_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_0_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY" class="java.math.BigDecimal"/>
+	<field name="Sum_BASIS_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="Sum_FOREX_LOSS_ANDD_GAIN_ON_BASIS" class="java.math.BigDecimal"/>
+	<field name="OpenQuantity" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="IF(PNL_ATTRIBUTION.INSTRUMENT_TYPE == &apos;OPTION&apos;, (IF(IsNull(PNL_ATTRIBUTION.OPEN_QTY), 0, PNL_ATTRIBUTION.OPEN_QTY) + IF(IsNull(PNL_ATTRIBUTION.NEW_QTY), 0, PNL_ATTRIBUTION.NEW_QTY)) * PNL_ATTRIBUTION.DELTA, IF(IsNull(PNL_ATTRIBUTION.OPEN_QTY), 0, PNL_ATTRIBUTION.OPEN_QTY) + IF(IsNull(PNL_ATTRIBUTION.NEW_QTY), 0, PNL_ATTRIBUTION.NEW_QTY))"/>
+		<fieldDescription><![CDATA[OpenQuantity]]></fieldDescription>
+	</field>
+	<field name="PROFIT_CENTER" class="java.lang.String"/>
+	<field name="ITDPNL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.INCEPTION_TO_DATE_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[ITDPNL]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.DELTA" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[DELTA]]></fieldDescription>
+	</field>
+	<field name="Sum_BASIS_MARKET_SHIFT_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="ExplainedPnL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.EXPLAINED_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[ExplainedPnL]]></fieldDescription>
+	</field>
+	<field name="Sum_add_INCEPTION_TO_DATE_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="ATTRIBUTION_DATE" class="java.util.Date"/>
+	<field name="MarketShift" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="Sum(PNL_ATTRIBUTION.COMMODITY_MARKET_SHIFT_PNL_IN_RPT) + Sum(PNL_ATTRIBUTION.BASIS_MARKET_SHIFT_PNL_IN_RPT)"/>
+		<fieldDescription><![CDATA[MarketShift]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.ATTRIBUTION_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[ATTRIBUTION_TYPE]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.BASIS_MARKET_SHIFT_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[BASIS_MARKET_SHIFT_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_add_REALIZED_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.COMMODITY_MARKET_SHIFT_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[COMMODITY_MARKET_SHIFT_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.BASIS_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[BASIS_CHANGE_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="TotalQuantity" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="IF(PNL_ATTRIBUTION.INSTRUMENT_TYPE == &apos;OPTION&apos;, (IF(IsNull(RealizedQuantity), 0, RealizedQuantity) + IF(IsNull(OpenQuantity), 0, OpenQuantity)) * PNL_ATTRIBUTION.DELTA, IF(IsNull(RealizedQuantity), 0, RealizedQuantity) + IF(IsNull(OpenQuantity), 0, OpenQuantity))"/>
+		<fieldDescription><![CDATA[TotalQuantity]]></fieldDescription>
+	</field>
+	<field name="Sum_COST_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.CONTRACT_BOOK" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_BASIS_MARKET" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[FOREX_LOSS_ANDD_GAIN_ON_BASIS_MARKET]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.OPEN_QTY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[OPEN_QTY]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.REALIZED_QTY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[REALIZED_QTY]]></fieldDescription>
+	</field>
+	<field name="INSTRUMENT_TYPE" class="java.lang.String"/>
+	<field name="PNL_ATTRIBUTION.UNEXPLAINED_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[UNEXPLAINED_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="FXShift" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="Sum(PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_COMMODITY_MARKET) + Sum(PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_BASIS_MARKET) + Sum(PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_BASIS) + Sum(PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_COMMODITY)"/>
+		<fieldDescription><![CDATA[FXShift]]></fieldDescription>
+	</field>
+	<field name="SHIPMENT_MONTH" class="java.lang.String"/>
+	<field name="Sum_IF_equals_INSTRUMENT_TYPE_OPTION_multiply_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY_DELTA_add_IF_IsNull_OPEN_QTY_0_OPEN_QTY_IF_IsNull_NEW_QTY_0_NEW_QTY" class="java.math.BigDecimal"/>
+	<field name="PriceAmendment" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="Sum(PNL_ATTRIBUTION.BASIS_CHANGE_PNL_IN_RPT) + Sum(PNL_ATTRIBUTION.PRICE_CHANGE_PNL_IN_RPT)"/>
+		<fieldDescription><![CDATA[PriceAmendment]]></fieldDescription>
+	</field>
+	<field name="Sum_ADJUSTMENT_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="QuantityAmendment" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.QUANTITY_AMENDMENT + 0"/>
+		<fieldDescription><![CDATA[QuantityAmendment]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_COMMODITY_MARKET" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[FOREX_LOSS_ANDD_GAIN_ON_COMMODITY_MARKET]]></fieldDescription>
+	</field>
+	<field name="Sum_BASIS_ADJUSTMENT_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.REALIZED_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[REALIZED_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.PROFIT_CENTER" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.BASIS_ADJUSTMENT_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[BASIS_ADJUSTMENT_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="PnLShift" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="Sum(PNL_ATTRIBUTION.ADJUSTMENT_PNL_IN_RPT) + Sum(PNL_ATTRIBUTION.BASIS_ADJUSTMENT_PNL_IN_RPT)"/>
+		<fieldDescription><![CDATA[PnLShift]]></fieldDescription>
+	</field>
+	<field name="Sum_add_QUANTITY_AMENDMENT_0" class="java.math.BigDecimal"/>
+	<field name="Sum_add_VOIDED_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="RealizedPnL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.REALIZED_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[RealizedPnL]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.EXPECTED_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[EXPECTED_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.NEW_QTY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[NEW_QTY]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.COST_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[COST_CHANGE_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_COMMODITY_MARKET_SHIFT_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.PRICE_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[PRICE_CHANGE_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="RealizedQuantity" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="IF((PNL_ATTRIBUTION.IS_FX_CLOSEOUT == 1 and PNL_ATTRIBUTION.INSTRUMENT_TYPE == &apos;FOREX&apos;) or PNL_ATTRIBUTION.INSTRUMENT_TYPE != &apos;FOREX&apos;, IF(PNL_ATTRIBUTION.LONG_SHORT == &apos;LONG&apos;, PNL_ATTRIBUTION.REALIZED_QTY, 0), PNL_ATTRIBUTION.REALIZED_QTY)"/>
+		<fieldDescription><![CDATA[RealizedQuantity]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.COMMODITY" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.INCEPTION_TO_DATE_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[INCEPTION_TO_DATE_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_PRICE_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="COMMODITY" class="java.lang.String"/>
+	<field name="Sum_FOREX_LOSS_ANDD_GAIN_ON_COMMODITY_MARKET" class="java.math.BigDecimal"/>
+	<field name="Sum_FOREX_LOSS_ANDD_GAIN_ON_COMMODITY" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.IS_FX_CLOSEOUT" class="java.lang.Integer">
+		<fieldDescription><![CDATA[IS_FX_CLOSEOUT]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.QUANTITY_AMENDMENT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[QUANTITY_AMENDMENT]]></fieldDescription>
+	</field>
+	<field name="Sum_NEW_QTY" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_COMMODITY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[FOREX_LOSS_ANDD_GAIN_ON_COMMODITY]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.FOREX_LOSS_ANDD_GAIN_ON_BASIS" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[FOREX_LOSS_ANDD_GAIN_ON_BASIS]]></fieldDescription>
+	</field>
+	<field name="UnexplainedPnL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.UNEXPLAINED_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[UnexplainedPnL]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.EXPLAINED_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[EXPLAINED_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_add_EXPLAINED_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.VOIDED_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[VOIDED_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="Sum_IF_equals_ATTRIBUTION_TYPE_NEW_EXPLAINED_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="Sum_EXPECTED_PNL_IN_RPT" class="java.math.BigDecimal"/>
+	<field name="NewPNL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="IF(PNL_ATTRIBUTION.ATTRIBUTION_TYPE == &apos;NEW&apos;, PNL_ATTRIBUTION.EXPLAINED_PNL_IN_RPT, 0)"/>
+		<fieldDescription><![CDATA[NewPNL]]></fieldDescription>
+	</field>
+	<field name="Sum_IF_or_and_equals_IS_FX_CLOSEOUT_1_equals_INSTRUMENT_TYPE_FOREX_notEqual_INSTRUMENT_TYPE_FOREX_IF_equals_LONG_SHORT_LONG_REALIZED_QTY_0_REALIZED_QTY" class="java.math.BigDecimal"/>
+	<field name="DailyPnL" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.EXPECTED_PNL_IN_RPT"/>
+		<fieldDescription><![CDATA[DailyPnL]]></fieldDescription>
+	</field>
+	<field name="QuantityChange" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.QUANTITY_CHANGE_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[QuantityChange]]></fieldDescription>
+	</field>
+	<field name="Sum_add_QUANTITY_CHANGE_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" class="java.lang.String">
+		<property name="udds_mapping" value="ROW_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="Sum_FOREX_LOSS_ANDD_GAIN_ON_BASIS_MARKET" class="java.math.BigDecimal"/>
+	<field name="Sum_add_UNEXPLAINED_PNL_IN_RPT_0" class="java.math.BigDecimal"/>
+	<field name="PNL_ATTRIBUTION.LONG_SHORT" class="java.lang.String">
+		<fieldDescription><![CDATA[LONG_SHORT]]></fieldDescription>
+	</field>
+	<field name="CostChange" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="Sum(PNL_ATTRIBUTION.COST_CHANGE_PNL_IN_RPT) + 0"/>
+		<fieldDescription><![CDATA[CostChange]]></fieldDescription>
+	</field>
+	<field name="PNL_ATTRIBUTION.QUANTITY_CHANGE_PNL_IN_RPT" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[QUANTITY_CHANGE_PNL_IN_RPT]]></fieldDescription>
+	</field>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="VoidDefualt" class="java.math.BigDecimal">
+		<property name="adhoc.expression" value="PNL_ATTRIBUTION.VOIDED_PNL_IN_RPT + 0"/>
+		<fieldDescription><![CDATA[VoidDefualt]]></fieldDescription>
+	</field>
+	<field name="Measures" class="java.lang.String">
+		<property name="udds_mapping" value="COLUMN_LEVEL"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="Measures__IDENTIFIER" class="java.lang.String">
+		<property name="udds_mapping" value="COLUMN_MEASURE_ID"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="OpenQuantity_m0" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Open Quantity"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="RealizedQuantity_m1" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Realized Quantity "/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="TotalQuantity_m2" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Total Quantity"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="QuantityAmendment_m3" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Quantity Amendment"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.NEW_QTY_m4" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="New Quantity"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="ITDPNL_m5" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="ICD PNL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="DailyPnL_m6" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Daily PnL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="ExplainedPnL_m7" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Explained PnL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="RealizedPnL_m8" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Realized PnL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="MarketShift_m9" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Market Shift"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="FXShift_m10" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="FX Shift"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="NewPNL_m11" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="New PNL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="PriceAmendment_m12" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Price Amendment"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="CostChange_m13" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Cost Change"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="QuantityChange_m14" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Quantity Change"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="VoidDefualt_m15" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Void/Defualt"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="PnLShift_m16" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="PnL Shift"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="UnexplainedPnL_m17" class="java.math.BigDecimal">
+		<property name="udds_mapping" value="MEASURE"/>
+		<property name="adhoc.display" value="Unexplained PnL"/>
+		<property name="format" value="#,##0.00"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.CONTRACT_BOOK__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE__RAW" class="java.lang.Comparable">
+		<property name="udds_mapping" value="ROW_RAW_VALUE"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.PROFIT_CENTER__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.COMMODITY__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH__DISCRIMINATOR" class="java.lang.Boolean">
+		<property name="udds_mapping" value="ROW_DISCRIMINATOR"/>
+		<property name="adhoc.display"/>
+		<property name="format"/>
+	</field>
+	<title>
+		<band splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement key="staticText" style="CrosstabTitleTextStyle" x="0" y="0" width="572" height="0" uuid="cee3f26a-7260-4618-8c39-c72673f96546">
+					<printWhenExpression><![CDATA[$P{REPORT_TITLE} != null && $P{REPORT_TITLE}.length() > 0]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{REPORT_TITLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<crosstab>
+				<reportElement style="CrosstabElementStyle" x="0" y="0" width="572" height="25" uuid="27173b61-7bc4-4dac-82f5-d53eeb228dde"/>
+				<crosstabParameter name="CrosstabRowGroupsCount" class="java.lang.Integer">
+					<parameterValueExpression><![CDATA[new Integer(6)]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="CrosstabColumnGroupsCount" class="java.lang.Integer">
+					<parameterValueExpression><![CDATA[new Integer(1)]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="CrosstabMeasureIndexes" class="java.util.Map">
+					<parameterValueExpression><![CDATA[org.apache.commons.collections.MapUtils.putAll(new java.util.HashMap(), new String[]{"OpenQuantity_m0","0","RealizedQuantity_m1","1","TotalQuantity_m2","2","QuantityAmendment_m3","3","PNL_ATTRIBUTION.NEW_QTY_m4","4","ITDPNL_m5","5","DailyPnL_m6","6","ExplainedPnL_m7","7","RealizedPnL_m8","8","MarketShift_m9","9","FXShift_m10","10","NewPNL_m11","11","PriceAmendment_m12","12","CostChange_m13","13","QuantityChange_m14","14","VoidDefualt_m15","15","PnLShift_m16","16","UnexplainedPnL_m17","17"})]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabDataset isDataPreSorted="true"/>
+				<rowGroup name="PNL_ATTRIBUTION.CONTRACT_BOOK" width="125" headerPosition="Stretch">
+					<bucket class="java.lang.Comparable">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap(($F{PNL_ATTRIBUTION.CONTRACT_BOOK}), $F{PNL_ATTRIBUTION.CONTRACT_BOOK__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+						<comparatorExpression><![CDATA[$P{Collator}]]></comparatorExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="b95d0ff1-e5cc-4bd9-ab33-eaab870ccbbd"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.CONTRACT_BOOK}]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.CONTRACT_BOOK}]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" width="125" headerPosition="Stretch">
+					<bucket class="net.sf.jasperreports.engine.util.DisplayComparableValue">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap((new net.sf.jasperreports.engine.util.DisplayComparableValue($F{PNL_ATTRIBUTION.ATTRIBUTION_DATE__RAW}, $F{PNL_ATTRIBUTION.ATTRIBUTION_DATE})), $F{PNL_ATTRIBUTION.ATTRIBUTION_DATE__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" pattern="medium,hide" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="4ddf6235-d4bf-4086-9adc-30d4a47bd072"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.ATTRIBUTION_DATE}.label()]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.ATTRIBUTION_DATE}.label()]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PNL_ATTRIBUTION.PROFIT_CENTER" width="125" headerPosition="Stretch">
+					<bucket class="java.lang.Comparable">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap(($F{PNL_ATTRIBUTION.PROFIT_CENTER}), $F{PNL_ATTRIBUTION.PROFIT_CENTER__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+						<comparatorExpression><![CDATA[$P{Collator}]]></comparatorExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="cc46714d-5565-4a78-b791-1884818716a7"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.PROFIT_CENTER}]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.PROFIT_CENTER}]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PNL_ATTRIBUTION.COMMODITY" width="125" headerPosition="Stretch">
+					<bucket class="java.lang.Comparable">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap(($F{PNL_ATTRIBUTION.COMMODITY}), $F{PNL_ATTRIBUTION.COMMODITY__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+						<comparatorExpression><![CDATA[$P{Collator}]]></comparatorExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="3876d09c-9b7d-4850-afc6-a67a12eb0bbb"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.COMMODITY}]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.COMMODITY}]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" width="125" headerPosition="Stretch">
+					<bucket class="java.lang.Comparable">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap(($F{PNL_ATTRIBUTION.INSTRUMENT_TYPE}), $F{PNL_ATTRIBUTION.INSTRUMENT_TYPE__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+						<comparatorExpression><![CDATA[$P{Collator}]]></comparatorExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="7682dabb-bcf0-4e37-a8b9-c42ba81f47ca"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.INSTRUMENT_TYPE}]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.INSTRUMENT_TYPE}]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PNL_ATTRIBUTION.SHIPMENT_MONTH" width="125" headerPosition="Stretch">
+					<bucket class="java.lang.Comparable">
+						<bucketExpression><![CDATA[net.sf.jasperreports.crosstabs.fill.calculation.DefaultBucketValueOrderDecorator.wrap(($F{PNL_ATTRIBUTION.SHIPMENT_MONTH}), $F{PNL_ATTRIBUTION.SHIPMENT_MONTH__DISCRIMINATOR} ? net.sf.jasperreports.crosstabs.fill.calculation.BucketValueOrderDecorator.OrderPosition.LAST : null)]]></bucketExpression>
+						<comparatorExpression><![CDATA[$P{Collator}]]></comparatorExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabDimensionHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="9c95fc7a-f090-449e-80f6-4f30fd2cc6be"/>
+								<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.SHIPMENT_MONTH}]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{PNL_ATTRIBUTION.SHIPMENT_MONTH}]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="Measures" height="20" headerPosition="Stretch">
+					<bucket class="net.sf.jasperreports.engine.util.DisplayComparableValue">
+						<bucketExpression><![CDATA[new net.sf.jasperreports.engine.util.DisplayComparableValue($F{Measures__IDENTIFIER}, $F{Measures})]]></bucketExpression>
+						<comparatorExpression><![CDATA[new net.sf.jasperreports.engine.util.DisplayValueLabelComparator($P{Collator})]]></comparatorExpression>
+					</bucket>
+					<crosstabHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="20" uuid="1537ded1-6381-44a3-bf1e-1ea805fab090">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="0"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Contract Book"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Contract Book"]]></hyperlinkTooltipExpression>
+							</textField>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="125" y="0" width="125" height="20" uuid="7decf714-0285-4f8a-ae20-a08eb16b6518">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="1"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Date"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Date"]]></hyperlinkTooltipExpression>
+							</textField>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="250" y="0" width="125" height="20" uuid="0607eb15-1870-4eb0-8301-13361a15deed">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="2"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Profit Center"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Profit Center"]]></hyperlinkTooltipExpression>
+							</textField>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="375" y="0" width="125" height="20" uuid="3c999afc-d3a9-432a-ba82-d12121da8321">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="3"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Underlying"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Underlying"]]></hyperlinkTooltipExpression>
+							</textField>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="500" y="0" width="125" height="20" uuid="9e2a4d92-e71e-4bcb-b051-adc3c558f3a4">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="4"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Instrument Type"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Instrument Type"]]></hyperlinkTooltipExpression>
+							</textField>
+							<textField isStretchWithOverflow="true">
+								<reportElement style="CrosstabHeaderTextStyle" stretchType="RelativeToBandHeight" x="625" y="0" width="125" height="20" uuid="39366112-74f7-4b1d-84a7-472711edcd5c">
+									<property name="net.sf.jasperreports.text.truncate.at.char" value="true"/>
+									<property name="net.sf.jasperreports.crosstab.row.group.column.header" value="5"/>
+								</reportElement>
+								<textFieldExpression><![CDATA["Shipment Month"]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA["Shipment Month"]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabHeader>
+					<crosstabColumnHeader>
+						<cellContents style="CrosstabBaseCellStyle">
+							<box padding="0"/>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="CrosstabColumnMeasureHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="e2316390-f3ee-44c6-a5ee-9cf3bff95337">
+									<propertyExpression name="net.sf.jasperreports.crosstab.column.header.sort.measure.index"><![CDATA[$P{CrosstabMeasureIndexes}.get($V{Measures}.key())]]></propertyExpression>
+								</reportElement>
+								<textFieldExpression><![CDATA[$V{Measures}.label()]]></textFieldExpression>
+								<hyperlinkTooltipExpression><![CDATA[$V{Measures}.label()]]></hyperlinkTooltipExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="OpenQuantity_m0" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{OpenQuantity_m0}]]></measureExpression>
+				</measure>
+				<measure name="RealizedQuantity_m1" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{RealizedQuantity_m1}]]></measureExpression>
+				</measure>
+				<measure name="TotalQuantity_m2" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{TotalQuantity_m2}]]></measureExpression>
+				</measure>
+				<measure name="QuantityAmendment_m3" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{QuantityAmendment_m3}]]></measureExpression>
+				</measure>
+				<measure name="PNL_ATTRIBUTION.NEW_QTY_m4" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{PNL_ATTRIBUTION.NEW_QTY_m4}]]></measureExpression>
+				</measure>
+				<measure name="ITDPNL_m5" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{ITDPNL_m5}]]></measureExpression>
+				</measure>
+				<measure name="DailyPnL_m6" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{DailyPnL_m6}]]></measureExpression>
+				</measure>
+				<measure name="ExplainedPnL_m7" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{ExplainedPnL_m7}]]></measureExpression>
+				</measure>
+				<measure name="RealizedPnL_m8" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{RealizedPnL_m8}]]></measureExpression>
+				</measure>
+				<measure name="MarketShift_m9" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{MarketShift_m9}]]></measureExpression>
+				</measure>
+				<measure name="FXShift_m10" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{FXShift_m10}]]></measureExpression>
+				</measure>
+				<measure name="NewPNL_m11" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{NewPNL_m11}]]></measureExpression>
+				</measure>
+				<measure name="PriceAmendment_m12" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{PriceAmendment_m12}]]></measureExpression>
+				</measure>
+				<measure name="CostChange_m13" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{CostChange_m13}]]></measureExpression>
+				</measure>
+				<measure name="QuantityChange_m14" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{QuantityChange_m14}]]></measureExpression>
+				</measure>
+				<measure name="VoidDefualt_m15" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{VoidDefualt_m15}]]></measureExpression>
+				</measure>
+				<measure name="PnLShift_m16" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{PnLShift_m16}]]></measureExpression>
+				</measure>
+				<measure name="UnexplainedPnL_m17" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{UnexplainedPnL_m17}]]></measureExpression>
+				</measure>
+				<measure name="CROSSTAB_TOTAL_DISCRIMINATOR" class="java.lang.Boolean">
+					<measureExpression><![CDATA[Boolean.FALSE || $F{PNL_ATTRIBUTION.CONTRACT_BOOK__DISCRIMINATOR} || $F{PNL_ATTRIBUTION.ATTRIBUTION_DATE__DISCRIMINATOR} || $F{PNL_ATTRIBUTION.PROFIT_CENTER__DISCRIMINATOR} || $F{PNL_ATTRIBUTION.COMMODITY__DISCRIMINATOR} || $F{PNL_ATTRIBUTION.INSTRUMENT_TYPE__DISCRIMINATOR} || $F{PNL_ATTRIBUTION.SHIPMENT_MONTH__DISCRIMINATOR}]]></measureExpression>
+				</measure>
+				<crosstabCell width="100" height="20">
+					<cellContents style="CrosstabBaseCellStyle">
+						<box padding="0"/>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="a7ea7d78-2dbe-4e37-9b94-4689e58df3f2">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("OpenQuantity_m0")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{OpenQuantity_m0}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="baf347e3-748d-48d9-8b08-cdf66ef9e9db">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("RealizedQuantity_m1")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{RealizedQuantity_m1}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="555ce7ff-01ca-477d-b1cf-a8fb7299188b">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("TotalQuantity_m2")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{TotalQuantity_m2}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="6658e17b-ed06-4b53-b4cb-00b55eaad299">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("QuantityAmendment_m3")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{QuantityAmendment_m3}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="781df106-8c49-4450-b9f1-f57467481656">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("PNL_ATTRIBUTION.NEW_QTY_m4")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{PNL_ATTRIBUTION.NEW_QTY_m4}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="a8bb8d08-81e4-4e8a-971b-d812878f4d9d">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("ITDPNL_m5")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{ITDPNL_m5}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="108a448e-e35d-4ec5-877c-49c0d0f0a822">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("DailyPnL_m6")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{DailyPnL_m6}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="b93e3e86-4a9b-4b5d-abab-d3520a5fa973">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("ExplainedPnL_m7")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{ExplainedPnL_m7}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="0b8b1b60-3df7-4150-8a78-c0e94c607412">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("RealizedPnL_m8")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{RealizedPnL_m8}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="c94830fd-cf23-4a41-981a-05042eac5bc8">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("MarketShift_m9")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{MarketShift_m9}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="7ddde7be-4e5e-49a1-80ca-28ad1364c29a">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("FXShift_m10")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{FXShift_m10}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="730467b6-3601-4191-aab7-074703d294d7">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("NewPNL_m11")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{NewPNL_m11}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="c7ae2504-0985-4647-a828-56339650de6e">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("PriceAmendment_m12")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{PriceAmendment_m12}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="90713125-8902-40f2-be41-1e80ee2ab555">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("CostChange_m13")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{CostChange_m13}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="09cc7864-b50f-40f8-a748-74378308d76b">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("QuantityChange_m14")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{QuantityChange_m14}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="c4aa1061-0243-43f0-853b-5a6c7c38c23e">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("VoidDefualt_m15")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{VoidDefualt_m15}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="417bd98e-6d63-4fc9-b4c2-0b338df992be">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("PnLShift_m16")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{PnLShift_m16}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement style="CrosstabDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="100" height="20" uuid="17d8e8d9-845a-47ec-9b12-c4a2b9ac4916">
+								<printWhenExpression><![CDATA[$V{Measures}.key().equals("UnexplainedPnL_m17")]]></printWhenExpression>
+							</reportElement>
+							<textFieldExpression><![CDATA[$V{UnexplainedPnL_m17}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

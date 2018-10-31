@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports</folder>
+    <name>PnL_Change</name>
+    <version>0</version>
+    <label>Position and PnL Summary</label>
+    <description>Summary of Position and PnL with change and the Summary of derivatives position and PnL Realised and Un-Realised unit wise and broker wise</description>
+    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+    <updateDate>2018-09-24T22:07:04.123+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="PnL_Change_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>PnL_Change_</name>
+            <version>0</version>
+            <label>PnL Change</label>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>asofdate</name>
+            <version>0</version>
+            <label>As of date</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>ctrbook</name>
+            <version>0</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT CBK.CODE AS VALUE_FIELD, CBK.CODE AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>pc_g</name>
+            <version>0</version>
+            <label>PC</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/pc_g_files</folder>
+                    <name>pc_g</name>
+                    <version>0</version>
+                    <label>pc_g</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>select distinct  
+  profitcenter    AS VALUE_FIELD,
+  profitcenter    AS  LABEL_FIELD ,2 as seq   from olam_ProfitCenter_Mapping
+union all
+select 'New' as   VALUE_FIELD , 'New'  AS  LABEL_FIELD , 1 as seq
+order by 3</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>pc</name>
+            <version>0</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PROFIT_CENTER_NAME AS VALUE_FIELD, PROFIT_CENTER_NAME AS LABEL_FIELD FROM DIM_PROFITCENTER
+WHERE PFID &gt; 1
+GROUP BY PROFIT_CENTER_NAME</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>commodity</name>
+            <version>0</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>
+SELECT IVITEMID AS VALUE,
+       IVITEMID AS LABEL,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>instr</name>
+            <version>0</version>
+            <label>Instrument Type</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/instr_files</folder>
+                    <name>instr</name>
+                    <version>0</version>
+                    <label>instr</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'PHYSICAL' AS VALUE_FIELD,  'PHYSICAL' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'PAPER' AS VALUE_FIELD,  'PAPER' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'IDT' AS VALUE_FIELD,  'IDT' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'FUTURES' AS VALUE_FIELD,  'FUTURES' AS LABEL_FIELD, 4 as seq
+UNION All
+Select 'OPTIONS' AS VALUE_FIELD,  'OPTIONS' AS LABEL_FIELD, 5 as seq
+UNION All
+Select 'FOREX' AS VALUE_FIELD,  'FOREX' AS LABEL_FIELD, 6 as seq</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Report_By</name>
+            <version>0</version>
+            <label>Report By</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/Report_By_files</folder>
+                    <name>Report_By</name>
+                    <version>0</version>
+                    <label>Report_By</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'SALES_PRICING_STATUS' AS VALUE_FIELD,  'Pricing Status' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'PC' AS VALUE_FIELD,  'PC' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'PROFIT_CENTER' AS VALUE_FIELD,  'Profit center' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'COMMODITY' AS VALUE_FIELD,  'Commodity' AS LABEL_FIELD, 4 as seq
+UNION All
+Select 'INSTR' AS VALUE_FIELD,  'Instrument' AS LABEL_FIELD, 5 as seq
+UNION All
+Select 'Ship_Month' AS VALUE_FIELD,  'Month' AS LABEL_FIELD, 6 as seq
+UNION All
+Select 'BSTATUS' AS VALUE_FIELD,  'B Status' AS LABEL_FIELD, 7 as seq
+UNION All
+Select 'Report_Status' AS VALUE_FIELD,  'Report Status' AS LABEL_FIELD, 8 as seq</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Then_By</name>
+            <version>0</version>
+            <label>Then By</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files/Then_By_files</folder>
+                    <name>Then_By</name>
+                    <version>0</version>
+                    <label>Then_By</label>
+                    <description></description>
+                    <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+                    <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select 'PC' AS VALUE_FIELD,  'PC' AS LABEL_FIELD, 1 as seq
+UNION All
+Select 'PROFIT_CENTER' AS VALUE_FIELD,  'Profit center' AS LABEL_FIELD, 2 as seq
+UNION All
+Select 'COMMODITY' AS VALUE_FIELD,  'Commodity' AS LABEL_FIELD, 3 as seq
+UNION All
+Select 'INSTR' AS VALUE_FIELD,  'Instrument' AS LABEL_FIELD, 4 as seq
+UNION All
+Select 'Ship_Month' AS VALUE_FIELD,  'Month' AS LABEL_FIELD, 5 as seq
+UNION All
+Select 'BSTATUS' AS VALUE_FIELD,  'B Status' AS LABEL_FIELD, 6 as seq
+UNION All
+Select 'Report_Status' AS VALUE_FIELD,  'Report Status' AS LABEL_FIELD, 7 as seq</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="olam.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>olam.png</name>
+            <version>0</version>
+            <label>olam.png</label>
+            <description>olam.png</description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo77.jpg.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Logo77.jpg</name>
+            <version>0</version>
+            <label>Logo77.jpg</label>
+            <description>Logo77.jpg</description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Logo</name>
+            <version>0</version>
+            <label>Logo</label>
+            <description>Logo</description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="LogoN.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>LogoN</name>
+            <version>0</version>
+            <label>LogoN</label>
+            <description>LogoN</description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo100.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Logo100</name>
+            <version>0</version>
+            <label>Logo100</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="Logo56.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/PnL_Change_files</folder>
+            <name>Logo56</name>
+            <version>0</version>
+            <label>Logo56</label>
+            <description></description>
+            <creationDate>2018-10-22T19:13:21.417+08:00</creationDate>
+            <updateDate>2018-10-22T19:13:21.417+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

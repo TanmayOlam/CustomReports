@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Future_pos_summary" language="groovy" pageWidth="761" pageHeight="595" orientation="Landscape" columnWidth="721" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="1146da98-f61a-445b-835e-95e9b5e6f5c9">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.sheet.names.1" value="Future Position"/>
+	<property name="net.sf.jasperreports.export.xls.one.page.per.sheet" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.show.gridlines" value="false"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.row" value="4"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.column" value="C"/>
+	<property name="net.sf.jasperreports.page.break.no.pagination" value="apply"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SQL Server"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table 1_TD_1233" mode="Opaque" backcolor="#1F497D">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<style name="styleBkgClor" mode="Opaque" backcolor="#1F497D" isBlankWhenNull="true"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="PositionSummary" uuid="6bdba276-06de-41af-a3cb-de558b3ed45a">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="instr" class="java.util.Collection"/>
+		<parameter name="pc_g" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="Report_By" class="java.lang.String"/>
+		<parameter name="Then_By" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select
+ grp, BLANK,
+CONTRACT_BOOK,
+EOD_DATE,
+Report_Status,
+Allocation_type,
+EXCHANGE,
+COMMODITY,
+PC,
+PROFIT_CENTER,
+INSTR,
+BSTATUS,
+SHIP_MONTH,
+
+(Case when upper(left(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3),1))
++lower(substring(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3),2,len(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3))))
++ '-'+ RIGHT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 2)='Jan-00' then 'Expired' else  upper(left(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3),1))
++lower(substring(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3),2,len(LEFT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 3))))
++ '-'+ RIGHT(RIGHT(CONVERT(VARCHAR(11),  SHIP_MONTH, 113), 8), 2) end)as SHIP_MONTH_STR
+
+
+, POSITION_QTY
+,abs(POSITION_QTY) as absqty
+from  (select 1 as grp, BLANK,
+CONTRACT_BOOK,
+EOD_DATE,
+Report_Status,
+Allocation_type,
+EXCHANGE,
+COMMODITY,
+PC,
+PROFIT_CENTER,
+INSTR,
+BSTATUS,
+SHIP_MONTH
+,(CASE WHEN SHIP_MONTH = '1900-01-01' then SUM(REALISED_QUANTITY)
+ELSE sum(POSITION_QUANTITY) END) as POSITION_QTY
+from (select 'BLANK' as BLANK ,
+CONTRACT_BOOK,
+EOD_DATE ,
+Report_Status,
+concat(isnull(EXCHANGE,''),' ', COMMODITY)  as Allocation_type,
+isnull(EXCHANGE,'') as EXCHANGE,
+COMMODITY,
+  PC,
+  PROFIT_CENTER,
+  INSTR,
+  BSTATUS,
+  case when Replace(LEFT(CONVERT(VARCHAR(10), (CAST(   [Ship_Month]  AS DATE)), 111), 7), '/', '') <
+Replace(LEFT(CONVERT(VARCHAR(10), (CAST($P{asofdate}
+  AS DATE)), 111), 7), '/', '')
+then  '1900-01-01'  else ship_month  end  as SHIP_MONTH
+,POSITION_QUANTITY
+,REALISED_QUANTITY
+from(Select * from OLAM_PENDING_PNS_FOR_DERIVATIVES_E
+where  INSTR='Futures'
+and  EOD_DATE =$P{asofdate}
+and CONTRACT_BOOK = $P{ctrbook}
+ AND  $X{IN,PROFIT_CENTER,pc}
+)T
+)b
+group by BLANK,CONTRACT_BOOK, EOD_DATE,Report_Status,Allocation_type,EXCHANGE,COMMODITY,PC,PROFIT_CENTER,INSTR, BSTATUS,SHIP_MONTH
+)D
+where abs(POSITION_QTY)<>0
+group by  grp,BLANK,CONTRACT_BOOK, EOD_DATE,Report_Status, Allocation_type,EXCHANGE,COMMODITY, PC,PROFIT_CENTER,INSTR,BSTATUS,SHIP_MONTH,POSITION_QTY
+order by 1,2,3]]>
+		</queryString>
+		<field name="grp" class="java.lang.Integer"/>
+		<field name="BLANK" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="EOD_DATE" class="java.sql.Date"/>
+		<field name="Report_Status" class="java.lang.String"/>
+		<field name="Allocation_type" class="java.lang.String"/>
+		<field name="EXCHANGE" class="java.lang.String"/>
+		<field name="COMMODITY" class="java.lang.String"/>
+		<field name="PC" class="java.lang.String"/>
+		<field name="PROFIT_CENTER" class="java.lang.String"/>
+		<field name="INSTR" class="java.lang.String"/>
+		<field name="BSTATUS" class="java.lang.String"/>
+		<field name="SHIP_MONTH" class="java.sql.Date"/>
+		<field name="SHIP_MONTH_STR" class="java.lang.String"/>
+		<field name="POSITION_QTY" class="java.math.BigDecimal"/>
+		<field name="absqty" class="java.math.BigDecimal"/>
+	</subDataset>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="asofdate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="exchange" class="java.util.Collection"/>
+	<parameter name="commodity" class="java.util.Collection"/>
+	<parameter name="tmonth" class="java.util.Collection"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="month_name" class="java.lang.String"/>
+	<parameter name="trader_group" class="java.util.Collection"/>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[' ']]></defaultValueExpression>
+	</parameter>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="relative_date" class="net.sf.jasperreports.types.date.DateRange"/>
+	<parameter name="pc_g" class="java.util.Collection"/>
+	<parameter name="Price_Term" class="java.util.Collection"/>
+	<parameter name="Allocation_Type" class="java.util.Collection"/>
+	<parameter name="Linking_Status" class="java.util.Collection"/>
+	<parameter name="Fixing_Status" class="java.util.Collection"/>
+	<parameter name="Booking_Status" class="java.util.Collection"/>
+	<parameter name="shipment_month_from" class="java.lang.String"/>
+	<parameter name="grade_p" class="java.util.Collection"/>
+	<parameter name="cp" class="java.util.Collection"/>
+	<parameter name="origin" class="java.util.Collection"/>
+	<parameter name="contract_term_p" class="java.util.Collection"/>
+	<parameter name="broker_p" class="java.util.Collection"/>
+	<parameter name="updated_by" class="java.util.Collection"/>
+	<parameter name="PosLast_update_date_from" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="PosLast_update_date_to" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="date_from" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new SimpleDateFormat("yyyy-MM-dd").parse("2015-01-01")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="date_to" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Contract_Status" class="java.util.Collection"/>
+	<parameter name="Show_Columns" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="counterparty_group" class="java.util.Collection"/>
+	<parameter name="Profit_Center_Group" class="java.util.Collection"/>
+	<parameter name="instr" class="java.util.Collection"/>
+	<parameter name="Report_By" class="java.lang.String"/>
+	<parameter name="Then_By" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,asofdate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.asofdate
+		  AND $X{IN,DPD.PROFIT_CENTER,pc}
+		  AND $X{IN,DPD.MATERIAL_GROUP ,commodity}
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE asofdate
+		FROM OLAM_PNL_SUMMARY_CONSOLIDATE DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+				FROM OLAM_PNL_SUMMARY_CONSOLIDATE b
+				WHERE b.EOD_DATE <= $P{asofdate}
+				AND $X{IN,b.PROFIT_CENTER,pc}
+				AND $X{IN, b.COMMODITY , commodity}
+				AND b.CONTRACT_BOOK like $P{ctrbook}
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		AND $X{IN,DPA.PROFIT_CENTER,pc}
+		AND $X{IN,DPA.COMMODITY ,commodity}
+		AND DPA.CONTRACT_BOOK like $P{ctrbook}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' asofdate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM OLAM_PNL_SUMMARY_CONSOLIDATE DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM OLAM_PNL_SUMMARY_CONSOLIDATE b
+						WHERE b.EOD_DATE <= $P{asofdate}
+						AND $X{IN,b.PROFIT_CENTER,pc}
+						AND $X{IN,b.COMMODITY ,commodity}
+						AND b.CONTRACT_BOOK like $P{ctrbook}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND $X{IN,DPA.PROFIT_CENTER,pc}
+				AND $X{IN, DPA.COMMODITY, commodity}
+				AND DPA.CONTRACT_BOOK like $P{ctrbook}
+				) = 0
+	) Y
+WHERE 0 = 0]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="asofdate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<detail>
+		<band height="148">
+			<crosstab>
+				<reportElement positionType="Float" mode="Opaque" x="0" y="0" width="1568" height="142" uuid="fc4f298b-620e-4c6e-8fb4-bd2645a54905"/>
+				<crosstabParameter name="CONTRACT_BOOK">
+					<parameterValueExpression><![CDATA[$F{CONTRACT_BOOK}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="asofdate" class="java.util.Date">
+					<parameterValueExpression><![CDATA[$F{asofdate}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabDataset>
+					<dataset>
+						<datasetRun subDataset="PositionSummary" uuid="e4105809-a3dc-4560-943f-fec4095bfc2d">
+							<datasetParameter name="ctrbook">
+								<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="asofdate">
+								<datasetParameterExpression><![CDATA[$F{asofdate}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="pc">
+								<datasetParameterExpression><![CDATA[$P{pc}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+				</crosstabDataset>
+				<crosstabHeaderCell>
+					<cellContents backcolor="#1F497D" mode="Opaque" style="styleBkgClor">
+						<textField pattern="MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="0" y="52" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="6d0748b7-241e-4ae1-afb0-da36920b60cc">
+								<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+							</reportElement>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Book"]]></textFieldExpression>
+						</textField>
+						<textField pattern="MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="56" y="52" width="65" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="2ccbbbdb-4bd9-41c9-a723-61c526387269"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Exchange"]]></textFieldExpression>
+						</textField>
+						<textField pattern="MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="121" y="52" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="e9e47f15-9251-43d1-a9c5-a2cd556824fe"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Product"]]></textFieldExpression>
+						</textField>
+						<textField pattern="MMM-yy" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" mode="Opaque" x="177" y="52" width="245" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="338c7642-f751-4a32-ae62-82f5a76e59ab"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Unit"]]></textFieldExpression>
+						</textField>
+						<image scaleImage="FillFrame" hAlign="Left" vAlign="Top" isUsingCache="true" onErrorType="Blank">
+							<reportElement mode="Opaque" x="0" y="0" width="56" height="27" forecolor="#000000" backcolor="#1E4678" uuid="12beed3f-a970-4753-bbf6-ee1dcd216e03">
+								<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+								<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+							</reportElement>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<graphicElement fill="Solid"/>
+							<imageExpression><![CDATA["repo:olam.png"]]></imageExpression>
+						</image>
+						<textField isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="56" y="0" width="366" height="27" forecolor="#FFFFFF" backcolor="#1F497D" uuid="56c749cf-a2b2-4e5e-9545-f0ec298559af">
+								<property name="local_mesure_unitx" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.x" value="px"/>
+								<property name="local_mesure_unitheight" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							</reportElement>
+							<box leftPadding="10" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+							</textElement>
+							<textFieldExpression><![CDATA[" Olam International Ltd"]]></textFieldExpression>
+						</textField>
+						<textField isBlankWhenNull="true">
+							<reportElement mode="Opaque" x="0" y="27" width="422" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="8880491d-3d7f-403d-a0b5-8d9df3734e88">
+								<property name="local_mesure_unitx" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.x" value="px"/>
+								<property name="local_mesure_unitheight" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+								<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+							</reportElement>
+							<box leftPadding="4" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="12" isBold="true" isItalic="false"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$P{CONTRACT_BOOK}+"-Book Value Futures Summary as of "+DATEFORMAT($P{asofdate},"dd-MMM-yy")]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="CONTRACT_BOOK1" width="56">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CONTRACT_BOOK}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#1F497D" mode="Transparent" style="table 1_CH">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="e3013122-6e91-44d8-b5e7-00c160f1b81f"/>
+								<box leftPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{CONTRACT_BOOK1}]]></textFieldExpression>
+							</textField>
+							<staticText>
+								<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="0" y="75" width="56" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ddd9add1-c29c-4f69-b421-86a9cae917da"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineColor="#4F81BD"/>
+									<leftPen lineColor="#4F81BD"/>
+									<bottomPen lineColor="#4F81BD"/>
+									<rightPen lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="EXCHANGE" width="65" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{EXCHANGE}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#1F497D" mode="Transparent" style="table 1_CH">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="65" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="798a74e5-0a2d-4337-94e4-fc6420d59faa"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{EXCHANGE}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="50" width="65" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#8DB4E2" uuid="323f8ca2-0db1-457d-9255-2a3ee36eb6c3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{EXCHANGE}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#1F497D" mode="Opaque" style="table 1_CH">
+							<staticText>
+								<reportElement positionType="FixRelativeToBottom" mode="Opaque" x="0" y="0" width="366" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="e709d017-c684-44d3-b00e-d69204ef5932"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineColor="#4F81BD"/>
+									<leftPen lineColor="#4F81BD"/>
+									<bottomPen lineColor="#4F81BD"/>
+									<rightPen lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[    Total ]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="COMMODITY" width="56" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{COMMODITY}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Transparent" style="table 2_TD">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="" isBlankWhenNull="false">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="a6325f3d-9140-4709-897b-a6f78a9420dd"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[""+$V{COMMODITY}]]></textFieldExpression>
+							</textField>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="25" width="56" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#8DB4E2" uuid="f2df60bc-fc7f-4e90-aa01-6a477cd93dfe"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineColor="#4F81BD"/>
+									<leftPen lineColor="#4F81BD"/>
+									<bottomPen lineColor="#4F81BD"/>
+									<rightPen lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Total "]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="0" width="301" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="f3b4d78d-8948-47a0-8d0f-66cb6cb355f4"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA["Total "]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PC" width="245" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{PROFIT_CENTER}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Transparent">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="245" height="25" isRemoveLineWhenBlank="true" forecolor="#000000" backcolor="#FFFFFF" uuid="49600595-0d7d-4b6e-9162-4f7cf55e3361"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{PC}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" positionType="FixRelativeToBottom" mode="Opaque" x="0" y="0" width="245" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="412738ce-0902-404c-9050-92d49f44c859"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+							</textField>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="group1" height="27">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{BLANK}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#1F497D" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.0" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.0" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.0" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup name="SHIP_MONTH" height="25" totalPosition="End">
+					<bucket class="java.util.Date">
+						<bucketExpression><![CDATA[$F{SHIP_MONTH}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#1F497D" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.0" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.0" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#1F497D" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="25" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="f0a39614-65bd-4ca4-8472-67392871c5dc">
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+								</reportElement>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<columnGroup name="SHIP_MONTH_STR" height="25">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{SHIP_MONTH_STR}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents>
+							<textField pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="6d95eac5-eaf0-4c87-8929-50de90e83bc2"/>
+								<box leftPadding="2" rightPadding="2">
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{SHIP_MONTH_STR}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="POSITION_QUANTITYMeasure" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{POSITION_QTY}]]></measureExpression>
+				</measure>
+				<crosstabCell width="56" height="25">
+					<cellContents backcolor="#F0F8FF" mode="Transparent">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="1e7eb0a3-9626-452a-a6c0-bf612118a596">
+								<printWhenExpression><![CDATA[$V{POSITION_QUANTITYMeasure} !=0]]></printWhenExpression>
+							</reportElement>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" columnTotalGroup="SHIP_MONTH">
+					<cellContents backcolor="#F0F8FF" mode="Transparent">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#FFFFFF" uuid="8ed7d632-bc3a-4b73-9b4c-336d5822a908"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" rowTotalGroup="PC">
+					<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="257c0bcb-e752-45ba-b06f-cbfa54983eb0">
+								<printWhenExpression><![CDATA[$V{POSITION_QUANTITYMeasure} !=0]]></printWhenExpression>
+							</reportElement>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" rowTotalGroup="PC" columnTotalGroup="SHIP_MONTH">
+					<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#8DB4E2" uuid="69919826-dc36-4599-9c33-dea178f59c16"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="group1">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="PC" columnTotalGroup="group1">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" rowTotalGroup="COMMODITY">
+					<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="99044abd-2ada-4ed2-86b0-75cb063f2f9d"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="COMMODITY" columnTotalGroup="group1">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" rowTotalGroup="COMMODITY" columnTotalGroup="SHIP_MONTH">
+					<cellContents backcolor="#8DB4E2" mode="Opaque" style="table 2_TD">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#000000" backcolor="#8DB4E2" uuid="68c29a2c-2a4e-4f10-858a-d0d94f6add09"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="CONTRACT_BOOK1">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="CONTRACT_BOOK1" columnTotalGroup="group1">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="CONTRACT_BOOK1" columnTotalGroup="SHIP_MONTH">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell width="56" height="25" rowTotalGroup="EXCHANGE">
+					<cellContents backcolor="#1F497D" mode="Opaque" style="table 1_CH">
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6e2fb13f-20c1-4bdf-8e6a-b49dd111a16c">
+								<printWhenExpression><![CDATA[$V{POSITION_QUANTITYMeasure} !=0]]></printWhenExpression>
+							</reportElement>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="EXCHANGE" columnTotalGroup="group1">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="EXCHANGE" columnTotalGroup="SHIP_MONTH">
+					<cellContents>
+						<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="56" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="41409e13-b96d-4230-97d3-ecc87e28c37b"/>
+							<box leftPadding="2" rightPadding="2">
+								<topPen lineColor="#4F81BD"/>
+								<leftPen lineColor="#4F81BD"/>
+								<bottomPen lineColor="#4F81BD"/>
+								<rightPen lineColor="#4F81BD"/>
+							</box>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{POSITION_QUANTITYMeasure}.setScale(0, java.math.RoundingMode.HALF_UP)]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell columnTotalGroup="SHIP_MONTH_STR">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="CONTRACT_BOOK1" columnTotalGroup="SHIP_MONTH_STR">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="EXCHANGE" columnTotalGroup="SHIP_MONTH_STR">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="COMMODITY" columnTotalGroup="SHIP_MONTH_STR">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="PC" columnTotalGroup="SHIP_MONTH_STR">
+					<cellContents/>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</detail>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

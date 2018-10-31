@@ -1,0 +1,3353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="physical_invoice" pageWidth="10000" pageHeight="842" columnWidth="9960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="df5d3567-71bd-4e3e-8d62-5412affd5a78">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="4a3420c5-2db5-4b50-9b5b-d1049cbad411">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+		<parameter name="datefrom" class="java.util.Date"/>
+		<parameter name="dateto" class="java.util.Date"/>
+		<queryString>
+			<![CDATA[SELECT I.INVOICE_ID                                                                            AS INVOICE_ID,
+       I.INVOICE_NUMBER                                                                        AS INVOICE_NUMBER,
+       IDET.INVOICE_SEQ_ID                                                                     AS INVOICE_SEQ_ID,
+       I.INVOICE_DOCUMENT_DATE                                                                 AS INVOICE_DOCUMENT_DATE,
+       I.INVOICE_VALUE_DATE                                                                    AS INVOICE_VALUE_DATE,
+       I.INVOICE_DUE_DATE                                                                      AS INVOICE_DUE_DATE,
+       I.INVOICE_BY                                                                            AS INVOICE_BY,
+       I.PAYABLE_RECEIVABLE                                                                    AS PAYABLE_RECEIVABLE,
+       I.INVOICE_TYPE                                                                          AS INVOICE_TYPE,
+       I.INVOICE_STATUS                                                                        AS INVOICE_STATUS,
+       I.INVOICE_VALUE_TRANS_CURR                                                              AS INVOICE_VALUE_TRANS_CURR,
+       I.INVOICE_CURRENCY                                                                      AS INVOICE_CURRENCY,
+       I.INVOICE_FX_RATE                                                                       AS INVOICE_FX_RATE,
+       I.INVOICE_VALUE_FINN_CURR                                                               AS INVOICE_VALUE_FINN_CURR,
+       I.POSTED_DATE                                                                           AS POSTED_DATE,
+       I.CTRID,
+       I.BILL_TO_COUNTERPARTY                                                                  AS BILL_TO_COUNTERPARTY,
+       IDET.INVOICE_QTY                                                                        AS INVOICE_QTY,
+       IDET.INVOICE_UNIT_PRICE                                                                 AS INVOICE_UNIT_PRICE,
+       CTRP.QUANTITY_BASIS AS INVOICE_UNIT_BASIS,
+       IDET.INVOICE_FIXED_PRICE_QTY,
+       IDET.INVOICE_PROVISIONAL_PRICE_QTY,
+       IDET.FIXED_UNIT_PRICE,
+       IDET.PROVISIONAL_UNIT_PRICE,
+       COST.SETTLE_TYPE                                                                        AS PRIMARY_SECONDARY,
+       COST.COSTCODE                                                                           AS COST_CODE,
+       CTRP.RETURN_RELATED                                                                     AS SALES_RETURN,
+       CTRP.RETURN_REFERENCE                                                                   AS SALES_RETURN_CTR_REF,
+       CTRP.CONTRACT_BOOK                                                                      AS BOOK,
+       CTRP.COMPANY                                                                            AS COMPANY,
+       PC.PCNAME                                                                               AS PROFIT_CENTER,
+       ST.NAME                                                                                 AS STRATEGY,
+       TRADER.FIRST_NAME + ' ' + TRADER.LAST_NAME                                              AS TRADER,
+       OPERATION.FIRST_NAME + ' '
+       + OPERATION.LAST_NAME                                                                   AS OPERATION_USER,
+       CTRP.CONTRACT_REFERENCE                                                                 AS CONTRACT_REFERENCE,
+       CASE
+         WHEN CTRP.LONG_SHORT = 'LONG' THEN 'Purchase'
+         ELSE 'Sales'
+       END                                                                         AS SALES_PURCHASE,
+       CTRP.COUNTERPARTY_REF                                                        AS EXTERNAL_CONTRACT_REF,
+       I.PURCHASE_STATUS                                                                       AS PURCHASE_STATUS,
+       CTRP.CONTRACT_DATE                                                                      AS CONTRACT_DATE,
+       COUNTERPARTY.MBRNAME                                                                    AS CONTRACTUAL_COUNTERPARTY,
+       CPCOUNTRY.COUNTRYNAME                                                                   AS COUNTERPARTY_COUNTRY,
+       CASE
+         WHEN COUNTERPARTY.ISINTERNAL = 1 THEN 'Internal'
+         ELSE 'External'
+       END                                                                                     AS INTEXT_COUNTERPARTY,
+       BILLCOUNTRY.COUNTRYNAME                                                                 AS BILL_TO_COUNTERPARTY_COUNTRY,
+       CTRP.BROKER                                                                             AS BROKER,
+       CTRP.BROKER_REFERENCE                                                                   AS BROKER_REFERENCE,
+       CTRP.CONTRACT_TERM,
+       CTRP.INCOTERM                                                                           AS INCOTERM,
+       CTRP.PLACE_OF_RECEIPT                                                                   AS PLACE_OF_RECEIPT,
+       CTRP.LOAD_PORT                                                                          AS PORT_OF_LOADING,
+       CTRP.COUNTRY_OF_RECEIPT                                                                 AS COUNTRY_OF_RECEIPT,
+       CTRP.PLACE_OF_DELIVERY                                                                  AS PLACE_OF_DELIVERY,
+       CTRP.UNLOAD_PORT                                                                        AS PORT_OF_DISCHARGE,
+       CTRP.COUNTRY_OF_DELIVERY                                                                AS COUNTRY_OF_DELIVERY,
+       CTRP.PRICE_TERM                                                                         AS PRICE_TERM,
+       CTRP.FUTURE_TERM                                                                        AS FUTURE_TERM,
+       CTRP.TERMINAL_MONTH                                                                     AS FUTURES_TERMINAL_MONTH,
+       CTRP.PRICING_OPTION                                                                     AS PRICING_OPTION,
+       ALLOC.ALLOCATION_ID                                                                     AS ALLOCATION_NUMBER,
+       ALLOC.ALLOCATION_TYPE                                                                   AS ALLOCATION_TYPE,
+       ALLOC.ALLOCATION_STATUS                                                                 AS ALLOCATION_STATUS,
+       L.LOAD_NUMBER                                                                           AS LOAD_NUMBER,
+       L.LOAD_DATE                                                                             AS LOAD_DATE,
+       L.LOAD_STATUS                                                                           AS LOAD_STATUS,
+       MO.SI_DATE                                                                               AS SI_DATE,
+       L.BL_REFERENCE                                                                          AS BL_REFERENCE,
+       L.COMMODITY                                                                             AS COMMODITY,
+       L.ORIGIN                                                                                AS ORIGIN,
+       L.GRADE                                                                                 AS GRADE,
+       MO.MOVEMENT_ID                                                                          AS MOVEMENT_ID,
+       MO.MOVEMENT_STAGE                                                                       AS MOVEMENT_STAGE,
+       MO.MOVEMENT_STATUS,
+       MO.MODE_OF_TRANSPORT                                                                    AS MODE_OF_TRANSPORT,
+       MO.TRANSPORT_UNIT                                                                       AS TRANSPORT_UNIT,
+       MO.NO_OF_TRANSPORT_UNIT                                                                  AS NUM_OF_TRANSPORT_UNIT,
+       MO.TRANSPORT_TYPE,
+       MO.TRANSPORT_CONTRACT                                                                   AS TRANSPORT_CONTRACT,
+       MO.TRANSPORTER,
+       L.TRANSPORT,
+       L.STOWAGE,
+       L.MARKS                                                                                 AS MARKS,
+       ALLOC.SHIPMENT_MONTH                                                                    AS SHIPMENT_MONTH,
+       L.LOAD_PACKING_UNIT                                                                     AS PACKING_UNIT,
+       L.LOAD_NUM_OF_PACKING_UNIT                                                              AS NUM_OF_PACKING_UNIT,
+       BANK.BANKNAME                                                                           AS BANK_NAME,
+       BANK.BANKACCTNO                                                                         AS BANK_ACCOUNT_NO,
+       L.LOAD_QTY                                                                              AS LOAD_QTY,
+       L.DISCHARGE_QTY                                                                         AS DISCHARGE_QTY,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.FREIGHT_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.FREIGHT_ACTUAL_PRICE
+       END                                                                                     AS FREIGHT_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.INSURANCE_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.INSURANCE_ACTUAL_PRICE
+       END                                                                                     AS INSURANCE_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.COMM_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.COMM_ACTUAL_PRICE
+       END                                                                                     AS COMMISSION_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.OTHER_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.OTHER_ACTUAL_PRICE
+       END                                                                                     AS OTHERS_VALUE,
+       CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.FREIGHT_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.FREIGHT_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.INSURANCE_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.INSURANCE_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.COMM_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.COMM_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.OTHER_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR
+       ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.OTHER_ACTUAL_PRICE, 0) END AS NET_VALUE,
+       CTRP.PAYMENT_TERM                                                                       AS PAYMENT_TERM,
+       CTRP.CREDIT_BASED                                                                       AS CREDIT_BASED,
+       CTRP.SECURED_UNSECURED_CREDIT                                                           AS SECURED_UNSECURED_CREDIT,
+       CTRP.CREDIT_TENOR                                                                       AS CREDIT_TENOR,
+       CTRP.LC_BASED                                                                           AS LC_BASED,
+       I.LC_REFERENCE                                                                          AS LC_REFERENCE,
+       I.LC_ISSUE_DEADLINE                                                                     AS LC_ISSUE_DEADLINE,
+       I.LC_ISSUE_DATE                                                                         AS LC_ISSUE_DATE,
+       I.LC_EXPIRY_DATE                                                                        AS LC_EXPIRY_DATE,
+       I.DOC_PRESENTATION_DEADLINE                                                             AS DOC_PRESENTATION_DEADLINE,
+       I.DOC_PRESENTATION_DATE                                                                 AS DOC_PRESENTATION_DATE,
+       I.DOC_NEGOTIATION_DATE                                                                  AS DOC_NEGOTIATION_DATE,
+       I.PAYMENT_DUE_DATE                                                                      AS COLLECTION_PAYMENT_DUE_DATE,
+       PAY.COLLECTION_PAYMENT_DATE                                                             AS COLLECTION_PAYMENT_DATE,
+       PAY.COLLECTION_PAYMENT_AMOUNT_TRANS_CURR                                                AS COLLEECTION_PAYMENT_AMOUNT_TRANS_CURR,
+       PAY.COLLECTION_PAYMENT_FX_RATE                                                          AS COLLEECTION_PAYMENT_FX_RATE,
+       PAY.COLLECTION_PAYMENT_AMOUNT_FINN_CURR                                                 AS COLLEECTION_PAYMENT_AMOUNT_FINN_CURR,
+       Datediff (DAY, Getdate(), I.INVOICE_VALUE_DATE)                                         AS INVOICE_AGE,
+       IDET.DESCRIPTION                                                                        AS REMARK,
+       Datediff (DAY, I.DOC_PRESENTATION_DATE, L.LOAD_DATE)                                    AS CYCLE_TIME_1,
+       Datediff (DAY, I.DOC_NEGOTIATION_DATE, I.DOC_PRESENTATION_DATE)                         AS CYCLE_TIME_2,
+       Datediff (DAY, I.DOC_NEGOTIATION_DATE, L.LOAD_DATE)                                     AS CYCLE_TIME_3,
+       Datediff (DAY, I.PAYMENT_DUE_DATE, I.DOC_NEGOTIATION_DATE)                              AS CYCLE_TIME_4,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.DOC_PRESENTATION_DATE)                    AS CYCLE_TIME_5,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.DOC_NEGOTIATION_DATE)                     AS CYCLE_TIME_6,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.PAYMENT_DUE_DATE)                         AS CYCLE_TIME_7,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, L.LOAD_DATE)                                AS CYCLE_TIME_8,
+       IDET.INVOICE_UNIT_BASIS                                                                 AS QTY_UOM
+FROM   BI_VIEW_SETTLEMENT_DETAILS I
+       LEFT JOIN BI_VIEW_SETTLEMENT_LINE_ITEM_DETAILS IDET
+              ON I.INVOICE_ID = IDET.INVOICE_ID
+       LEFT JOIN BI_VIEW_CONTRACT_PHYSICAL CTRP
+              ON I.CTRID = CTRP.CTRID
+       LEFT JOIN (SELECT CTRID,
+                         COSTCODE,
+                         SETTLE_TYPE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Freight%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) FREIGHT_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Freight%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) FREIGHT_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Commission%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) COMM_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Commission%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) COMM_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE NOT LIKE '%Freight%'
+                                    AND COSTCODE NOT LIKE '%Commission%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) OTHER_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE NOT LIKE '%Freight%'
+                                    AND COSTCODE NOT LIKE '%Commission%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) OTHER_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Tax' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) TAX_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Tax' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) TAX_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Discount' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) DISCOUNT_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Discount' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) DISCOUNT_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Insurance%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) INSURANCE_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Insurance%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) INSURANCE_BUDGET_PRICE
+                  FROM   BI_VIEW_ADDITIONAL_COST
+                  WHERE  INSTRUMENT_TYPE = 'Physical'
+                  GROUP  BY CTRID,
+                            COSTCODE,
+                            SETTLE_TYPE) COST
+              ON COST.CTRID = CTRP.CTRID
+       LEFT JOIN JC_USER TRADER
+              ON CTRP.TRADERID = TRADER.ID
+       LEFT JOIN GLCOMPANY COMP
+              ON CTRP.COMPANYID = COMP.COMPANYID
+       LEFT JOIN JCPROFITCENTER PC
+              ON CTRP.PCID = PC.PCID
+       LEFT JOIN JCSTRATEGY ST
+              ON CTRP.STRATEGYID = ST.STRATEGYID
+       LEFT JOIN JC_USER OPERATION
+              ON CTRP.OPERATIONUSERID = OPERATION.ID
+       LEFT JOIN JCMBR COUNTERPARTY
+              ON CTRP.COUNTERPARTYID = COUNTERPARTY.MBRID
+       LEFT JOIN JCMBRBANKER BANK
+              ON COUNTERPARTY.DEFAULTBANK = BANK.BANKID
+       LEFT JOIN JCCOUNTRY CPCOUNTRY
+              ON COUNTERPARTY.MBRCOUNTRYID = CPCOUNTRY.COUNTRYID
+       LEFT JOIN JCMBR BILLCP
+              ON I.BILL_TO_CP_ID = BILLCP.MBRID
+       LEFT JOIN JCCOUNTRY BILLCOUNTRY
+              ON BILLCP.MBRCOUNTRYID = BILLCOUNTRY.COUNTRYID
+       LEFT JOIN BI_VIEW_LOAD_DISCHARGED_DETAILS L
+              ON IDET.LOAD_ID = L.LOAD_ID
+       LEFT JOIN BI_VIEW_CONTRACT_MOVEMENT MO
+              ON L.MOVEMENT_ID = MO.MOVEMENT
+       LEFT JOIN BI_VIEW_ALLOCATION ALLOC
+              ON MO.ALLOCATION_ID = ALLOC.ID
+       LEFT JOIN BI_VIEW_CASH_PAYMENT_DETAILS PAY
+              ON I.INVOICE_ID = PAY.INVOICE_ID
+WHERE I.INVOICE_DOCUMENT_DATE >= $P{datefrom}
+AND I.INVOICE_DOCUMENT_DATE <= $P{dateto}]]>
+		</queryString>
+		<field name="INVOICE_ID" class="java.lang.Integer"/>
+		<field name="INVOICE_NUMBER" class="java.lang.String"/>
+		<field name="INVOICE_SEQ_ID" class="java.lang.Integer"/>
+		<field name="INVOICE_DOCUMENT_DATE" class="java.sql.Timestamp"/>
+		<field name="INVOICE_VALUE_DATE" class="java.sql.Date"/>
+		<field name="INVOICE_DUE_DATE" class="java.sql.Timestamp"/>
+		<field name="INVOICE_BY" class="java.lang.String"/>
+		<field name="PAYABLE_RECEIVABLE" class="java.lang.String"/>
+		<field name="INVOICE_TYPE" class="java.lang.String"/>
+		<field name="INVOICE_STATUS" class="java.lang.String"/>
+		<field name="INVOICE_VALUE_TRANS_CURR" class="java.math.BigDecimal"/>
+		<field name="INVOICE_CURRENCY" class="java.lang.String"/>
+		<field name="INVOICE_FX_RATE" class="java.math.BigDecimal"/>
+		<field name="INVOICE_VALUE_FINN_CURR" class="java.math.BigDecimal"/>
+		<field name="POSTED_DATE" class="java.sql.Timestamp"/>
+		<field name="CTRID" class="java.lang.Integer"/>
+		<field name="BILL_TO_COUNTERPARTY" class="java.lang.String"/>
+		<field name="INVOICE_QTY" class="java.math.BigDecimal"/>
+		<field name="INVOICE_UNIT_PRICE" class="java.math.BigDecimal"/>
+		<field name="INVOICE_UNIT_BASIS" class="java.lang.String"/>
+		<field name="INVOICE_FIXED_PRICE_QTY" class="java.math.BigDecimal"/>
+		<field name="INVOICE_PROVISIONAL_PRICE_QTY" class="java.math.BigDecimal"/>
+		<field name="FIXED_UNIT_PRICE" class="java.math.BigDecimal"/>
+		<field name="PROVISIONAL_UNIT_PRICE" class="java.math.BigDecimal"/>
+		<field name="PRIMARY_SECONDARY" class="java.lang.String"/>
+		<field name="COST_CODE" class="java.lang.String"/>
+		<field name="SALES_RETURN" class="java.lang.String"/>
+		<field name="SALES_RETURN_CTR_REF" class="java.lang.String"/>
+		<field name="BOOK" class="java.lang.String"/>
+		<field name="COMPANY" class="java.lang.String"/>
+		<field name="PROFIT_CENTER" class="java.lang.String"/>
+		<field name="STRATEGY" class="java.lang.String"/>
+		<field name="TRADER" class="java.lang.String"/>
+		<field name="OPERATION_USER" class="java.lang.String"/>
+		<field name="CONTRACT_REFERENCE" class="java.lang.String"/>
+		<field name="SALES_PURCHASE" class="java.lang.String"/>
+		<field name="EXTERNAL_CONTRACT_REF" class="java.lang.String"/>
+		<field name="PURCHASE_STATUS" class="java.lang.String"/>
+		<field name="CONTRACT_DATE" class="java.sql.Date"/>
+		<field name="CONTRACTUAL_COUNTERPARTY" class="java.lang.String"/>
+		<field name="COUNTERPARTY_COUNTRY" class="java.lang.String"/>
+		<field name="INTEXT_COUNTERPARTY" class="java.lang.String"/>
+		<field name="BILL_TO_COUNTERPARTY_COUNTRY" class="java.lang.String"/>
+		<field name="BROKER" class="java.lang.String"/>
+		<field name="BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="CONTRACT_TERM" class="java.lang.String"/>
+		<field name="INCOTERM" class="java.lang.String"/>
+		<field name="PLACE_OF_RECEIPT" class="java.lang.String"/>
+		<field name="PORT_OF_LOADING" class="java.lang.String"/>
+		<field name="COUNTRY_OF_RECEIPT" class="java.lang.String"/>
+		<field name="PLACE_OF_DELIVERY" class="java.lang.String"/>
+		<field name="PORT_OF_DISCHARGE" class="java.lang.String"/>
+		<field name="COUNTRY_OF_DELIVERY" class="java.lang.String"/>
+		<field name="PRICE_TERM" class="java.lang.String"/>
+		<field name="FUTURE_TERM" class="java.lang.String"/>
+		<field name="FUTURES_TERMINAL_MONTH" class="java.lang.String"/>
+		<field name="PRICING_OPTION" class="java.lang.String"/>
+		<field name="ALLOCATION_NUMBER" class="java.lang.String"/>
+		<field name="ALLOCATION_TYPE" class="java.lang.String"/>
+		<field name="ALLOCATION_STATUS" class="java.lang.String"/>
+		<field name="LOAD_NUMBER" class="java.lang.String"/>
+		<field name="LOAD_DATE" class="java.sql.Date"/>
+		<field name="LOAD_STATUS" class="java.lang.String"/>
+		<field name="SI_DATE" class="java.sql.Date"/>
+		<field name="BL_REFERENCE" class="java.lang.String"/>
+		<field name="COMMODITY" class="java.lang.String"/>
+		<field name="ORIGIN" class="java.lang.String"/>
+		<field name="GRADE" class="java.lang.String"/>
+		<field name="MOVEMENT_ID" class="java.lang.String"/>
+		<field name="MOVEMENT_STAGE" class="java.lang.Integer"/>
+		<field name="MOVEMENT_STATUS" class="java.lang.String"/>
+		<field name="MODE_OF_TRANSPORT" class="java.lang.String"/>
+		<field name="TRANSPORT_UNIT" class="java.lang.String"/>
+		<field name="NUM_OF_TRANSPORT_UNIT" class="java.lang.Integer"/>
+		<field name="TRANSPORT_TYPE" class="java.lang.String"/>
+		<field name="TRANSPORT_CONTRACT" class="java.lang.String"/>
+		<field name="TRANSPORTER" class="java.lang.String"/>
+		<field name="TRANSPORT" class="java.lang.String"/>
+		<field name="STOWAGE" class="java.lang.String"/>
+		<field name="MARKS" class="java.lang.String"/>
+		<field name="SHIPMENT_MONTH" class="java.lang.String"/>
+		<field name="PACKING_UNIT" class="java.lang.String"/>
+		<field name="NUM_OF_PACKING_UNIT" class="java.lang.Integer"/>
+		<field name="BANK_NAME" class="java.lang.String"/>
+		<field name="BANK_ACCOUNT_NO" class="java.lang.String"/>
+		<field name="LOAD_QTY" class="java.math.BigDecimal"/>
+		<field name="DISCHARGE_QTY" class="java.math.BigDecimal"/>
+		<field name="FREIGHT_VALUE" class="java.math.BigDecimal"/>
+		<field name="INSURANCE_VALUE" class="java.math.BigDecimal"/>
+		<field name="COMMISSION_VALUE" class="java.math.BigDecimal"/>
+		<field name="OTHERS_VALUE" class="java.math.BigDecimal"/>
+		<field name="NET_VALUE" class="java.math.BigDecimal"/>
+		<field name="PAYMENT_TERM" class="java.lang.String"/>
+		<field name="CREDIT_BASED" class="java.lang.String"/>
+		<field name="SECURED_UNSECURED_CREDIT" class="java.lang.String"/>
+		<field name="CREDIT_TENOR" class="java.lang.Integer"/>
+		<field name="LC_BASED" class="java.lang.String"/>
+		<field name="LC_REFERENCE" class="java.lang.String"/>
+		<field name="LC_ISSUE_DEADLINE" class="java.sql.Date"/>
+		<field name="LC_ISSUE_DATE" class="java.sql.Date"/>
+		<field name="LC_EXPIRY_DATE" class="java.sql.Date"/>
+		<field name="DOC_PRESENTATION_DEADLINE" class="java.sql.Date"/>
+		<field name="DOC_PRESENTATION_DATE" class="java.sql.Date"/>
+		<field name="DOC_NEGOTIATION_DATE" class="java.sql.Date"/>
+		<field name="COLLECTION_PAYMENT_DUE_DATE" class="java.sql.Date"/>
+		<field name="COLLECTION_PAYMENT_DATE" class="java.sql.Date"/>
+		<field name="COLLEECTION_PAYMENT_AMOUNT_TRANS_CURR" class="java.math.BigDecimal"/>
+		<field name="COLLEECTION_PAYMENT_FX_RATE" class="java.math.BigDecimal"/>
+		<field name="COLLEECTION_PAYMENT_AMOUNT_FINN_CURR" class="java.math.BigDecimal"/>
+		<field name="INVOICE_AGE" class="java.lang.Integer"/>
+		<field name="REMARK" class="java.lang.String"/>
+		<field name="CYCLE_TIME_1" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_2" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_3" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_4" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_5" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_6" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_7" class="java.lang.Integer"/>
+		<field name="CYCLE_TIME_8" class="java.lang.Integer"/>
+		<field name="QTY_UOM" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="datefrom" class="java.util.Date"/>
+	<parameter name="dateto" class="java.util.Date"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT I.INVOICE_ID                                                                                                                                                                  AS INVOICE_ID,
+       I.INVOICE_NUMBER                                                                                                                                                              AS INVOICE_NUMBER,
+       IDET.INVOICE_SEQ_ID                                                                                                                                                           AS INVOICE_SEQ_ID,
+       I.INVOICE_DOCUMENT_DATE                                                                                                                                                       AS INVOICE_DOCUMENT_DATE,
+       I.INVOICE_VALUE_DATE                                                                                                                                                          AS INVOICE_VALUE_DATE,
+       I.INVOICE_DUE_DATE                                                                                                                                                            AS INVOICE_DUE_DATE,
+       I.INVOICE_BY                                                                                                                                                                  AS INVOICE_BY,
+       I.PAYABLE_RECEIVABLE                                                                                                                                                          AS PAYABLE_RECEIVABLE,
+       I.INVOICE_TYPE                                                                                                                                                                AS INVOICE_TYPE,
+       I.INVOICE_STATUS                                                                                                                                                              AS INVOICE_STATUS,
+       I.INVOICE_VALUE_TRANS_CURR                                                                                                                                                    AS INVOICE_VALUE_TRANS_CURR,
+       I.INVOICE_CURRENCY                                                                                                                                                            AS INVOICE_CURRENCY,
+       I.INVOICE_FX_RATE                                                                                                                                                             AS INVOICE_FX_RATE,
+       I.INVOICE_VALUE_FINN_CURR                                                                                                                                                     AS INVOICE_VALUE_FINN_CURR,
+       I.POSTED_DATE                                                                                                                                                                 AS POSTED_DATE,
+       I.CTRID,
+       I.BILL_TO_COUNTERPARTY                                                                                                                                                        AS BILL_TO_COUNTERPARTY,
+       IDET.INVOICE_QTY                                                                                                                                                              AS INVOICE_QTY,
+       IDET.INVOICE_UNIT_PRICE                                                                                                                                                       AS INVOICE_UNIT_PRICE,
+       CTRP.QUANTITY_BASIS                                                                                                                                                           AS INVOICE_UNIT_BASIS,
+       IDET.INVOICE_FIXED_PRICE_QTY,
+       IDET.INVOICE_PROVISIONAL_PRICE_QTY,
+       IDET.FIXED_UNIT_PRICE,
+       IDET.PROVISIONAL_UNIT_PRICE,
+       COST.SETTLE_TYPE                                                                                                                                                              AS PRIMARY_SECONDARY,
+       COST.COSTCODE                                                                                                                                                                 AS COST_CODE,
+       CTRP.RETURN_RELATED                                                                                                                                                           AS SALES_RETURN,
+       CTRP.RETURN_REFERENCE                                                                                                                                                         AS SALES_RETURN_CTR_REF,
+       CTRP.CONTRACT_BOOK                                                                                                                                                            AS BOOK,
+       COMP.GLBOOKNAME                                                                                                                                                               AS COMPANY,
+       PC.PCNAME                                                                                                                                                                     AS PROFIT_CENTER,
+       ST.NAME                                                                                                                                                                       AS STRATEGY,
+       TRADER.FIRST_NAME + ' ' + TRADER.LAST_NAME                                                                                                                                    AS TRADER,
+       OPERATION.FIRST_NAME + ' '
+       + OPERATION.LAST_NAME                                                                                                                                                         AS OPERATION_USER,
+       CTRP.CONTRACT_REFERENCE                                                                                                                                                       AS CONTRACT_REFERENCE,
+       CASE
+         WHEN CTRP.LONG_SHORT = 'LONG' THEN 'Purchase'
+         ELSE 'Sales'
+       END                                                                                                                                                                           AS SALES_PURCHASE,
+       CTRP.COUNTERPARTY_REF                                                                                                                                                         AS EXTERNAL_CONTRACT_REF,
+       I.PURCHASE_STATUS                                                                                                                                                             AS PURCHASE_STATUS,
+       CTRP.CONTRACT_DATE                                                                                                                                                            AS CONTRACT_DATE,
+       COUNTERPARTY.MBRNAME                                                                                                                                                          AS CONTRACTUAL_COUNTERPARTY,
+       CPCOUNTRY.COUNTRYNAME                                                                                                                                                         AS COUNTERPARTY_COUNTRY,
+       CASE
+         WHEN COUNTERPARTY.ISINTERNAL = 1 THEN 'Internal'
+         ELSE 'External'
+       END                                                                                                                                                                           AS INTEXT_COUNTERPARTY,
+       BILLCOUNTRY.COUNTRYNAME                                                                                                                                                       AS BILL_TO_COUNTERPARTY_COUNTRY,
+       CTRP.BROKER                                                                                                                                                                   AS BROKER,
+       CTRP.BROKER_REFERENCE                                                                                                                                                         AS BROKER_REFERENCE,
+       CTRP.CONTRACT_TERM,
+       CTRP.INCOTERM                                                                                                                                                                 AS INCOTERM,
+       CTRP.PLACE_OF_RECEIPT                                                                                                                                                         AS PLACE_OF_RECEIPT,
+       CTRP.LOAD_PORT                                                                                                                                                                AS PORT_OF_LOADING,
+       CTRP.COUNTRY_OF_RECEIPT                                                                                                                                                       AS COUNTRY_OF_RECEIPT,
+       CTRP.PLACE_OF_DELIVERY                                                                                                                                                        AS PLACE_OF_DELIVERY,
+       CTRP.UNLOAD_PORT                                                                                                                                                              AS PORT_OF_DISCHARGE,
+       CTRP.COUNTRY_OF_DELIVERY                                                                                                                                                      AS COUNTRY_OF_DELIVERY,
+       CTRP.PRICE_TERM                                                                                                                                                               AS PRICE_TERM,
+       CTRP.FUTURE_TERM                                                                                                                                                              AS FUTURE_TERM,
+       CTRP.TERMINAL_MONTH                                                                                                                                                           AS FUTURES_TERMINAL_MONTH,
+       CTRP.PRICING_OPTION                                                                                                                                                           AS PRICING_OPTION,
+       ALLOC.ALLOCATION_ID                                                                                                                                                           AS ALLOCATION_NUMBER,
+       ALLOC.ALLOCATION_TYPE                                                                                                                                                         AS ALLOCATION_TYPE,
+       ALLOC.ALLOCATION_STATUS                                                                                                                                                       AS ALLOCATION_STATUS,
+       L.LOAD_NUMBER                                                                                                                                                                 AS LOAD_NUMBER,
+       L.LOAD_DATE                                                                                                                                                                   AS LOAD_DATE,
+       L.LOAD_STATUS                                                                                                                                                                 AS LOAD_STATUS,
+       MO.SI_DATE                                                                                                                                                                    AS SI_DATE,
+       L.BL_REFERENCE                                                                                                                                                                AS BL_REFERENCE,
+       L.COMMODITY                                                                                                                                                                   AS COMMODITY,
+       L.ORIGIN                                                                                                                                                                      AS ORIGIN,
+       L.GRADE                                                                                                                                                                       AS GRADE,
+       MO.MOVEMENT_ID                                                                                                                                                                AS MOVEMENT_ID,
+       MO.MOVEMENT_STAGE                                                                                                                                                             AS MOVEMENT_STAGE,
+       MO.MOVEMENT_STATUS,
+       MO.MODE_OF_TRANSPORT                                                                                                                                                          AS MODE_OF_TRANSPORT,
+       MO.TRANSPORT_UNIT                                                                                                                                                             AS TRANSPORT_UNIT,
+       MO.NO_OF_TRANSPORT_UNIT                                                                                                                                                       AS NUM_OF_TRANSPORT_UNIT,
+       MO.TRANSPORT_TYPE,
+       MO.TRANSPORT_CONTRACT                                                                                                                                                         AS TRANSPORT_CONTRACT,
+       MO.TRANSPORTER,
+       L.TRANSPORT,
+       L.STOWAGE,
+       L.MARKS                                                                                                                                                                       AS MARKS,
+       ALLOC.SHIPMENT_MONTH                                                                                                                                                          AS SHIPMENT_MONTH,
+       L.LOAD_PACKING_UNIT                                                                                                                                                           AS PACKING_UNIT,
+       L.LOAD_NUM_OF_PACKING_UNIT                                                                                                                                                    AS NUM_OF_PACKING_UNIT,
+       BANK.BANKNAME                                                                                                                                                                 AS BANK_NAME,
+       BANK.BANKACCTNO                                                                                                                                                               AS BANK_ACCOUNT_NO,
+       L.LOAD_QTY                                                                                                                                                                    AS LOAD_QTY,
+       L.DISCHARGE_QTY                                                                                                                                                               AS DISCHARGE_QTY,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.FREIGHT_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.FREIGHT_ACTUAL_PRICE
+       END                                                                                                                                                                           AS FREIGHT_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.INSURANCE_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.INSURANCE_ACTUAL_PRICE
+       END                                                                                                                                                                           AS INSURANCE_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.COMM_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.COMM_ACTUAL_PRICE
+       END                                                                                                                                                                           AS COMMISSION_VALUE,
+       CASE
+         WHEN ALLOC.ALLOCATION_TYPE = 'OPEN'
+              AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN COST.OTHER_BUDGET_PRICE
+         WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%'
+               OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN COST.OTHER_ACTUAL_PRICE
+       END                                                                                                                                                                           AS OTHERS_VALUE,
+       I.INVOICE_VALUE_FINN_CURR + ( ( CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.FREIGHT_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.FREIGHT_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.INSURANCE_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.INSURANCE_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.COMM_BUDGET_PRICE, 0) WHEN ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.COMM_ACTUAL_PRICE, 0) END + CASE WHEN ALLOC.ALLOCATION_TYPE = 'OPEN' AND ALLOC.ALLOCATION_STATUS = 'Movement Planned' THEN Isnull(COST.OTHER_BUDGET_PRICE, 0) WHEN
+                                       ALLOC.ALLOCATION_STATUS LIKE '%Loaded%' OR
+                                                                     ALLOC.ALLOCATION_STATUS LIKE '%Discharged%' THEN Isnull(COST.OTHER_ACTUAL_PRICE, 0) END ) * I.INVOICE_FX_RATE ) AS NET_VALUE,
+       CTRP.PAYMENT_TERM                                                                                                                                                             AS PAYMENT_TERM,
+       CTRP.CREDIT_BASED                                                                                                                                                             AS CREDIT_BASED,
+       CTRP.SECURED_UNSECURED_CREDIT                                                                                                                                                 AS SECURED_UNSECURED_CREDIT,
+       CTRP.CREDIT_TENOR                                                                                                                                                             AS CREDIT_TENOR,
+       CTRP.LC_BASED                                                                                                                                                                 AS LC_BASED,
+       I.LC_REFERENCE                                                                                                                                                                AS LC_REFERENCE,
+       I.LC_ISSUE_DEADLINE                                                                                                                                                           AS LC_ISSUE_DEADLINE,
+       I.LC_ISSUE_DATE                                                                                                                                                               AS LC_ISSUE_DATE,
+       I.LC_EXPIRY_DATE                                                                                                                                                              AS LC_EXPIRY_DATE,
+       I.DOC_PRESENTATION_DEADLINE                                                                                                                                                   AS DOC_PRESENTATION_DEADLINE,
+       I.DOC_PRESENTATION_DATE                                                                                                                                                       AS DOC_PRESENTATION_DATE,
+       I.DOC_NEGOTIATION_DATE                                                                                                                                                        AS DOC_NEGOTIATION_DATE,
+       I.PAYMENT_DUE_DATE                                                                                                                                                            AS COLLECTION_PAYMENT_DUE_DATE,
+       PAY.COLLECTION_PAYMENT_DATE                                                                                                                                                   AS COLLECTION_PAYMENT_DATE,
+       PAY.COLLECTION_PAYMENT_AMOUNT_TRANS_CURR                                                                                                                                      AS COLLEECTION_PAYMENT_AMOUNT_TRANS_CURR,
+       PAY.COLLECTION_PAYMENT_FX_RATE                                                                                                                                                AS COLLEECTION_PAYMENT_FX_RATE,
+       PAY.COLLECTION_PAYMENT_AMOUNT_FINN_CURR                                                                                                                                       AS COLLEECTION_PAYMENT_AMOUNT_FINN_CURR,
+       Datediff (DAY, Getdate(), I.INVOICE_VALUE_DATE)                                                                                                                               AS INVOICE_AGE,
+       IDET.DESCRIPTION                                                                                                                                                              AS REMARK,
+       Datediff (DAY, I.DOC_PRESENTATION_DATE, L.LOAD_DATE)                                                                                                                          AS CYCLE_TIME_1,
+       Datediff (DAY, I.DOC_NEGOTIATION_DATE, I.DOC_PRESENTATION_DATE)                                                                                                               AS CYCLE_TIME_2,
+       Datediff (DAY, I.DOC_NEGOTIATION_DATE, L.LOAD_DATE)                                                                                                                           AS CYCLE_TIME_3,
+       Datediff (DAY, I.PAYMENT_DUE_DATE, I.DOC_NEGOTIATION_DATE)                                                                                                                    AS CYCLE_TIME_4,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.DOC_PRESENTATION_DATE)                                                                                                          AS CYCLE_TIME_5,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.DOC_NEGOTIATION_DATE)                                                                                                           AS CYCLE_TIME_6,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, I.PAYMENT_DUE_DATE)                                                                                                               AS CYCLE_TIME_7,
+       Datediff (DAY, PAY.COLLECTION_PAYMENT_DATE, L.LOAD_DATE)                                                                                                                      AS CYCLE_TIME_8,
+       IDET.INVOICE_UNIT_BASIS                                                                                                                                                       AS QTY_UOM
+FROM   BI_VIEW_SETTLEMENT_DETAILS I
+       LEFT JOIN BI_VIEW_SETTLEMENT_LINE_ITEM_DETAILS IDET
+              ON I.INVOICE_ID = IDET.INVOICE_ID
+       LEFT JOIN BI_VIEW_CONTRACT_PHYSICAL  CTRP
+              ON I.CTRID = CTRP.CTRID
+       LEFT JOIN (SELECT CTRID,
+                         COSTCODE,
+                         SETTLE_TYPE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Freight%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) FREIGHT_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Freight%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) FREIGHT_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Commission%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) COMM_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Commission%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) COMM_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE NOT LIKE '%Freight%'
+                                    AND COSTCODE NOT LIKE '%Commission%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) OTHER_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE NOT LIKE '%Freight%'
+                                    AND COSTCODE NOT LIKE '%Commission%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) OTHER_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Tax' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) TAX_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Tax' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) TAX_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Discount' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) DISCOUNT_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COST_TYPE = 'Discount' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) DISCOUNT_BUDGET_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Insurance%' THEN ACTUAL_UNIT_PRICE
+                               ELSE NULL
+                             END) INSURANCE_ACTUAL_PRICE,
+                         Sum(CASE
+                               WHEN COSTCODE LIKE '%Insurance%' THEN BUDGET_UNIT_PRICE
+                               ELSE NULL
+                             END) INSURANCE_BUDGET_PRICE
+                  FROM   BI_VIEW_ADDITIONAL_COST
+                  WHERE  INSTRUMENT_TYPE = 'Physical'
+                  GROUP  BY CTRID,
+                            COSTCODE,
+                            SETTLE_TYPE) COST
+              ON COST.CTRID = CTRP.CTRID
+       LEFT JOIN JC_USER TRADER
+              ON CTRP.TRADERID = TRADER.ID
+       LEFT JOIN GLCOMPANY COMP
+              ON CTRP.COMPANYID = COMP.COMPANYID
+       LEFT JOIN JCPROFITCENTER PC
+              ON CTRP.PCID = PC.PCID
+       LEFT JOIN JCSTRATEGY ST
+              ON CTRP.STRATEGYID = ST.STRATEGYID
+       LEFT JOIN JC_USER OPERATION
+              ON CTRP.OPERATIONUSERID = OPERATION.ID
+       LEFT JOIN JCMBR COUNTERPARTY
+              ON CTRP.COUNTERPARTYID = COUNTERPARTY.MBRID
+       LEFT JOIN JCMBRBANKER BANK
+              ON COUNTERPARTY.DEFAULTBANK = BANK.BANKID
+       LEFT JOIN JCCOUNTRY CPCOUNTRY
+              ON COUNTERPARTY.MBRCOUNTRYID = CPCOUNTRY.COUNTRYID
+       LEFT JOIN JCMBR BILLCP
+              ON I.BILL_TO_CP_ID = BILLCP.MBRID
+       LEFT JOIN JCCOUNTRY BILLCOUNTRY
+              ON BILLCP.MBRCOUNTRYID = BILLCOUNTRY.COUNTRYID
+       LEFT JOIN BI_VIEW_LOAD_DISCHARGED_DETAILS L
+              ON IDET.LOAD_ID = L.LOAD_ID
+       LEFT JOIN BI_VIEW_CONTRACT_MOVEMENT MO
+              ON L.MOVEMENT_ID = MO.MOVEMENT
+       LEFT JOIN BI_VIEW_ALLOCATION ALLOC
+              ON MO.ALLOCATION_ID = ALLOC.ID
+       LEFT JOIN BI_VIEW_CASH_PAYMENT_DETAILS PAY
+              ON I.INVOICE_ID = PAY.INVOICE_ID
+WHERE I.INVOICE_DOCUMENT_DATE >= $P{datefrom}
+AND I.INVOICE_DOCUMENT_DATE <= $P{dateto}]]>
+	</queryString>
+	<field name="INVOICE_ID" class="java.lang.Integer"/>
+	<field name="INVOICE_NUMBER" class="java.lang.String"/>
+	<field name="INVOICE_SEQ_ID" class="java.lang.Integer"/>
+	<field name="INVOICE_DOCUMENT_DATE" class="java.sql.Timestamp"/>
+	<field name="INVOICE_VALUE_DATE" class="java.sql.Date"/>
+	<field name="INVOICE_DUE_DATE" class="java.sql.Date"/>
+	<field name="INVOICE_BY" class="java.lang.String"/>
+	<field name="PAYABLE_RECEIVABLE" class="java.lang.String"/>
+	<field name="INVOICE_TYPE" class="java.lang.String"/>
+	<field name="INVOICE_STATUS" class="java.lang.String"/>
+	<field name="INVOICE_VALUE_TRANS_CURR" class="java.math.BigDecimal"/>
+	<field name="INVOICE_CURRENCY" class="java.lang.String"/>
+	<field name="INVOICE_FX_RATE" class="java.math.BigDecimal"/>
+	<field name="INVOICE_VALUE_FINN_CURR" class="java.math.BigDecimal"/>
+	<field name="POSTED_DATE" class="java.sql.Timestamp"/>
+	<field name="CTRID" class="java.lang.Integer"/>
+	<field name="BILL_TO_COUNTERPARTY" class="java.lang.String"/>
+	<field name="INVOICE_QTY" class="java.math.BigDecimal"/>
+	<field name="INVOICE_UNIT_PRICE" class="java.math.BigDecimal"/>
+	<field name="INVOICE_UNIT_BASIS" class="java.lang.String"/>
+	<field name="SALES_RETURN" class="java.lang.String"/>
+	<field name="SALES_RETURN_CTR_REF" class="java.lang.String"/>
+	<field name="BOOK" class="java.lang.String"/>
+	<field name="COMPANY" class="java.lang.String"/>
+	<field name="PROFIT_CENTER" class="java.lang.String"/>
+	<field name="STRATEGY" class="java.lang.String"/>
+	<field name="TRADER" class="java.lang.String"/>
+	<field name="OPERATION_USER" class="java.lang.String"/>
+	<field name="CONTRACT_REFERENCE" class="java.lang.String"/>
+	<field name="SALES_PURCHASE" class="java.lang.String"/>
+	<field name="EXTERNAL_CONTRACT_REF" class="java.lang.String"/>
+	<field name="PURCHASE_STATUS" class="java.lang.String"/>
+	<field name="CONTRACT_DATE" class="java.sql.Date"/>
+	<field name="CONTRACTUAL_COUNTERPARTY" class="java.lang.String"/>
+	<field name="COUNTERPARTY_COUNTRY" class="java.lang.String"/>
+	<field name="INTEXT_COUNTERPARTY" class="java.lang.String"/>
+	<field name="BILL_TO_COUNTERPARTY_COUNTRY" class="java.lang.String"/>
+	<field name="BROKER" class="java.lang.String"/>
+	<field name="BROKER_REFERENCE" class="java.lang.String"/>
+	<field name="CONTRACT_TERM" class="java.lang.String"/>
+	<field name="INCOTERM" class="java.lang.String"/>
+	<field name="PLACE_OF_RECEIPT" class="java.lang.String"/>
+	<field name="PORT_OF_LOADING" class="java.lang.String"/>
+	<field name="COUNTRY_OF_RECEIPT" class="java.lang.String"/>
+	<field name="PLACE_OF_DELIVERY" class="java.lang.String"/>
+	<field name="PORT_OF_DISCHARGE" class="java.lang.String"/>
+	<field name="COUNTRY_OF_DELIVERY" class="java.lang.String"/>
+	<field name="PRICE_TERM" class="java.lang.String"/>
+	<field name="FUTURE_TERM" class="java.lang.String"/>
+	<field name="FUTURES_TERMINAL_MONTH" class="java.lang.String"/>
+	<field name="PRICING_OPTION" class="java.lang.String"/>
+	<field name="ALLOCATION_NUMBER" class="java.lang.String"/>
+	<field name="ALLOCATION_TYPE" class="java.lang.String"/>
+	<field name="ALLOCATION_STATUS" class="java.lang.String"/>
+	<field name="LOAD_NUMBER" class="java.lang.String"/>
+	<field name="LOAD_DATE" class="java.sql.Date"/>
+	<field name="LOAD_STATUS" class="java.lang.String"/>
+	<field name="SI_DATE" class="java.sql.Date"/>
+	<field name="BL_REFERENCE" class="java.lang.String"/>
+	<field name="COMMODITY" class="java.lang.String"/>
+	<field name="ORIGIN" class="java.lang.String"/>
+	<field name="GRADE" class="java.lang.String"/>
+	<field name="MOVEMENT_ID" class="java.lang.String"/>
+	<field name="MOVEMENT_STAGE" class="java.lang.Integer"/>
+	<field name="MOVEMENT_STATUS" class="java.lang.String"/>
+	<field name="MODE_OF_TRANSPORT" class="java.lang.String"/>
+	<field name="TRANSPORT_UNIT" class="java.lang.String"/>
+	<field name="NUM_OF_TRANSPORT_UNIT" class="java.lang.Integer"/>
+	<field name="TRANSPORT_TYPE" class="java.lang.String"/>
+	<field name="TRANSPORT_CONTRACT" class="java.lang.String"/>
+	<field name="TRANSPORTER" class="java.lang.String"/>
+	<field name="TRANSPORT" class="java.lang.String"/>
+	<field name="STOWAGE" class="java.lang.String"/>
+	<field name="MARKS" class="java.lang.String"/>
+	<field name="SHIPMENT_MONTH" class="java.lang.String"/>
+	<field name="PACKING_UNIT" class="java.lang.String"/>
+	<field name="NUM_OF_PACKING_UNIT" class="java.lang.Integer"/>
+	<field name="BANK_NAME" class="java.lang.String"/>
+	<field name="BANK_ACCOUNT_NO" class="java.lang.String"/>
+	<field name="LOAD_QTY" class="java.math.BigDecimal"/>
+	<field name="DISCHARGE_QTY" class="java.math.BigDecimal"/>
+	<field name="FREIGHT_VALUE" class="java.math.BigDecimal"/>
+	<field name="INSURANCE_VALUE" class="java.math.BigDecimal"/>
+	<field name="COMMISSION_VALUE" class="java.math.BigDecimal"/>
+	<field name="OTHERS_VALUE" class="java.math.BigDecimal"/>
+	<field name="NET_VALUE" class="java.math.BigDecimal"/>
+	<field name="PAYMENT_TERM" class="java.lang.String"/>
+	<field name="CREDIT_BASED" class="java.lang.String"/>
+	<field name="SECURED_UNSECURED_CREDIT" class="java.lang.String"/>
+	<field name="CREDIT_TENOR" class="java.lang.Integer"/>
+	<field name="LC_BASED" class="java.lang.String"/>
+	<field name="LC_REFERENCE" class="java.lang.String"/>
+	<field name="LC_ISSUE_DEADLINE" class="java.sql.Date"/>
+	<field name="LC_ISSUE_DATE" class="java.sql.Date"/>
+	<field name="LC_EXPIRY_DATE" class="java.sql.Date"/>
+	<field name="DOC_PRESENTATION_DEADLINE" class="java.sql.Date"/>
+	<field name="DOC_PRESENTATION_DATE" class="java.sql.Date"/>
+	<field name="DOC_NEGOTIATION_DATE" class="java.sql.Date"/>
+	<field name="COLLECTION_PAYMENT_DUE_DATE" class="java.sql.Date"/>
+	<field name="COLLECTION_PAYMENT_DATE" class="java.sql.Date"/>
+	<field name="COLLEECTION_PAYMENT_AMOUNT_TRANS_CURR" class="java.math.BigDecimal"/>
+	<field name="COLLEECTION_PAYMENT_FX_RATE" class="java.math.BigDecimal"/>
+	<field name="COLLEECTION_PAYMENT_AMOUNT_FINN_CURR" class="java.math.BigDecimal"/>
+	<field name="INVOICE_AGE" class="java.lang.Integer"/>
+	<field name="REMARK" class="java.lang.String"/>
+	<field name="CYCLE_TIME_1" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_2" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_3" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_4" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_5" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_6" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_7" class="java.lang.Integer"/>
+	<field name="CYCLE_TIME_8" class="java.lang.Integer"/>
+	<field name="INVOICE_FIXED_PRICE_QTY" class="java.math.BigDecimal"/>
+	<field name="INVOICE_PROVISIONAL_PRICE_QTY" class="java.math.BigDecimal"/>
+	<field name="FIXED_UNIT_PRICE" class="java.math.BigDecimal"/>
+	<field name="PROVISIONAL_UNIT_PRICE" class="java.math.BigDecimal"/>
+	<field name="PRIMARY_SECONDARY" class="java.lang.String"/>
+	<field name="COST_CODE" class="java.lang.String"/>
+	<field name="QTY_UOM" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e6a860f1-0da0-434b-9a68-59a367121980" x="0" y="30" width="9780" height="30">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PHYSICAL INVOICE REPORT]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4394c845-a30a-4563-9322-d8e23180811b" x="0" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[From Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39f70c2d-f200-473d-9507-47b349abd0f6" x="0" y="20" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[To Date :]]></text>
+			</staticText>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="0de05e7d-cadf-4cbc-80f7-1d20aa96ed62" x="100" y="20" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd-MMM-yyyy">
+				<reportElement uuid="6cacb3b9-d59c-4f27-b492-b45131166991" x="100" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{datefrom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<componentElement>
+				<reportElement uuid="f7458be8-8a33-4d39-8835-87e199c6a9f4" x="0" y="0" width="9790" height="200">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="f28246c0-91ce-4b6b-aa4a-51a46c5a74a4">
+						<datasetParameter name="datefrom">
+							<datasetParameterExpression><![CDATA[$P{datefrom}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="dateto">
+							<datasetParameterExpression><![CDATA[$P{dateto}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="120" uuid="00cf7a04-811d-441b-a5d1-874414f9bcdf">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5a03f1f8-9405-4d52-9670-2f9dd27c3e47" x="0" y="0" width="120" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="6cff989a-73c7-40ed-b628-93ba9a0b607d" x="0" y="0" width="120" height="30"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_NUMBER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="403465dc-a46c-4543-a9ab-3120fd405fd3">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<property name="com.jaspersoft.studio.unit.width" value="px"/>
+							<staticText>
+								<reportElement uuid="facda08d-fb2f-4ff9-99fc-f8a767404c0c" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Seq ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="094fe147-2e6a-4b4e-a59b-d8b361f386f2" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_SEQ_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="dd46d1ba-23b6-46da-9ca8-e4c71fc31714">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="4620eddc-6270-4f4f-a426-6eaf5686fd60" x="0" y="0" width="80" height="30">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Document Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="efb5414f-56c6-4fc3-b66d-51191d9aea7d" x="0" y="0" width="80" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_DOCUMENT_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="74093cec-0d3c-4f94-84fb-6f3335925e0b">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="ecb08f1d-29c8-42a6-9b1c-2878911c6acf" x="0" y="0" width="70" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Value Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="c0666624-829e-4a72-9b48-1d75ad2d44fc" x="0" y="0" width="70" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_VALUE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="79af99b7-800a-4648-a4a8-8339fe20315a">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b1507e3d-5b63-4307-84c4-a4dcdee9335d" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice By]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="a80d623b-b860-481a-afc3-aa571df639a8" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_BY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="0c9779b8-ad48-42c4-a89b-082361131e16">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="c3deab6a-d7c1-4cbf-b6de-20e342455dde" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Payable / Receivable]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="88c1b2d2-4061-400a-ad23-409fea8bc23e" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PAYABLE_RECEIVABLE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="50dce351-dc73-464e-b1cc-ae7d0383f7db">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="0c60c431-52a9-4774-9532-100e739de30f" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="8e875bc8-169f-4e04-b5e6-516c5251d050" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="aeeab291-f113-45cd-a0bf-12b8755cb87c">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="aa14abb4-4ef1-4ae3-9815-c702a0cfb8e3" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="2044c260-2129-45d0-a3f4-8140526efe73" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="a7923e3a-6486-4c46-be80-78b152fe4122">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="14b0c6bb-b5e8-4e89-93ce-c31f82576393" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Posted Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="3d583cfd-546a-432f-9cbf-e11b59bafd0a" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{POSTED_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="8c6b0e3f-e1a1-4604-a718-85ee4a3a83e0">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6d979178-4f8d-4166-b0be-7ddc0ed9a755" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Primary / Secondary]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="eaee48c8-fae6-4366-a186-abdbaebc9880" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRIMARY_SECONDARY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="68ac7f99-9fb0-4872-b230-df90cbd3bea8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="0b07c622-8ae4-4efa-97c9-c5c2993b10ba" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cost Code]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="0d03c19e-9be5-420a-b46d-a5216015dd7a" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COST_CODE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="cd1b25fd-5b23-4258-b238-48e24b6a29da">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="29fff999-e938-400d-a381-295959d67445" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Return (Y/N)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="de442742-85b5-4fda-8e40-cd0eb3bfba9e" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SALES_RETURN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a76454b6-f32d-4023-a090-7caa473942a5">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="be6b0d87-21a4-4371-bacc-c638e5239895" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Return Ctr. Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="136b6129-4cab-4426-b93a-1cc124b420bc" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SALES_RETURN_CTR_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="e05c3f7b-738e-44d8-af20-6afe0a1a0723">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="bbbf7dc6-ed13-48d4-93d1-969ac7ff2c6f" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Company]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="fbf0f83f-92d5-4bd4-acda-6b7e78b02a32" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMPANY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="10bbf880-1f35-4b34-85c9-4910d673b7c4">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="e942ec02-a346-4e4d-a237-a21e6384ac5f" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Book]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="6d62884d-6f19-48ba-8919-f683fb20ad7f" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BOOK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="31b9a7c3-b6e9-43d3-9ada-1b84fcbad4a8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b3af202c-987a-4023-b940-69e0cb32475a" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Profit Center]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="68719734-11dc-4423-9eda-6fe4e47219c5" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PROFIT_CENTER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="37bb6019-a885-4b92-831b-6f62dcd65123">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="145923da-34c0-407e-9df1-baee6ca79b8f" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Strategy]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5b0aec37-12b4-4812-8082-e67634241d58" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{STRATEGY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="850dc42d-92df-4432-abe3-6fecb07c7bb8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="7123a5ea-f509-4734-91ef-3ee049ecf4e7" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Trader]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="a081c5a9-3a8d-477f-9478-86b3974ad13a" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRADER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2a4bf546-1527-49ef-827b-74d0febe0901">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="a47c7e00-6c43-47f1-9fb5-1a74cb601213" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Operation User]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="889b5571-83db-452a-b398-3b7fb94097e8" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OPERATION_USER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="6b2b95fe-5ca1-4b05-9d99-25b89089b9f5">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="e1c56e4c-1307-4aba-871d-924ac12b720f" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Reference]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="a1fea860-5cb3-4b83-b06d-81ba0719454c" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACT_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="09b931bb-1de2-40c9-a98d-5df65a5f1e9b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="f549b8ff-2cd1-4439-8cd4-fc1d2cb63a43" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales / Purchase]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="28972499-26cc-4a37-8ff0-4ae993b98e1b" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SALES_PURCHASE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="155df4f7-2d62-49e3-9b12-722bca7d900d">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="494c58b5-8f81-4e14-89c3-37e2e1377b00" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[External Contract Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="0426b475-f490-4b71-86cc-f517d0813277" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EXTERNAL_CONTRACT_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="f60777f6-96f1-4af0-bbf5-27fd8c883bfa">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="19b1be59-3757-41be-b232-3f068049171d" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="8df6a16c-dfab-4ccf-aaec-03a78ff33376" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PURCHASE_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="500265bd-4a89-4829-85e3-ea7c42ae0b68">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="97f30f75-ad1e-431e-a015-f9cea91fca25" x="0" y="0" width="70" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="c8247909-241d-4421-a055-0ee5459abf06" x="0" y="0" width="70" height="30">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACT_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="2306ce40-79b7-43bc-8862-deaa34c5f0f8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="3f965226-4a0d-4fa9-9976-2d26eebc98c7" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contractual Counterparty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="35a84739-7396-4fad-954f-a30f3c9a8b20" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACTUAL_COUNTERPARTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c2b489be-27ab-456f-9e57-7e8ef0e87dfe">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="32d78221-f0da-4dba-ad2a-20072bc83594" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bill To Counterparty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="896322ab-d3b1-4e50-aee2-b1f72c58c8c0" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BILL_TO_COUNTERPARTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="35686d95-a817-40ed-b75c-9463bcd34b14">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="ca5d7fdb-aeb2-44be-8af3-d8cce819f2f0" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Counterparty Country]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="d58e568f-d6d2-4d54-8f3d-b101134495ef" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COUNTERPARTY_COUNTRY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="210fbf6f-8e64-4b8d-b4f8-77b59e5252bb">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="ee0f3b83-b884-4cc2-9c04-ee6b3220b89b" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Internal/External Counterparty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="057df075-9534-4897-9bcf-b0593ca3540a" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INTEXT_COUNTERPARTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="31f1e95b-a64c-496e-a92f-08dadaa5c75e">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="f75f123d-be5e-46da-baf9-91b50cbb0ca3" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bill To Counterparty Country]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="7b67428b-8683-4892-8243-278ff136acda" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BILL_TO_COUNTERPARTY_COUNTRY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="eb3040be-5bc7-4249-ae8f-c523f8496262">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="9775eff8-936a-48b5-a87c-be3f64c79735" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="bc49a676-6944-4ca9-9a94-88de10059a54" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="5106d831-d26e-41da-b80b-b22e806c1de9">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="69df19c5-6753-4088-b233-38554f2c6712" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Broker Reference]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="98574a96-3fac-48d5-b5cc-7a76b74de0ef" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BROKER_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="bcf40edb-a306-4129-8e79-cc1ffb6bd652">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="fe887cca-4dff-485d-9a8e-e4d38d2bae12" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="b3538714-c613-4e88-a6c0-776d67d3aa21" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CONTRACT_TERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="2971acc4-3d4d-423c-a7f2-0c6deab1d40d">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="7fd8be23-3229-4d77-9e8c-91d1d6ed3cb1" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Incoterm]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="a0361c2c-529a-442d-8504-553b8eb34013" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INCOTERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="24862fdf-7be2-4c28-9f01-179bb5719443">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="e90078b0-9ad2-4ff7-995a-9cda71515d96" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Place of Receipt]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="392db239-eb6f-4677-a7db-e74ecbe29c40" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PLACE_OF_RECEIPT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="7ba26818-e5c9-4b2a-be18-a9e074678912">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="c9459a92-1eda-4bff-a593-0cb7d69a6229" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Port of Loading]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="8b5b1bb6-5eab-45ec-aaee-2867b633b81c" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PORT_OF_LOADING}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="1766c5a3-e0ad-4dd2-b4f6-430b7f57b355">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="08eda641-bf4d-4910-9f10-ee018fdeb539" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Country of Receipt]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="efb8e4c6-9e42-48ca-953d-e7c07348148c" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COUNTRY_OF_RECEIPT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="69fc0340-b51d-4666-bd04-0827fa8e2a1e">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="32a3f143-fc62-484c-a38f-88bf2cd3e032" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Port of Unloading]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5f2df9ed-0ac8-48f1-8030-7090e9468ed2" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PORT_OF_DISCHARGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="245be0fe-a5a0-40a0-b005-6e9ca4807210">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="fa6a4a19-7c91-4d25-94fa-962f309cb94a" x="0" y="0" width="80" height="30">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Place of Delivery]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="02d3186c-54de-41ab-8058-44db5b575a39" x="0" y="0" width="80" height="30">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PLACE_OF_DELIVERY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="e58b0717-fe26-49f0-a419-1ff2cf2b80d6">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="2c41301c-85fe-4ce9-8e9f-e6c5005cdf51" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Country of Delivery]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="811bd7e6-45b1-4540-b24c-c20953433a37" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COUNTRY_OF_DELIVERY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="5f1d3acc-a9d6-48e1-a5db-6371a4518589">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="4dba1c17-7f7c-49d3-b6f8-a0062a0d9120" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="bdf32cdb-63bc-404b-b270-c20a9ca713a6" x="0" y="0" width="50" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRICE_TERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="cd9cac6e-a277-4b97-8564-b3c1c96ab7e9">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="4689f2c8-4b06-4df6-b199-9e0217a7e348" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Futures Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="57f91d48-3883-4353-b70d-f8f023b92244" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURE_TERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="335ad2a1-fb69-4cf5-8eb4-a90ba30a2ad1">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="35c885de-214a-4a89-9e6e-4b8135f7d7a8" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Futures Terminal Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="11729235-d9e0-48c6-9cb1-c2a8c99c08ef" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURES_TERMINAL_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="23440d34-42c2-4a13-b07d-062741ccfe8b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6d564d9d-c323-43fa-bcd4-b0ce9aed27d9" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Pricing Option]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="248605bb-c3d9-4aed-848c-4aca2cd7a5c3" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PRICING_OPTION}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="899f1556-84e1-4b3e-a3e3-460f87af648c">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5b923bc8-17a2-44c5-984f-b513b9b9aca9" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Allocation ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="1f858688-d777-4233-8b44-332d8f7db45d" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_NUMBER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a35f0622-7410-4eb9-b1b7-6a98f9b99920">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="1b0ec7c2-ac2a-4ba3-8492-9629b1e5538b" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Allocation Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="22d9a8f8-68f4-4400-b8ab-59ccf2fb0343" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="290d8a27-aa06-4d74-88fc-c0115d2c4c51">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6a5274dc-3b1f-4dd0-b5dc-7869be713441" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Allocation Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="e349ca5f-b1f5-42bd-ae5c-3470eb3b357f" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="00c4c9c3-35d1-4329-af2a-45d0f6407a6f">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="1a37d827-53ad-48cb-ae35-829f8112d2de" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Load ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="eac92371-b951-415d-9ade-5f8558130545" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOAD_NUMBER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="3ae84817-0113-46e6-993a-83f04777d41c">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5c78d667-aea2-49be-89a0-99f3ae1f868e" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Load Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="d467cdca-9954-4fa0-b661-5da42523d287" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOAD_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="f773811c-6aad-4b8c-996a-f52d18d55a5a">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="a6422ed7-e4c2-455f-8576-601567d9471f" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Load Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="557d46e0-e706-4a8b-a54a-2ab5a2dd148a" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOAD_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="3e908b23-fa81-48db-a983-caa1b4739b94">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6011c81d-61ec-4c9e-8d1d-ee722f012f3b" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SI Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="ecde3b18-bc56-4102-a45d-53a0c2dffe04" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SI_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c70606af-633b-417c-9336-07127fbb46a2">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="99f0a6e4-3bc4-4c3f-88f8-f0028092c957" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[B/L Reference]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="5d013680-00e7-4a4b-8690-190dfed78913" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BL_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="f38bdacb-7a85-46b3-a8aa-7f9aa250fa26">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="64dfcaa6-51dc-4d9f-8d51-5e940741a2a5" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Commodity]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="697702a5-3be2-4f4f-b812-88eed9f6bea0" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMMODITY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="fd0f5015-9236-4410-9b59-c69508a2eb31">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="282d0f9f-0766-45a4-bbec-c955572b51af" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Origin]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="44671406-0f5c-41f4-a134-91484add22cb" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ORIGIN}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="d653b8db-8951-465c-8824-28b350701442">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="db107414-0c49-4a8e-ace3-405d669aa36d" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Grade]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="10e4ffcf-6dcd-466e-8eff-ed3373e0e9b9" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{GRADE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="3ed4581e-d35d-4080-a2ed-67746022b8e4">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5d39d2e0-6657-4c91-9587-6d45eea06ba4" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Movement ID]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="243fdd7b-56ea-4bc5-9ad7-0cf9b8ad581a" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MOVEMENT_ID}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="c16ee5b7-7a35-4912-898b-27f4143c1f25">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="004b8015-2cd5-472a-9962-f7dc261af32a" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Movement Stage]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="e539aa69-7792-4f55-ae0f-9face2cd02bd" x="0" y="0" width="60" height="30"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MOVEMENT_STAGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="72febf1f-1456-4c7f-bd13-034b052eb4b6">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="3ce72d63-78d8-404c-a351-6c59783b46b4" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Movement Status]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="edf5fbab-2dc6-45da-b74d-9131295f0c20" x="0" y="0" width="70" height="30"/>
+								<textElement>
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MOVEMENT_STATUS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="acb722cd-ee1d-4f3b-91ec-d07a44e0df4b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b0393b74-cb87-4a4d-b65b-98dffa422aed" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Mode of Transport]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="0da002f5-804f-44d9-966b-a3f004b34dfa" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MODE_OF_TRANSPORT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="e9fe7cf1-7e7b-4c31-ad30-b2a75d2531f8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5e9d93ec-e193-4e0b-ad28-937f9ac1b76e" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Transport Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="94a7cbd0-f68c-4912-a50f-7b1b0f0aff92" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRANSPORT_UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="dc51d887-714f-42fc-9606-8e92678c8372">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="7cb7bbfd-eaa3-414a-872d-2a1ef09e3de1" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[# of Transport Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="7dc58058-d8eb-45fc-98a7-502d565c3704" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NUM_OF_TRANSPORT_UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="4e3ac011-ac2f-474e-b857-40ffa3c7d666">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="2e9ad9a5-08c1-4836-91a1-426ee5836972" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Transport Type]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="84ccfc9a-6ff9-41ad-a798-5a453d3a373d" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRANSPORT_TYPE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="484a64aa-e683-4986-bed5-22d9d6082883">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="832dbfcc-555c-4f2d-b68a-3159ab6ca974" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Transport Contract]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="3f755a49-2f8d-4d91-9d28-4970a63d4de5" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRANSPORT_CONTRACT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="8ca35a05-7eb7-4953-8b3f-dbaddd39e55c">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="02b1dde2-329a-4260-850c-6407dd51bbfb" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Transporter]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="def36f42-a172-4f8a-9315-34a8bdacfcb5" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRANSPORTER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="82ae148b-fba7-46ae-b96d-4716ac23f7c6">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="903de5ed-7209-4b26-a1b1-2b958c86a10f" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Transport]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="50b5c3c1-32d9-4128-b377-a1a38494cdb3" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{TRANSPORT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="f6d9bc76-765f-4133-9af9-6e90b6735a3f">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="dc3259eb-817b-4e6a-b62e-fde9e42a60cc" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Stowage]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="9e4429af-d20d-4ea4-8aad-ac7eb7a3ed7d" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{STOWAGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="a8fda971-6449-4965-9016-a8cc3da97c37">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="7484dc2a-674a-4837-90e5-e36dcfdd3375" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Marks]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="e9242caf-01c0-4428-9975-1cd5ba443ce2" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{MARKS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="845569ef-7840-4dbe-8990-4a657d2c9243">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="be695a59-9c43-45f6-a9a8-51837c10a658" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Shipment Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="84bfe688-aaa1-49d7-ac18-b2bbe8043b31" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SHIPMENT_MONTH}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="219e8bac-11a0-4fca-b50e-ea561ef49a0b">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="7f5e72ee-d318-41f1-84ff-8427c64d63a6" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Packing Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="2806703e-78b3-4b1f-9022-76f148730d44" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PACKING_UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="fa0b6c6b-fb09-4fc1-80ce-e94d79ee2b84">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="bf8f02a6-cab9-4e4f-87f3-3493996bece8" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[# of Packing Unit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="af80dedc-5708-4086-8f6e-4ed13abb8464" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NUM_OF_PACKING_UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="4b4dee5a-cc02-42ce-a621-343cbf605afe">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6651cce6-ec79-4f8a-8d9c-d9e55e094f61" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Due Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="1d1070fa-d108-4a44-9331-ba31bd7f4b90" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_DUE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="f8ab2cc4-ca7f-4da6-9dce-44583350ccb8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="86b2dde6-bd52-412e-9654-ab698de94383" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bank Name]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="9202f9ac-34e7-4c16-87fa-396a65931ba2" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BANK_NAME}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="a8c1df23-0320-4664-8304-09cbcd348e22">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="c6b8ce01-f7a8-49ae-84f4-ddfab1c44c9a" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Bank Account Number]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="e69421c2-ea1a-44d7-b9f3-0c726aaa93e5" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{BANK_ACCOUNT_NO}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="b5530130-00bf-4fb9-8b5b-fa19e84ebd33">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="faba0ded-2030-4e4c-b6ae-ebcaebc0c691" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Load Qty.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="314ba68e-ad59-47fd-8b3d-9eb230b6c9ac" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LOAD_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="a47fd071-6a0a-435f-80c1-5cd3e90f2553">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="62aa072b-0dfc-40e1-8a45-a129c66378fa" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Discharge Qty.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="21651562-2f9e-47b5-a3dd-f022f6585a04" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DISCHARGE_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="f23ec604-8962-43f4-84d3-26b7ac5c9fcb">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="08542f9e-4717-4136-9d23-ce302b0776b5" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Qty.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="d548efae-4768-4d68-b31b-410c82c6b5fc" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="fee9ef6c-816e-47b5-a79a-4772dcde4741">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="583eaa7b-02c9-43d0-91ed-adc5e6f2243e" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Fixed Price Qty.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="a2e0c4b2-da2d-4459-9651-174be52deac7" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_FIXED_PRICE_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="9930b5b0-5d7e-4871-a321-0e8b26b7bfb8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="319d80d9-3fb2-44c1-9d7b-35dfc729d6a1" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Provisional Price Qty.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="1db7c563-3edb-4b85-aa25-0cc3d0ab69c3" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_PROVISIONAL_PRICE_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="62820aca-c0d4-4999-82a8-341340f70b60">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="2282a857-6958-4ea3-b080-fde932a97060" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Qty. UOM]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="ba086dab-6412-4a7d-8a52-617ec663aa61" x="0" y="0" width="50" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{QTY_UOM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="0267a0ee-ea99-4d83-9f6f-cfa84103595a">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="bc43904b-b37d-4f9b-bcdd-add7fee860d8" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Fixed Unit Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="07ef88a5-f2b3-4f1a-ba13-1f5106b8e100" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FIXED_UNIT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="4511ac05-8d33-4362-a2ca-5502e51f01f6">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="fb204ef3-da0a-4092-bdf9-d70c73c3d9c3" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Provisional Unit Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="74802cb3-723c-4a52-acac-9f609420f62c" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PROVISIONAL_UNIT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="39efd5e7-4ee9-4a2c-9a89-788f173cde63">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="bff9c051-96aa-4651-81ee-b618474a4795" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Unit Basis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="d85c2593-d6be-4bf2-ae82-85d4e0cc02a9" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_UNIT_BASIS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="c9978697-a138-4366-95f2-6982e6c52586">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="8b2169ab-3ba9-4c83-81a2-641db512813b" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Unit Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="b72c63d5-6947-4d3d-90f7-ae16e6113967" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_UNIT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="1964be46-a49a-4c06-9974-5306b057df9f">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="3064eec9-852c-4e4b-bee0-d8a30839f48e" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Freight Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="7c1c0103-755b-463e-9906-5d972f6712a6" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FREIGHT_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="72247c77-ef62-46d1-9d72-7d318bdade9a">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="1d6301ac-086f-4342-ad60-a029a1a2164f" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Insurance Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="1d142dc2-6b87-45ad-9f13-186b1680bae1" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INSURANCE_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="4e5bf5af-c5b6-448c-9be1-0bd313708824">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="d9c43c58-9d89-4ed0-adf5-c74b20fe156d" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Commision Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="8ac6b11a-1e02-4922-8bf5-76067b80e987" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COMMISSION_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="f056475e-4f86-4e92-8dec-c28d4c7b0958">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="9f82993d-5e8d-4d2e-8afd-ed900374b2ad" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Others Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="f72b8b7b-5298-4abf-afe4-6fc8f00bdda8" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OTHERS_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="4b12bb07-0ec6-44e9-a14d-326272abcfac">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="6072daa7-a219-4342-a98c-ffbaa1f26a4c" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Value
+(Transaction Curr.)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="deb44a4d-538e-49cd-9c01-2b164cfe063c" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_VALUE_TRANS_CURR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="8b946f09-ac92-41a2-b3a2-3e383e90a567">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="76ebbfb0-afed-4222-8ae4-a501c794b144" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Currency]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="6c2225a2-f974-43f1-8bde-62a618a6b796" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="ac6d2451-ec0c-426c-847b-4fa212c8ad7f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5fb90e61-27a3-4bbb-b9b1-84bbb0cd47a6" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice FX Rate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="00c0ec65-7bed-4ec8-b680-2d768d111c51" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_FX_RATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="178926da-2b63-4c3a-8be8-bf3161947128">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="30d85d4b-83e5-423e-9975-aa6d2ed443db" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Value
+(Financial Cur.)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="cdd9646b-b857-4614-a9d0-bdd255ef7127" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_VALUE_FINN_CURR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="7f511b64-7ec3-430f-adf8-82313b02bcb6">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="3e15346d-d347-4a3b-8ab7-018241a2235c" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Net Value]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="2371768c-cfda-4acc-8aef-7a6cb6cbf98d" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{NET_VALUE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="c17666b0-cc05-4751-b0d5-fe08b068e60f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="f4def7f2-3979-4875-9995-c8170b7ac113" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Payment Term]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="376ea821-610c-42dc-a44d-886cbe912c06" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PAYMENT_TERM}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="5f523407-fa0d-43f5-a20c-04637b11f9b9">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="1b6dd2be-0e3c-414a-a294-5a377edbfdfc" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Credit Based (Yes/No)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="987f857e-6545-4776-97dc-47d459cba17b" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CREDIT_BASED}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="73e5fb0e-0cb8-4ebf-9a17-4485ad1e9109">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="da80eaf5-f8a7-4056-96bd-d5ba48488c4a" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Secured / Unsecured Credit]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="75dccb8b-4446-4c19-8689-15990af9b433" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SECURED_UNSECURED_CREDIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="60" uuid="355af17c-1866-420e-a8a1-ace7479565ca">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="5bf06366-ac9e-479c-98dd-cb41c1135cb1" x="0" y="0" width="60" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Credit Tenor (Days)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="0df3f7b3-27a2-474c-8d41-82ba6475aa05" x="0" y="0" width="60" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CREDIT_TENOR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="50" uuid="dab69fa3-9449-40ac-af5f-d039afedb41f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="975a95b3-06fd-49d4-b60d-cd4da716fee6" x="0" y="0" width="50" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[LC Based (Yes/No)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="f032bcee-f2f5-4f83-a856-d33d4d2bfcb8" x="0" y="0" width="50" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LC_BASED}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="d0d749fd-e85c-4bb5-90af-9c4e64b17cfe">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="26e7b2ac-572b-4ba5-9c50-8358473c7da0" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[L/C Reference]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="4e5c2810-b3fc-4061-9e0d-cae390b5f2ab" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LC_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="7f6c079c-4024-4b06-9728-98c9f03b3a58">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="a6632b32-4028-488e-bbd1-e381070836dc" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[L/C Issue Deadline]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="ff502607-b3ed-4c45-a7f9-7df70e3f5ac1" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LC_ISSUE_DEADLINE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="1dea1efd-a00a-4997-a3c9-98fa2fdf32a3">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="03dddb49-2477-4f45-af4e-811ae2b873dd" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[L/C Issue Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="b01ca351-e9ae-4505-b692-2277d2496589" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LC_ISSUE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="f949bef7-0101-4ede-a6d7-8a32dd9a2dd8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="2fb44a33-768d-4b69-8099-59ba84e5f9e8" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[L/C Expiry Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="dd-MMM-yyyy" isBlankWhenNull="true">
+								<reportElement uuid="e9325609-bf77-45db-b809-a5b7b5d630fe" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{LC_EXPIRY_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="4f67c5cb-f74b-4a34-8047-5b5fc7672169">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="8f66db9c-7d65-41d2-8f3d-7fbcf18e5bb9" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Doc Presentation Deadline]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="b8b04c2a-16ef-404a-88c6-f36a3114c288" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOC_PRESENTATION_DEADLINE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bd21a921-6dfb-4c22-8a3c-d051f9be5437">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="9e2be03d-5c9c-4a70-8f0b-0e6ba1962ef9" x="0" y="0" width="90" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Doc Presentation Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="2a771dee-5da4-4958-bd8f-614441bf2a92" x="0" y="0" width="90" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOC_PRESENTATION_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="80" uuid="e2a37282-1fe8-43e8-886c-8dee92155289">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="436d608b-3e25-4a7f-b754-5368d488c435" x="0" y="0" width="80" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Doc Negotiation Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="1310f63b-076f-480a-a38b-1475b3b3f6c1" x="0" y="0" width="80" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DOC_NEGOTIATION_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="ca690994-92d9-49ea-9274-295700aad3cc">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b1c31f29-ee29-40e2-966b-8f6763369b4d" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Collection/Payment Due Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="46268d9b-1730-4e7b-b466-667729cdbbd9" x="0" y="0" width="100" height="30">
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COLLECTION_PAYMENT_DUE_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="74538bf5-40e1-4da7-89a2-c502f84895bf">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="3b703dc5-6d4a-4f91-b833-b502f269d6f1" x="0" y="0" width="100" height="30">
+									<property name="local_mesure_unitx" value="pixel"/>
+									<property name="local_mesure_unity" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Collection/Payment Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="2dca7738-ae1d-4203-9a96-b1fa4d1d53c5" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COLLECTION_PAYMENT_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="150" uuid="4c81f39a-05a3-4c17-b1f0-dbc04834bf8c">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="f8dd0c9c-0a90-4a7d-af3a-25e9b3aae8b2" x="0" y="0" width="150" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Collection/Payment Amount
+(Xtion Curr.)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="dd87dc89-9ab5-4838-a062-74ec90725ba5" x="0" y="0" width="150" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COLLEECTION_PAYMENT_AMOUNT_TRANS_CURR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="ed67943d-3c96-4e42-a1cb-7478cb897837">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="f66d4bce-1c64-49b6-a47e-9a4ee0864c59" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Collection/Payment FX Rate]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="9f06d483-45c5-40a5-b4e9-9a507faefd7e" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COLLEECTION_PAYMENT_FX_RATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="140" uuid="7502d2be-f8e3-42e0-8a0f-fae790106834">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b23ee515-f0f4-42da-92af-0b9cbb520147" x="0" y="0" width="140" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Collection/Payment Amount
+(Fin Curr.)
+
+]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement uuid="268cdb1b-e0ee-44e9-89e7-c5b1bf9d1f6e" x="0" y="0" width="140" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{COLLEECTION_PAYMENT_AMOUNT_FINN_CURR}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="70" uuid="806d3342-40fa-44da-8e97-5fc0e4b52e0b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="4390a8a9-3e58-40b0-bc9f-6f0cdce9b82f" x="0" y="0" width="70" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Age (Days)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="9a90f29b-2dd2-45bc-a3d0-b7aadd4b5567" x="0" y="0" width="70" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{INVOICE_AGE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="ac5072f8-bbf6-4f6b-a9d7-fa18a5112fca">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="adee6a06-2d8a-47cf-bb9b-b9b0d607e745" x="0" y="0" width="100" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Remarks]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="8b16f415-657f-4308-9942-598da92f31d8" x="0" y="0" width="100" height="30"/>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{REMARK}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="f6d85de1-5461-4740-ba9a-fce3dd38a0c8">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="fce36f8d-819b-4b77-b238-69463c0dfd47" x="0" y="0" width="90" height="30">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 1 (Doc In - B/L Date)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="d29de045-2ec2-4ff7-93ab-cf6c52835880" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="04db4712-83c3-4396-bef1-3a431f531594">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="63eb7b3e-1ec9-44e3-9375-fa3c2e2d194e" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 2 (Doc Nego - Doc In )]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="2a9481e4-97da-42ba-b1f8-bae05d5e6ac9" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_2}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="b3bd6ba4-f708-452a-84b0-8278e081cef8">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b86013af-f279-4833-9c12-8e1ed2292b32" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 3 (Doc Nego - B/L)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="86153e48-2716-454f-991e-9aa4a6ef1927" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_3}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="ce2c7f90-1382-4716-8da1-87cf9b89d3ac">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="80450e41-4b82-49e2-ae16-e72051852561" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 4 (Due Dt - Doc Nego)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="f75565f5-48ff-4b23-ba87-c4d246d3d464" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_4}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="27598822-17a6-49cc-b171-3640ec6b246a">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="b57dd6fa-8506-4cc2-94e8-b7a5b72895d8" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 5 (Fund In - Doc In)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="7132da0b-21e1-4559-9b40-ecea35b024b1" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_5}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="9de0fb20-74a4-45db-81db-399b4fa39413">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="aea78aa4-902a-43d6-b676-3a9a4f3eff3c" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 6 (Fund In - Doc Nego)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="8d3c8d7e-4b5d-44e5-a0cb-22347189ea37" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_6}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="7183c971-03c3-4b99-ae4b-c9b23aaa87f2">
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="ed1197ee-43db-4708-b16c-42afac424141" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 7 (Fund In - Due Date)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="98889d59-4c90-4e23-bdac-054a5a3bc44a" x="0" y="0" width="100" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_7}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="04fce5a2-4125-43f3-9e32-efab6e9f73ad">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:columnHeader style="Table 1_CH" height="30">
+							<staticText>
+								<reportElement uuid="462b1ace-f96f-4cbd-9bad-56fc59ed2827" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="10" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Cycle Time 8 (Funds in - B/L)]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="db51403e-1612-43a6-8094-a85e9270a303" x="0" y="0" width="90" height="30">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<textElement verticalAlignment="Middle">
+									<font size="10"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{CYCLE_TIME_8}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

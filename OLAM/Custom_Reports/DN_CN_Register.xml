@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>DN_CN_Register</name>
+    <version>0</version>
+    <label>DN CN Register Report</label>
+    <description>DN CN Register Report</description>
+    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+    <updateDate>2018-09-25T19:27:51.560+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="dn_cn_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>dn_cn_</name>
+            <version>0</version>
+            <label>DN CN Register Report</label>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>dateoption</name>
+            <version>0</version>
+            <label>Date Option</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>8</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <listOfValues>
+                <localResource exportedWithPermissions="false" xsi:type="listOfValues">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/dateoption_files</folder>
+                    <name>dateoption</name>
+                    <version>0</version>
+                    <label>dateoption</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <item>
+                        <itemLabel>Invoice Document Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">1</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Invoice Value Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">2</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Posted Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">3</itemValue>
+                    </item>
+                    <item>
+                        <itemLabel>Load Date</itemLabel>
+                        <itemValue xsi:type="java:java.lang.String">4</itemValue>
+                    </item>
+                </localResource>
+            </listOfValues>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>datefrom2</name>
+            <version>0</version>
+            <label>Date From</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/datefrom2_files</folder>
+                    <name>datefrom2</name>
+                    <version>0</version>
+                    <label>datefrom2</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>dateto2</name>
+            <version>0</version>
+            <label>Date To</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/dateto2_files</folder>
+                    <name>dateto2</name>
+                    <version>0</version>
+                    <label>dateto2</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>invoice_status</name>
+            <version>0</version>
+            <label>Invoice Status</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/invoice_status_files</folder>
+                    <name>invoice_status</name>
+                    <version>0</version>
+                    <label>invoice_status</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' LABEL, '%'   VALUE
+UNION
+SELECT 'Posted', 'Posted'
+UNION
+SELECT 'Unposted', 'Unposted'</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>invoice_type</name>
+            <version>0</version>
+            <label>Invoice Type</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/invoice_type_files</folder>
+                    <name>invoice_type</name>
+                    <version>0</version>
+                    <label>invoice_type</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL, '%' AS VALUE
+UNION
+SELECT 'Credit Note' , 'Credit Note'
+UNION
+SELECT 'Debit Note','Debit Note'</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>company</name>
+            <version>0</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>
+SELECT 0, 'ALL' LABEL, '%' VALUE
+UNION
+SELECT 1, MBRNAME, MBRNAME
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE  JM.ISACTIVE = 1
+       AND JM.MBRID &gt; 0
+ORDER  BY 1,2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>ctrbook</name>
+            <version>0</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0 AS ORDERIDX,
+	   '%' AS VALUE_FIELD,
+       'ALL'   AS LABEL_FIELD
+UNION
+SELECT 1 AS ORDERIDX, CBK.CODE AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername}) 
+AND CBK.ACTIVE = 1
+ORDER BY ORDERIDX, LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>profitcenter_group</name>
+            <version>0</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/profitcenter_group_files</folder>
+                    <name>profitcenter_group</name>
+                    <version>0</version>
+                    <label>profitcenter_group</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL,
+       '%'   AS VALUE,
+       1     AS ORDERBY
+UNION
+SELECT SHORTNAME,
+       SHORTNAME,
+       2 AS ORDERBY
+FROM   JCPROFITCENTERGROUP
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>profitcenter</name>
+            <version>0</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/profitcenter_files</folder>
+                    <name>profitcenter</name>
+                    <version>0</version>
+                    <label>profitcenter</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' LABEL,
+       '%'   VALUE,
+	   1 AS SEQ
+UNION
+SELECT PCNAME AS LABEL,
+	   PCNAME AS VALUE,
+	   2 AS SEQ
+FROM   JCPROFITCENTER 
+WHERE PCID &gt; 0 AND ISACTIVE =1
+ORDER BY SEQ, LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>commodity</name>
+            <version>0</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL,
+       '%'  AS VALUE,
+	   1 AS SEQ
+UNION
+SELECT IVITEMID AS LABEL,
+       IVITEMID AS VALUE,
+	   2 AS SEQ
+FROM   JCIVITEMS
+WHERE ISACTIVE = 1
+ORDER  BY SEQ, LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>counterparty</name>
+            <version>0</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/counterparty_files</folder>
+                    <name>counterparty</name>
+                    <version>0</version>
+                    <label>counterparty</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL,
+       '%'   AS VALUE,
+	   1 AS SEQ
+UNION
+SELECT MBRSHORTNAME AS LABEL,
+       MBRSHORTNAME AS VALUE,
+	   2 AS SEQ
+FROM   JCMBR 
+WHERE MBRID &gt; 0 AND ISINTERNAL = 0
+AND ISACTIVE=1
+ORDER BY SEQ,LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>billing_ctrpty</name>
+            <version>0</version>
+            <label>Billing Counpterparty</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/billing_ctrpty_files</folder>
+                    <name>billing_ctrpty</name>
+                    <version>0</version>
+                    <label>billing_ctrpty</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL, '%' AS VALUE, 0 AS SEQ
+UNION
+SELECT PAYTONAME AS LABEL, PAYTONAME AS VALUE,2 AS SEQ
+FROM   APHEADER
+WHERE PAYTOID &gt; 0
+UNION
+SELECT BILLTONAME AS LABEL, BILLTONAME AS VALUE,2 AS SEQ
+FROM   ARHEADER 
+WHERE BILLTOID &gt; 0
+ORDER BY SEQ,LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>payterm</name>
+            <version>0</version>
+            <label>Payment Term</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/payterm_files</folder>
+                    <name>payterm</name>
+                    <version>0</version>
+                    <label>payterm</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 0, 'ALL' LABEL, '%'   VALUE
+UNION
+SELECT PAYTERMID, PAYTERMCODE, CTRDESC
+FROM   JCPAYTERMS
+WHERE ISACTIVE = 1
+ORDER BY 1, 2</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>vessel</name>
+            <version>0</version>
+            <label>Vessel</label>
+            <description></description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files/vessel_files</folder>
+                    <name>vessel</name>
+                    <version>0</version>
+                    <label>vessel</label>
+                    <description></description>
+                    <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+                    <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'ALL' AS LABEL, '%' AS VALUE, 1 AS SEQ
+UNION
+SELECT DISTINCT TRANSPORT AS LABEL, TRANSPORT AS VALUE, 2 AS SEQ FROM LOAD
+WHERE TRANSPORT IS NOT NULL
+ORDER BY SEQ, LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="OlamLogo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/DN_CN_Register_files</folder>
+            <name>OlamLogo</name>
+            <version>0</version>
+            <label>OlamLogo</label>
+            <description>OlamLogo</description>
+            <creationDate>2018-10-01T15:35:58.767+08:00</creationDate>
+            <updateDate>2018-10-01T15:35:58.767+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>false</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

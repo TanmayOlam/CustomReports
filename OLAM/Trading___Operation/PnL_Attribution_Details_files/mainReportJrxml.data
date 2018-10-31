@@ -1,0 +1,1586 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PNL PALM REPORT 04122015 JAYARAJ" pageWidth="2415" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="df133b99-8491-4c1b-aa54-2577170f2431">
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.html.border.collapse" value="separate"/>
+	<property name="net.sf.jasperreports.export.docx.frames.as.nested.tables" value="false"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.actual.size" value="true"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.group.indent" value="0"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.min.group.label.width" value="100"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.detail.band.height" value="25"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.header.band.height" value="25"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.row.header.width" value="125"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.cell.width" value="100"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.crosstab.cell.height" value="20"/>
+	<property name="com.jaspersoft.ji.adhoc.data.adapter" value="true"/>
+	<property name="com.jaspersoft.ji.adhoc" value="1"/>
+	<property name="com.jaspersoft.ji.adhoc.preferredDataStrategy" value="domainDataStrategy"/>
+	<property name="net.sf.jasperreports.export.pdf.tagged" value="false"/>
+	<property name="net.sf.jasperreports.export.pdf.tag.language" value="EN-US"/>
+	<property name="net.sf.jasperreports.text.truncate.suffix" value="..."/>
+	<property name="net.sf.jasperreports.print.keep.full.text" value="true"/>
+	<property name="com.jaspersoft.jasperserver.adhoc.table.flattened.data.set" value="true"/>
+	<import value="com.jaspersoft.ji.adhoc.service.AdhocEngineServiceImpl"/>
+	<import value="com.jaspersoft.ji.adhoc.jr.AdhocReportUtils"/>
+	<style name="ReportDefault" isDefault="true" mode="Transparent" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11">
+		<box>
+			<pen lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableBaseFrameStyle" mode="Transparent">
+		<box padding="0">
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableFrameStyle" style="TableBaseFrameStyle">
+		<box padding="1">
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnHeaderFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnFooterFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableColumnHeaderTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#D5DEE8" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="1.0" lineStyle="Solid"/>
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<rightPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="TableGroupHeaderFrameStyle" style="TableBaseFrameStyle" mode="Opaque" backcolor="#E3E9EF">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="TableGroupHeaderTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#E3E9EF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableGroupFooterFrameStyle" style="TableBaseFrameStyle" mode="Opaque" backcolor="#E7ECF2">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="TableGroupFooterTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#E7ECF2" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box leftPadding="5" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="TableSummaryFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableSummaryTextNoBorderStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" fontName="DejaVu Sans" isBold="true">
+		<box leftPadding="5" rightPadding="5"/>
+	</style>
+	<style name="TableSummaryTextStyle" style="TableSummaryTextNoBorderStyle">
+		<box>
+			<pen lineWidth="1.0"/>
+		</box>
+	</style>
+	<style name="TableTitleFrameStyle" style="TableFrameStyle">
+		<box topPadding="0" bottomPadding="0">
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="0.0"/>
+			<rightPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableTitleTextStyle" style="ReportDefault" mode="Opaque" forecolor="#333333" backcolor="#FFFFFF" hAlign="Center" fontSize="18" isBold="false">
+		<box bottomPadding="8">
+			<pen lineColor="#000000"/>
+			<topPen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="TableDetailFrameStyle" style="TableBaseFrameStyle">
+		<box>
+			<leftPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="TableDetailTextStyle" style="ReportDefault" mode="Opaque" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Middle" fontName="DejaVu Sans" fontSize="11" isBold="false">
+		<box leftPadding="5" rightPadding="5">
+			<pen lineWidth="1.0" lineStyle="Solid"/>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+	</style>
+	<style name="ChartReportTitle" style="ReportDefault" mode="Opaque" forecolor="#333333" backcolor="#FFFFFF" hAlign="Center" fontSize="18" isBold="false">
+		<box>
+			<pen lineColor="#000000"/>
+			<topPen lineWidth="0.0" lineStyle="Solid"/>
+		</box>
+	</style>
+	<style name="ChartTitle" forecolor="#000000" fontName="DejaVu Sans" fontSize="12" isBold="true"/>
+	<style name="ChartSubtitle" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartLegend" forecolor="#000000" backcolor="#FFFFFF" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartSeriesColor0" backcolor="#87C4FE"/>
+	<style name="ChartSeriesColor1" backcolor="#E96270"/>
+	<style name="ChartSeriesColor2" backcolor="#D1D1D1"/>
+	<style name="ChartSeriesColor3" backcolor="#FFEE99"/>
+	<style name="ChartSeriesColor4" backcolor="#6164FF"/>
+	<style name="ChartSeriesColor5" backcolor="#B0E992"/>
+	<style name="ChartSeriesColor6" backcolor="#AE9CEA"/>
+	<style name="ChartSeriesColor7" backcolor="#F5B05E"/>
+	<style name="ChartSeriesColor8" backcolor="#589EE1"/>
+	<style name="ChartSeriesColor9" backcolor="#AE4E59"/>
+	<style name="ChartSeriesColor10" backcolor="#747474"/>
+	<style name="ChartSeriesColor11" backcolor="#E2DC77"/>
+	<style name="ChartSeriesColor12" backcolor="#4749A5"/>
+	<style name="ChartSeriesColor13" backcolor="#81B963"/>
+	<style name="ChartSeriesColor14" backcolor="#7764B4"/>
+	<style name="ChartSeriesColor15" backcolor="#F27B4C"/>
+	<style name="ChartCategoryAxisLabelFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="11" isBold="true"/>
+	<style name="ChartCategoryAxisTickFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartValueAxisLabelFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="11" isBold="true"/>
+	<style name="ChartValueAxisTickFormat" forecolor="#000000" fontName="DejaVu Sans" fontSize="9" isBold="false"/>
+	<style name="ChartContext" backcolor="#D1CA67"/>
+	<style name="CrosstabElementStyle" mode="Transparent" forecolor="#000033" backcolor="#FFFFFF" hAlign="Center" vAlign="Middle" fontName="DejaVu Sans" fontSize="11">
+		<box bottomPadding="1" rightPadding="1">
+			<topPen lineWidth="0.0"/>
+			<leftPen lineWidth="0.0"/>
+			<bottomPen lineWidth="1.0" lineColor="#AAAAAA"/>
+			<rightPen lineWidth="1.0" lineColor="#AAAAAA"/>
+		</box>
+	</style>
+	<style name="CrosstabBaseCellStyle" mode="Transparent">
+		<box padding="0">
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabBaseTextStyle" mode="Opaque" forecolor="#666666" backcolor="#FFFFFF" hAlign="Left" vAlign="Top" fontName="DejaVu Sans" fontSize="11" isBold="true">
+		<box topPadding="3" leftPadding="5" bottomPadding="3" rightPadding="5">
+			<topPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<leftPen lineWidth="1.0" lineColor="#FFFFFF"/>
+			<bottomPen lineWidth="1.0" lineColor="#B1B6BB"/>
+			<rightPen lineWidth="1.0" lineColor="#B1B6BB"/>
+		</box>
+	</style>
+	<style name="CrosstabTitleTextStyle" style="CrosstabBaseTextStyle" forecolor="#333333" fontSize="18" isBold="false">
+		<box>
+			<pen lineWidth="0.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="CrosstabHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D5DEE8"/>
+	<style name="CrosstabHeaderLabelStyle" style="CrosstabHeaderTextStyle" mode="Transparent">
+		<box>
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabMeasureHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D3C8EB"/>
+	<style name="CrosstabMeasureHeaderLabelStyle" style="CrosstabMeasureHeaderTextStyle" mode="Transparent">
+		<box>
+			<pen lineWidth="0.0"/>
+		</box>
+	</style>
+	<style name="CrosstabColumnMeasureHeaderTextStyle" style="CrosstabMeasureHeaderTextStyle"/>
+	<style name="CrosstabRowMeasureHeaderTextStyle" style="CrosstabMeasureHeaderTextStyle" isBold="false"/>
+	<style name="CrosstabDimensionHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#E7ECF2" isBold="false"/>
+	<style name="CrosstabDetailTextStyle" style="CrosstabBaseTextStyle" backcolor="#FFFFFF" hAlign="Right" isBold="false">
+		<box>
+			<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+			<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{CROSSTAB_TOTAL_DISCRIMINATOR}]]></conditionExpression>
+			<style backcolor="#F0F4F8" hAlign="Right" isBold="true">
+				<box>
+					<topPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<leftPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<bottomPen lineWidth="1.0" lineColor="#E3E9EF"/>
+					<rightPen lineWidth="1.0" lineColor="#E3E9EF"/>
+				</box>
+			</style>
+		</conditionalStyle>
+	</style>
+	<style name="CrosstabDummyHeaderTextStyle" style="CrosstabBaseTextStyle" backcolor="#D4D4D4"/>
+	<subDataset name="tableDataset" whenResourceMissingType="Key" uuid="75f91f5f-3e86-4a93-8206-5e50589cd734">
+		<property name="net.sf.jasperreports.create.sort.fields.for.groups" value="true"/>
+		<parameter name="_PNL_ATTRIBUTION.POSITION_REFERENCE_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.Long", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PNL_ATTRIBUTION.POSITION_REFERENCE_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PNL_ATTRIBUTION.COUNTERPARTY_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.Long", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PNL_ATTRIBUTION.COUNTERPARTY_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PNL_ATTRIBUTION.MARKET_PRICE_INDEX_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.Long", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PNL_ATTRIBUTION.MARKET_PRICE_INDEX_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_OpenQuantity_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_OpenQuantity_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_RealizedQuantity_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_RealizedQuantity_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_TotalQuantity_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_TotalQuantity_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_QuantityAmendment_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_QuantityAmendment_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_ITDPNL_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_ITDPNL_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_DailyPnL_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_DailyPnL_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_ExplainedPnL_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_ExplainedPnL_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_RealizedPnL_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_RealizedPnL_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_MarketShift_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_MarketShift_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_FXShift_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_FXShift_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PriceAmendment_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PriceAmendment_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_CostChange_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_CostChange_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_QuantityChange_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_QuantityChange_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_VoidDefualt_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_VoidDefualt_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PnLShift_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_PnLShift_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_UnexplainedPnL_AdHocFunctionMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<parameter name="_UnexplainedPnL_AdHocMask" class="java.lang.String" isForPrompting="false">
+			<defaultValueExpression><![CDATA[AdhocEngineServiceImpl.getInstance().getDefaultMask("java.math.BigDecimal", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></defaultValueExpression>
+		</parameter>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH" class="java.lang.Object">
+			<property name="fieldType" value="LEVEL"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.String">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.String">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.String">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="OpenQuantity" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="RealizedQuantity" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="TotalQuantity" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="QuantityAmendment" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="ITDPNL" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="DailyPnL" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="ExplainedPnL" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="RealizedPnL" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="MarketShift" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="FXShift" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="PriceAmendment" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="CostChange" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="QuantityChange" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="VoidDefualt" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="PnLShift" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="fieldType" value="MEASURE"/>
+		</field>
+		<field name="_top_level__PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="_top_level__UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_top_level_"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.CONTRACT_BOOK_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.CONTRACT_BOOK"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.ATTRIBUTION_DATE_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.ATTRIBUTION_DATE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.PROFIT_CENTER_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.PROFIT_CENTER"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.COMMODITY_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.COMMODITY"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.INSTRUMENT_TYPE_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.INSTRUMENT_TYPE"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.Long">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="PNL_ATTRIBUTION.SHIPMENT_MONTH_UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="PNL_ATTRIBUTION.SHIPMENT_MONTH"/>
+		</field>
+		<field name="_detail_level__PNL_ATTRIBUTION.POSITION_REFERENCE" class="java.lang.String">
+			<property name="measure" value="PNL_ATTRIBUTION.POSITION_REFERENCE"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__PNL_ATTRIBUTION.COUNTERPARTY" class="java.lang.String">
+			<property name="measure" value="PNL_ATTRIBUTION.COUNTERPARTY"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__PNL_ATTRIBUTION.MARKET_PRICE_INDEX" class="java.lang.String">
+			<property name="measure" value="PNL_ATTRIBUTION.MARKET_PRICE_INDEX"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__OpenQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="OpenQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__RealizedQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__TotalQuantity" class="java.math.BigDecimal">
+			<property name="measure" value="TotalQuantity"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__QuantityAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__ITDPNL" class="java.math.BigDecimal">
+			<property name="measure" value="ITDPNL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__DailyPnL" class="java.math.BigDecimal">
+			<property name="measure" value="DailyPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__ExplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="ExplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__RealizedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="RealizedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__MarketShift" class="java.math.BigDecimal">
+			<property name="measure" value="MarketShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__FXShift" class="java.math.BigDecimal">
+			<property name="measure" value="FXShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__PriceAmendment" class="java.math.BigDecimal">
+			<property name="measure" value="PriceAmendment"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__CostChange" class="java.math.BigDecimal">
+			<property name="measure" value="CostChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__QuantityChange" class="java.math.BigDecimal">
+			<property name="measure" value="QuantityChange"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__VoidDefualt" class="java.math.BigDecimal">
+			<property name="measure" value="VoidDefualt"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__PnLShift" class="java.math.BigDecimal">
+			<property name="measure" value="PnLShift"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<field name="_detail_level__UnexplainedPnL" class="java.math.BigDecimal">
+			<property name="measure" value="UnexplainedPnL"/>
+			<property name="fieldType" value="LEVEL_MEASURE"/>
+			<property name="level" value="_detail_level_"/>
+		</field>
+		<group name="PNL_ATTRIBUTION.CONTRACT_BOOK" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.CONTRACT_BOOK}]]></groupExpression>
+		</group>
+		<group name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.ATTRIBUTION_DATE}]]></groupExpression>
+		</group>
+		<group name="PNL_ATTRIBUTION.PROFIT_CENTER" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.PROFIT_CENTER}]]></groupExpression>
+		</group>
+		<group name="PNL_ATTRIBUTION.COMMODITY" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.COMMODITY}]]></groupExpression>
+		</group>
+		<group name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.INSTRUMENT_TYPE}]]></groupExpression>
+		</group>
+		<group name="PNL_ATTRIBUTION.SHIPMENT_MONTH" minHeightToStartNewPage="60">
+			<groupExpression><![CDATA[$F{PNL_ATTRIBUTION.SHIPMENT_MONTH}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="REPORT_TITLE" class="java.lang.String" isForPrompting="false">
+		<property name="net.sf.jasperreports.data.cache.included" value="true"/>
+		<defaultValueExpression><![CDATA[null]]></defaultValueExpression>
+	</parameter>
+	<title>
+		<band splitType="Stretch">
+			<frame>
+				<reportElement style="TableTitleFrameStyle" x="0" y="0" width="2377" height="0" uuid="6b76921c-22f6-4ef5-a7ff-5733e1fbca01">
+					<printWhenExpression><![CDATA[$P{REPORT_TITLE} != null && $P{REPORT_TITLE}.length() > 0]]></printWhenExpression>
+				</reportElement>
+				<textField isStretchWithOverflow="true">
+					<reportElement key="staticText" style="TableTitleTextStyle" x="0" y="0" width="2375" height="0" uuid="4dbbfcc4-350e-4a7e-84f4-918346ffdaa4">
+						<printWhenExpression><![CDATA[$P{REPORT_TITLE} != null && $P{REPORT_TITLE}.length() > 0]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Center"/>
+					<textFieldExpression><![CDATA[$P{REPORT_TITLE}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<summary>
+		<band height="25" splitType="Stretch">
+			<componentElement>
+				<reportElement style="TableFrameStyle" x="0" y="0" width="2375" height="25" uuid="3d00a38f-de2e-475a-9a57-d5d4378efd38"/>
+				<c:table xmlns:c="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="tableDataset" uuid="de4f59a1-d8b1-47fb-9c7e-c73d6a5b3ef0">
+						<dataSourceExpression><![CDATA[$P{REPORT_PARAMETERS_MAP}.get("com.jaspersoft.ji.adhoc.report.data.source")]]></dataSourceExpression>
+					</datasetRun>
+					<c:columnGroup width="2375" uuid="838f261e-4028-489f-b6c6-31435d9e055d">
+						<c:groupHeader groupName="PNL_ATTRIBUTION.SHIPMENT_MONTH">
+							<c:cell style="TableGroupHeaderFrameStyle" height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true" bookmarkLevel="1">
+									<reportElement style="TableGroupHeaderTextStyle" x="0" y="0" width="2375" height="25" uuid="d88f3a6e-2adc-4dfa-834f-ceb51ce63aa6">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textFieldExpression><![CDATA[AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.CONTRACT_BOOK}, null,"java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE}) + ", "  + AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.ATTRIBUTION_DATE}, "medium,hide","java.util.Date", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE}) + ", "  + AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.PROFIT_CENTER}, null,"java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE}) + ", "  + AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.COMMODITY}, null,"java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE}) + ", "  + AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.INSTRUMENT_TYPE}, null,"java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE}) + ", "  + AdhocEngineServiceImpl.getInstance().formatValue($F{PNL_ATTRIBUTION.SHIPMENT_MONTH}, null,"java.lang.String", $P{REPORT_LOCALE}, $P{REPORT_TIME_ZONE})]]></textFieldExpression>
+								</textField>
+							</c:cell>
+						</c:groupHeader>
+						<c:column width="125" uuid="fbf00155-4545-4dd5-919c-7f5ebc967614">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="dbbb8bef-2385-4417-91c4-0489b730fa51">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA["POSITION_REFERENCE"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="f0375d93-0abb-4ba4-a8e8-4805fe78f15b"/>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__PNL_ATTRIBUTION.POSITION_REFERENCE}]]></textFieldExpression>
+									<patternExpression><![CDATA[$P{_PNL_ATTRIBUTION.POSITION_REFERENCE_AdHocMask}]]></patternExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="95b5e70d-a0b4-4c00-bf69-a8b53e8c5e9a">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="7b69332f-6ea6-42ba-ba5e-4f1d163fe527">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA["COUNTERPARTY"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="83c788a4-5a04-467d-8b4b-10f8cc7e7fd5"/>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__PNL_ATTRIBUTION.COUNTERPARTY}]]></textFieldExpression>
+									<patternExpression><![CDATA[$P{_PNL_ATTRIBUTION.COUNTERPARTY_AdHocMask}]]></patternExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="17acf725-aff7-445c-a3cf-34d452014ed2">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="3d8e2d1c-ffe4-40be-8e56-8bfc03b422b2">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA["MARKET_PRICE_INDEX"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="2193c0c6-ccdb-46c4-bfae-71d32c062d83"/>
+									<textElement textAlignment="Left"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__PNL_ATTRIBUTION.MARKET_PRICE_INDEX}]]></textFieldExpression>
+									<patternExpression><![CDATA[$P{_PNL_ATTRIBUTION.MARKET_PRICE_INDEX_AdHocMask}]]></patternExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="9883e995-fcb2-4d46-a455-4117e3274ec9">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="41d861e5-4c8e-4f98-b28b-c6b1673b641e">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Open Quantity"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="d92994b7-7a33-4a47-a8bf-414eb90c641e"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__OpenQuantity}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="439b50ef-6583-4a66-a220-d45e45f4928e">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="dc40673c-68db-404e-ad51-7098fe4d45ba">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Realized Quantity "]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="928b916d-ca14-4de2-b705-af96c101ec4e"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__RealizedQuantity}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="605e2022-5b33-4df2-8de7-14b330e7f7a5">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="8d856c48-1b52-4410-8d81-44612cbafccb">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Total Quantity"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="a74069d7-6652-4008-baa7-883701380db6"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__TotalQuantity}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="ea179ce8-710d-41e8-8f01-3955726e20c1">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="052f479b-1e83-428e-b2ca-c04af80ec517">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Quantity Amendment"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="61657daf-6f73-4999-bc62-8be1cd4d7c37"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__QuantityAmendment}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="f22d4658-2084-45ab-9172-aba28f79453b">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="b3f2e282-5aa8-4b83-b7c0-6b790f908302">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["ICD PNL"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="53c073bb-d8c7-4802-b5fc-be194c56cadb"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__ITDPNL}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="a3d6672f-85d5-4443-941f-611732651525">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="f8c9f657-fc71-4fdb-b5ec-e81bcdc9ac70">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Daily PnL"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="b7192efd-d221-4777-a5ee-66a211a5a6ec"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__DailyPnL}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="e2a3469b-e7c5-4095-aeab-0d1271669547">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="b03b036d-3104-4d8b-9238-61dd6e508a35">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Explained PnL"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="61adba1a-8450-4f6b-8823-6952aaacc0e9"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__ExplainedPnL}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="3ce92671-d538-4e92-871d-d0cc87b90cb9">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="d737e999-1490-4c15-a9ac-c51dad6bfaaa">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Realized PnL"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="d1116ead-6914-407f-8515-4e04f8ee6990"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__RealizedPnL}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="92380918-8041-414c-803b-33a0bb44d0db">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="82256029-c569-4411-8770-d3ddcddd61d4">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Market Shift"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="4c4f49a7-459b-484c-8667-88c02c89f533"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__MarketShift}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="cddb7ccc-182d-4bb7-a69f-8fbff4857956">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="0a08836c-7c7f-4b39-b2b8-a08daddba46f">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["FX Shift"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="efa560eb-ef06-41d9-bd4c-d8a5e12d2f72"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__FXShift}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="5dc1ef79-a7d9-474d-942f-85d18d9bb7ec">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="ca2e8a48-74f5-4b53-8c0a-b98ae76b78b8">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Price Amendment"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="d4406701-9789-44e8-aad5-36925e458298"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__PriceAmendment}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="f31614c9-622d-4d6d-898f-a595df2cee2c">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="107c5dc9-3fed-44d6-92cf-80a7964c600a">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Cost Change"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="725a47c6-5493-4319-9ae9-e9ff8a34d868"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__CostChange}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="f4c6e582-73ca-467d-9219-f425891ccc8b">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="3404c8b0-98a0-4dac-9fc0-2ddf18daf784">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Quantity Change"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="a4477606-fa25-4b6e-9e50-4cd278e859af"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__QuantityChange}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="8edcb4ae-51bc-4e4d-9095-c957f92ab673">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="ea36a9ee-62da-47d9-a0fb-b59598ddb94f">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Void/Defualt"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="4bff5b9e-da04-49ea-8af4-135f7b7d73c3"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__VoidDefualt}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="b22bf931-0501-40b9-9175-6675243672df">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="9c43dfca-9aae-491d-83a8-e0a7d822473e">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["PnL Shift"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="14247e4e-82db-458a-9aab-bd8386764ef1"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__PnLShift}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+						<c:column width="125" uuid="5fe7a2e8-07c1-4d95-931b-625927e652e2">
+							<c:columnHeader height="25">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement style="TableColumnHeaderTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="57bb2a60-5ed7-466c-84e4-8c6cd0430e8b">
+										<property name="net.sf.jasperreports.components.condition.type" value="Text"/>
+									</reportElement>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA["Unexplained PnL"]]></textFieldExpression>
+								</textField>
+							</c:columnHeader>
+							<c:detailCell height="25">
+								<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+									<reportElement key="textField" style="TableDetailTextStyle" stretchType="RelativeToBandHeight" x="0" y="0" width="125" height="25" uuid="c74cd470-51a6-40f1-84f9-f53508803d6c"/>
+									<textElement textAlignment="Right"/>
+									<textFieldExpression><![CDATA[$F{_detail_level__UnexplainedPnL}]]></textFieldExpression>
+								</textField>
+							</c:detailCell>
+						</c:column>
+					</c:columnGroup>
+				</c:table>
+			</componentElement>
+		</band>
+	</summary>
+</jasperReport>

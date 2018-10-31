@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1/OLAM</parent>
+    <name>Trading___Operation</name>
+    <label>Trading - Operation</label>
+    <description></description>
+    <creationDate>2015-10-13T12:58:40.643+08:00</creationDate>
+    <updateDate>2015-10-06T12:24:41.757+08:00</updateDate>
+    <resource>Book_Value_Report_1</resource>
+    <resource>broker_listing_report</resource>
+    <resource>Currency_Exposure_Futures</resource>
+    <resource>Currency_Exposure_Physicals</resource>
+    <resource>Deal_Register</resource>
+    <resource>Linked_Order</resource>
+    <resource>Market_Risk_Position</resource>
+    <resource>Market_Risk_Position_1_3</resource>
+    <resource>PnL_Attribution_Details</resource>
+    <resource>PnL_Attribution_Report_Issue_1131___993</resource>
+    <resource>Price_Exposure_Report_10_10_1</resource>
+    <resource>Price_Fix_Register</resource>
+    <resource>Sales_Purchase_Register_Report_1</resource>
+    <resource>Trade_Instruct_1</resource>
+    <resource>unlinked_order_report</resource>
+    <resource>Vessel_Wise_Movement</resource>
+</folder>

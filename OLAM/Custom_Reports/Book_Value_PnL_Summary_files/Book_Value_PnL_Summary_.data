@@ -1,0 +1,3326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PNL_Summary_report" language="groovy" pageWidth="1230" pageHeight="842" orientation="Landscape" columnWidth="1190" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e97070a2-f172-4ee5-9c49-a56804af37e2">
+	<property name="ireport.zoom" value="0.9090909090909114"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel&#xA;"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.style.evaluation.time.enabled" value="true"/>
+	<property name="ireport.jasperserver.reportUnit" value="/reports/Prod/Book_Value_PnL_Summary"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Close3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_POS}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000" fontName="Arial"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_POS}.intValue() >=0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF" fontName="Arial"/>
+		</conditionalStyle>
+	</style>
+	<style name="FixedPnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FIX_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FIX_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="Close2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{CLOSED_PURCH_QTY}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{CLOSED_PURCH_QTY}.intValue()>=0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="Total3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="DifPnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{DIF_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{DIF_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FuturePnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FUTURE_PRICE_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FUTURE_PRICE_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="OptionsPnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{OPTIONS_PRICE_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{OPTIONS_PRICE_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FxPnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FX_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$F{FX_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="TotalPnL3" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($F{FIX_PNL}+$F{FUTURE_PRICE_PNL}+$F{FX_PNL}+$F{OPTIONS_PRICE_PNL}+$F{DIF_PNL}).compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($F{FIX_PNL}+$F{FUTURE_PRICE_PNL}+$F{FX_PNL}+$F{OPTIONS_PRICE_PNL}+$F{DIF_PNL}).intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FixedPnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_PNL_PC}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_PNL_PC}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="DifPnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_DIF_PNL_PC}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_DIF_PNL_PC}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FuturePnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL_PC}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL_PC}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="OptionsPnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL_PC}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL_PC}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FxPnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FX_PNL_PC}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FX_PNL_PC}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="TotalPnL2" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($V{TOTAL_FIX_PNL_PC}+$V{TOTAL_FUTURE_PRICE_PNL_PC}+$V{TOTAL_FX_PNL_PC}+$V{TOTAL_OPTIONS_PRICE_PNL_PC}+$V{TOTAL_DIF_PNL_PC}).compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($V{TOTAL_FIX_PNL_PC}+$V{TOTAL_FUTURE_PRICE_PNL_PC}+$V{TOTAL_FX_PNL_PC}+$V{TOTAL_OPTIONS_PRICE_PNL_PC}+$V{TOTAL_DIF_PNL_PC}).intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000"/>
+		</conditionalStyle>
+	</style>
+	<style name="FixedPnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FIX_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="FuturePnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="OptionsPnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="FxPnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FX_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_FX_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="DifPnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_DIF_PNL}.compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{TOTAL_DIF_PNL}.intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<style name="TotalPnL1" mode="Opaque">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($V{TOTAL_FIX_PNL}+$V{TOTAL_FUTURE_PRICE_PNL}+$V{TOTAL_FX_PNL}+$V{TOTAL_OPTIONS_PRICE_PNL}+$V{TOTAL_DIF_PNL}).compareTo( new BigDecimal(0) ) == -1]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FF0000"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[($V{TOTAL_FIX_PNL}+$V{TOTAL_FUTURE_PRICE_PNL}+$V{TOTAL_FX_PNL}+$V{TOTAL_OPTIONS_PRICE_PNL}+$V{TOTAL_DIF_PNL}).intValue() >= 0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#FFFFFF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="pnl" uuid="2d74c972-c5b5-4e8a-a6c9-973cfdd972ff">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[WITH    bi_bkv_pnl_summary2  AS
+    ( select * from   ( SELECT 	INSTRUMENT_TYPE,
+       ALLOCATION_GROUP,
+       REPORT_SUBGROUP2,
+	   CASE
+       WHEN PURCH_UNIT_PROFIT_CENTER_GROUP is NULL THEN 'No Region Assigned'
+       Else PURCH_UNIT_PROFIT_CENTER_GROUP
+       END AS PURCH_UNIT_PROFIT_CENTER_GROUP,
+
+
+	   REPORT_SUBGROUP3,
+	ISNULL(SUM(CLOSED_SALES_QTY), 0) AS CLOSED_SALES_QTY,
+	ISNULL(SUM(CLOSED_PURCH_QTY), 0) AS CLOSED_PURCH_QTY,
+	ISNULL(SUM(BOOKED_VALUE), 0) AS BOOKED_VALUE,
+	ISNULL(SUM(BOOKED_VALUE) / NULLIF(SUM(CLOSED_SALES_QTY), 0), 0) AS BV_PERTON,
+	ISNULL(SUM(OPEN_PURCH_QTY), 0) AS OPEN_PURCH_QTY,
+	ISNULL(SUM(OPEN_SALES_QTY), 0) AS OPEN_SALES_QTY,
+	ISNULL((SUM(OPEN_PURCH_QTY) - SUM(OPEN_SALES_QTY)), 0) AS OPEN_NET_QTY,
+	ISNULL(SUM(OPEN_BV), 0) AS OPEN_BV,
+	CASE
+		WHEN COALESCE((CASE
+				WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(SUM(OPEN_SALES_QTY), 0)
+				ELSE COALESCE((SUM(OPEN_PURCH_QTY) + SUM(OPEN_SALES_QTY)), 0)
+			END), 0) = 0 THEN 0
+		ELSE ISNULL(SUM(OPEN_BV) / NULLIF((CASE
+				WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(SUM(OPEN_SALES_QTY), 0)
+				ELSE COALESCE((SUM(OPEN_PURCH_QTY) + SUM(OPEN_SALES_QTY)), 0)
+			END), 0), 0)
+	END AS OPEN_BV_PERTON,
+	ISNULL(SUM(UNPRICED_PURCH_QTY), 0) AS UNPRICED_PURCH_QTY,
+	ISNULL(SUM(UNPRICED_SALES_QTY), 0) AS UNPRICED_SALES_QTY,
+	ISNULL((SUM(UNPRICED_PURCH_QTY) - SUM(UNPRICED_SALES_QTY)), 0) AS UNPRICED_NET_QTY,
+	ISNULL(SUM(UNPRICED_BV), 0) AS UNPRICED_BV,
+	CASE
+		WHEN COALESCE((CASE
+				WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(SUM(UNPRICED_SALES_QTY), 0)
+				ELSE COALESCE((SUM(UNPRICED_PURCH_QTY) + SUM(UNPRICED_SALES_QTY)), 0)
+			END), 0) = 0 THEN 0
+		ELSE ISNULL(SUM(UNPRICED_BV) / NULLIF((CASE
+				WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(SUM(UNPRICED_SALES_QTY), 0)
+				ELSE COALESCE((SUM(UNPRICED_PURCH_QTY) + SUM(UNPRICED_SALES_QTY)), 0)
+			END), 0), 0)
+	END AS UNPRICED_BV_PERTON,
+	ISNULL(SUM(COALESCE(CLOSED_SALES_QTY, 0) +
+						CASE
+						WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(OPEN_SALES_QTY, 0)
+						ELSE COALESCE(OPEN_SALES_QTY + OPEN_PURCH_QTY, 0)
+						END +
+							CASE
+								WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(UNPRICED_SALES_QTY, 0)
+								ELSE COALESCE(UNPRICED_SALES_QTY + UNPRICED_PURCH_QTY, 0)
+							END), 0) AS TOTAL_QTY,
+	ISNULL(SUM(COALESCE(BOOKED_VALUE, 0) + COALESCE(OPEN_BV, 0) + COALESCE(UNPRICED_BV, 0)), 0) AS TOTAL_BV,
+	CASE
+		WHEN COALESCE(SUM(COALESCE(CLOSED_SALES_QTY, 0) +
+							CASE
+								WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(OPEN_SALES_QTY, 0)
+								ELSE COALESCE(OPEN_SALES_QTY + OPEN_PURCH_QTY, 0)
+							END +
+								CASE
+									WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(UNPRICED_SALES_QTY, 0)
+									ELSE COALESCE(UNPRICED_SALES_QTY + UNPRICED_PURCH_QTY, 0)
+								END), 0) = 0 THEN 0
+		ELSE ISNULL(SUM(COALESCE(BOOKED_VALUE, 0) + COALESCE(OPEN_BV, 0) + COALESCE(UNPRICED_BV, 0))
+			/ NULLIF(SUM(COALESCE(CLOSED_SALES_QTY, 0) +
+								CASE
+									WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(OPEN_SALES_QTY, 0)
+									ELSE COALESCE(OPEN_SALES_QTY + OPEN_PURCH_QTY, 0)
+								END +
+									CASE
+										WHEN ALLOCATION_GROUP IN ('FIFO-Linked', 'Linked', 'Booked Till Last Month End', 'Booked For The Month') THEN COALESCE(UNPRICED_SALES_QTY, 0)
+										ELSE COALESCE(UNPRICED_SALES_QTY + UNPRICED_PURCH_QTY, 0)
+									END), 0), 0)
+	END AS TOTAL_BV_PERTON,
+	CASE ALLOCATION_GROUP
+		WHEN 'Booked Till Last Month End' THEN 'Closed'
+		WHEN 'Booked For The Month' THEN 'Closed'
+		WHEN 'Linked' THEN 'Closed'
+		WHEN 'FIFO-Linked' THEN 'Closed'
+		WHEN 'Unlinked Sales' THEN 'Open'
+		WHEN 'Unlinked Purchase' THEN 'Open'
+		WHEN 'Unlinked Sales - Origin' THEN 'Open'
+		WHEN 'Unlinked Purchase - Origin' THEN 'Open'
+		WHEN 'Unlinked Sales - OIL' THEN 'Open'
+		WHEN 'Unlinked Purchase - OIL' THEN 'Open'
+	END AS REPORT_STATUS
+FROM
+  (
+
+  SELECT CASE
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' THEN 'Physicals'
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PAPER' THEN 'Paper Trades'
+              WHEN INSTRUMENT_TYPE = 'FUTURES' THEN 'Futures'
+              WHEN INSTRUMENT_TYPE IN ('OPTION','OPTIONS') THEN 'Options'
+              WHEN INSTRUMENT_TYPE = 'FOREX' THEN 'Currency Covers'
+          END AS INSTRUMENT_TYPE,
+		  CASE
+			WHEN INSTRUMENT_TYPE = 'PHYSICAL' AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' AND FINAL_ALLOCATION_GROUP = 'SHORT UNLINKED'
+			THEN 'Unlinked Sales - OIL'
+			WHEN INSTRUMENT_TYPE = 'PHYSICAL' AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' AND FINAL_ALLOCATION_GROUP = 'LONG UNLINKED'
+			THEN 'Unlinked Purchase - OIL'
+            WHEN FINAL_ALLOCATION_GROUP = 'BOOKED TILL LAST MONTH' THEN 'Booked Till Last Month End'
+            WHEN FINAL_ALLOCATION_GROUP = 'BOOKED CURRENT MONTH' THEN 'Booked For The Month'
+            WHEN FINAL_ALLOCATION_GROUP = 'SYSTEM LINKED' THEN 'FIFO-Linked'
+            WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN 'Linked'
+            WHEN FINAL_ALLOCATION_GROUP = 'SHORT UNLINKED' THEN 'Unlinked Sales'
+            WHEN FINAL_ALLOCATION_GROUP = 'LONG UNLINKED' THEN 'Unlinked Purchase'
+         END                          AS ALLOCATION_GROUP,
+          COALESCE(SALES_COMMODITY, PURCH_COMMODITY) REPORT_SUBGROUP1,
+          CASE
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' THEN 'ALL'
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PAPER' THEN 'ALL'
+              WHEN INSTRUMENT_TYPE = 'FUTURES' THEN COALESCE(COUNTERPARTY, SUPPLIER)
+              WHEN INSTRUMENT_TYPE IN ('OPTION','OPTIONS') THEN COALESCE(COUNTERPARTY, SUPPLIER)
+              WHEN INSTRUMENT_TYPE = 'FOREX' THEN COALESCE(SALES_POSITION_CURRENCY, PURCH_POSITION_CURRENCY)
+          END AS REPORT_SUBGROUP2,
+		  (SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+   COALESCE(SALES_PROFIT_CENTER, PURCH_PROFIT_CENTER) =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+          COALESCE(SALES_PROFIT_CENTER, PURCH_PROFIT_CENTER) REPORT_SUBGROUP3,
+          0 AS ADJUSTMENT,
+          CASE FINAL_ALLOCATION_GROUP
+              WHEN 'LINKED' THEN 1
+              WHEN 'LONG UNLINKED' THEN 1
+              WHEN 'SHORT UNLINKED' THEN 1
+          END AS CUMM_BV_AOT,
+          CASE FINAL_ALLOCATION_GROUP
+              WHEN 'BOOKED TILL LAST MONTH' THEN 1
+          END AS CUMM_BV_AOLM,
+          CASE FINAL_ALLOCATION_GROUP
+              WHEN 'BOOKED CURRENT MONTH' THEN 1
+              WHEN 'SYSTEM LINKED' THEN 1
+          END AS BVM,
+          Isnull(Sum(CLOSED_QTY), 0) AS CLOSED_SALES_QTY,
+          Isnull(Sum(CLOSED_QTY), 0) AS CLOSED_PURCH_QTY,
+          Isnull(Sum(BOOKED_VALUE), 0) AS BOOKED_VALUE,
+          Isnull(Sum(CASE
+                         WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                         WHEN (PURCH_EVENT_TYPE = 'COMMODITY'
+                                                                               OR SALES_EVENT_TYPE = 'COMMODITY')
+                                                                              AND PURCH_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                                     END
+                         ELSE CASE
+                                  WHEN PURCH_EVENT_TYPE = 'COMMODITY'
+                                       AND PURCH_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                              END
+                     END), 0) AS OPEN_PURCH_QTY,
+          Isnull(Sum(CASE
+                         WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                         WHEN (PURCH_EVENT_TYPE = 'COMMODITY'
+                                                                               OR SALES_EVENT_TYPE = 'COMMODITY')
+                                                                              AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                                     END
+                         ELSE CASE
+                                  WHEN SALES_EVENT_TYPE = 'COMMODITY'
+                                       AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                              END
+                     END), 0) AS OPEN_SALES_QTY,
+          Isnull(Sum(CASE
+                         WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                         WHEN (PURCH_EVENT_TYPE = 'COMMODITY'
+                                                                               OR SALES_EVENT_TYPE = 'COMMODITY')
+                                                                              AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                                     END
+                         ELSE CASE
+                                  WHEN COALESCE(PURCH_EVENT_TYPE, SALES_EVENT_TYPE) = 'COMMODITY' THEN OPEN_QTY * DELTA
+                              END
+                     END), 0) AS OPEN_NET_QTY,
+          Isnull(Sum(CASE
+                         WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                         WHEN (PURCH_EVENT_TYPE = 'COMMODITY'
+                                                                               OR SALES_EVENT_TYPE = 'COMMODITY')
+                                                                              AND SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_OPEN_VALUE + PURCH_OPEN_VALUE
+                                                                     END
+                         ELSE CASE
+                                  WHEN SALES_EVENT_TYPE = 'COMMODITY'
+                                       AND SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_OPEN_VALUE
+                                  WHEN PURCH_EVENT_TYPE = 'COMMODITY'
+                                       AND PURCH_POSITION_REFERENCE IS NOT NULL THEN PURCH_OPEN_VALUE
+                              END
+                     END), 0) AS OPEN_BV, --CASE WHEN PURCH_EVENT_TYPE = 'COMMODITY' THEN CASE WHEN SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_UNIT_MTM ELSE PURCH_UNIT_MTM END END AS OPEN_BV_PERTON,
+ Isnull(Sum(CASE
+                WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                WHEN (PURCH_EVENT_TYPE = 'BASIS'
+                                                                      AND SALES_EVENT_TYPE = 'BASIS')
+                                                                     AND PURCH_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                            END
+                ELSE CASE
+                         WHEN PURCH_EVENT_TYPE = 'BASIS'
+                              AND PURCH_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                     END
+            END), 0) AS UNPRICED_PURCH_QTY,
+ Isnull(Sum(CASE
+                WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                WHEN (PURCH_EVENT_TYPE = 'BASIS'
+                                                                      AND SALES_EVENT_TYPE = 'BASIS')
+                                                                     AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                            END
+                ELSE CASE
+                         WHEN SALES_EVENT_TYPE = 'BASIS'
+                              AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                     END
+            END), 0) AS UNPRICED_SALES_QTY,
+ Isnull(Sum(CASE
+                WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                WHEN (PURCH_EVENT_TYPE = 'BASIS'
+                                                                      AND SALES_EVENT_TYPE = 'BASIS')
+                                                                     AND SALES_POSITION_REFERENCE IS NOT NULL THEN OPEN_QTY * DELTA
+                                                            END
+                ELSE CASE
+                         WHEN COALESCE(PURCH_EVENT_TYPE, SALES_EVENT_TYPE) = 'BASIS' THEN OPEN_QTY * DELTA
+                     END
+            END), 0) AS UNPRICED_NET_QTY,
+ Isnull(Sum(CASE
+                WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN CASE
+                                                                WHEN (PURCH_EVENT_TYPE = 'BASIS'
+                                                                      AND SALES_EVENT_TYPE = 'BASIS')
+                                                                     AND SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_OPEN_VALUE + PURCH_OPEN_VALUE
+                                                            END
+                ELSE CASE
+                         WHEN SALES_EVENT_TYPE = 'BASIS'
+                              AND SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_OPEN_VALUE
+                         WHEN PURCH_EVENT_TYPE = 'BASIS'
+                              AND PURCH_POSITION_REFERENCE IS NOT NULL THEN PURCH_OPEN_VALUE
+                     END
+            END), 0) AS UNPRICED_BV
+   FROM
+     (SELECT *,
+             ALLOCATION_GROUP AS FINAL_ALLOCATION_GROUP
+      FROM BI_VIEW_BOOK_VALUE_DETAILS
+      WHERE ALLOCATION_GROUP IN ('SHORT UNLINKED',
+                                 'LONG UNLINKED')
+        AND EOD_DATE = $P{asofdate}
+		AND INSTRUMENT_TYPE NOT IN ('FUTURES','OPTION','OPTIONS')
+      UNION ALL SELECT A.*,
+                   CASE
+                       WHEN A.EOD_DATE < CD.START_DATE THEN 'BOOKED TILL LAST MONTH'
+                       ELSE 'BOOKED CURRENT MONTH'
+                   END AS FINAL_ALLOCATION_GROUP
+      FROM BI_VIEW_BOOK_VALUE_DETAILS A
+      JOIN EXTRACTED_FINANCIAL_CALENDAR_DETAIL CD ON $P{asofdate} BETWEEN CD.START_DATE AND CD.END_DATE
+      AND A.CONTRACT_BOOK IN
+        (SELECT CONTRACT_BOOK
+         FROM EXTRACTED_FINANCIAL_CALENDAR_HEADER CH
+         WHERE CH.GROUP_ID = CD.GROUP_ID)
+      WHERE A.ALLOCATION_GROUP = 'BOOKED'
+	   AND A.INSTRUMENT_TYPE NOT IN ('FUTURES','OPTION','OPTIONS')
+        AND EOD_DATE <= $P{asofdate}
+		AND DATEPART(yyyy,EOD_DATE) = DATEPART(yyyy,$P{asofdate}) ) ASDF
+   WHERE CONTRACT_BOOK like $P{ctrbook}
+   AND (((SALES_EVENT_TYPE = 'BASIS'
+            OR PURCH_EVENT_TYPE = 'BASIS'))
+          OR SALES_EVENT_TYPE = 'COMMODITY'
+          OR PURCH_EVENT_TYPE = 'COMMODITY')
+   GROUP BY CASE
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' THEN 'Physicals'
+              WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                   AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PAPER' THEN 'Paper Trades'
+              WHEN INSTRUMENT_TYPE = 'FUTURES' THEN 'Futures'
+              WHEN INSTRUMENT_TYPE IN ('OPTION','OPTIONS') THEN 'Options'
+              WHEN INSTRUMENT_TYPE = 'FOREX' THEN 'Currency Covers'
+          END,
+            COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE),
+            COALESCE(SALES_COMMODITY, PURCH_COMMODITY),
+            COALESCE(SALES_PROFIT_CENTER, PURCH_PROFIT_CENTER),
+            CASE
+                WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                     AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' THEN 'ALL'
+                WHEN INSTRUMENT_TYPE = 'PHYSICAL'
+                     AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PAPER' THEN 'ALL'
+                WHEN INSTRUMENT_TYPE = 'FUTURES' THEN COALESCE(COUNTERPARTY, SUPPLIER)
+                WHEN INSTRUMENT_TYPE IN ('OPTION','OPTIONS') THEN COALESCE(COUNTERPARTY, SUPPLIER)
+                WHEN INSTRUMENT_TYPE = 'FOREX' THEN COALESCE(SALES_POSITION_CURRENCY, PURCH_POSITION_CURRENCY)
+            END,
+		  CASE
+			WHEN INSTRUMENT_TYPE = 'PHYSICAL' AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' AND FINAL_ALLOCATION_GROUP = 'SHORT UNLINKED'
+			THEN 'Unlinked Sales - OIL'
+			WHEN INSTRUMENT_TYPE = 'PHYSICAL' AND COALESCE(SALES_CONTRACT_TYPE, PURCH_CONTRACT_TYPE) = 'PHYSICAL' AND FINAL_ALLOCATION_GROUP = 'LONG UNLINKED'
+			THEN 'Unlinked Purchase - OIL'
+            WHEN FINAL_ALLOCATION_GROUP = 'BOOKED TILL LAST MONTH' THEN 'Booked Till Last Month End'
+            WHEN FINAL_ALLOCATION_GROUP = 'BOOKED CURRENT MONTH' THEN 'Booked For The Month'
+            WHEN FINAL_ALLOCATION_GROUP = 'SYSTEM LINKED' THEN 'FIFO-Linked'
+            WHEN FINAL_ALLOCATION_GROUP = 'LINKED' THEN 'Linked'
+            WHEN FINAL_ALLOCATION_GROUP = 'SHORT UNLINKED' THEN 'Unlinked Sales'
+            WHEN FINAL_ALLOCATION_GROUP = 'LONG UNLINKED' THEN 'Unlinked Purchase'
+         END  ,
+            CASE FINAL_ALLOCATION_GROUP
+                WHEN 'LINKED' THEN 1
+                WHEN 'LONG UNLINKED' THEN 1
+                WHEN 'SHORT UNLINKED' THEN 1
+            END,
+            CASE FINAL_ALLOCATION_GROUP
+                WHEN 'BOOKED TILL LAST MONTH' THEN 1
+            END,
+            CASE FINAL_ALLOCATION_GROUP
+                WHEN 'BOOKED CURRENT MONTH' THEN 1
+                WHEN 'SYSTEM LINKED' THEN 1
+            END
+   HAVING Max(EOD_DATE) <= $P{asofdate}
+   UNION ALL SELECT 'Physicals' AS INSTRUMENT_TYPE,
+                CASE
+                    WHEN ASDF.ORIGIN_DATA_TYPE = 'SO' THEN 'Unlinked Sales - Origin'
+                    WHEN ASDF.ORIGIN_DATA_TYPE IN ('IV',
+                                                   'PO') THEN 'Unlinked Purchase - Origin'
+                END AS ALLOCATION_GROUP,
+                MATERIAL_GROUP AS REPORT_SUBGROUP1,
+                'ALL' AS REPORT_SUBGROUP2,
+				(SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+   PROFIT_CENTER =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+                PROFIT_CENTER AS REPORT_SUBGROUP3,
+                0 AS ADJUSTMENT,
+                1 AS CUMM_BV_AOT,
+                NULL AS CUMM_BV_AOLM,
+                NULL AS BVM,
+                NULL AS CLOSED_SALES_QTY,
+                NULL AS CLOSED_PURCH_QTY,
+                NULL AS BOOKED_VALUE,
+                Isnull(Sum(CASE
+                               WHEN ASDF.ORIGIN_DATA_TYPE IN ('IV', 'PO')
+                                    AND PRICED_UNPRICED = 'Priced' THEN QUANTITY
+                           END), 0) AS OPEN_PURCH_QTY,
+                Isnull(Sum(CASE
+                               WHEN ASDF.ORIGIN_DATA_TYPE = 'SO'
+                                    AND PRICED_UNPRICED = 'Priced' THEN QUANTITY
+                           END), 0) AS OPEN_SALES_QTY,
+                Isnull(Sum(CASE
+                               WHEN PRICED_UNPRICED = 'Priced' THEN QUANTITY
+                           END), 0) AS OPEN_NET_QTY,
+                Isnull(Sum(CASE
+                               WHEN PRICED_UNPRICED = 'Priced' THEN MARK_TO_MARKET
+                           END), 0) AS OPEN_BV, --CASE WHEN PURCH_EVENT_TYPE = 'COMMODITY' THEN CASE WHEN SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_UNIT_MTM ELSE PURCH_UNIT_MTM END END AS OPEN_BV_PERTON,
+ Isnull(Sum(CASE
+                WHEN ASDF.ORIGIN_DATA_TYPE IN ('IV', 'PO')
+                     AND PRICED_UNPRICED = 'Unpriced' THEN QUANTITY
+            END), 0) AS UNPRICED_PURCH_QTY,
+ Isnull(Sum(CASE
+                WHEN ASDF.ORIGIN_DATA_TYPE IN ('SO')
+                     AND PRICED_UNPRICED = 'Unpriced' THEN QUANTITY
+            END), 0) AS UNPRICED_SALES_QTY,
+ Isnull(Sum(CASE
+                WHEN PRICED_UNPRICED = 'Unpriced' THEN QUANTITY
+            END), 0) AS UNPRICED_NET_QTY,
+ Isnull(Sum(CASE
+                WHEN PRICED_UNPRICED = 'Unpriced' THEN MARK_TO_MARKET
+            END), 0) AS UNPRICED_BV
+   FROM DM_POSITION_DATA ASDF
+   JOIN
+     (SELECT ORIGIN_DATA_TYPE,
+             Max(REPORT_DATE) AS REPORT_DATE
+      FROM DM_POSITION_DATA
+      WHERE ORIGIN_DATA_TYPE IN ('SO',
+                                 'PO',
+                                 'IV')
+        AND REPORT_DATE = '1900-01-01'
+      GROUP BY ORIGIN_DATA_TYPE) ORIGIN_MAX ON ASDF.ORIGIN_DATA_TYPE = ORIGIN_MAX.ORIGIN_DATA_TYPE
+   AND ASDF.REPORT_DATE = ORIGIN_MAX.REPORT_DATE
+   AND CONTRACT_BOOK like $P{ctrbook}
+   GROUP BY CASE
+                    WHEN ASDF.ORIGIN_DATA_TYPE = 'SO' THEN 'Unlinked Sales - Origin'
+                    WHEN ASDF.ORIGIN_DATA_TYPE IN ('IV',
+                                                   'PO') THEN 'Unlinked Purchase - Origin'
+                END,
+            MATERIAL_GROUP,
+            MATERIAL_CODE,
+            PROFIT_CENTER
+   UNION ALL
+SELECT
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'Physicals'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'Paper Trades'
+		ELSE COALESCE(C.CTR_TYPE, C2.CTR_TYPE)
+	END AS INSTRUMENT_TYPE,
+	FIFO.ALLOCATION_GROUP AS ALLOCATION_GROUP,
+	SPNL.COMMODITY AS REPORT_SUBGROUP1,
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'ALL'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'ALL'
+		ELSE SPNL.GRADE
+	END AS REPORT_SUBGROUP2,
+	(SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+  SPNL.PROFIT_CENTER=PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+	SPNL.PROFIT_CENTER AS REPORT_SUBGROUP3,
+	0 AS ADJUSTMENT,
+	1 AS CUMM_BV_AOT,
+	NULL AS CUMM_BV_AOLM,
+	NULL AS BVM,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS CLOSED_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS CLOSED_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' THEN
+	(BOOKED_QTY * COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - (BOOKED_QTY * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) -
+      ((BOOKED_QTY * COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) + (BOOKED_QTY * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)))
+  END), 0) AS BOOKED_VALUE,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS OPEN_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS OPEN_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS OPEN_NET_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' THEN (BOOKED_QTY * CASE
+        WHEN FIFO.SALES_STATUS = 'COMMODITY' THEN (COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(SPNL.CONTRACT_BASIS, 0)
+          + COALESCE(SPNL.MKT_PRICE, 0)
+      END) - (BOOKED_QTY * CASE
+        WHEN FIFO.PURCH_STATUS = 'COMMODITY' THEN (COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(PPNL.CONTRACT_BASIS, 0)
+          + COALESCE(PPNL.MKT_PRICE, 0)
+      END) - (BOOKED_QTY * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - (BOOKED_QTY * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  END), 0) AS OPEN_BV,
+  --CASE WHEN PURCH_EVENT_TYPE = 'COMMODITY' THEN CASE WHEN SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_UNIT_MTM ELSE PURCH_UNIT_MTM END END AS OPEN_BV_PERTON,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS UNPRICED_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS UNPRICED_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN BOOKED_QTY
+  END), 0) AS UNPRICED_NET_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' THEN (BOOKED_QTY * CASE
+        WHEN FIFO.SALES_STATUS = 'COMMODITY' THEN (COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(SPNL.CONTRACT_BASIS, 0)
+          + COALESCE(SPNL.MKT_PRICE, 0)
+      END) - (BOOKED_QTY * CASE
+        WHEN FIFO.PURCH_STATUS = 'COMMODITY' THEN (COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(PPNL.CONTRACT_BASIS, 0)
+          + COALESCE(PPNL.MKT_PRICE, 0)
+      END) - (BOOKED_QTY * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - (BOOKED_QTY * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  END), 0) AS UNPRICED_BV
+FROM (SELECT
+  SALES_ID,
+  PURCHASE_ID,
+  SALES_ALLOCATION_ID,
+  PURCH_ALLOCATION_ID,
+  ALLOCATION_GROUP,
+  EOD_DATE,
+  CASE PRICING_STATUS
+    WHEN 'OPEN_QTY' THEN 'Open'
+    WHEN 'CLOSED_QTY' THEN 'Closed'
+    WHEN 'UNPRICED_QTY' THEN 'Unpriced'
+  END PRICING_STATUS,
+   QUANTITY AS BOOKED_QTY,
+  CASE PRICING_STATUS
+    WHEN 'CLOSED_QTY' THEN 'COMMODITY'
+    WHEN 'OPEN_QTY' THEN SALES_STATUS
+    WHEN 'UNPRICED_QTY' THEN 'BASIS'
+  END
+  SALES_STATUS,
+  CASE PRICING_STATUS
+    WHEN 'CLOSED_QTY' THEN 'COMMODITY'
+    WHEN 'OPEN_QTY' THEN PURCH_STATUS
+    WHEN 'UNPRICED_QTY' THEN 'BASIS'
+  END
+  PURCH_STATUS
+FROM (SELECT
+  SALES_ID,
+  CASE WHEN SPNL.ALLOCATION_GROUP = PPNL.ALLOCATION_GROUP THEN PPNL.ALLOCATION_GROUP
+  ELSE 'Booked For The Month' END ALLOCATION_GROUP,
+  PURCHASE_ID,
+  SALES_ALLOCATION_ID,
+  PURCH_ALLOCATION_ID,
+  EOD_DATE,
+  CAST(0 AS numeric) CLOSED_QTY,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN PPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN SPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) OPEN_QTY,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE PPNL.TOTAL_PROV_PRICE_QTY - (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE SPNL.TOTAL_PROV_PRICE_QTY - (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) UNPRICED_QTY,
+  CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN 'COMMODITY'
+    ELSE 'BASIS'
+  END SALES_STATUS,
+  CASE
+    WHEN PPNL.TOTAL_FIXED_PRICE_QTY > SPNL.TOTAL_FIXED_PRICE_QTY THEN 'COMMODITY'
+    ELSE 'BASIS'
+  END PURCH_STATUS
+FROM (SELECT DISTINCT
+  SALES_ID,
+  PURCHASE_ID,
+  ALLOCATION_ID SALES_ALLOCATION_ID,
+  ALLOCATION_ID PURCH_ALLOCATION_ID,
+  EOD_DATE
+FROM BI_VIEW_BOOK_VALUE_LINKED_FIFO
+UNION
+SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE
+FROM BI_VIEW_BOOK_VALUE_STOCK_MATCH) X
+JOIN (SELECT
+  POSITION_ID,
+  ALLOCATION_ID,
+  LOAD_ID,
+  CASE
+    WHEN DOCUMENT_DATE <= B.MONTH_END THEN 'Booked Till Last Month End'
+    ELSE 'Booked For The Month'
+  END ALLOCATION_GROUP,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM (SELECT
+  POSITION_ID,
+  LOAD_ID,
+  ALLOCATION_ID,
+  DOCUMENT_REF,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  SUM(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  SUM(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM DUMP_BI_FINANCIAL_LOAD_DETAILS X
+GROUP BY POSITION_ID,
+         LOAD_ID,
+		 ALLOCATION_ID,
+		 DOCUMENT_REF) D
+JOIN (SELECT
+  DATEADD(ss, -1, DATEADD(MONTH, DATEDIFF(MONTH, 0, $P{asofdate}), 0)) MONTH_END) B
+  ON 1 = 1
+WHERE DATEPART(yyyy, DOCUMENT_DATE) = DATEPART(yyyy, $P{asofdate})
+AND DOCUMENT_DATE <= $P{asofdate}
+GROUP BY POSITION_ID,
+ALLOCATION_ID,
+         LOAD_ID,
+         CASE
+           WHEN DOCUMENT_DATE <= B.MONTH_END THEN 'Booked Till Last Month End'
+           ELSE 'Booked For The Month'
+         END) SPNL
+  ON X.SALES_ID = SPNL.POSITION_ID
+  AND X.SALES_ALLOCATION_ID = SPNL.ALLOCATION_ID
+JOIN (SELECT
+  POSITION_ID,
+  ALLOCATION_ID,
+  LOAD_ID,
+  CASE
+    WHEN DOCUMENT_DATE <= B.MONTH_END THEN 'Booked Till Last Month End'
+    ELSE 'Booked For The Month'
+  END ALLOCATION_GROUP,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM (SELECT
+  POSITION_ID,
+  LOAD_ID,
+  ALLOCATION_ID,
+  DOCUMENT_REF,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  SUM(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  SUM(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM DUMP_BI_FINANCIAL_LOAD_DETAILS X
+GROUP BY POSITION_ID,
+         LOAD_ID,
+		 ALLOCATION_ID,
+		 DOCUMENT_REF) D
+JOIN (SELECT
+  DATEADD(ss, -1, DATEADD(MONTH, DATEDIFF(MONTH, 0, $P{asofdate}), 0)) MONTH_END) B
+  ON 1 = 1
+WHERE DATEPART(yyyy, DOCUMENT_DATE) = DATEPART(yyyy, $P{asofdate})
+AND DOCUMENT_DATE <= $P{asofdate}
+GROUP BY POSITION_ID,
+ALLOCATION_ID,
+         LOAD_ID,
+         CASE
+           WHEN DOCUMENT_DATE <= B.MONTH_END THEN 'Booked Till Last Month End'
+           ELSE 'Booked For The Month'
+         END) PPNL
+  ON X.PURCHASE_ID = PPNL.POSITION_ID
+  AND X.PURCH_ALLOCATION_ID = PPNL.ALLOCATION_ID
+WHERE EOD_DATE = $P{asofdate}) Z
+UNPIVOT
+(
+QUANTITY FOR PRICING_STATUS IN (CLOSED_QTY, OPEN_QTY, UNPRICED_QTY)
+) AS UNPVT
+WHERE QUANTITY > 0 )  FIFO
+JOIN DAILY_CONTRACT_DATA C2
+  ON C2.POSITION_ID = FIFO.PURCHASE_ID
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = FIFO.SALES_ID
+JOIN (SELECT
+  X.POSITION_ID,
+  MIN(X.POSITION_DATE) POSITION_DATE,
+  X.POSITION_REF,
+  COUNTERPARTY,
+  PHYSICAL_DELIVERY_MONTH,
+  FUTURE_DELIVERY_MONTH,
+  INCOTERM,
+  AVG(CURRENT_POS_TO_RPT_FXRATE) AS CURRENT_POS_TO_RPT_FXRATE,
+  AVG(UOM_FACTOR_FROM_POS_TO_RPT) AS UOM_FACTOR_FROM_POS_TO_RPT,
+  AVG(CURRENT_MKT_TO_POS_FXRATE) AS CURRENT_MKT_TO_POS_FXRATE,
+  EOD_DATE,
+  X.ALLOCATION_ID,
+  PROFIT_CENTER,
+  COMMODITY,
+  SPECIFICATION AS GRADE,
+  CONTRACT_BOOK,
+  COALESCE(SUM(ISNULL((Y.MARKET_PRICE * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)), CURRENT_POSITION_PRICE) * CURRENT_OPEN_QUANTITY *
+                                                                                                                                                             CASE
+                                                                                                                                                               WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                               ELSE 1
+                                                                                                                                                             END) / NULLIF(SUM(CURRENT_OPEN_QUANTITY *
+                                                                                                                                                                                                      CASE
+                                                                                                                                                                                                        WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                                                                        ELSE 1
+                                                                                                                                                                                                      END), 0), 0) +
+  COALESCE(SUM(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_OPEN_QUANTITY) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS WT_AVG_PRICE,
+  AVG(((ISNULL(CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 1) * ISNULL(CURRENT_BASIS_TO_POS_FXRATE, 1) / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS BASIS,
+  AVG(((CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0) * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS MKT_PRICE,
+  ISNULL(SUM(CURRENT_OPEN_QUANTITY * (COALESCE(CURRENT_FREIGHT_COST, 0) + COALESCE(CURRENT_OTHER_COST, 0))) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS SECONDARY_COST,
+  CASE WHEN ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) = 0
+  THEN AVG(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  ELSE ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) END  CONTRACT_BASIS,
+  SUM(COALESCE(TOTAL_BOOKED_QUANTITY, 0)) TOTAL_BOOKED_QUANTITY,
+  SUM(COALESCE(TOTAL_PROVISIONAL_BOOKED_QUANTITY, 0)) TOTAL_PROVISIONAL_BOOKED_QUANTITY,
+  CASE
+    WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+      X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+    ELSE 'COMMODITY'
+  END STATUS
+FROM DAILY_PNL_ATTRIBUTION X
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = X.POSITION_ID
+LEFT JOIN (SELECT
+  DPA.POSITION_REF,
+  DPA.INSTRUMENT_TYPE,
+  DPA.ALLOCATION_ID,
+  DPA.PRICING_ID,
+  MIN(POSITION_DATE) POSITION_DATE,
+  MAX(DPA.CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0)) MARKET_PRICE,
+  MAX(ISNULL(DPA.CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 0)) MARKET_BASIS
+FROM DAILY_PNL_ATTRIBUTION DPA
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = DPA.POSITION_ID
+WHERE DPA.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND NOT EXISTS (SELECT 1 FROM DUMP_BI_FINANCIAL_LOAD_DETAILS DBF
+                WHERE DBF.POSITION_ID = DPA.POSITION_ID
+				AND DBF.ALLOCATION_ID = DPA.ALLOCATION_ID
+				AND DBF.PRICING_ID = DPA.PRICING_ID
+				AND DBF.QTY_FIXED_IN_THIS_DOCUMENT > 0
+				AND DATEPART(yyyy, DBF.DOCUMENT_DATE) = DATEPART(yyyy, $P{asofdate}) )
+AND DPA.INSTRUMENT_TYPE = 'PHYSICAL'
+AND CURRENT_OPEN_QUANTITY > 0
+GROUP BY DPA.POSITION_REF,
+         DPA.INSTRUMENT_TYPE,
+         DPA.ALLOCATION_ID,
+         DPA.PRICING_ID) Y
+  ON X.POSITION_REF = Y.POSITION_REF
+  AND X.INSTRUMENT_TYPE = Y.INSTRUMENT_TYPE
+  AND ISNULL(X.ALLOCATION_ID,'XXX') = ISNULL(Y.ALLOCATION_ID,'XXX')
+  AND ISNULL(X.PRICING_ID,'XXX') = ISNULL(Y.PRICING_ID,'XXX')
+WHERE X.INSTRUMENT_TYPE = 'PHYSICAL'
+AND X.EOD_DATE = $P{asofdate}
+GROUP BY X.POSITION_ID,
+         X.POSITION_REF,
+         COUNTERPARTY,
+         PHYSICAL_DELIVERY_MONTH,
+         FUTURE_DELIVERY_MONTH,
+         INCOTERM,
+         EOD_DATE,
+         X.ALLOCATION_ID,
+         PROFIT_CENTER,
+         COMMODITY,
+         SPECIFICATION,
+         CONTRACT_BOOK,
+         CASE
+           WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+             X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+           ELSE 'COMMODITY'
+         END) SPNL
+  ON FIFO.SALES_ID = SPNL.POSITION_ID
+  AND FIFO.SALES_ALLOCATION_ID = SPNL.ALLOCATION_ID
+  AND FIFO.EOD_DATE = SPNL.EOD_DATE
+  AND FIFO.SALES_STATUS = SPNL.STATUS
+JOIN (SELECT
+  X.POSITION_ID,
+  MIN(X.POSITION_DATE) POSITION_DATE,
+  X.POSITION_REF,
+  COUNTERPARTY,
+  PHYSICAL_DELIVERY_MONTH,
+  FUTURE_DELIVERY_MONTH,
+  INCOTERM,
+  AVG(CURRENT_POS_TO_RPT_FXRATE) AS CURRENT_POS_TO_RPT_FXRATE,
+  AVG(UOM_FACTOR_FROM_POS_TO_RPT) AS UOM_FACTOR_FROM_POS_TO_RPT,
+  AVG(CURRENT_MKT_TO_POS_FXRATE) AS CURRENT_MKT_TO_POS_FXRATE,
+  EOD_DATE,
+  X.ALLOCATION_ID,
+  PROFIT_CENTER,
+  COMMODITY,
+  SPECIFICATION AS GRADE,
+  CONTRACT_BOOK,
+  COALESCE(SUM(ISNULL((Y.MARKET_PRICE * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)), CURRENT_POSITION_PRICE) * CURRENT_OPEN_QUANTITY *
+                                                                                                                                                             CASE
+                                                                                                                                                               WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                               ELSE 1
+                                                                                                                                                             END) / NULLIF(SUM(CURRENT_OPEN_QUANTITY *
+                                                                                                                                                                                                      CASE
+                                                                                                                                                                                                        WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                                                                        ELSE 1
+                                                                                                                                                                                                      END), 0), 0) +
+  COALESCE(SUM(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_OPEN_QUANTITY) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS WT_AVG_PRICE,
+  AVG(((ISNULL(CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 1) * ISNULL(CURRENT_BASIS_TO_POS_FXRATE, 1) / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS BASIS,
+  AVG(((CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0) * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS MKT_PRICE,
+  ISNULL(SUM(CURRENT_OPEN_QUANTITY * (COALESCE(CURRENT_FREIGHT_COST, 0) + COALESCE(CURRENT_OTHER_COST, 0))) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS SECONDARY_COST,
+  CASE WHEN ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) = 0
+  THEN AVG(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  ELSE ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) END  CONTRACT_BASIS,
+  SUM(COALESCE(TOTAL_BOOKED_QUANTITY, 0)) TOTAL_BOOKED_QUANTITY,
+  SUM(COALESCE(TOTAL_PROVISIONAL_BOOKED_QUANTITY, 0)) TOTAL_PROVISIONAL_BOOKED_QUANTITY,
+  CASE
+    WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+      X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+    ELSE 'COMMODITY'
+  END STATUS
+FROM DAILY_PNL_ATTRIBUTION X
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = X.POSITION_ID
+LEFT JOIN (SELECT
+  DPA.POSITION_REF,
+  DPA.INSTRUMENT_TYPE,
+  DPA.ALLOCATION_ID,
+  DPA.PRICING_ID,
+  MIN(POSITION_DATE) POSITION_DATE,
+  MAX(DPA.CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0)) MARKET_PRICE,
+  MAX(ISNULL(DPA.CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 0)) MARKET_BASIS
+FROM DAILY_PNL_ATTRIBUTION DPA
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = DPA.POSITION_ID
+WHERE DPA.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND NOT EXISTS (SELECT 1 FROM DUMP_BI_FINANCIAL_LOAD_DETAILS DBF
+                WHERE DBF.POSITION_ID = DPA.POSITION_ID
+				AND DBF.ALLOCATION_ID = DPA.ALLOCATION_ID
+				AND DBF.PRICING_ID = DPA.PRICING_ID
+				AND DBF.QTY_FIXED_IN_THIS_DOCUMENT > 0
+				AND DATEPART(yyyy, DBF.DOCUMENT_DATE) = DATEPART(yyyy, $P{asofdate}) )
+AND DPA.INSTRUMENT_TYPE = 'PHYSICAL'
+AND CURRENT_OPEN_QUANTITY > 0
+GROUP BY DPA.POSITION_REF,
+         DPA.INSTRUMENT_TYPE,
+         DPA.ALLOCATION_ID,
+         DPA.PRICING_ID) Y
+  ON X.POSITION_REF = Y.POSITION_REF
+  AND X.INSTRUMENT_TYPE = Y.INSTRUMENT_TYPE
+  AND ISNULL(X.ALLOCATION_ID,'XXX') = ISNULL(Y.ALLOCATION_ID,'XXX')
+  AND ISNULL(X.PRICING_ID,'XXX') = ISNULL(Y.PRICING_ID,'XXX')
+WHERE X.INSTRUMENT_TYPE = 'PHYSICAL'
+AND X.EOD_DATE = $P{asofdate}
+GROUP BY X.POSITION_ID,
+         X.POSITION_REF,
+         COUNTERPARTY,
+         PHYSICAL_DELIVERY_MONTH,
+         FUTURE_DELIVERY_MONTH,
+         INCOTERM,
+         EOD_DATE,
+         X.ALLOCATION_ID,
+         PROFIT_CENTER,
+         COMMODITY,
+         SPECIFICATION,
+         CONTRACT_BOOK,
+         CASE
+           WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+             X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+           ELSE 'COMMODITY'
+         END) PPNL
+  ON FIFO.PURCHASE_ID = PPNL.POSITION_ID
+  AND FIFO.PURCH_ALLOCATION_ID = PPNL.ALLOCATION_ID
+  AND FIFO.EOD_DATE = PPNL.EOD_DATE
+  AND FIFO.PURCH_STATUS = PPNL.STATUS
+LEFT JOIN (SELECT
+  POSITION_REF,
+  MIN(POSITION_DATE) CONTRACT_DATE
+FROM DAILY_PNL_ATTRIBUTION DPAT
+WHERE INSTRUMENT_TYPE = 'PHYSICAL'
+GROUP BY POSITION_REF) PCD
+  ON PCD.POSITION_REF = PPNL.POSITION_REF
+LEFT JOIN (SELECT
+  POSITION_REF,
+  MIN(POSITION_DATE) CONTRACT_DATE
+FROM DAILY_PNL_ATTRIBUTION DPAT
+WHERE INSTRUMENT_TYPE = 'PHYSICAL'
+GROUP BY POSITION_REF) SCD
+  ON SCD.POSITION_REF = SPNL.POSITION_REF
+WHERE FIFO.EOD_DATE = $P{asofdate}
+AND CASE WHEN SPNL.CONTRACT_BOOK IS NOT NULL THEN SPNL.CONTRACT_BOOK ELSE PPNL.CONTRACT_BOOK END  like $P{ctrbook}
+GROUP BY FIFO.ALLOCATION_GROUP,
+     CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'Physicals'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'Paper Trades'
+		ELSE COALESCE(C.CTR_TYPE, C2.CTR_TYPE)
+	END,
+	SPNL.COMMODITY,
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'ALL'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'ALL'
+		ELSE SPNL.GRADE
+	END,
+	SPNL.PROFIT_CENTER
+UNION ALL
+SELECT
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'Physicals'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'Paper Trades'
+		ELSE COALESCE(C.CTR_TYPE, C2.CTR_TYPE)
+	END AS INSTRUMENT_TYPE,
+	'Linked' AS ALLOCATION_GROUP,
+	SPNL.COMMODITY AS REPORT_SUBGROUP1,
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'ALL'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'ALL'
+		ELSE SPNL.GRADE
+	END AS REPORT_SUBGROUP2,
+	(SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+   SPNL.PROFIT_CENTER =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+	SPNL.PROFIT_CENTER AS REPORT_SUBGROUP3,
+
+	0 AS ADJUSTMENT,
+	1 AS CUMM_BV_AOT,
+	NULL AS CUMM_BV_AOLM,
+	NULL AS BVM,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS CLOSED_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS CLOSED_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Closed' THEN
+	((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) -
+      (((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) + ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)))
+  END), 0) AS BOOKED_VALUE,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS OPEN_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS OPEN_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS OPEN_NET_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Open' THEN ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * CASE
+        WHEN FIFO.SALES_STATUS = 'COMMODITY' THEN (COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(SPNL.CONTRACT_BASIS, 0)
+          + COALESCE(SPNL.MKT_PRICE, 0)
+      END) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * CASE
+        WHEN FIFO.PURCH_STATUS = 'COMMODITY' THEN (COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(PPNL.CONTRACT_BASIS, 0)
+          + COALESCE(PPNL.MKT_PRICE, 0)
+      END) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  END), 0) AS OPEN_BV,
+  --CASE WHEN PURCH_EVENT_TYPE = 'COMMODITY' THEN CASE WHEN SALES_POSITION_REFERENCE IS NOT NULL THEN SALES_UNIT_MTM ELSE PURCH_UNIT_MTM END END AS OPEN_BV_PERTON,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS UNPRICED_PURCH_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS UNPRICED_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' AND
+      COALESCE(C.CTR_TYPE, C2.CTR_TYPE) in ('PHYSICAL','PAPER') THEN FIFO.QTY - COALESCE(BOOKED_QTY,0)
+  END), 0) AS UNPRICED_NET_QTY,
+  ISNULL(SUM(CASE
+    WHEN FIFO.PRICING_STATUS = 'Unpriced' THEN ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * CASE
+        WHEN FIFO.SALES_STATUS = 'COMMODITY' THEN (COALESCE(SPNL.WT_AVG_PRICE, 0) * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(SPNL.CONTRACT_BASIS, 0)
+          + COALESCE(SPNL.MKT_PRICE, 0)
+      END) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * CASE
+        WHEN FIFO.PURCH_STATUS = 'COMMODITY' THEN (COALESCE(PPNL.WT_AVG_PRICE, 0) * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+        ELSE COALESCE(PPNL.CONTRACT_BASIS, 0)
+          + COALESCE(PPNL.MKT_PRICE, 0)
+      END) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * SPNL.SECONDARY_COST * SPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(SPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1)) - ((FIFO.QTY - COALESCE(BOOKED_QTY,0)) * PPNL.SECONDARY_COST * PPNL.CURRENT_POS_TO_RPT_FXRATE / COALESCE(PPNL.UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  END), 0) AS UNPRICED_BV
+FROM (SELECT
+  SALES_ID,
+  PURCHASE_ID,
+  ALLOCATION_ID SALES_ALLOCATION_ID,
+  ALLOCATION_ID PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  QTY,
+  PRICING_STATUS,
+  SALES_STATUS,
+  PURCH_STATUS
+FROM BI_VIEW_BOOK_VALUE_LINKED_FIFO
+UNION ALL
+SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  SUM(QUANTITY) QUANTITY,
+  PRICING_STATUS,
+  SALES_STATUS,
+  PURCH_STATUS
+FROM BI_VIEW_BOOK_VALUE_STOCK_MATCH
+GROUP BY SALES_POSITION_ID,
+         PURCHASE_POSITION_ID,
+         SALES_ALLOCATION_ID,
+         PURCHASE_ALLOCATION_ID,
+         EOD_DATE,
+         PRICING_STATUS,
+         SALES_STATUS,
+         PURCH_STATUS) FIFO
+JOIN DAILY_CONTRACT_DATA C2
+  ON C2.POSITION_ID = FIFO.PURCHASE_ID
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = FIFO.SALES_ID
+JOIN (SELECT
+  X.POSITION_ID,
+  MIN(X.POSITION_DATE) POSITION_DATE,
+  X.POSITION_REF,
+  COUNTERPARTY,
+  PHYSICAL_DELIVERY_MONTH,
+  FUTURE_DELIVERY_MONTH,
+  INCOTERM,
+  AVG(CURRENT_POS_TO_RPT_FXRATE) AS CURRENT_POS_TO_RPT_FXRATE,
+  AVG(UOM_FACTOR_FROM_POS_TO_RPT) AS UOM_FACTOR_FROM_POS_TO_RPT,
+  AVG(CURRENT_MKT_TO_POS_FXRATE) AS CURRENT_MKT_TO_POS_FXRATE,
+  EOD_DATE,
+  X.ALLOCATION_ID,
+  PROFIT_CENTER,
+  COMMODITY,
+  SPECIFICATION AS GRADE,
+  CONTRACT_BOOK,
+  COALESCE(SUM(ISNULL((Y.MARKET_PRICE * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)), CURRENT_POSITION_PRICE) * CURRENT_OPEN_QUANTITY *
+                                                                                                                                                             CASE
+                                                                                                                                                               WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                               ELSE 1
+                                                                                                                                                             END) / NULLIF(SUM(CURRENT_OPEN_QUANTITY *
+                                                                                                                                                                                                      CASE
+                                                                                                                                                                                                        WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                                                                        ELSE 1
+                                                                                                                                                                                                      END), 0), 0) +
+  COALESCE(SUM(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_OPEN_QUANTITY) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS WT_AVG_PRICE,
+  AVG(((ISNULL(CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 1) * ISNULL(CURRENT_BASIS_TO_POS_FXRATE, 1) / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS BASIS,
+  AVG(((CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0) * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS MKT_PRICE,
+  ISNULL(SUM(CURRENT_OPEN_QUANTITY * (COALESCE(CURRENT_FREIGHT_COST, 0) + COALESCE(CURRENT_OTHER_COST, 0))) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS SECONDARY_COST,
+  CASE WHEN ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) = 0
+  THEN AVG(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  ELSE ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) END  CONTRACT_BASIS,
+  SUM(COALESCE(TOTAL_BOOKED_QUANTITY, 0)) TOTAL_BOOKED_QUANTITY,
+  SUM(COALESCE(TOTAL_PROVISIONAL_BOOKED_QUANTITY, 0)) TOTAL_PROVISIONAL_BOOKED_QUANTITY,
+  CASE
+    WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+      X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+    ELSE 'COMMODITY'
+  END STATUS
+FROM DAILY_PNL_ATTRIBUTION X
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = X.POSITION_ID
+LEFT JOIN (SELECT
+  DPA.POSITION_REF,
+  DPA.INSTRUMENT_TYPE,
+  DPA.ALLOCATION_ID,
+  DPA.PRICING_ID,
+  MIN(POSITION_DATE) POSITION_DATE,
+  MAX(DPA.CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0)) MARKET_PRICE,
+  MAX(ISNULL(DPA.CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 0)) MARKET_BASIS
+FROM DAILY_PNL_ATTRIBUTION DPA
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = DPA.POSITION_ID
+WHERE DPA.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND DPA.INSTRUMENT_TYPE = 'PHYSICAL'
+AND CURRENT_OPEN_QUANTITY > 0
+GROUP BY DPA.POSITION_REF,
+         DPA.INSTRUMENT_TYPE,
+         DPA.ALLOCATION_ID,
+         DPA.PRICING_ID) Y
+  ON X.POSITION_REF = Y.POSITION_REF
+  AND X.INSTRUMENT_TYPE = Y.INSTRUMENT_TYPE
+  AND ISNULL(X.ALLOCATION_ID,'XXX') = ISNULL(Y.ALLOCATION_ID,'XXX')
+  AND ISNULL(X.PRICING_ID,'XXX') = ISNULL(Y.PRICING_ID,'XXX')
+WHERE X.INSTRUMENT_TYPE = 'PHYSICAL'
+AND X.EOD_DATE = $P{asofdate}
+GROUP BY X.POSITION_ID,
+         X.POSITION_REF,
+         COUNTERPARTY,
+         PHYSICAL_DELIVERY_MONTH,
+         FUTURE_DELIVERY_MONTH,
+         INCOTERM,
+         EOD_DATE,
+         X.ALLOCATION_ID,
+         PROFIT_CENTER,
+         COMMODITY,
+         SPECIFICATION,
+         CONTRACT_BOOK,
+         CASE
+           WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+             X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+           ELSE 'COMMODITY'
+         END) SPNL
+  ON FIFO.SALES_ID = SPNL.POSITION_ID
+  AND FIFO.SALES_ALLOCATION_ID = SPNL.ALLOCATION_ID
+  AND FIFO.EOD_DATE = SPNL.EOD_DATE
+  AND FIFO.SALES_STATUS = SPNL.STATUS
+JOIN (SELECT
+  X.POSITION_ID,
+  MIN(X.POSITION_DATE) POSITION_DATE,
+  X.POSITION_REF,
+  COUNTERPARTY,
+  PHYSICAL_DELIVERY_MONTH,
+  FUTURE_DELIVERY_MONTH,
+  INCOTERM,
+  AVG(CURRENT_POS_TO_RPT_FXRATE) AS CURRENT_POS_TO_RPT_FXRATE,
+  AVG(UOM_FACTOR_FROM_POS_TO_RPT) AS UOM_FACTOR_FROM_POS_TO_RPT,
+  AVG(CURRENT_MKT_TO_POS_FXRATE) AS CURRENT_MKT_TO_POS_FXRATE,
+  EOD_DATE,
+  X.ALLOCATION_ID,
+  PROFIT_CENTER,
+  COMMODITY,
+  SPECIFICATION AS GRADE,
+  CONTRACT_BOOK,
+  COALESCE(SUM(ISNULL((Y.MARKET_PRICE * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)), CURRENT_POSITION_PRICE) * CURRENT_OPEN_QUANTITY *
+                                                                                                                                                             CASE
+                                                                                                                                                               WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                               ELSE 1
+                                                                                                                                                             END) / NULLIF(SUM(CURRENT_OPEN_QUANTITY *
+                                                                                                                                                                                                      CASE
+                                                                                                                                                                                                        WHEN X.ALLOCATION_ID = X.PRICING_ID THEN 0
+                                                                                                                                                                                                        ELSE 1
+                                                                                                                                                                                                      END), 0), 0) +
+  COALESCE(SUM(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_OPEN_QUANTITY) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS WT_AVG_PRICE,
+  AVG(((ISNULL(CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 1) * ISNULL(CURRENT_BASIS_TO_POS_FXRATE, 1) / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS BASIS,
+  AVG(((CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0) * CURRENT_MKT_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_MKT_TO_POS, 1)) * CURRENT_POS_TO_RPT_FXRATE / UOM_FACTOR_FROM_POS_TO_RPT)) AS MKT_PRICE,
+  ISNULL(SUM(CURRENT_OPEN_QUANTITY * (COALESCE(CURRENT_FREIGHT_COST, 0) + COALESCE(CURRENT_OTHER_COST, 0))) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) AS SECONDARY_COST,
+  CASE WHEN ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) = 0
+  THEN AVG(ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1))
+  ELSE ISNULL(SUM(CURRENT_OPEN_QUANTITY * ISNULL(((Y.MARKET_BASIS * CURRENT_BASIS_TO_POS_FXRATE / ISNULL(UOM_FACTOR_FROM_BASIS_TO_POS, 1))), CURRENT_POSITION_BASIS) * CURRENT_POS_TO_RPT_FXRATE / COALESCE(UOM_FACTOR_FROM_POS_TO_RPT, 1)) / NULLIF(SUM(CURRENT_OPEN_QUANTITY), 0), 0) END  CONTRACT_BASIS,
+  SUM(COALESCE(TOTAL_BOOKED_QUANTITY, 0)) TOTAL_BOOKED_QUANTITY,
+  SUM(COALESCE(TOTAL_PROVISIONAL_BOOKED_QUANTITY, 0)) TOTAL_PROVISIONAL_BOOKED_QUANTITY,
+  CASE
+    WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+      X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+    ELSE 'COMMODITY'
+  END STATUS
+FROM DAILY_PNL_ATTRIBUTION X
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = X.POSITION_ID
+LEFT JOIN (SELECT
+  DPA.POSITION_REF,
+  DPA.INSTRUMENT_TYPE,
+  DPA.ALLOCATION_ID,
+  DPA.PRICING_ID,
+  MIN(POSITION_DATE) POSITION_DATE,
+  MAX(DPA.CURRENT_PHY_MARKET_PRICE / NULLIF(C.DENOMINATION_FACTOR, 0)) MARKET_PRICE,
+  MAX(ISNULL(DPA.CURRENT_BASIS_MARKET_PRICE, 0) / NULLIF(C.BASIS_DENOMINATION_FACTOR, 0)) MARKET_BASIS
+FROM DAILY_PNL_ATTRIBUTION DPA
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = DPA.POSITION_ID
+WHERE DPA.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND DPA.INSTRUMENT_TYPE = 'PHYSICAL'
+AND CURRENT_OPEN_QUANTITY > 0
+GROUP BY DPA.POSITION_REF,
+         DPA.INSTRUMENT_TYPE,
+         DPA.ALLOCATION_ID,
+         DPA.PRICING_ID) Y
+  ON X.POSITION_REF = Y.POSITION_REF
+  AND X.INSTRUMENT_TYPE = Y.INSTRUMENT_TYPE
+  AND ISNULL(X.ALLOCATION_ID,'XXX') = ISNULL(Y.ALLOCATION_ID,'XXX')
+  AND ISNULL(X.PRICING_ID,'XXX') = ISNULL(Y.PRICING_ID,'XXX')
+WHERE X.INSTRUMENT_TYPE = 'PHYSICAL'
+AND X.EOD_DATE = $P{asofdate}
+GROUP BY X.POSITION_ID,
+         X.POSITION_REF,
+         COUNTERPARTY,
+         PHYSICAL_DELIVERY_MONTH,
+         FUTURE_DELIVERY_MONTH,
+         INCOTERM,
+         EOD_DATE,
+         X.ALLOCATION_ID,
+         PROFIT_CENTER,
+         COMMODITY,
+         SPECIFICATION,
+         CONTRACT_BOOK,
+         CASE
+           WHEN ISNULL(PRICING_TYPE, 'PRICED') != 'PRICED' AND
+             X.ALLOCATION_ID = X.PRICING_ID THEN 'BASIS'
+           ELSE 'COMMODITY'
+         END) PPNL
+  ON FIFO.PURCHASE_ID = PPNL.POSITION_ID
+  AND FIFO.PURCHASE_ALLOCATION_ID = PPNL.ALLOCATION_ID
+  AND FIFO.EOD_DATE = PPNL.EOD_DATE
+  AND FIFO.PURCH_STATUS = PPNL.STATUS
+LEFT JOIN (SELECT
+  POSITION_REF,
+  MIN(POSITION_DATE) CONTRACT_DATE
+FROM DAILY_PNL_ATTRIBUTION DPAT
+WHERE INSTRUMENT_TYPE = 'PHYSICAL'
+GROUP BY POSITION_REF) PCD
+  ON PCD.POSITION_REF = PPNL.POSITION_REF
+LEFT JOIN (SELECT
+  POSITION_REF,
+  MIN(POSITION_DATE) CONTRACT_DATE
+FROM DAILY_PNL_ATTRIBUTION DPAT
+WHERE INSTRUMENT_TYPE = 'PHYSICAL'
+GROUP BY POSITION_REF) SCD
+  ON SCD.POSITION_REF = SPNL.POSITION_REF
+LEFT JOIN (SELECT
+  CASE
+    WHEN PRICING_STATUS = 'Unpriced' THEN CASE
+        WHEN Y.UNPRICED_QTY <= X.QTY THEN Y.UNPRICED_QTY
+        ELSE X.QTY
+      END
+    WHEN PRICING_STATUS = 'Open' THEN CASE
+        WHEN X.TOT_QTY <= (Y.UNPRICED_QTY + Y.OPEN_QTY) THEN CASE
+            WHEN X.SEQ = 1 THEN X.TOT_QTY
+            ELSE CASE
+                WHEN X.QTY <= Y.OPEN_QTY THEN X.QTY
+                ELSE Y.OPEN_QTY
+              END
+          END
+        ELSE CASE
+            WHEN X.SEQ = 1 THEN (Y.UNPRICED_QTY + Y.OPEN_QTY)
+            ELSE CASE
+                WHEN X.QTY <= Y.OPEN_QTY THEN X.QTY
+                ELSE Y.OPEN_QTY
+              END
+          END
+      END
+      WHEN PRICING_STATUS = 'Closed' THEN CASE
+        WHEN X.TOT_QTY <= (Y.TOTAL_QTY) THEN CASE
+            WHEN X.SEQ = 1 THEN X.TOT_QTY
+			WHEN X.SEQ = 2 THEN CASE
+                WHEN X.QTY <= Y.OPEN_QTY THEN X.QTY
+                ELSE Y.OPEN_QTY
+              END
+            ELSE CASE
+                WHEN X.QTY <= (Y.TOTAL_QTY - (Y.OPEN_QTY + Y.UNPRICED_QTY)) THEN X.QTY
+                ELSE (Y.TOTAL_QTY - (Y.OPEN_QTY + Y.UNPRICED_QTY))
+              END
+          END
+        ELSE CASE
+            WHEN X.SEQ = 1 THEN (Y.TOTAL_QTY)
+			WHEN X.SEQ = 2 THEN CASE
+                WHEN X.QTY <= Y.OPEN_QTY THEN X.QTY
+                ELSE Y.OPEN_QTY
+              END
+            ELSE CASE
+                WHEN X.QTY <= (Y.TOTAL_QTY - (Y.OPEN_QTY + Y.UNPRICED_QTY)) THEN X.QTY
+                ELSE (Y.TOTAL_QTY - (Y.OPEN_QTY + Y.UNPRICED_QTY))
+              END
+          END
+      END
+  END AS BOOKED_QTY,
+  Y.ALLOCATION_GROUP,
+  X.*
+FROM (SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  QTY,
+  PRICING_STATUS,
+  SALES_STATUS,
+  PURCH_STATUS,
+  SUM(QTY) OVER (PARTITION BY SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID, EOD_DATE ORDER BY CASE
+    WHEN PRICING_STATUS = 'UNPRICED' THEN 1
+    WHEN PRICING_STATUS = 'OPEN' THEN 2
+    WHEN PRICING_STATUS = 'CLOSED' THEN 3
+  END ROWS UNBOUNDED PRECEDING) TOT_QTY,
+  ROW_NUMBER() OVER (PARTITION BY SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID, EOD_DATE ORDER BY CASE
+    WHEN PRICING_STATUS = 'UNPRICED' THEN 1
+    WHEN PRICING_STATUS = 'OPEN' THEN 2
+    WHEN PRICING_STATUS = 'CLOSED' THEN 3
+  END) SEQ
+FROM (SELECT
+  SALES_ID SALES_POSITION_ID,
+  PURCHASE_ID PURCHASE_POSITION_ID,
+  ALLOCATION_ID SALES_ALLOCATION_ID,
+  ALLOCATION_ID PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  QTY,
+  PRICING_STATUS,
+  SALES_STATUS,
+  PURCH_STATUS
+FROM BI_VIEW_BOOK_VALUE_LINKED_FIFO
+UNION ALL
+SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  SUM(QUANTITY) QUANTITY,
+  PRICING_STATUS,
+  SALES_STATUS,
+  PURCH_STATUS
+FROM BI_VIEW_BOOK_VALUE_STOCK_MATCH
+GROUP BY SALES_POSITION_ID,
+         PURCHASE_POSITION_ID,
+         SALES_ALLOCATION_ID,
+         PURCHASE_ALLOCATION_ID,
+         EOD_DATE,
+         PRICING_STATUS,
+         SALES_STATUS,
+         PURCH_STATUS) A
+WHERE EOD_DATE = $P{asofdate}) X
+JOIN (SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE,
+  SPNL.ALLOCATION_GROUP,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN PPNL.TOTAL_FIXED_PRICE_QTY
+    ELSE SPNL.TOTAL_FIXED_PRICE_QTY
+  END AS numeric) CLOSED_QTY,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN PPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN SPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) OPEN_QTY,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE PPNL.TOTAL_PROV_PRICE_QTY - (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE SPNL.TOTAL_PROV_PRICE_QTY - (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) UNPRICED_QTY,
+  CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN PPNL.TOTAL_FIXED_PRICE_QTY
+    ELSE SPNL.TOTAL_FIXED_PRICE_QTY
+  END AS numeric) + CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN PPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN SPNL.TOTAL_PROV_PRICE_QTY
+        ELSE (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) + CAST(CASE
+    WHEN SPNL.TOTAL_FIXED_PRICE_QTY > PPNL.TOTAL_FIXED_PRICE_QTY THEN CASE
+        WHEN (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY) > PPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE PPNL.TOTAL_PROV_PRICE_QTY - (SPNL.TOTAL_FIXED_PRICE_QTY - PPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+    ELSE CASE
+        WHEN (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY) > SPNL.TOTAL_PROV_PRICE_QTY THEN 0
+        ELSE SPNL.TOTAL_PROV_PRICE_QTY - (PPNL.TOTAL_FIXED_PRICE_QTY - SPNL.TOTAL_FIXED_PRICE_QTY)
+      END
+  END AS numeric) TOTAL_QTY
+FROM (SELECT
+  SALES_ID SALES_POSITION_ID,
+  PURCHASE_ID PURCHASE_POSITION_ID,
+  ALLOCATION_ID SALES_ALLOCATION_ID,
+  ALLOCATION_ID PURCHASE_ALLOCATION_ID,
+  EOD_DATE
+FROM BI_VIEW_BOOK_VALUE_LINKED_FIFO
+UNION
+SELECT
+  SALES_POSITION_ID,
+  PURCHASE_POSITION_ID,
+  SALES_ALLOCATION_ID,
+  PURCHASE_ALLOCATION_ID,
+  EOD_DATE
+FROM BI_VIEW_BOOK_VALUE_STOCK_MATCH) X
+JOIN (SELECT
+  POSITION_ID,
+  LOAD_ID,
+  ALLOCATION_ID,
+  'Linked' ALLOCATION_GROUP,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM (SELECT
+  POSITION_ID,
+  LOAD_ID,
+  ALLOCATION_ID,
+  DOCUMENT_REF,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  SUM(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  SUM(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM DUMP_BI_FINANCIAL_LOAD_DETAILS X
+GROUP BY POSITION_ID,
+         LOAD_ID,
+		 ALLOCATION_ID,
+		 DOCUMENT_REF) D
+WHERE DOCUMENT_DATE <= $P{asofdate}
+GROUP BY POSITION_ID,
+         ALLOCATION_ID,
+         LOAD_ID) SPNL
+  ON X.SALES_POSITION_ID = SPNL.POSITION_ID
+  AND X.SALES_ALLOCATION_ID = SPNL.ALLOCATION_ID
+JOIN (SELECT
+  POSITION_ID,
+  ALLOCATION_ID,
+  LOAD_ID,
+  'Linked' ALLOCATION_GROUP,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  MAX(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  MIN(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM (SELECT
+  POSITION_ID,
+  LOAD_ID,
+  ALLOCATION_ID,
+  DOCUMENT_REF,
+  MAX(DOCUMENT_DATE) DOCUMENT_DATE,
+  MAX(LOAD_QTY) LOAD_QTY,
+  SUM(TOTAL_FIXED_PRICE_QTY) TOTAL_FIXED_PRICE_QTY,
+  SUM(TOTAL_PROV_PRICE_QTY) TOTAL_PROV_PRICE_QTY
+FROM DUMP_BI_FINANCIAL_LOAD_DETAILS X
+GROUP BY POSITION_ID,
+         LOAD_ID,
+		 ALLOCATION_ID,
+		 DOCUMENT_REF) D
+WHERE DOCUMENT_DATE <= $P{asofdate}
+GROUP BY POSITION_ID,
+         ALLOCATION_ID,
+         LOAD_ID) PPNL
+  ON X.PURCHASE_POSITION_ID = PPNL.POSITION_ID
+  AND X.PURCHASE_ALLOCATION_ID = PPNL.ALLOCATION_ID
+  AND SPNL.ALLOCATION_GROUP = PPNL.ALLOCATION_GROUP
+WHERE EOD_DATE = $P{asofdate}) Y
+  ON X.PURCHASE_POSITION_ID = Y.PURCHASE_POSITION_ID
+  AND X.SALES_POSITION_ID = Y.SALES_POSITION_ID
+  AND X.SALES_ALLOCATION_ID = Y.SALES_ALLOCATION_ID
+  AND X.PURCHASE_ALLOCATION_ID = Y.PURCHASE_ALLOCATION_ID
+  AND X.EOD_DATE = Y.EOD_DATE) PROV
+  ON PROV.SALES_POSITION_ID = FIFO.SALES_ID
+  AND PROV.PURCHASE_POSITION_ID = FIFO.PURCHASE_ID
+  AND PROV.SALES_POSITION_ID = FIFO.SALES_ID
+  AND PROV.PURCHASE_ALLOCATION_ID = FIFO.PURCHASE_ALLOCATION_ID
+  AND PROV.EOD_DATE = FIFO.EOD_DATE
+  AND PROV.PRICING_STATUS = FIFO.PRICING_STATUS
+  AND PROV.SALES_STATUS = FIFO.SALES_STATUS
+  AND PROV.PURCH_STATUS = FIFO.PURCH_STATUS
+WHERE FIFO.EOD_DATE = $P{asofdate}
+AND CASE WHEN SPNL.CONTRACT_BOOK IS NOT NULL THEN SPNL.CONTRACT_BOOK ELSE PPNL.CONTRACT_BOOK END  like $P{ctrbook}
+AND (FIFO.QTY - COALESCE(BOOKED_QTY, 0)) <> 0
+GROUP BY	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'Physicals'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'Paper Trades'
+		ELSE COALESCE(C.CTR_TYPE, C2.CTR_TYPE)
+	END,
+	SPNL.COMMODITY,
+	CASE
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PHYSICAL' THEN 'ALL'
+		WHEN COALESCE(C.CTR_TYPE, C2.CTR_TYPE) = 'PAPER' THEN 'ALL'
+		ELSE SPNL.GRADE
+	END,
+	SPNL.PROFIT_CENTER
+UNION ALL
+SELECT INSTRUMENT_TYPE,
+	ALLOCATION_GROUP,
+	REPORT_SUBGROUP1,
+	REPORT_SUBGROUP2,
+	(SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+   REPORT_SUBGROUP3 =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+	REPORT_SUBGROUP3,
+
+	  0 AS ADJUSTMENT,
+  1 AS CUMM_BV_AOT,
+  NULL AS CUMM_BV_AOLM,
+  NULL AS BVM,
+	ISNULL(SUM(CASE
+		WHEN ALLOCATION_GROUP = 'FIFO-Linked' AND
+			LONG_SHORT = 'SHORT' THEN CLOSED_QTY
+	END), 0) AS CLOSED_SALES_QTY,
+	ISNULL(SUM(CASE
+		WHEN ALLOCATION_GROUP = 'FIFO-Linked' AND
+			LONG_SHORT = 'LONG' THEN CLOSED_QTY
+	END), 0) AS CLOSED_PURCH_QTY,
+	ISNULL(SUM((CASE
+		WHEN ALLOCATION_GROUP = 'FIFO-Linked' THEN
+		(CONTRACT_COST - (SECONDARY_COST * CASE WHEN LONG_SHORT = 'SHORT' THEN 1 ELSE -1 END)) * CASE WHEN LONG_SHORT = 'SHORT' THEN 1 ELSE -1 END END)), 0) AS BOOKED_VALUE,
+	ISNULL(SUM(CASE
+		WHEN ALLOCATION_GROUP = 'Unlinked Purchase' AND
+			LONG_SHORT = 'LONG' THEN CLOSED_QTY
+	END), 0) AS OPEN_PURCH_QTY,
+	ISNULL(SUM(CASE
+		WHEN ALLOCATION_GROUP = 'Unlinked Sales' AND
+			LONG_SHORT = 'SHORT' THEN CLOSED_QTY
+	END), 0) AS OPEN_SALES_QTY,
+	0 AS OPEN_NET_QTY,
+	ISNULL(SUM((CASE
+		WHEN ALLOCATION_GROUP = 'Unlinked Purchase' THEN BOOKED_VALUE - (CONTRACT_COST + SECONDARY_COST)
+		WHEN ALLOCATION_GROUP = 'Unlinked Sales' THEN (CONTRACT_COST - SECONDARY_COST) - BOOKED_VALUE
+	END)), 0) AS OPEN_BV,
+	0 AS UNPRICED_PURCH_QTY,
+	0 AS UNPRICED_SALES_QTY,
+	0 AS UNPRICED_NET_QTY,
+	0 AS UNPRICED_BV
+FROM (SELECT
+  PNL.CONTRACT_BOOK,
+  CASE
+    WHEN FIFO.ALLOCATION_GROUP = 'FIFO-Linked' THEN FIFO.ALLOCATION_GROUP
+    ELSE FIFO.ALLOCATION_GROUP + (CASE
+        WHEN LONG_SHORT = 'LONG' THEN ' Purchase'
+        ELSE ' Sales'
+      END)
+  END ALLOCATION_GROUP,
+  FIFO.INSTRUMENT_TYPE AS INSTRUMENT_TYPE,
+  PNL.COMMODITY AS REPORT_SUBGROUP1,
+  PNL.COUNTERPARTY AS REPORT_SUBGROUP2,
+  (SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+  PNL.PROFIT_CENTER =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+  PNL.PROFIT_CENTER AS REPORT_SUBGROUP3,
+  LONG_SHORT,
+  FIFO.QTY AS CLOSED_QTY,
+  (FIFO.QTY * CAST(CAST(ISNULL(CAST(ISNULL(YS._SETTLEMENT_PRICE_POS_UOM, PNL.CURRENT_POSITION_PRICE) AS numeric(19, 10)), 0) * CAST(PNL.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / PNL.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10))) CONTRACT_COST,
+  FIFO.QTY *  CAST(CAST(CAST(CAST(ISNULL(CAST(CASE
+    WHEN PNL.INSTRUMENT_TYPE = 'FUTURES' THEN PNL.CURRENT_FUT_MARKET_PRICE
+    WHEN PNL.INSTRUMENT_TYPE = 'OPTIONS' THEN PNL.CURRENT_OPT_MARKET_PREMIUM
+  END AS numeric(19, 10)), 0) * CAST(PNL.CURRENT_MKT_TO_POS_FXRATE AS numeric(19, 10)) AS numeric(19, 10))
+  / CAST(CAST(ISNULL(D.DENOMINATION_FACTOR, 1) AS numeric(19, 10)) * CAST(ISNULL(PNL.UOM_FACTOR_FROM_MKT_TO_POS, 1) AS numeric(19, 10)) AS numeric(19, 10)) AS numeric(19, 10)) * CAST(PNL.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / PNL.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)) BOOKED_VALUE,
+  ISNULL(FIFO.QTY * CAST(CAST(CAST((COALESCE(PNL.CURRENT_FREIGHT_COST, 0)
+  + COALESCE(PNL.CURRENT_OTHER_COST, 0)) AS numeric(19, 10)) * CAST(PNL.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / PNL.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)), 0) AS SECONDARY_COST
+FROM DAILY_PNL_ATTRIBUTION PNL
+JOIN DAILY_CONTRACT_DATA D
+  ON PNL.POSITION_ID = D.POSITION_ID
+  AND PNL.INSTRUMENT_TYPE = D.INSTRUMENT_TYPE
+  AND PNL.INSTRUMENT_TYPE IN ('FUTURES', 'OPTIONS')
+LEFT JOIN (SELECT
+  A.POSITION_REF,
+  A.INSTRUMENT_TYPE,
+  CAST(CAST(ISNULL(CAST(CASE
+    WHEN A.INSTRUMENT_TYPE = 'FUTURES' THEN A.CURRENT_FUT_MARKET_PRICE
+    WHEN A.INSTRUMENT_TYPE = 'OPTIONS' THEN A.CURRENT_OPT_MARKET_PREMIUM
+  END AS numeric(19, 10)), 0) * CAST(A.CURRENT_MKT_TO_POS_FXRATE AS numeric(19, 10)) AS numeric(19, 10))
+  / CAST(CAST(ISNULL(C.DENOMINATION_FACTOR, 1) AS numeric(19, 10)) * CAST(ISNULL(A.UOM_FACTOR_FROM_MKT_TO_POS, 1) AS numeric(19, 10)) AS numeric(19, 10)) AS numeric(19, 10)) AS _SETTLEMENT_PRICE_POS_UOM,
+  A.CURRENT_POS_TO_RPT_FXRATE
+FROM DAILY_PNL_ATTRIBUTION A
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = A.POSITION_ID
+WHERE A.INSTRUMENT_TYPE IN ('FUTURES', 'OPTIONS')
+AND A.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND DATEPART(yyyy, A.POSITION_DATE) <= DATEPART(yyyy, $P{asofdate})) YS
+  ON PNL.POSITION_REF = YS.POSITION_REF
+  AND PNL.INSTRUMENT_TYPE = YS.INSTRUMENT_TYPE
+JOIN (SELECT
+  CONTRACT_BOOK,
+  POSITION_ID,
+  EOD_DATE,
+  ALLOCATION_GROUP,
+  INSTRUMENT_TYPE,
+  MATCHED_QUANTITY QTY
+FROM (SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  SALES_ID POSITION_ID,
+  SALES_EOD_DATE EOD_DATE,
+  'FIFO-Linked' ALLOCATION_GROUP,
+  'Futures' INSTRUMENT_TYPE,
+  SUM(MATCH_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_FUTURES
+GROUP BY REPORT_DATE,
+         SALES_ID,
+         SALES_EOD_DATE,
+         CONTRACT_BOOK
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  PURCHASE_ID POSITION_ID,
+  PURCH_EOD_DATE EOD_DATE,
+  'FIFO-Linked' ALLOCATION_GROUP,
+  'Futures' INSTRUMENT_TYPE,
+  SUM(MATCH_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_FUTURES
+GROUP BY REPORT_DATE,
+         PURCHASE_ID,
+         PURCH_EOD_DATE,
+         CONTRACT_BOOK
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  SALES_ID POSITION_ID,
+  SALES_EOD_DATE EOD_DATE,
+  'FIFO-Linked' ALLOCATION_GROUP,
+  'Options' INSTRUMENT_TYPE,
+  SUM(MATCH_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_OPTIONS
+GROUP BY REPORT_DATE,
+         SALES_ID,
+         SALES_EOD_DATE,
+         CONTRACT_BOOK
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  PURCHASE_ID POSITION_ID,
+  PURCH_EOD_DATE EOD_DATE,
+  'FIFO-Linked' ALLOCATION_GROUP,
+  'Options' INSTRUMENT_TYPE,
+  SUM(MATCH_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_OPTIONS
+GROUP BY REPORT_DATE,
+         PURCHASE_ID,
+         PURCH_EOD_DATE,
+         CONTRACT_BOOK
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  POSITION_ID POSITION_ID,
+  EOD_DATE,
+  'Unlinked' ALLOCATION_GROUP,
+  'Futures' INSTRUMENT_TYPE,
+  SUM(BALANCE_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_BALANCE_FUTURES
+GROUP BY REPORT_DATE,
+         CONTRACT_BOOK,
+         POSITION_ID,
+         EOD_DATE
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  CONTRACT_BOOK CONTRACT_BOOK,
+  POSITION_ID POSITION_ID,
+  EOD_DATE,
+  'Unlinked' ALLOCATION_GROUP,
+  'Options' INSTRUMENT_TYPE,
+  SUM(BALANCE_QTY) AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_BALANCE_OPTIONS
+GROUP BY REPORT_DATE,
+         CONTRACT_BOOK,
+         POSITION_ID,
+         EOD_DATE) X
+WHERE X.REPORT_DATE = $P{asofdate}) FIFO
+  ON FIFO.EOD_DATE = PNL.EOD_DATE
+  AND FIFO.POSITION_ID = PNL.POSITION_ID
+  AND FIFO.CONTRACT_BOOK = PNL.CONTRACT_BOOK
+WHERE FIFO.CONTRACT_BOOK like $P{ctrbook}
+) Y
+GROUP BY INSTRUMENT_TYPE,
+	ALLOCATION_GROUP,
+	REPORT_SUBGROUP1,
+	REPORT_SUBGROUP2,
+
+	REPORT_SUBGROUP3
+UNION ALL
+SELECT
+  CASE
+    WHEN X.INSTRUMENT_TYPE = 'FUTURES' THEN 'Futures'
+    WHEN X.INSTRUMENT_TYPE IN ('OPTION', 'OPTIONS') THEN 'Options'
+  END INSTRUMENT_TYPE,
+  X.ALLOCATION_GROUP,
+  X.REPORT_SUBGROUP1,
+  X.REPORT_SUBGROUP2,
+  (SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+     X.REPORT_SUBGROUP3 =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+  X.REPORT_SUBGROUP3,
+  0 AS ADJUSTMENT,
+  1 AS CUMM_BV_AOT,
+  NULL AS CUMM_BV_AOLM,
+  NULL AS BVM,
+  ISNULL(SUM(CASE
+    WHEN X.LONG_SHORT = 'SHORT' THEN X.CLOSED_QTY
+  END), 0) AS CLOSED_SALES_QTY,
+  ISNULL(SUM(CASE
+    WHEN X.LONG_SHORT = 'LONG' THEN X.CLOSED_QTY
+  END), 0) AS CLOSED_PURCH_QTY,
+  ISNULL(SUM((CONTRACT_PRICE + (CONTRACT_COST * POLARITY)) * CLOSED_QTY *
+                                                      CASE
+                                                        WHEN LONG_SHORT = 'SHORT' THEN 1
+                                                        ELSE -1
+                                                      END), 0) AS BOOKED_VALUE,
+  0 AS OPEN_PURCH_QTY,
+  0 AS OPEN_SALES_QTY,
+  0 AS OPEN_NET_QTY,
+  0 AS OPEN_BV,
+  0 AS UNPRICED_PURCH_QTY,
+  0 AS UNPRICED_SALES_QTY,
+  0 AS UNPRICED_NET_QTY,
+  0 AS UNPRICED_BV
+FROM (SELECT DISTINCT
+  PNL.POSITION_REF,
+  EXPIRED_DATE,
+  PNL.CONTRACT_BOOK,
+  PNL.LONG_SHORT,
+  CASE
+    WHEN PNL.EXPIRED_DATE < CD.START_DATE THEN 'Booked Till Last Month End'
+    ELSE 'Booked For The Month'
+  END ALLOCATION_GROUP,
+  PNL.INSTRUMENT_TYPE AS INSTRUMENT_TYPE,
+  PNL.COMMODITY AS REPORT_SUBGROUP1,
+  PNL.COUNTERPARTY AS REPORT_SUBGROUP2,
+  (SELECT
+   PFI_MST.PROFIT_CENTER_GROUP FROM DIM_PROFITCENTER PFI_MST WHERE
+    PNL.PROFIT_CENTER =PFI_MST.PROFIT_CENTER_NAME) as PURCH_UNIT_PROFIT_CENTER_GROUP,
+  PNL.PROFIT_CENTER AS REPORT_SUBGROUP3,
+  UOM_FACTOR_FROM_POS_TO_RPT,
+  _POLARITY AS POLARITY,
+  _CURRENT_QTY_RPT_UOM AS CLOSED_QTY,
+  CAST(CAST(ISNULL(CAST(ISNULL(Y._SETTLEMENT_PRICE_POS_UOM, PNL.CURRENT_POSITION_PRICE) AS numeric(19, 10)), 0) * CAST(PNL.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / PNL.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)) AS CONTRACT_PRICE,
+  _CONTRACT_COST AS CONTRACT_COST
+FROM (SELECT
+  A.*,
+  ISNULL(CASE
+    WHEN A.INSTRUMENT_TYPE = 'FUTURES' THEN A.CURRENT_FUT_MARKET_PRICE
+    WHEN A.INSTRUMENT_TYPE = 'OPTIONS' THEN A.CURRENT_OPT_MARKET_PREMIUM
+  END, 0) AS _CURRENT_MARKET_PRICE,
+  (CAST(A.CURRENT_POSITION_QUANTITY AS numeric(19, 10)) * CAST(ISNULL(A.UOM_FACTOR_FROM_POS_TO_RPT, 1) AS numeric(19, 10))) - COALESCE(EOD_QTY.MATCHED_QUANTITY, 0) AS _CURRENT_QTY_RPT_UOM,
+  CURRENT_POSITION_QUANTITY - (EOD_QTY.MATCHED_QUANTITY / A.UOM_FACTOR_FROM_POS_TO_RPT) REALIZED_QTY,
+  CASE
+    WHEN A.LONG_SHORT = 'SHORT' THEN -1
+    ELSE 1
+  END AS _POLARITY,
+  CAST(CAST(CAST((COALESCE(A.CURRENT_FREIGHT_COST, 0)
+  + COALESCE(A.CURRENT_OTHER_COST, 0)) AS numeric(19, 10)) * CAST(A.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / A.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)) _CONTRACT_COST,
+  CAST(CAST(ISNULL(CAST(CURRENT_POSITION_PRICE AS numeric(19, 10)), 0) * CAST(A.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / A.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)) _CONTRACT_PRICE,
+  CAST(CAST(CAST(CAST(ISNULL(CAST(CASE
+    WHEN A.INSTRUMENT_TYPE = 'FUTURES' THEN A.CURRENT_FUT_MARKET_PRICE
+    WHEN A.INSTRUMENT_TYPE = 'OPTIONS' THEN A.CURRENT_OPT_MARKET_PREMIUM
+  END AS numeric(19, 10)), 0) * CAST(A.CURRENT_MKT_TO_POS_FXRATE AS numeric(19, 10)) AS numeric(19, 10))
+  / CAST(CAST(ISNULL(C.DENOMINATION_FACTOR, 1) AS numeric(19, 10)) * CAST(ISNULL(A.UOM_FACTOR_FROM_MKT_TO_POS, 1) AS numeric(19, 10)) AS numeric(19, 10)) AS numeric(19, 10)) * CAST(A.CURRENT_POS_TO_RPT_FXRATE AS numeric(19, 10)) AS numeric(19, 10)) / A.UOM_FACTOR_FROM_POS_TO_RPT AS numeric(19, 10)) AS _SETTLEMENT_PRICE
+FROM DAILY_PNL_ATTRIBUTION A
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = A.POSITION_ID
+LEFT JOIN (SELECT
+  POSITION_ID,
+  INSTRUMENT_TYPE,
+  REPORT_DATE,
+  SUM(MATCHED_QUANTITY) AS MATCHED_QUANTITY
+FROM (SELECT
+  REPORT_DATE AS REPORT_DATE,
+  SALES_ID AS POSITION_ID,
+  SALES_EOD_DATE AS EOD_DATE,
+  'Futures' AS INSTRUMENT_TYPE,
+  MATCH_QTY AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_FUTURES
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  PURCHASE_ID POSITION_ID,
+  PURCH_EOD_DATE EOD_DATE,
+  'Futures' INSTRUMENT_TYPE,
+  MATCH_QTY AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_FUTURES
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  SALES_ID POSITION_ID,
+  SALES_EOD_DATE EOD_DATE,
+  'Options' INSTRUMENT_TYPE,
+  MATCH_QTY AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_OPTIONS
+UNION ALL
+SELECT
+  REPORT_DATE REPORT_DATE,
+  PURCHASE_ID POSITION_ID,
+  PURCH_EOD_DATE EOD_DATE,
+  'Options' INSTRUMENT_TYPE,
+  MATCH_QTY AS MATCHED_QUANTITY
+FROM DUMP_BI_FIFO_MATCH_OPTIONS) X
+WHERE X.REPORT_DATE = DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1
+GROUP BY POSITION_ID,
+         INSTRUMENT_TYPE,
+         REPORT_DATE) EOD_QTY
+  ON EOD_QTY.POSITION_ID = A.POSITION_ID
+  AND UPPER(EOD_QTY.INSTRUMENT_TYPE) = UPPER(A.INSTRUMENT_TYPE)
+WHERE (CAST(A.CURRENT_POSITION_QUANTITY AS numeric(19, 10)) * CAST(ISNULL(A.UOM_FACTOR_FROM_POS_TO_RPT, 1) AS numeric(19, 10))) - COALESCE(EOD_QTY.MATCHED_QUANTITY, 0) > 0) PNL
+JOIN EXTRACTED_FINANCIAL_CALENDAR_DETAIL CD
+  ON $P{asofdate} BETWEEN CD.START_DATE AND CD.END_DATE
+LEFT JOIN (SELECT
+  A.POSITION_REF,
+  A.INSTRUMENT_TYPE,
+  CAST(CAST(ISNULL(CAST(CASE
+    WHEN A.INSTRUMENT_TYPE = 'FUTURES' THEN A.CURRENT_FUT_MARKET_PRICE
+    WHEN A.INSTRUMENT_TYPE = 'OPTIONS' THEN A.CURRENT_OPT_MARKET_PREMIUM
+  END AS numeric(19, 10)), 0) * CAST(A.CURRENT_MKT_TO_POS_FXRATE AS numeric(19, 10)) AS numeric(19, 10))
+  / CAST(CAST(ISNULL(C.DENOMINATION_FACTOR, 1) AS numeric(19, 10)) * CAST(ISNULL(A.UOM_FACTOR_FROM_MKT_TO_POS, 1) AS numeric(19, 10)) AS numeric(19, 10)) AS numeric(19, 10)) AS _SETTLEMENT_PRICE_POS_UOM,
+  A.CURRENT_POS_TO_RPT_FXRATE
+FROM DAILY_PNL_ATTRIBUTION A
+JOIN DAILY_CONTRACT_DATA C
+  ON C.POSITION_ID = A.POSITION_ID
+WHERE A.INSTRUMENT_TYPE IN ('FUTURES', 'OPTIONS')
+AND A.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION D
+WHERE D.EOD_DATE <= DATEADD(yy, DATEDIFF(yy, 0, $P{asofdate}), 0) - 1)
+AND DATEPART(yyyy, A.POSITION_DATE) <= DATEPART(yyyy, $P{asofdate})) Y
+  ON PNL.POSITION_REF = Y.POSITION_REF
+  AND PNL.INSTRUMENT_TYPE = Y.INSTRUMENT_TYPE
+WHERE PNL.EXPIRED_DATE <= $P{asofdate}
+AND DATEPART(yyyy, PNL.EXPIRED_DATE) = DATEPART(yyyy, $P{asofdate})
+AND PNL.EOD_DATE = (SELECT
+  MAX(EOD_DATE)
+FROM DAILY_PNL_ATTRIBUTION DPA
+WHERE DPA.POSITION_REF = PNL.POSITION_REF)
+AND PNL.INSTRUMENT_TYPE IN ('FUTURES', 'OPTION', 'OPTIONS')
+AND PNL.CONTRACT_BOOK like $P{ctrbook}
+AND PNL.CONTRACT_BOOK IN (SELECT
+  CONTRACT_BOOK
+FROM EXTRACTED_FINANCIAL_CALENDAR_HEADER CH
+WHERE CH.GROUP_ID = CD.GROUP_ID)) X
+GROUP BY CASE
+           WHEN X.INSTRUMENT_TYPE = 'FUTURES' THEN 'Futures'
+           WHEN X.INSTRUMENT_TYPE IN ('OPTION', 'OPTIONS') THEN 'Options'
+         END,
+         X.ALLOCATION_GROUP,
+         X.REPORT_SUBGROUP1,
+         X.REPORT_SUBGROUP2,
+
+         X.REPORT_SUBGROUP3
+
+
+
+
+
+
+		 	)L1
+GROUP BY INSTRUMENT_TYPE,
+         ALLOCATION_GROUP,
+         REPORT_SUBGROUP2,
+	 PURCH_UNIT_PROFIT_CENTER_GROUP,
+		 REPORT_SUBGROUP3
+HAVING (  COALESCE(SUM(CLOSED_SALES_QTY), 0) <> 0
+OR  COALESCE(SUM(CLOSED_PURCH_QTY), 0) <> 0
+OR COALESCE(SUM(OPEN_PURCH_QTY), 0)  <> 0
+OR COALESCE(SUM(OPEN_SALES_QTY), 0)  <> 0
+OR COALESCE(SUM(UNPRICED_PURCH_QTY), 0) <> 0
+OR COALESCE(SUM(UNPRICED_SALES_QTY), 0) <> 0  )
+
+
+	   ) as tt)
+
+
+
+	select
+
+
+	 PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,PURCH_UNIT
+,COALESCE(SUM(FIX_POS),0) FIX_POS
+,COALESCE(SUM(FIX_PNL),0) FIX_PNL
+,COALESCE(SUM(DIF_POS),0) DIF_POS
+,COALESCE(SUM(DIF_PNL),0) DIF_PNL
+,COALESCE(SUM(FUTURE_QTY),0) FUTURE_QTY
+,COALESCE(SUM( OPTIONS_QTY),0) OPTIONS_QTY
+,COALESCE(SUM(FUTURE_PRICE_PNL),0) FUTURE_PRICE_PNL
+		,COALESCE(SUM(OPTIONS_PRICE_PNL),0) OPTIONS_PRICE_PNL
+,COALESCE(SUM(FX_PNL),0) FX_PNL
+		,COALESCE(SUM( TOTAL_POS),0) TOTAL_POS
+		,COALESCE(SUM(OTHER_CHARGES),0) OTHER_CHARGES
+		,COALESCE(SUM(TOTAL_PNL),0) TOTAL_PNL
+
+
+
+
+
+	 from (
+
+	select PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3 as PURCH_UNIT
+	   , COALESCE(SUM(OPEN_NET_QTY), 0) as Fix_pos ,(COALESCE(SUM(OPEN_BV), 0)+COALESCE(SUM(BOOKED_VALUE), 0)) as FIX_PNL
+	   ,COALESCE(SUM(UNPRICED_NET_QTY), 0) as DIF_POS
+	   ,COALESCE(SUM(UNPRICED_BV), 0) as DIF_PNL
+,0 as FUTURE_QTY
+,0 as OPTIONS_QTY
+,0 as FUTURE_PRICE_PNL
+
+,0 as OPTIONS_PRICE_PNL
+,0 as FX_PNL
+		,COALESCE(SUM(TOTAL_QTY), 0) as TOTAL_POS
+,0 OTHER_CHARGES
+		,COALESCE(SUM(TOTAL_BV), 0) as TOTAL_PNL
+	    from bi_bkv_pnl_summary2
+	where INSTRUMENT_TYPE in ('Paper Trades', 'Physicals')
+		group by PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3
+
+UNION ALL
+
+	select PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3 as PURCH_UNIT
+,0 AS FIX_POS
+,0 AS FIX_PNL
+,0 AS DIF_POS
+,0 AS DIF_PNL
+	   ,COALESCE(SUM(OPEN_NET_QTY),0) as FUTURE_QTY
+, 0 as OPTIONS_QTY
+	   ,COALESCE(SUM(TOTAL_BV ),0) as FUTURE_PRICE_PNL
+, 0  OPTIONS_PRICE_PNL
+, 0  FX_PNL
+		,COALESCE(SUM(TOTAL_QTY),0) as TOTAL_POS
+, 0 as OTHER_CHARGES
+       ,COALESCE(SUM(TOTAL_BV),0) as TOTAL_PNL
+	from bi_bkv_pnl_summary2
+	where INSTRUMENT_TYPE = 'Futures'
+	group by PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3
+
+	UNION ALL
+
+	select PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3 as PURCH_UNIT
+,0 AS FIX_POS
+,0 AS FIX_PNL
+,0 AS DIF_POS
+,0 AS DIF_PNL
+,0 as FUTURE_QTY
+		, COALESCE(SUM(OPEN_NET_QTY),0) as OPTIONS_QTY
+,0 as FUTURE_PRICE_PNL
+		,COALESCE(SUM(TOTAL_BV),0) as OPTIONS_PRICE_PNL
+,0 as FX_PNL
+		,COALESCE(SUM(TOTAL_QTY),0) as TOTAL_POS
+,0 as OTHER_CHARGES
+		,COALESCE(SUM(TOTAL_BV),0) as TOTAL_PNL
+	from bi_bkv_pnl_summary2
+	where INSTRUMENT_TYPE = 'Options'
+	group by PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3
+
+	UNION ALL
+
+	select PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3 as PURCH_UNIT
+,0 AS FIX_POS
+,0 AS FIX_PNL
+,0 AS DIF_POS
+,0 AS DIF_PNL
+,0 as FUTURE_QTY
+,0 as OPTIONS_QTY
+,0 as FUTURE_PRICE_PNL
+,0 as OPTIONS_PRICE_PNL
+       ,COALESCE(SUM(TOTAL_BV),0) as FX_PNL
+	   ,COALESCE(SUM(TOTAL_QTY),0) as TOTAL_POS
+,0 as OTHER_CHARGES
+       ,COALESCE(SUM(TOTAL_BV),0) as TOTAL_PNL
+	from bi_bkv_pnl_summary2
+	where INSTRUMENT_TYPE = 'Currency Covers'
+	group by PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,REPORT_SUBGROUP3
+
+	) as main
+	group by PURCH_UNIT_PROFIT_CENTER_GROUP
+	   ,PURCH_UNIT
+	order by case when PURCH_UNIT_PROFIT_CENTER_GROUP  IS NULL Then 0 else 1 end desc,PURCH_UNIT_PROFIT_CENTER_GROUP desc]]>
+		</queryString>
+		<field name="PURCH_UNIT_PROFIT_CENTER_GROUP" class="java.lang.String"/>
+		<field name="PURCH_UNIT" class="java.lang.String"/>
+		<field name="FIX_POS" class="java.math.BigDecimal"/>
+		<field name="FIX_PNL" class="java.math.BigDecimal"/>
+		<field name="DIF_POS" class="java.math.BigDecimal"/>
+		<field name="DIF_PNL" class="java.math.BigDecimal"/>
+		<field name="FUTURE_QTY" class="java.math.BigDecimal"/>
+		<field name="OPTIONS_QTY" class="java.math.BigDecimal"/>
+		<field name="FUTURE_PRICE_PNL" class="java.math.BigDecimal"/>
+		<field name="OPTIONS_PRICE_PNL" class="java.math.BigDecimal"/>
+		<field name="FX_PNL" class="java.math.BigDecimal"/>
+		<field name="TOTAL_POS" class="java.math.BigDecimal"/>
+		<field name="OTHER_CHARGES" class="java.lang.Integer"/>
+		<field name="TOTAL_PNL" class="java.math.BigDecimal"/>
+		<variable name="TOTAL_FIX_POS" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FIX_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FIX_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FIX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_DIF_POS" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{DIF_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_DIF_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{DIF_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FUTURE_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUTURE_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FUTURE_PRICE_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUTURE_PRICE_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FX_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_POS" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUTURE_QTY}+$F{FIX_POS}+$F{OPTIONS_QTY}+$F{DIF_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OTHER_CHARGES" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OTHER_CHARGES}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$V{TOTAL_FIX_PNL}+$V{TOTAL_FUTURE_PRICE_PNL}+$V{TOTAL_FX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FIX_POS_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FIX_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FIX_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FIX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_DIF_POS_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{DIF_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_DIF_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{DIF_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FUTURE_QTY_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUTURE_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FUTURE_PRICE_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FUTURE_PRICE_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_FX_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_POS_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{FIX_POS}+$F{FUTURE_QTY}+$F{OPTIONS_QTY}+$F{DIF_POS}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OTHER_CHARGES_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OTHER_CHARGES}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{TOTAL_PNL}]]></variableExpression>
+		</variable>
+		<variable name="vTotalPositionField" class="java.math.BigDecimal">
+			<variableExpression><![CDATA[$F{FIX_POS}+$F{FUTURE_QTY}]]></variableExpression>
+		</variable>
+		<variable name="vTotalNL" class="java.math.BigDecimal">
+			<variableExpression><![CDATA[$V{TOTAL_FIX_PNL}+$V{TOTAL_FUTURE_PRICE_PNL}+$V{TOTAL_FX_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OPTIONS_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OPTIONS_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OPTIONS_QTY_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OPTIONS_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OPTIONS_PRICE_PNL" class="java.math.BigDecimal" resetType="Group" resetGroup="ALLOCATION_GROUP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OPTIONS_PRICE_PNL}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_OPTIONS_PRICE_PNL_PC" class="java.math.BigDecimal" resetType="Group" resetGroup="PROFITCENTER_GRP" calculation="Sum">
+			<variableExpression><![CDATA[$F{OPTIONS_PRICE_PNL}]]></variableExpression>
+		</variable>
+		<group name="ALLOCATION_GROUP">
+			<groupExpression><![CDATA["NA"]]></groupExpression>
+		</group>
+		<group name="PROFITCENTER_GRP">
+			<groupExpression><![CDATA[$F{PURCH_UNIT_PROFIT_CENTER_GROUP}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="asofdate" class="java.util.Date">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 1as rownum]]>
+	</queryString>
+	<field name="rownum" class="java.lang.Integer"/>
+	<detail>
+		<band height="249" splitType="Stretch">
+			<componentElement>
+				<reportElement key="" positionType="Float" mode="Transparent" x="0" y="30" width="1825" height="150" uuid="a2068d2a-4aea-4f2b-98da-c91f66b58b0a">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="pnl" uuid="d4ca72ee-7e32-4eed-864a-7b02a2fd5bf8">
+						<datasetParameter name="asofdate">
+							<datasetParameterExpression><![CDATA[$P{asofdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$P{ctrbook}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="236" uuid="3d9279ea-5ce3-4fdd-9eb8-8b9d49215053">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="236" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="f14c7f73-a74c-4fc3-bcf4-c73180664489"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+									</textElement>
+									<text><![CDATA[Total]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="236" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="891ccbc6-c933-4a7d-85ef-d2bc2903ef64">
+										<property name="local_mesure_unitwidth" value="pixel"/>
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+										<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+									</reportElement>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph leftIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{PURCH_UNIT_PROFIT_CENTER_GROUP}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="236" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="be51b1ea-a3ad-4d13-bf5d-08cc59df25cb"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Profit Center]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField>
+								<reportElement mode="Opaque" x="0" y="0" width="236" height="30" backcolor="#FFFFFF" uuid="2c332c9b-9d09-47e8-9077-5b45b815513c"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+								</textElement>
+								<textFieldExpression><![CDATA[" "+ $F{PURCH_UNIT}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="00d63a8d-49a0-4848-99ca-45b56bb14a6e">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="0952332b-a7aa-4062-b0b7-ef6115650700"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true" isPdfEmbedded="false"/>
+										<paragraph rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_POS}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="aeee9279-d9ed-4121-af50-8d7c0a67ce45"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_POS_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="97045ebf-ff95-4514-8c91-c03d2eb0d09e"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Fixed Position]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="3a33f0af-cc26-47ea-b95a-e036f2ff0c9d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+								</reportElement>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FIX_POS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="10a1062d-3dda-478d-bb99-93f0709a1005">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="FixedPnL1" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#1F497D" uuid="0cc6afb5-284d-463e-841a-c90bea2ac684"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="FixedPnL2" mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="b4539a1c-8b07-415b-8165-6ad0158ef1d1"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="d0a0cf5c-6ec7-4835-8d30-a55d13c29637"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Fixed PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="FixedPnL3" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="f76fb611-5b6a-48af-ad3e-c78bd3b3e744">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+								</reportElement>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FIX_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="3b1cc021-73f9-4dba-878d-089a09b967eb">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="71f4caa1-89a1-4a62-baea-3e838ba36f47"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_DIF_POS}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#8DB4E2" uuid="d5a29c1e-09eb-4956-ad6c-480ba4554064"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_DIF_POS_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="5aca43d9-cf0b-4b1d-a3c1-22cfe9ada85f"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Diff Position]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="d7a70506-4b50-4f73-a0ef-ef72073750a2"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DIF_POS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="935a518d-5fa0-40fb-9915-0eea4463befc">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement style="DifPnL1" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#1F497D" uuid="7cc9898d-33ee-4d8c-b9c8-719e99aed96b"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_DIF_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="DifPnL2" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#8DB4E2" uuid="13266ce5-2c65-472d-b9b0-9c47db626bb9"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_DIF_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="ff9428bc-5205-43a6-b7cb-7edac765410d"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Diff PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="DifPnL3" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="94cd94e1-5bb2-4d23-96bf-072b7973d73a"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{DIF_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="1f4232f4-4f65-4549-bbb6-e5276d0a2d77">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2e990519-c75b-4964-935c-dff74dd814bd"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FUTURE_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#8DB4E2" uuid="621f7c9c-e594-46f1-b1fc-4fe4db17ba4f"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FUTURE_QTY_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="5674b5cb-7ac8-4a5b-8d5f-e3d602ccfa8e"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Futures Position]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="7d66f883-7a1c-411a-950c-209b472f3608"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURE_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="4c6f618a-21f4-4ea9-830b-bc50208c5add">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement style="FuturePnL1" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#1F497D" uuid="9c8ff6db-f8ed-48f8-9ecc-f8808b7f2f89"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="FuturePnL2" mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="f081570d-73e4-4f80-ad08-34f2a6525a73"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FUTURE_PRICE_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="54d53007-a188-4e99-a805-dbb4c31ecbc0"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Futures PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="FuturePnL3" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="f139c28c-f397-4f63-a131-1f8a5189e157"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FUTURE_PRICE_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="82c414af-1f64-441f-8b63-fb1f6cb1167f">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2823ad48-020f-4ff8-bed7-5cb1015a09cd"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OPTIONS_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="33001701-57c2-41ee-b4b4-716c7673b25b"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OPTIONS_QTY_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="5d66e7a7-b35a-452a-adc7-0087c16f1832"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Options Position]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="f0bc9e68-0417-44ce-871c-a5cee1eea56e"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OPTIONS_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="113" uuid="957b5af0-8d98-4fff-aff0-8b32c519958c">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement style="OptionsPnL1" mode="Opaque" x="0" y="0" width="113" height="30" backcolor="#1F497D" uuid="39b18038-f9c9-4ca9-9771-5f5ebaf6b962"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="OptionsPnL2" mode="Opaque" x="0" y="0" width="113" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="75c056eb-739d-481d-bfc0-df5b451f72e9"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OPTIONS_PRICE_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="113" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="154a58b3-c995-4315-b6f3-ff24dfe788e1"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Options PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="OptionsPnL3" mode="Opaque" x="0" y="0" width="113" height="30" backcolor="#FFFFFF" uuid="3baaafe1-a392-4409-bc19-61c99005eeee"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OPTIONS_PRICE_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="85371a44-4fba-4948-892f-a3113325213e">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement style="FxPnL1" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#1F497D" uuid="3b65fa9a-bfbe-4cce-9052-0246bfc1b19b"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FX_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="FxPnL2" mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" backcolor="#8DB4E2" uuid="a853165d-3084-4680-ad45-71b59741cd2e"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FX_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="0d6fa390-6cff-44e1-b186-36a73d2f679a"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Fx PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="FxPnL3" mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#FFFFFF" uuid="0173b1b7-a14e-4bb8-b9e9-7d0af8465c23"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FX_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="8e1dd284-67b5-4fde-8e8d-413f63948a22">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="681ca7db-f607-4633-baa5-328272a43511"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OTHER_CHARGES}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#8DB4E2" uuid="f8fd87f4-f237-49c5-ba92-e1755a260965"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_OTHER_CHARGES_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="9a633e91-8021-4579-b16b-12c8adc96995"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Other Charges]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="a4d936a1-cd95-4249-976e-a721b176111f"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{OTHER_CHARGES}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="100" uuid="05ef4c43-ca7c-4a56-963e-fc92a55bc1e6">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="0248128f-e997-43a6-8975-f829437c9177"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_POS}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="100" height="30" isPrintInFirstWholeBand="true" forecolor="#000000" backcolor="#8DB4E2" uuid="1ccdd61a-bfa2-453f-b7b7-db8542bd8747"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single" leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_POS_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="bebef5ef-a6c0-4024-ac11-4929578d7379"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Total Position]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="0f2e9cd4-bb69-4c2e-93fc-3bd3ce2ceaf8"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single" rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FIX_POS}+$F{FUTURE_QTY}+$F{OPTIONS_QTY}+$F{DIF_POS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="146" uuid="0ce35c4a-4c11-4398-949a-bf9a64c0b147">
+						<jr:groupHeader groupName="ALLOCATION_GROUP">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="ALLOCATION_GROUP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="TotalPnL1" mode="Opaque" x="0" y="0" width="146" height="30" backcolor="#1F497D" uuid="98a8357c-d80b-4372-b460-a4a7189c9d07"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_PNL}+$V{TOTAL_FUTURE_PRICE_PNL}+$V{TOTAL_FX_PNL}+$V{TOTAL_OPTIONS_PRICE_PNL}+$V{TOTAL_DIF_PNL}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="PROFITCENTER_GRP">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="PROFITCENTER_GRP" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+									<reportElement style="TotalPnL2" mode="Opaque" x="0" y="0" width="146" height="30" backcolor="#8DB4E2" uuid="f984d81d-bbe5-4a3e-9ca0-c6c86817b1ea"/>
+									<box topPadding="1" leftPadding="4" bottomPadding="1" rightPadding="4">
+										<pen lineWidth="0.5" lineColor="#1F497D"/>
+										<topPen lineWidth="0.5" lineColor="#1F497D"/>
+										<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+										<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+										<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="12" isBold="true"/>
+										<paragraph leftIndent="1" rightIndent="1"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{TOTAL_FIX_PNL_PC}+$V{TOTAL_FUTURE_PRICE_PNL_PC}+$V{TOTAL_FX_PNL_PC}+$V{TOTAL_OPTIONS_PRICE_PNL_PC}+$V{TOTAL_DIF_PNL_PC}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="146" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="8e601351-d791-4735-9182-cc1a4abfa42b"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" size="11" isBold="true" isUnderline="false"/>
+									<paragraph leftIndent="1"/>
+								</textElement>
+								<text><![CDATA[Total PnL]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table_TD" height="30" rowSpan="1">
+							<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement style="TotalPnL3" mode="Opaque" x="0" y="0" width="146" height="30" backcolor="#FFFFFF" uuid="45d34fff-b014-4c0f-af70-64dbc40de642"/>
+								<box topPadding="0" leftPadding="4" bottomPadding="0" rightPadding="4">
+									<pen lineWidth="0.0" lineColor="#1F497D"/>
+									<topPen lineWidth="0.0" lineColor="#1F497D"/>
+									<leftPen lineWidth="0.0" lineColor="#1F497D"/>
+									<bottomPen lineWidth="0.0" lineColor="#1F497D"/>
+									<rightPen lineWidth="0.0" lineColor="#1F497D"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="12"/>
+									<paragraph rightIndent="1"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{FIX_PNL}+$F{FUTURE_PRICE_PNL}+$F{FX_PNL}+$F{OPTIONS_PRICE_PNL}+$F{DIF_PNL}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField>
+				<reportElement mode="Opaque" x="30" y="0" width="984" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="2942bee4-c09d-4d4e-bd90-b055bd372d6a">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[CONCATENATE($P{ctrbook}.equals("%")? "All" : $P{ctrbook}," - PnL Summary as of ",DATEFORMAT($P{asofdate},"dd-MMM-yy"))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1014" y="0" width="481" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="5993d07b-d310-4830-ba21-a2851e046ffb">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement mode="Opaque" x="0" y="0" width="30" height="30" backcolor="#1F497D" uuid="92544582-2824-49f5-89d4-d5f8fb9bdb0f">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#1F497D"/>
+					<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+					<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+					<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+				</box>
+				<imageExpression><![CDATA["repo:OlamLogo"]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

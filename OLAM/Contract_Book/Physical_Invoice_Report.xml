@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Contract_Book</folder>
+    <name>Physical_Invoice_Report</name>
+    <version>2</version>
+    <label>Physical Invoice Report</label>
+    <description>Physical Invoice Report</description>
+    <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+    <updateDate>2015-07-21T17:08:30.677+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Physical_Invoice_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Contract_Book/Physical_Invoice_Report_files</folder>
+            <name>Physical_Invoice_Report_</name>
+            <version>1</version>
+            <label>Physical Invoice Report</label>
+            <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+            <updateDate>2015-07-21T17:04:51.170+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Contract_Book/Physical_Invoice_Report_files</folder>
+            <name>datefrom</name>
+            <version>1</version>
+            <label>Date From</label>
+            <description></description>
+            <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+            <updateDate>2015-07-21T17:06:36.767+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Contract_Book/Physical_Invoice_Report_files/datefrom_files</folder>
+                    <name>datefrom</name>
+                    <version>0</version>
+                    <label>datefrom</label>
+                    <description></description>
+                    <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+                    <updateDate>2015-07-21T17:06:36.767+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Contract_Book/Physical_Invoice_Report_files</folder>
+            <name>dateto</name>
+            <version>1</version>
+            <label>Date To</label>
+            <description></description>
+            <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+            <updateDate>2015-07-21T17:06:36.767+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Contract_Book/Physical_Invoice_Report_files/dateto_files</folder>
+                    <name>dateto</name>
+                    <version>0</version>
+                    <label>dateto</label>
+                    <description></description>
+                    <creationDate>2016-11-18T09:55:27.797+08:00</creationDate>
+                    <updateDate>2015-07-21T17:06:36.767+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>false</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

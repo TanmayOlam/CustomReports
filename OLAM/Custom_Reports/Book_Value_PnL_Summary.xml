@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>Book_Value_PnL_Summary</name>
+    <version>2</version>
+    <label>Book Value PnL Summary</label>
+    <description>Book Value PnL Summary</description>
+    <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+    <updateDate>2017-02-21T14:56:52.097+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Book_Value_PnL_Summary_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files</folder>
+            <name>Book_Value_PnL_Summary_</name>
+            <version>1</version>
+            <label>Book Value PnL Summary</label>
+            <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+            <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files</folder>
+            <name>asofdate</name>
+            <version>2</version>
+            <label>As of Date</label>
+            <description></description>
+            <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+            <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+                    <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files</folder>
+            <name>ctrbook</name>
+            <version>2</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+            <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>Contract Book</label>
+                    <description></description>
+                    <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+                    <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="OlamLogo.png.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files</folder>
+            <name>OlamLogo.png</name>
+            <version>0</version>
+            <label>OlamLogo.png</label>
+            <description>OlamLogo.png</description>
+            <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+            <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="OlamLogo.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Book_Value_PnL_Summary_files</folder>
+            <name>OlamLogo</name>
+            <version>0</version>
+            <label>OlamLogo</label>
+            <description>OlamLogo</description>
+            <creationDate>2017-02-21T14:39:24.610+08:00</creationDate>
+            <updateDate>2017-02-21T14:39:24.610+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <reportRenderingView></reportRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

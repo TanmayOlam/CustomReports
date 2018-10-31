@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<folder exportedWithPermissions="true">
+    <parent>/organizations/organization_1/OLAM</parent>
+    <name>Contract_Book</name>
+    <label>Contract Book</label>
+    <description>Contract Book</description>
+    <creationDate>2016-07-15T22:53:53.477+08:00</creationDate>
+    <updateDate>2013-11-13T10:48:22.607+08:00</updateDate>
+    <resource>Physical_Invoice_Report</resource>
+</folder>

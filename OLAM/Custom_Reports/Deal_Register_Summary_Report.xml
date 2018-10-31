@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports</folder>
+    <name>Deal_Register_Summary_Report</name>
+    <version>4</version>
+    <label>Deal Register Summary Report</label>
+    <description>Deal Register Summary Report</description>
+    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+    <updateDate>2018-01-04T15:57:05.083+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Deal_Register_Summary_Report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>Deal_Register_Summary_Report_</name>
+            <version>4</version>
+            <label>Deal Register Summary Report</label>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>date_from</name>
+            <version>4</version>
+            <label>Contract From Date</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/date_from_files</folder>
+                    <name>Date_From</name>
+                    <version>0</version>
+                    <label>Date From</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>date_to</name>
+            <version>4</version>
+            <label>Contract To Date</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/date_to_files</folder>
+                    <name>Date_To</name>
+                    <version>0</version>
+                    <label>Date To</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>company_p</name>
+            <version>4</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/company_p_files</folder>
+                    <name>Company</name>
+                    <version>0</version>
+                    <label>Company</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>
+SELECT JM.MBRNAME AS LABEL,
+       JM.MBRNAME AS VALUE,
+       2          AS ORDERBY
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE  JM.ISACTIVE = 1
+       AND JM.MBRID &gt; 0
+ORDER  BY ORDERBY
+</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>contract_book_p</name>
+            <version>4</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/contract_book_p_files</folder>
+                    <name>Contract_Book</name>
+                    <version>0</version>
+                    <label>Contract Book</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD
+</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>profit_center_group_p</name>
+            <version>4</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/profit_center_group_p_files</folder>
+                    <name>Profit_Center_Group</name>
+                    <version>0</version>
+                    <label>Profit Center Group</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL,
+       SHORTNAME AS VALUE,
+       2 AS ORDERBY
+FROM   JCPROFITCENTERGROUP
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>profit_center_p</name>
+            <version>4</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/profit_center_p_files</folder>
+                    <name>Profit_Center</name>
+                    <version>0</version>
+                    <label>Profit Center</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PCNAME AS VALUE,
+       PCNAME AS LABEL,
+       2      AS ORDERID
+FROM   JCPROFITCENTER A
+       LEFT JOIN JCPROFITCENTERGROUP B
+              ON A.PCGROUPID = B.GROUPID
+WHERE  A.ISACTIVE = 1
+       AND   $X{IN,B.SHORTNAME,profit_center_group_p}
+ORDER  BY ORDERID,
+          LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>strategy_p</name>
+            <version>4</version>
+            <label>Strategy</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/strategy_p_files</folder>
+                    <name>strategy</name>
+                    <version>0</version>
+                    <label>Strategy</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT NAME AS LABEL,
+       NAME AS VALUE,
+       2    AS ORDERBY
+FROM   JCSTRATEGY
+WHERE  ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>trader_group_p</name>
+            <version>4</version>
+            <label>Trader Group-Trader</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/trader_group_p_files</folder>
+                    <name>Trader_Group_Trader</name>
+                    <version>0</version>
+                    <label>Trader Group-Trader</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT NAME AS LABEL, CAST(GROUPID AS VARCHAR(5)) AS VALUE, 2 AS ORDERBY
+FROM   JCGRPTRADER
+ORDER BY ORDERBY</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>trader_p</name>
+            <version>4</version>
+            <label>Trader</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/trader_p_files</folder>
+                    <name>Trader</name>
+                    <version>0</version>
+                    <label>Trader</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT JS.USERNAME AS LABEL,
+       JS.USERNAME AS VALUE,
+       2           AS SEQ
+FROM   JC_USER_DESIGNATION JSD
+       JOIN JC_USER JS
+         ON JSD.USR_ID = JS.ID
+     LEFT JOIN JCGRPTRADERUSER K
+       ON K.USRID=JS.ID
+WHERE  JSD.DESIGNATION = 'TRADER'
+       AND ACTIVE = 1
+       AND	$X{IN,K.GROUPID,trader_group_p}
+ORDER  BY SEQ,
+          LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>counterparty_group_p</name>
+            <version>4</version>
+            <label>Counterparty Group</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/counterparty_group_p_files</folder>
+                    <name>Counterparty_Group</name>
+                    <version>0</version>
+                    <label>Counterparty Group</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT B.SHORTNAME AS VALUE,
+       B.SHORTNAME AS LABEL,
+	   2 AS ORDERBY
+FROM   JCMBR A
+       JOIN JCCPGRP B
+         ON A.CPGRPID = B.CPGRPID
+WHERE ISACTIVE = 1 
+ORDER BY ORDERBY,
+LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>counterparty_p</name>
+            <version>4</version>
+            <label>Counterparty</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/counterparty_p_files</folder>
+                    <name>Counterparty</name>
+                    <version>0</version>
+                    <label>Counterparty</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT MBRSHORTNAME AS VALUE,
+       MBRSHORTNAME AS LABEL,
+       2            AS ORDERBY
+FROM   JCMBR A
+       LEFT JOIN JCCPGRP B
+              ON A.CPGRPID = B.CPGRPID
+WHERE  ISACTIVE = 1
+AND $X{IN,B.SHORTNAME,counterparty_group_p}
+  
+ORDER  BY ORDERBY,
+          LABEL 
+
+</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>broker_p</name>
+            <version>4</version>
+            <label>Broker</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/broker_p_files</folder>
+                    <name>Broker</name>
+                    <version>0</version>
+                    <label>Broker</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT MBRSHORTNAME      AS VALUE,
+       MBRSHORTNAME AS LABEL,
+       2            AS ORDERBY
+FROM   JCMBR
+WHERE  MBRTYPEID = 2
+       AND ISACTIVE = 1
+ORDER  BY ORDERBY,
+          LABEL </queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>payment_term_p</name>
+            <version>4</version>
+            <label>Payment Term</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/payment_term_p_files</folder>
+                    <name>Payment_Term</name>
+                    <version>0</version>
+                    <label>Payment Term</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT PAYTERMCODE AS LABEL,
+       PAYTERMCODE AS VALUE,
+	   2 AS ORDERID
+FROM   JCPAYTERMS 
+WHERE ISACTIVE =1
+ORDER BY ORDERID,
+LABEL
+</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>contract_term_p</name>
+            <version>4</version>
+            <label>Contract Term</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/contract_term_p_files</folder>
+                    <name>Contract_Term</name>
+                    <version>0</version>
+                    <label>Contract Term</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT TERMID  AS LABEL,
+       TERMID AS VALUE,
+       2 AS ORDERID
+FROM   JCCTRTERM
+ORDER  BY ORDERID,
+LABEL</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>price_currency_p</name>
+            <version>4</version>
+            <label>Price Currency</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/price_currency_p_files</folder>
+                    <name>PRICE_CURRENCY</name>
+                    <version>0</version>
+                    <label>PRICE CURRENCY</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CURRENCYID AS LABEL,
+       CURRENCYID AS VALUE,
+       2 AS ORDERID
+FROM   JCCURRENCY 
+ORDER BY ORDERID,
+LABEL
+</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>commodity_p</name>
+            <version>4</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/commodity_p_files</folder>
+                    <name>Commodity</name>
+                    <version>0</version>
+                    <label>Commodity</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS VALUE,
+       IVITEMID AS LABEL,
+	   2 AS ORDERBY
+FROM   JCIVITEMS
+WHERE ISACTIVE =1 
+ORDER BY ORDERBY, LABEL </queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>ship_month_p</name>
+            <version>4</version>
+            <label>Shipment Month</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/ship_month_p_files</folder>
+                    <name>Ship_Month</name>
+                    <version>0</version>
+                    <label>Shipment Month</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL,
+	   CAST(MONTHNUMBER AS VARCHAR(6)) AS VALUE,
+	   SEQID
+FROM   JCSHIPMONTHSMAPPING
+ORDER BY SEQID</queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>contract_status_p</name>
+            <version>4</version>
+            <label>Status</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/contract_status_p_files</folder>
+                    <name>Status</name>
+                    <version>0</version>
+                    <label>Status</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>
+SELECT 'Billed' AS LABEL,'Billed' AS VALUE
+UNION
+SELECT DESCN,
+       DESCN
+FROM   XSCTRSTATUS </queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>ctrtype</name>
+            <version>4</version>
+            <label>Contract Type</label>
+            <description></description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files/ctrtype_files</folder>
+                    <name>ctrtype</name>
+                    <version>0</version>
+                    <label>ctrtype</label>
+                    <description></description>
+                    <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+                    <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT DESCN AS LABEL,
+       DESCN AS VALUE
+FROM   JCCTRTYPE </queryString>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <resource>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" dataFile="olam.jpg.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/Deal_Register_Summary_Report_files</folder>
+            <name>olam.jpg</name>
+            <version>0</version>
+            <label>olam.jpg</label>
+            <description>olam.jpg</description>
+            <creationDate>2017-02-27T20:39:59.403+08:00</creationDate>
+            <updateDate>2017-02-27T20:39:59.403+08:00</updateDate>
+            <fileType>img</fileType>
+        </localResource>
+    </resource>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

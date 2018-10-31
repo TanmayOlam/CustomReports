@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report3" language="groovy" pageWidth="760" pageHeight="842" columnWidth="720" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21081fe4-fcbf-4165-8f48-5d998d3d1f65">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.one.page.per.sheet" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.show.gridlines" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.row" value="3"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.page.break.no.pagination" value="apply"/>
+	<property name="ireport.jasperserver.reportUnit" value="/Test/MarketReport"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<subDataset name="CrossTabUOM" uuid="24cc7e78-6f8e-493c-9386-f0446b9941dc">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="instr" class="java.util.Collection"/>
+		<parameter name="pc_g" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="Report_By" class="java.lang.String"/>
+		<parameter name="Then_By" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select  PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,Mkt_CCY2
+,VMONTH
+
+, isnull(max(Mkt_UOM),0)   as Mkt_UOM
+from (
+select  PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,
+CASE
+WHEN PRICE_INDEX = 'BMD - CPO' THEN 'MYR/MT'
+WHEN PRICE_INDEX = 'BMD CPO OPTION' THEN ''
+WHEN PRICE_INDEX = 'CAN OIL' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'CBOT SOYABEAN' THEN 'USD/BU 36.7437'
+WHEN PRICE_INDEX = 'CBT SM DELTA' THEN 'USD/ShTon (91)'
+WHEN PRICE_INDEX = 'CDSBO ARG-B' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CDSBO ARG-O' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CDSBO BRZ' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CDSBO BRZ-B' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CDSBO BRZ-O' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CME CPO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CME SBO OPTION' THEN ''
+WHEN PRICE_INDEX = 'CME SBO OPTION DELTA' THEN   'USDCTS/LBS'
+WHEN PRICE_INDEX = 'CME SM OPTION' THEN ''
+WHEN PRICE_INDEX = 'CME-BO' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'CME-S' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'CME-SM' THEN 'USD/ShTon (91)'
+WHEN PRICE_INDEX = 'CPL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CPO OPTION DELTA' THEN 'MYR/MT'
+WHEN PRICE_INDEX = 'CPO-BASIS' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CRUDE COCONUT OIL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CSFO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CSFO EU' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'CSFO LATAM' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'DCE-RPL' THEN 'RMB/MT'
+WHEN PRICE_INDEX = 'EU SBM' THEN 'USD/ShTon (91)'
+WHEN PRICE_INDEX = 'FOB CONSTANZA' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'FOB-CDSBO-SANLO-0020' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'FOB-SBO-SANPE-0017' THEN ''
+WHEN PRICE_INDEX = 'FOB-SFO-ODESSA-0039' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'ICE BFZ' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'ICE BRI' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'ICE CANOLA' THEN 'CAD/MT'
+WHEN PRICE_INDEX = 'ICE GAS OIL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'ICE SOY' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'IJ-MATIF' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'INDO CPO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'INDO CPO PHY' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'INDO CPO-OLD' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'INDO RPO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'MLPD' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'MY CPKO' THEN 'MYR/MT'
+WHEN PRICE_INDEX = 'MY CPL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'MY RPKO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'MY RPL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'MY RPO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'PFAD' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RAPEMEAL' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'RAPESEED' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'RAPESEED-BASIS' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'RAPESEED-PHY' THEN 'EUR/MT'
+WHEN PRICE_INDEX = 'RBDPL IV58' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RBDPL INDO' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RBDPL INDO PHY' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RBDPL INDO--TODELETE' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RPS' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'RUBBER BASIS' THEN 'USD/KG'
+WHEN PRICE_INDEX = 'SBO-BASIS' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'SBO-BASIS-ARG' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'SBO-BASIS-RSA' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'SBO-SANLORENZO' THEN 'USD-CTS/LBS'
+WHEN PRICE_INDEX = 'SFO HIGH OLEIC' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'SHFE-RU' THEN 'RMB/MT'
+WHEN PRICE_INDEX = 'SICOM TSR20 CURR' THEN 'USD-CTS/KG'
+WHEN PRICE_INDEX = 'SICOM-RSS 3' THEN 'USD-CTS/KG'
+WHEN PRICE_INDEX = 'SICOM-TSR 20' THEN 'USD-CTS/KG'
+WHEN PRICE_INDEX = 'SM BASIS' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'SOYMEAL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'SUNMEAL' THEN 'USD/MT'
+WHEN PRICE_INDEX = 'TOCOM - RSS 3' THEN 'JPY/KG'
+ELSE Mkt_CCY2+'/'+UOM
+END as Mkt_CCY2
+
+,CAST(CAST(YEAR([VMonth]) AS VARCHAR(4))
++ '-' + CAST(MONTH([VMonth]) AS VARCHAR(2)) + '-01' AS DATE) as
+VMONTH
+,Mkt_UOM
+FROM OLAM_PENDING_PNS_REPORT
+WHERE --[ALLOCATION_TYPE] in ('OPEN','STOCK') AND
+ [EOD_DATE] = $P{asofdate}
+AND CONTRACT_BOOK=$P{ctrbook}
+
+)T
+Group by PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,Mkt_CCY2
+,VMONTH]]>
+		</queryString>
+		<field name="PriceType" class="java.lang.String"/>
+		<field name="Commodity" class="java.lang.String"/>
+		<field name="Origin" class="java.lang.String"/>
+		<field name="POL" class="java.lang.String"/>
+		<field name="PRICE_INDEX" class="java.lang.String"/>
+		<field name="Mkt_CCY2" class="java.lang.String"/>
+		<field name="VMONTH" class="java.sql.Date"/>
+		<field name="Mkt_UOM" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="CrossTabUSD" uuid="0be48a6f-8501-4b86-a93d-215afd8b7df0">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="instr" class="java.util.Collection"/>
+		<parameter name="pc_g" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="Report_By" class="java.lang.String"/>
+		<parameter name="Then_By" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,CURRENCY,VMONTH
+,max(Mkt_USD) as Mkt_USD
+from (
+select  PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,CURRENCY
+    ,CAST(CAST(YEAR([VMonth]) AS VARCHAR(4))
++ '-' + CAST(MONTH([VMonth]) AS VARCHAR(2)) + '-01' AS DATE) as
+VMONTH
+,Mkt_USD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE --[ALLOCATION_TYPE] in ('OPEN','STOCK') AND
+ [EOD_DATE] = $P{asofdate}
+AND CONTRACT_BOOK=$P{ctrbook}
+
+)T
+group by  PriceType,Commodity,	Origin,	POL,	PRICE_INDEX
+,CURRENCY,VMONTH]]>
+		</queryString>
+		<field name="PriceType" class="java.lang.String"/>
+		<field name="Commodity" class="java.lang.String"/>
+		<field name="Origin" class="java.lang.String"/>
+		<field name="POL" class="java.lang.String"/>
+		<field name="PRICE_INDEX" class="java.lang.String"/>
+		<field name="CURRENCY" class="java.lang.String"/>
+		<field name="VMONTH" class="java.sql.Date"/>
+		<field name="Mkt_USD" class="java.math.BigDecimal"/>
+	</subDataset>
+	<subDataset name="LastEodUpdate" uuid="a9568f54-fa93-4a4e-94b6-70f104c5e3b6">
+		<parameter name="ctrbook" class="java.lang.String"/>
+		<parameter name="asofdate" class="java.util.Date">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="instr" class="java.util.Collection"/>
+		<parameter name="pc_g" class="java.util.Collection"/>
+		<parameter name="pc" class="java.util.Collection"/>
+		<parameter name="commodity" class="java.util.Collection"/>
+		<parameter name="Report_By" class="java.lang.String"/>
+		<parameter name="Then_By" class="java.lang.String"/>
+		<queryString>
+			<![CDATA[select * from OLAM_LAST_EOD_UPDATE_LOG
+where EOD_DATE=$P{asofdate}
+and CONTRACT_BOOK=$P{ctrbook}]]>
+		</queryString>
+		<field name="EOD_DATE" class="java.sql.Date"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="POS_LAST_UPDATE_DATE" class="java.sql.Timestamp"/>
+		<field name="LAST_EOD" class="java.sql.Timestamp"/>
+	</subDataset>
+	<parameter name="asofdate" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()-1]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ctrbook" class="java.lang.String"/>
+	<parameter name="pc" class="java.util.Collection"/>
+	<parameter name="commodity" class="java.util.Collection"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\tanmay.kar\\AppData\\Local\\Temp\\jstmp\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT Y.CONTRACT_BOOK
+		,asofdate
+		,(SELECT
+			ISNULL(MAX(DPD.REPORT_DATE),'')
+		  FROM DM_POSITION_DATA DPD
+		  WHERE DPD.CONTRACT_BOOK = Y.CONTRACT_BOOK
+		  AND DPD.REPORT_DATE <= Y.asofdate
+		  AND $X{IN,DPD.PROFIT_CENTER,pc}
+		  AND $X{IN,DPD.MATERIAL_GROUP ,commodity}
+		  )
+		  origindate
+FROM (SELECT DISTINCT
+		  DPA.CONTRACT_BOOK CONTRACT_BOOK,
+		  DPA.EOD_DATE asofdate
+		FROM OLAM_PENDING_PNS_REPORT DPA
+		JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+				FROM OLAM_PENDING_PNS_REPORT b
+				WHERE b.EOD_DATE <= $P{asofdate}
+				AND $X{IN,b.PROFIT_CENTER,pc}
+				AND $X{IN, b.COMMODITY , commodity}
+				AND b.CONTRACT_BOOK like $P{ctrbook}
+				) BVBV
+		ON DPA.EOD_DATE = BVBV.EOD_DATE
+		AND $X{IN,DPA.PROFIT_CENTER,pc}
+		AND $X{IN,DPA.COMMODITY ,commodity}
+		AND DPA.CONTRACT_BOOK like $P{ctrbook}
+		UNION
+		SELECT 'PALM' CONTRACT_BOOK, '1800-01-01' asofdate
+		WHERE (SELECT COUNT(DISTINCT DPA.CONTRACT_BOOK)
+				FROM OLAM_PENDING_PNS_REPORT DPA
+				JOIN (SELECT MAX(EOD_DATE) EOD_DATE
+						FROM OLAM_PENDING_PNS_REPORT b
+						WHERE b.EOD_DATE <= $P{asofdate}
+						AND $X{IN,b.PROFIT_CENTER,pc}
+						AND $X{IN,b.COMMODITY ,commodity}
+						AND b.CONTRACT_BOOK like $P{ctrbook}
+						) BVBV
+				ON DPA.EOD_DATE = BVBV.EOD_DATE
+				AND $X{IN,DPA.PROFIT_CENTER,pc}
+				AND $X{IN, DPA.COMMODITY, commodity}
+				AND DPA.CONTRACT_BOOK like $P{ctrbook}
+				) = 0
+	) Y
+WHERE 0 = 0]]>
+	</queryString>
+	<field name="CONTRACT_BOOK" class="java.lang.String"/>
+	<field name="asofdate" class="java.sql.Date"/>
+	<field name="origindate" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="131">
+			<crosstab>
+				<reportElement x="0" y="25" width="1527" height="50" uuid="191c8352-ef81-4f31-a04a-f66a41f17f35"/>
+				<crosstabDataset>
+					<dataset>
+						<datasetRun subDataset="CrossTabUOM" uuid="2c0ed63d-97cf-4370-b8b2-f910cfa7a58b">
+							<datasetParameter name="ctrbook">
+								<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+							</datasetParameter>
+							<datasetParameter name="asofdate">
+								<datasetParameterExpression><![CDATA[$F{asofdate}]]></datasetParameterExpression>
+							</datasetParameter>
+							<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						</datasetRun>
+					</dataset>
+				</crosstabDataset>
+				<crosstabHeaderCell>
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="240" y="0" width="100" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="20ad71ff-1cc8-48fa-960a-b724477e86fb"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["POL"]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="70" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="436db2ff-e68e-4601-ac91-3d2e0d3b7ca5"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Pricing Status"]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="340" y="0" width="100" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="27b0063f-7294-44c6-82cd-22569c9f32fb"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Price Index"]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="70" y="0" width="70" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="f4c44afb-2dc7-4d3e-81e9-a77b3e56de65"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Commodity"]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="440" y="0" width="100" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="8a6aab95-b35a-4978-b854-5c3a0b9cd4a2"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Ccy/UOM"]]></textFieldExpression>
+						</textField>
+						<textField pattern="dd-MMM-yy" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="140" y="0" width="100" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="46aa6b46-a271-4b25-af51-eab6aaf925b9"/>
+							<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Origin"]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="PriceType" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{PriceType}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Transparent">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="70" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="ea91f3ff-4291-4163-8624-4631a654cb40"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{PriceType}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#1F497D" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="140" height="15" forecolor="#FFFFFF" backcolor="#1F497D" uuid="194a5fb2-8a44-43ee-9b56-2dd21ac3cba6"/>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total PriceType]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="Commodity" width="70">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{Commodity}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#F0F8FF" mode="Transparent">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="70" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="53b93567-cff6-4b30-9884-576d409f60f4"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Commodity}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement x="0" y="0" width="70" height="25" uuid="62e82f0d-c863-451e-a261-7ee73cf127c6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[Total Commodity]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="Origin" width="100">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{Origin}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="3a09c1fa-cadd-47fe-86f2-7723ed6e4e7a"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Origin}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="POL" width="100">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{POL}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="57262798-778b-4241-9b8e-0425ea2deb7c"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{POL}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="PRICE_INDEX" width="100">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{PRICE_INDEX}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="b4375b94-427f-498d-9d9a-59bb2a26304f"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{PRICE_INDEX}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="Mkt_CCY2" width="100">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{Mkt_CCY2}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="100" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="bc3c5dcc-a9da-4584-b700-33f904a2d320"/>
+								<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{Mkt_CCY2}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents>
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="VMONTH" height="15">
+					<bucket class="java.sql.Date">
+						<bucketExpression><![CDATA[$F{VMONTH}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#F0F8FF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<textField pattern="MMM-yy" isBlankWhenNull="false">
+								<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="52" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="811d893f-3053-42b1-b2d3-1afdc8ce0685"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{VMONTH}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="52" height="15" forecolor="#000000" backcolor="#8DB4E2" uuid="9a3de8cd-618b-470c-be76-f08565e011e2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Total VMONTH]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="Mkt_UOMMeasure" class="java.math.BigDecimal" calculation="Highest">
+					<measureExpression><![CDATA[$F{Mkt_UOM}]]></measureExpression>
+				</measure>
+				<crosstabCell width="52" height="15">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="52" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="0bff50b7-2c0b-40ff-b984-f0782c3fbe83">
+								<printWhenExpression><![CDATA[$V{Mkt_UOMMeasure}-(java.lang.Integer)$V{Mkt_UOMMeasure}==0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+						<textField isStretchWithOverflow="true" pattern="###0.##;-###0.##" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" mode="Transparent" x="0" y="0" width="52" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="70ae117d-cf46-4fd0-b1ee-1093ee7d4f75">
+								<printWhenExpression><![CDATA[$V{Mkt_UOMMeasure}-(java.lang.Integer)$V{Mkt_UOMMeasure}!=0]]></printWhenExpression>
+							</reportElement>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="52" height="15" rowTotalGroup="PriceType">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="52" height="15" forecolor="#FFFFFF" backcolor="#1F497D" uuid="8a07f51d-eb07-4f36-b09a-6ecff9cbbdb7"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="52" height="15" columnTotalGroup="VMONTH">
+					<cellContents backcolor="#BFE1FF" mode="Transparent">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+							<reportElement style="Crosstab Data Text" stretchType="RelativeToBandHeight" mode="Transparent" x="0" y="0" width="52" height="15" forecolor="#000000" backcolor="#FFFFFF" uuid="fa0e8a6a-8c91-46c1-9eaf-2477d0d29760"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="52" height="15" rowTotalGroup="PriceType" columnTotalGroup="VMONTH">
+					<cellContents backcolor="#005FB3" mode="Opaque">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="false">
+							<reportElement style="Crosstab Data Text" mode="Opaque" x="0" y="0" width="52" height="15" forecolor="#FFFFFF" backcolor="#1F497D" uuid="623e3ce9-5f13-40d0-8cfa-6cfeff148fb0"/>
+							<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+								<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+								<paragraph lineSpacing="Single"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="25" rowTotalGroup="Commodity">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="3ae1e640-d972-4c8e-a636-3cd11b9240d2"/>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="Commodity" columnTotalGroup="VMONTH">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+						<textField>
+							<reportElement style="Crosstab Data Text" x="0" y="0" width="50" height="25" uuid="8220ece7-20f5-48b7-a0b9-0fa592635955"/>
+							<textFieldExpression><![CDATA[$V{Mkt_UOMMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="Origin">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="Origin" columnTotalGroup="VMONTH">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="POL">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="POL" columnTotalGroup="VMONTH">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="PRICE_INDEX">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="PRICE_INDEX" columnTotalGroup="VMONTH">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="Mkt_CCY2">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="Mkt_CCY2" columnTotalGroup="VMONTH">
+					<cellContents>
+						<box>
+							<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+							<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+						</box>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="0" y="0" width="1476" height="25" forecolor="#FFFFFF" backcolor="#1F497D" uuid="7d75d031-963b-4a18-af80-7f08159be44f">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="net.sf.jasperreports.export.xls.sheet.name" value="Physicals market price"/>
+				</reportElement>
+				<box leftPadding="4" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+					<rightPen lineWidth="0.0" lineColor="#4F81BD"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CONTRACT_BOOK} +" - Physicals market price as of "+DATEFORMAT($F{asofdate},"dd-MMM-yy")]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement positionType="Float" x="0" y="75" width="2021" height="56" uuid="559c3f33-813b-4fcd-b003-448d3b07cd9f"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="LastEodUpdate" uuid="fdace56e-8353-4f74-9dd8-9a4f83d0fd5b">
+						<datasetParameter name="ctrbook">
+							<datasetParameterExpression><![CDATA[$F{CONTRACT_BOOK}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="asofdate">
+							<datasetParameterExpression><![CDATA[$F{asofdate}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:listContents height="56" width="2021">
+						<textField isStretchWithOverflow="true" evaluationTime="Auto" isBlankWhenNull="true">
+							<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1476" height="15" forecolor="#000000" uuid="9ed8d673-ae6b-4afa-bea7-68b1663d6943"/>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Arial" size="9"/>
+							</textElement>
+							<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")+"  based on EOD runtime : "+DATEFORMAT($F{LAST_EOD},"dd-MMM-yy h:mm:ss a") +" with last transaction recorded at : "+DATEFORMAT($F{POS_LAST_UPDATE_DATE},"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+</jasperReport>

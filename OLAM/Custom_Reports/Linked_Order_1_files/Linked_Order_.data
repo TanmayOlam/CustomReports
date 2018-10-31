@@ -1,0 +1,2936 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="linked_order" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Error" uuid="b42df827-5501-4870-9111-5914e9c43e1a">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="net.sf.jasperreports.export.xls.font.size.fix.enabled" value="false"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="1587"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.export.pdf.size.page.to.content" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.graphics" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="false"/>
+	<property name="net.sf.jasperreports.export.xls.collapse.row.span" value="false"/>
+	<property name="net.sf.jasperreports.style.evaluation.time.enabled" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.fit.width" value="1"/>
+	<property name="net.sf.jasperreports.export.xls.exclude.origin.keep.first.band.1" value="columnHeader"/>
+	<property name="net.sf.jasperreports.export.xls.fit.height" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+	<property name="ireport.jasperserver.reportUnit" value="/ReportJune/Linked_Order"/>
+	<property name="ireport.jasperserver.url" value="http://localhost:8080/jasperserver/services/repository"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.row" value="4"/>
+	<property name="net.sf.jasperreports.export.xls.freeze.column" value="F"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#FFCC00">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#1F497D"/>
+			<topPen lineWidth="0.5" lineColor="#1F497D"/>
+			<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+			<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+			<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineColor="#4F81BD"/>
+			<leftPen lineColor="#4F81BD"/>
+			<bottomPen lineColor="#4F81BD"/>
+			<rightPen lineColor="#4F81BD"/>
+		</box>
+	</style>
+	<subDataset name="Dataset1" uuid="88348f32-0cba-409c-a747-68e02a2216b9">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="olam47"/>
+		<parameter name="company_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{company_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="profit_center_group_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{profit_center_group_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="profit_center_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{profit_center_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="strategy_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{strategy_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="counterparty_group_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{counterparty_group_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="counterparty_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{counterparty_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="commodity_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{commodity_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="grade_p" class="java.util.Collection">
+			<defaultValueExpression><![CDATA[$P{grade_p}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="shipment_month_from" class="java.lang.String"/>
+		<parameter name="cbk" class="java.util.Collection"/>
+		<parameter name="shipment_month_to" class="java.lang.String"/>
+		<parameter name="col_group" class="java.lang.String">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<parameter name="invoice" class="java.lang.String"/>
+		<parameter name="suppress" class="java.lang.String">
+			<defaultValueExpression><![CDATA[($P{invoice}.equals("suppress") ? "  where not (w.salesSup = 1 and w.pursup = 1) " :"")]]></defaultValueExpression>
+		</parameter>
+		<parameter name="wash" class="java.lang.String">
+			<defaultValueExpression><![CDATA[($P{invoice}.equals("suppress") ? "  where wash =2 " :"")]]></defaultValueExpression>
+		</parameter>
+		<parameter name="LE_Filter" class="java.lang.String">
+			<defaultValueExpression><![CDATA[$P{LE_Filter}]]></defaultValueExpression>
+		</parameter>
+		<parameter name="QSTR_Filter" class="java.lang.String">
+			<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select * from (select * from(
+SELECT
+L2.SALES_CONTRACT_CURRENCY,
+L2.PURCHASE_CONTRACT_CURRENCY,
+--L2.SALES_PRICE_CURRENCY,
+--L2.PURCHASE_PRICE_CURRENCY,
+L2.SALES_CONTRACT_STATUS,
+L2.PURCHASE_CONTRACT_STATUS,
+L2.ALLOCATION_REF,
+       L2.COMPANY,
+       L2.S_SHIP_MONTH,
+       L2.P_SHIP_MONTH,
+       L2.S_PROFIT_CENTER,
+       L2.S_COMMODITY,
+       L2.S_GRADE,
+       L2.S_INCOTERM,
+       L2.S_TRADER,
+       L2.S_CONTRACT_REF,
+	(Select ABC.IONUMBER From CTR ABC Where ABC.CTRREF=L2.S_CONTRACT_REF) as S_OPS,
+       L2.S_BUYER,
+       L2.S_COUNTERPARTY_REFERENCE,
+       L2.S_BROKER,
+       L2.S_BROKER_REFERENCE,
+       L2.ORIGIN,
+       L2.S_QUALITY_BASIS,
+       L2.ALLOCATION_QTY,
+       L2.S_OPEN_QTY,
+       L2.S_AVR_FLAT_PRICE,
+       L2.P_INCOTERM,
+       L2.P_TRADER,
+       L2.P_CONTRACT_REF,
+      (Select ABC.IONUMBER From CTR ABC Where ABC.CTRREF=L2.P_CONTRACT_REF) as P_OPS,
+       L2.P_SELLER,
+       L2.P_COUNTERPARTY_REFERENCE,
+       L2.P_BROKER,
+       L2.P_BROKER_REFERENCE,
+       L2.P_QUALITY_BASIS,
+       L2.P_OPEN_QTY,
+       L2.P_AVR_FLAT_PRICE,
+       L2.SI_DATE,
+       L2.SHIPMENT_TO_DATE,
+       L2.SHIPMENT_FROM_DATE,
+       L2.S_CONTRACT_QTY,
+       L2.P_CONTRACT_QTY,
+       L2.S_MONTHNUMBER,
+       L2.ALLOCATION_TYPE,
+       L2.STRING_STATUS,
+       L2.CONTRACT_BOOK,
+       L2.LINKED_DATE
+
+
+	      ,abs(S.INV_QTY) as S_INV_QTY
+	   ,P.INV_QTY as P_INV_QTY
+	, case
+		when
+		round(S_contract_qty,2)-abs(round(S.INV_QTY,2)) <=isnull((S_contract_qty*S.SETTLEMENTTOLERANCEPRECENTMAX/100),0) then 1
+		else 2 end as salesSup
+		,case
+		when round(P_contract_qty,2)-round(P.INV_QTY,2) <=isnull((S_contract_qty*P.SETTLEMENTTOLERANCEPRECENTMAX/100),0) then 1
+		else 2 end as purSup
+		,case
+		when ALLOCATION_TYPE ='string' and  STRING_STATUS not in ('proposed_washout')
+		then 1  else 2 end as wash
+
+
+FROM   (SELECT DISTINCT
+SALES.CONTRACT_CURRENCY as SALES_CONTRACT_CURRENCY,
+PURCHASE.CONTRACT_CURRENCY as PURCHASE_CONTRACT_CURRENCY,
+--SALES.PRICE_CURRENCY as SALES_PRICE_CURRENCY,
+--PURCHASE.PRICE_CURRENCY as PURCHASE_PRICE_CURRENCY ,
+SALES.CONTRACT_STATUS as SALES_CONTRACT_STATUS,
+PURCHASE.CONTRACT_STATUS as PURCHASE_CONTRACT_STATUS,
+ ALLOC.ALLOCATION_REF,
+                        COALESCE(PURCHASE.COMPANY, SALES.COMPANY)                                                           AS COMPANY,
+                        SALES.SHIP_MONTH                                                                                    AS S_SHIP_MONTH,
+                        SALES.PROFIT_CENTER                                                                                 AS S_PROFIT_CENTER,
+                        SALES.COMMODITY                                                                                     AS S_COMMODITY,
+                        COALESCE(ALLOC.S_SPECIFICATION, ALLOC.P_SPECIFICATION)                                              AS S_GRADE,
+                        SALES.INCOTERM                                                                                      AS S_INCOTERM,
+                        STRADER.FIRST_NAME + ' ' + STRADER.LAST_NAME                                                        AS S_TRADER,
+                        SALES.CONTRACT_REFERENCE                                                                            AS S_CONTRACT_REF,
+                        SALES.COUNTERPARTY_CODE                                                                             AS S_BUYER,
+                        SALES.COUNTERPARTY_REF                                                                              AS S_COUNTERPARTY_REFERENCE,
+                        SALES.BROKER                                                                                        AS S_BROKER,
+                        SALES.BROKER_REFERENCE                                                                              AS S_BROKER_REFERENCE,
+                        SALES.ORIGIN,
+                        CASE
+                          WHEN SALES.CONTRACT_BOOK = 'RUBBER' THEN SFACTORY.FACTORYSHORTDESC
+                          ELSE SALES.QUALITY_BASIS
+                        END                                                                                                 AS S_QUALITY_BASIS,
+                        ALLOC.ALLOCATION_QTY,
+                        ( SALES.CONTRACT_QTY - COALESCE(Sum(ALLOC.ALLOCATION_QTY)
+                                                          OVER (
+                                                            PARTITION BY ALLOC.S_CONTRACT_ID
+                                                            ORDER BY ALLOC.ALLOCATION_DATE, ALLOC.ALLOCATION_REF
+															ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) )    AS S_OPEN_QTY,
+                        SALES_PRICE.AVR_FLAT_PRICE                                                                          AS S_AVR_FLAT_PRICE,
+
+                        PURCHASE.INCOTERM                                                                                   AS P_INCOTERM,
+                        PTRADER.FIRST_NAME + ' ' + PTRADER.LAST_NAME                                                        AS P_TRADER,
+                        PURCHASE.CONTRACT_REFERENCE                                                                         AS P_CONTRACT_REF,
+                        PURCHASE.COUNTERPARTY_CODE                                                                          AS P_SELLER,
+                        PURCHASE.COUNTERPARTY_REF                                                                           AS P_COUNTERPARTY_REFERENCE,
+                        PURCHASE.BROKER                                                                                     AS P_BROKER,
+                        PURCHASE.BROKER_REFERENCE                                                                           AS P_BROKER_REFERENCE,
+                        CASE
+                          WHEN PURCHASE.CONTRACT_BOOK = 'RUBBER' THEN PFACTORY.FACTORYSHORTDESC
+                          ELSE PURCHASE.QUALITY_BASIS
+                        END                                                                                                 AS P_QUALITY_BASIS,
+                        PURCH_PRICE.AVR_FLAT_PRICE                                                                          AS P_AVR_FLAT_PRICE,
+                        PURCHASE.SHIP_MONTH                                                                                 AS P_SHIP_MONTH,
+                        ( PURCHASE.CONTRACT_QTY - COALESCE(Sum(ALLOC.ALLOCATION_QTY)
+                                                             OVER (
+                                                               PARTITION BY ALLOC.P_CONTRACT_ID
+                                                               ORDER BY ALLOC.ALLOCATION_DATE, ALLOC.ALLOCATION_REF
+															   ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW), 0) ) AS P_OPEN_QTY,
+                        PURCHASE.PROFIT_CENTER                                                                              AS P_PROFIT_CENTER,
+                        PURCHASE.STRATEGY                                                                                   AS P_STRATEGY,
+                        PURCHASE.COMMODITY                                                                                  AS P_COMMODITY,
+                        COALESCE(ALLOC.P_SPECIFICATION, ALLOC.S_SPECIFICATION)                                              AS P_GRADE,
+                        PURCHASE.QUANTITY_BASIS                                                                             AS P_QUANTITY_BASIS,
+                        SALES.COUNTERPARTY                                                                                  AS S_COUNTERPARTY,
+                        SALES.COUNTERPARTY_GROUP                                                                            AS S_COUNTERPARTY_GROUP,
+                        SALES.PROFIT_CENTER_GROUP                                                                           AS S_PROFIT_CENTER_GROUP,
+                        SALES.STRATEGY                                                                                      AS S_STRATEGY,
+                        MOV.SI_DATE                                                                                         AS SI_DATE,
+                        ALLOC.SHIPMENT_FROM_DATE,
+                        ALLOC.SHIPMENT_TO_DATE,
+                        Lower(ALLOC.ALLOCATION_TYPE)                                                                        AS ALLOCATION_TYPE,
+                        SALES.CONTRACT_BOOK                                                                                 AS CTRBOOKCODE,
+                        SALES.CONTRACT_QTY                                                                                  AS S_CONTRACT_QTY,
+                        PURCHASE.CONTRACT_QTY                                                                               AS P_CONTRACT_QTY,
+                        MON.MONTHNUMBER                                                                                     AS S_MONTHNUMBER,
+                        Lower(ALLOC.STRING_STATUS)                                                                          AS STRING_STATUS,
+                        COALESCE(SALES.CONTRACT_BOOK, PURCHASE.CONTRACT_BOOK)                                               AS CONTRACT_BOOK,
+                        CASE
+                          WHEN ALLOC.ALLOCATION_TYPE LIKE '%B2B%' THEN Cast(ALLOC.ALLOCATION_DATE AS DATE)
+                          WHEN ALLOC.ALLOCATION_TYPE LIKE '%stock%' THEN SETTLE.APPLYDATE
+                        END                                                                                                 AS LINKED_DATE
+        FROM   (SELECT ALLOC.ID                         AS ALLOCATION_ID,
+                       ALLOC.REFERENCE                  AS ALLOCATION_REF,
+                       ALLOC.STRING_STATUS              AS STRING_STATUS,
+                       NULL                             AS STOCK_MATCH_PURCH_ALLOC_ID,
+                       NULL                             AS STOCK_MATCH_SALES_ALLOC_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN PURCH_CONTRACT.ID
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SALES_CONTRACT.ID
+                       END                              AS P_CONTRACT_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN PURCH_CONTRACT.ID
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SALES_CONTRACT.ID
+                       END                              AS S_CONTRACT_ID,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN PURCH_CONTRACT.REFERENCE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SALES_CONTRACT.REFERENCE
+                       END                              AS P_CONTRACT_REF,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN PURCH_CONTRACT.REFERENCE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SALES_CONTRACT.REFERENCE
+                       END                              AS S_CONTRACT_REF,
+                       ALLOC.ALLOCATION_DATE            AS ALLOCATION_DATE,
+                       CASE ALLOC.DISCRIMINATOR_TYPE
+                         WHEN 'B2B' THEN 'B2B Normal'
+                         WHEN 'B2B_CROSS_COMMODITY' THEN 'B2B Cross'
+                         WHEN 'STRING' THEN 'String'
+                         WHEN 'HALF_ALLOCATION' THEN 'Half B2B '
+                                                     + CASE
+                                                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN 'Purchase'
+                                                         ELSE 'Sales'
+                                                       END
+                       END                              AS ALLOCATION_TYPE,
+                       ALLOC.QUANTITY                   AS ALLOCATION_QTY,
+                       ALLOC.SHIPMENT_START_DATE_SOURCE AS SHIPMENT_FROM_DATE,
+                       ALLOC.SHIPMENT_END_DATE_SOURCE   AS SHIPMENT_TO_DATE,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SPEC_SOURCE.CODE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'PURCHASE' THEN SPEC_TARGET.CODE
+                       END                              AS P_SPECIFICATION,
+                       CASE
+                         WHEN PURCH_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SPEC_SOURCE.CODE
+                         WHEN SALES_CONTRACT.CONTRACT_ROLE = 'SALES' THEN SPEC_TARGET.CODE
+                       END                              AS S_SPECIFICATION
+                FROM   ALLOCATION ALLOC
+                       LEFT JOIN CONTRACT_POSITION SOURCE
+                              ON ALLOC.CONTRACT_POSITION_ID_SOURCE = SOURCE.ID
+                       LEFT JOIN CONTRACT PURCH_CONTRACT
+                              ON SOURCE.CONTRACT_ID = PURCH_CONTRACT.ID
+                       LEFT JOIN CONTRACT_POSITION TARGET
+                              ON ALLOC.CONTRACT_POSITION_ID_TARGET = TARGET.ID
+                       LEFT JOIN CONTRACT SALES_CONTRACT
+                              ON TARGET.CONTRACT_ID = SALES_CONTRACT.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_SOURCE
+                              ON ALLOC.SPECIFICATION_ID_SOURCE = SPEC_SOURCE.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_TARGET
+                              ON ALLOC.SPECIFICATION_ID_TARGET = SPEC_TARGET.ID
+                WHERE  ALLOC.QUANTITY <> 0
+                       AND ALLOC.ACTIVE = 1
+                       AND ALLOC.DISCRIMINATOR_TYPE <> 'OPEN'
+                       AND ALLOC.DISCRIMINATOR_TYPE <> 'STOCK'
+                UNION
+                SELECT STOCK_MATCHING.ID                           AS ALLOCATION_ID,
+                       STOCK_MATCHING.REFERENCE                    AS ALLOCATION_REF,
+                       NULL                                        AS STRING_STATUS,
+                       STOCK_MATCHING.PURCHASE_STOCK_ALLOCATION_ID AS STOCK_MATCH_PURCH_ALLOC_ID,
+                       STOCK_MATCHING.SALES_STOCK_ALLOCATION_ID    AS STOCK_MATCH_SALES_ALLOC_ID,
+                       PURCH_CONTRACT.ID                           AS P_CONTRACT_ID,
+                       SALES_CONTRACT.ID                           AS S_CONTRACT_ID,
+                       PURCH_CONTRACT.REFERENCE                    AS P_CONTRACT_REF,
+                       SALES_CONTRACT.REFERENCE                    AS S_CONTRACT_REF,
+                       STOCK_MATCHING.CREATED_DATE                 AS ALLOCATION_DATE,
+                       'Stock Matched'                             AS ALLOCATION_TYPE,
+                       STOCK_MATCHING.QUANTITY                     AS ALLOCATION_QTY,
+                       PURCH_CONTRACT.SHIP_PERIOD_START            AS SHIPMENT_FROM_DATE,
+                       PURCH_CONTRACT.SHIP_PERIOD_END              AS SHIPMENT_TO_DATE,
+                       SPEC_SOURCE.CODE                            AS P_SPECIFICATION,
+                       SPEC_TARGET.CODE                            AS S_SPECIFICATION
+                FROM   ALLOCATION_STOCK_MATCHING STOCK_MATCHING
+                       JOIN ALLOCATION PURCH_ALLOC
+                         ON PURCH_ALLOC.ID = STOCK_MATCHING.PURCHASE_STOCK_ALLOCATION_ID
+                       JOIN CONTRACT_POSITION SOURCE
+                         ON PURCH_ALLOC.CONTRACT_POSITION_ID_SOURCE = SOURCE.ID
+                       JOIN CONTRACT PURCH_CONTRACT
+                         ON SOURCE.CONTRACT_ID = PURCH_CONTRACT.ID
+                       JOIN ALLOCATION SALES_ALLOC
+                         ON SALES_ALLOC.ID = STOCK_MATCHING.SALES_STOCK_ALLOCATION_ID
+                       JOIN CONTRACT_POSITION TARGET
+                         ON SALES_ALLOC.CONTRACT_POSITION_ID_SOURCE = TARGET.ID
+                       JOIN CONTRACT SALES_CONTRACT
+                         ON TARGET.CONTRACT_ID = SALES_CONTRACT.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_SOURCE
+                              ON PURCH_ALLOC.SPECIFICATION_ID_SOURCE = SPEC_SOURCE.ID
+                       LEFT JOIN JC_SPECIFICATION SPEC_TARGET
+                              ON SALES_ALLOC.SPECIFICATION_ID_TARGET = SPEC_TARGET.ID
+                WHERE  PURCH_ALLOC.ACTIVE = 1
+                       AND SALES_ALLOC.ACTIVE = 1) ALLOC
+               -- Purchase side
+               JOIN BI_VIEW_CONTRACT_PHYSICAL PURCHASE
+                 ON ALLOC.P_CONTRACT_REF = PURCHASE.CONTRACT_REFERENCE
+               LEFT JOIN (SELECT POS.CONTRACT_ID,
+                                Sum(PRICE.CONTRACT_PRICE * PRICE.QUANTITY) / Sum(PRICE.QUANTITY) AS AVR_FLAT_PRICE
+                         FROM   CONTRACT_POSITION POS
+                                JOIN PRICING_POSITION PRICE
+                                  ON POS.ID = PRICE.CONTRACT_POSITION_INTERNAL_ID
+                         WHERE  PRICE.QUANTITY != 0
+                                AND PRICE.CONTRACT_PRICE != 0
+                         GROUP  BY POS.CONTRACT_ID) PURCH_PRICE
+                      ON PURCH_PRICE.CONTRACT_ID = ALLOC.P_CONTRACT_ID
+               LEFT JOIN JCFACTORY PFACTORY
+                      ON PURCHASE.FACTORYID = PFACTORY.FACTORYID
+               LEFT JOIN JC_USER PTRADER
+                      ON PURCHASE.TRADERID = PTRADER.ID
+               -- Sales Side
+               JOIN BI_VIEW_CONTRACT_PHYSICAL SALES
+                 ON ALLOC.S_CONTRACT_REF = SALES.CONTRACT_REFERENCE
+               LEFT JOIN (SELECT POS.CONTRACT_ID,
+                                Sum(PRICE.CONTRACT_PRICE * PRICE.QUANTITY) / Sum(PRICE.QUANTITY) AS AVR_FLAT_PRICE
+                         FROM   CONTRACT_POSITION POS
+                                JOIN PRICING_POSITION PRICE
+                                  ON POS.ID = PRICE.CONTRACT_POSITION_INTERNAL_ID
+                         WHERE  PRICE.QUANTITY != 0
+                                AND PRICE.CONTRACT_PRICE != 0
+                         GROUP  BY POS.CONTRACT_ID) SALES_PRICE
+                      ON SALES_PRICE.CONTRACT_ID = ALLOC.S_CONTRACT_ID
+               LEFT JOIN (SELECT Min(MO.SI_GENERATED_DATE) AS SI_DATE,
+                                 MOG.ALLOCATION_ID         AS ALLOCATION_ID
+                          FROM   MOVEMENT_OPERATION MO
+                                 LEFT JOIN MOVEMENT_OPERATION_GROUP MOG
+                                        ON MO.MOVEMENT_GROUP_ID = MOG.ID
+                          GROUP  BY ALLOCATION_ID) MOV
+                      ON ALLOC.ALLOCATION_ID = MOV.ALLOCATION_ID
+               JOIN JCSHIPMONTHSMAPPING MON
+                 ON SALES.SHIP_MONTH = MON.SHORTNAME
+               LEFT JOIN JCFACTORY SFACTORY
+                      ON SALES.FACTORYID = SFACTORY.FACTORYID
+               LEFT JOIN (SELECT Min(APPLYDATE) AS APPLYDATE,
+                                 ARH.CTRID      AS CTRID
+                          FROM   ARHEADER ARH
+                          GROUP  BY ARH.CTRID) SETTLE
+                      ON SETTLE.CTRID = SALES.CTRID
+               LEFT JOIN JC_USER STRADER
+                      ON SALES.TRADERID = STRADER.ID)L2
+
+
+left join  (
+select CONTRACT_REFERENCE,SETTLEMENTTOLERANCEPRECENTMAX, sum(INV_QTY) as INV_QTY from (  SELECT distinct CONTRACT_REFERENCE, INVOICE_NUMBER,
+ SETTLEMENTTOLERANCEPRECENTMAX,
+CASE
+       WHEN I.INVOICE_TYPE = 'Advance Voucher' OR I.INVOICE_TYPE = 'Advance Invoice' THEN 0
+        ELSE    I.INVOICE_QTY   END AS INV_QTY
+
+FROM BI_VIEW_SETTLEMENT_DETAILS I
+LEFT JOIN BI_VIEW_CONTRACT_PHYSICAL PHY ON I.CTRID = PHY.CTRID
+LEFT JOIN ctrtolerance tol on (I.CTRID=tol.CTRID)
+WHERE INVOICE_TYPE   NOT IN ( 'Credit Note', 'Debit Note' )
+and PHY.CTRID is not null
+) as t
+group by CONTRACT_REFERENCE,SETTLEMENTTOLERANCEPRECENTMAX
+)S on (L2.S_CONTRACT_REF= S.CONTRACT_REFERENCE)
+
+
+left join
+
+ (
+select CONTRACT_REFERENCE,SETTLEMENTTOLERANCEPRECENTMAX, sum(INV_QTY) as INV_QTY from (  SELECT distinct CONTRACT_REFERENCE, INVOICE_NUMBER,
+ SETTLEMENTTOLERANCEPRECENTMAX,
+CASE
+       WHEN I.INVOICE_TYPE = 'Advance Voucher' OR I.INVOICE_TYPE = 'Advance Invoice' THEN 0
+        ELSE    I.INVOICE_QTY   END AS INV_QTY
+
+FROM BI_VIEW_SETTLEMENT_DETAILS I
+LEFT JOIN BI_VIEW_CONTRACT_PHYSICAL PHY ON I.CTRID = PHY.CTRID
+LEFT JOIN ctrtolerance tol on (I.CTRID=tol.CTRID)
+WHERE INVOICE_TYPE   NOT IN ( 'Credit Note', 'Debit Note' )
+and PHY.CTRID is not null
+) as t
+group by CONTRACT_REFERENCE,SETTLEMENTTOLERANCEPRECENTMAX
+) P on (L2.P_CONTRACT_REF= P.CONTRACT_REFERENCE)
+
+
+
+WHERE
+
+
+1=case when ((L2.SALES_CONTRACT_STATUS='Fulfilled' and L2.PURCHASE_CONTRACT_STATUS='Fulfilled') ) then  0
+Else 1 END
+--
+
+and 1=case when (L2.SALES_CONTRACT_STATUS='Contract Performed' and L2.PURCHASE_CONTRACT_STATUS='Contract Performed') then  0
+Else  1 END
+
+and 1=case when (L2.SALES_CONTRACT_STATUS='Voided' and L2.PURCHASE_CONTRACT_STATUS='Voided') then  0
+Else  1 END
+
+
+   and    (($P{col_group} = 'Yes' and (L2.S_OPEN_QTY>0 or L2.P_OPEN_QTY>0))
+        or ($P{col_group} = 'No' and (L2.S_OPEN_QTY<=0 and L2.P_OPEN_QTY<=0))
+        or ($P{col_group}= 'Both'))
+       AND $X{IN, L2.COMPANY, company_p}
+       AND $X{IN, L2.S_PROFIT_CENTER_GROUP, profit_center_group_p}
+       AND $X{IN, L2.S_PROFIT_CENTER, profit_center_p}
+       AND $X{IN, L2.S_STRATEGY, strategy_p}
+       AND $X{IN, L2.S_COUNTERPARTY_GROUP, counterparty_group_p}
+       AND $X{IN, L2.S_COUNTERPARTY, counterparty_p}
+       AND $X{IN, L2.S_COMMODITY, commodity_p}
+       AND $X{IN, L2.S_GRADE, grade_p}
+       AND $X{IN,CTRBOOKCODE,cbk}
+
+)as w
+
+$P!{suppress}
+)as a
+
+$P!{wash}
+
+ORDER  BY a.COMPANY,
+          a.S_MONTHNUMBER,
+          a.S_PROFIT_CENTER,
+          a.S_COMMODITY,
+          a.S_GRADE,a.S_CONTRACT_REF]]>
+		</queryString>
+		<field name="ALLOCATION_REF" class="java.lang.String"/>
+		<field name="COMPANY" class="java.lang.String"/>
+		<field name="S_SHIP_MONTH" class="java.lang.String"/>
+		<field name="P_SHIP_MONTH" class="java.lang.String"/>
+		<field name="S_PROFIT_CENTER" class="java.lang.String"/>
+		<field name="S_COMMODITY" class="java.lang.String"/>
+		<field name="S_GRADE" class="java.lang.String"/>
+		<field name="S_INCOTERM" class="java.lang.String"/>
+		<field name="S_TRADER" class="java.lang.String"/>
+		<field name="S_CONTRACT_REF" class="java.lang.String"/>
+		<field name="S_OPS" class="java.lang.String"/>
+		<field name="S_BUYER" class="java.lang.String"/>
+		<field name="S_COUNTERPARTY_REFERENCE" class="java.lang.String"/>
+		<field name="S_BROKER" class="java.lang.String"/>
+		<field name="S_BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="ORIGIN" class="java.lang.String"/>
+		<field name="S_QUALITY_BASIS" class="java.lang.String"/>
+		<field name="ALLOCATION_QTY" class="java.math.BigDecimal"/>
+		<field name="S_OPEN_QTY" class="java.math.BigDecimal"/>
+		<field name="S_AVR_FLAT_PRICE" class="java.math.BigDecimal"/>
+		<field name="P_INCOTERM" class="java.lang.String"/>
+		<field name="P_TRADER" class="java.lang.String"/>
+		<field name="P_CONTRACT_REF" class="java.lang.String"/>
+		<field name="P_OPS" class="java.lang.String"/>
+		<field name="P_SELLER" class="java.lang.String"/>
+		<field name="P_COUNTERPARTY_REFERENCE" class="java.lang.String"/>
+		<field name="P_BROKER" class="java.lang.String"/>
+		<field name="P_BROKER_REFERENCE" class="java.lang.String"/>
+		<field name="P_QUALITY_BASIS" class="java.lang.String"/>
+		<field name="P_OPEN_QTY" class="java.math.BigDecimal"/>
+		<field name="P_AVR_FLAT_PRICE" class="java.math.BigDecimal"/>
+		<field name="SI_DATE" class="java.sql.Date"/>
+		<field name="SHIPMENT_TO_DATE" class="java.sql.Date"/>
+		<field name="SHIPMENT_FROM_DATE" class="java.sql.Date"/>
+		<field name="S_CONTRACT_QTY" class="java.math.BigDecimal"/>
+		<field name="P_CONTRACT_QTY" class="java.math.BigDecimal"/>
+		<field name="S_MONTHNUMBER" class="java.lang.Integer"/>
+		<field name="ALLOCATION_TYPE" class="java.lang.String"/>
+		<field name="STRING_STATUS" class="java.lang.String"/>
+		<field name="CONTRACT_BOOK" class="java.lang.String"/>
+		<field name="LINKED_DATE" class="java.sql.Date"/>
+		<field name="CONTRACT_STATUS" class="java.lang.String"/>
+		<field name="S_INV_QTY" class="java.math.BigDecimal"/>
+		<field name="P_INV_QTY" class="java.math.BigDecimal"/>
+		<field name="SALES_CONTRACT_CURRENCY" class="java.lang.String"/>
+		<field name="PURCHASE_CONTRACT_CURRENCY" class="java.lang.String"/>
+		<variable name="TOTAL_ALLOCATION_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_S_OPEN_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="UnitGroup" class="java.lang.String">
+			<variableExpression><![CDATA[$F{S_PROFIT_CENTER}+'-'+($F{S_SHIP_MONTH}.substring( 0, 1 ).toUpperCase()+$F{S_SHIP_MONTH}.substring( 1 ).toLowerCase())]]></variableExpression>
+		</variable>
+		<variable name="CoomonityGroup" class="java.lang.String">
+			<variableExpression><![CDATA[$F{S_COMMODITY}+'-'+$F{S_GRADE}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="UnitWiseGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="UnitWiseGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_ALLOCATION_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="CommonityGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{ALLOCATION_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_S_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="CommonityGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{S_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_P_OPEN_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="CommonityGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_PC_P_OPEN_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="UnitWiseGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_OPEN_QTY}]]></variableExpression>
+		</variable>
+		<variable name="Sum_P_CONTRACT_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="UnitWiseGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_CONTRACT_QTY}]]></variableExpression>
+		</variable>
+		<variable name="SUM_COMPANY_P_CONTARCT_QTY" class="java.math.BigDecimal" resetType="Group" resetGroup="CommonityGroup" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_CONTRACT_QTY}]]></variableExpression>
+		</variable>
+		<variable name="TOTAL_P_COTRACT_QTY" class="java.math.BigDecimal" calculation="Sum">
+			<variableExpression><![CDATA[$F{P_CONTRACT_QTY}]]></variableExpression>
+		</variable>
+		<group name="UnitWiseGroup">
+			<groupExpression><![CDATA[$V{UnitGroup}]]></groupExpression>
+		</group>
+		<group name="CommonityGroup">
+			<groupExpression><![CDATA[$V{CoomonityGroup}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="company_p" class="java.util.Collection"/>
+	<parameter name="profit_center_group_p" class="java.util.Collection"/>
+	<parameter name="profit_center_p" class="java.util.Collection"/>
+	<parameter name="strategy_p" class="java.util.Collection"/>
+	<parameter name="counterparty_group_p" class="java.util.Collection"/>
+	<parameter name="counterparty_p" class="java.util.Collection"/>
+	<parameter name="commodity_p" class="java.util.Collection"/>
+	<parameter name="grade_p" class="java.util.Collection"/>
+	<parameter name="cbk" class="java.util.Collection"/>
+	<parameter name="shipment_month_from" class="java.lang.String"/>
+	<parameter name="shipment_month_to" class="java.lang.String"/>
+	<parameter name="col_group" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{col_group}.equals( "Yes" )]]></defaultValueExpression>
+	</parameter>
+	<parameter name="invoice" class="java.lang.String"/>
+	<parameter name="QSTR_Filter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[" AND CTRBOOKCODE IN ('" + $P{LE_Filter} + "')"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="LE_Filter" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="ship_month" class="java.util.Collection"/>
+	<queryString>
+		<![CDATA[SELECT COALESCE(MON.SHIPFROM, MIN_MON.SHORTNAME) AS SHIPFROM,
+       COALESCE(MON.SHIPTO, MAX_MON.SHORTNAME,MON.SHIPFROM)   AS SHIPTO
+FROM   (SELECT Min(L2.S_MONTHNUMBER) AS MIN_MONTHNUMBER,
+               Max(L2.S_MONTHNUMBER) AS MAX_MONTHNUMBER
+        FROM   (SELECT DISTINCT ALLOC.ALLOCATION_REF,
+                        COALESCE(PURCHASE.COMPANY, SALES.COMPANY)                        AS COMPANY,
+                        SALES.SHIP_MONTH                                                 AS S_SHIP_MONTH,
+                        SALES.PROFIT_CENTER                                              AS S_PROFIT_CENTER,
+                        SALES.COMMODITY                                                  AS S_COMMODITY,
+                        COALESCE(ALLOC.S_SPECIFICATION, ALLOC.P_SPECIFICATION)           AS S_GRADE,
+                        SALES.INCOTERM                                                   AS S_INCOTERM,
+                        SALES.CONTRACT_REFERENCE                                         AS S_CONTRACT_REF,
+                        SALES.COUNTERPARTY                                               AS S_BUYER,
+                        SALES.COUNTERPARTY_REF                                           AS S_COUNTERPARTY_REFERENCE,
+                        SALES.BROKER                                                     AS S_BROKER,
+                        SALES.BROKER_REFERENCE                                           AS S_BROKER_REFERENCE,
+                        SALES.ORIGIN,
+                        ALLOC.ALLOCATION_QTY,
+                        PURCHASE.INCOTERM                                                AS P_INCOTERM,
+                        PURCHASE.CONTRACT_REFERENCE                                      AS P_CONTRACT_REF,
+                        PURCHASE.COUNTERPARTY                                            AS P_SELLER,
+                        PURCHASE.COUNTERPARTY_REF                                        AS P_COUNTERPARTY_REFERENCE,
+                        PURCHASE.BROKER                                                  AS P_BROKER,
+                        PURCHASE.BROKER_REFERENCE                                        AS P_BROKER_REFERENCE,
+                        PURCHASE.SHIP_MONTH                                              AS P_SHIP_MONTH,
+                        PURCHASE.PROFIT_CENTER                                           AS P_PROFIT_CENTER,
+                        PURCHASE.STRATEGY                                                AS P_STRATEGY,
+                        PURCHASE.COMMODITY                                               AS P_COMMODITY,
+                        COALESCE(ALLOC.P_SPECIFICATION, ALLOC.S_SPECIFICATION)           AS P_GRADE,
+                        PURCHASE.QUANTITY_BASIS                                          AS P_QUANTITY_BASIS,
+                        SALES.COUNTERPARTY                                               AS S_COUNTERPARTY,
+                        SALES.COUNTERPARTY_GROUP                                         AS S_COUNTERPARTY_GROUP,
+                        SALES.PROFIT_CENTER_GROUP                                        AS S_PROFIT_CENTER_GROUP,
+                        SALES.STRATEGY                                                   AS S_STRATEGY,
+                        ALLOC.SHIPMENT_FROM_DATE,
+                        ALLOC.SHIPMENT_TO_DATE,
+                        Lower(ALLOC.ALLOCATION_TYPE)                                     AS ALLOCATION_TYPE,
+                        CBK.CTRBOOKCODE,
+                        SALES.CONTRACT_QTY                                               AS S_CONTRACT_QTY,
+                        PURCHASE.CONTRACT_QTY                                            AS P_CONTRACT_QTY,
+                        MON.MONTHNUMBER                                                  AS S_MONTHNUMBER,
+                        Lower(AL.STRING_STATUS)                                          AS STRING_STATUS,
+                        COALESCE(SALES.CONTRACT_BOOK, PURCHASE.CONTRACT_BOOK)            AS CONTRACT_BOOK
+        FROM   BI_VIEW_ALLOCATION ALLOC
+               LEFT JOIN ALLOCATION AL
+                      ON ALLOC.ALLOCATION_ID = AL.ID
+               JOIN      BI_VIEW_CONTRACT_PHYSICAL PURCHASE
+                      ON ALLOC.P_CTRID = PURCHASE.CTRID
+               JOIN      BI_VIEW_CONTRACT_PHYSICAL SALES
+                      ON ALLOC.S_CTRID = SALES.CTRID
+               JOIN      CTRBOOK CBK
+                      ON SALES.CTRBOOKID = CBK.CTRBOOKID
+               JOIN      JCSHIPMONTHSMAPPING MON
+                      ON SALES.SHIP_MONTH = MON.SHORTNAME
+        WHERE  ( ALLOC.ALLOCATION_TYPE NOT LIKE 'OPEN%'
+                 OR EXISTS
+                    (SELECT M.INVLOADMATCHID
+                     FROM   INVOICELOADMATCHTOPURCHASE M
+					 JOIN   LOAD SLOAD ON M.SALESLOADID = SLOAD.ID
+                     WHERE  M.APID IS NOT NULL
+					    AND M.ARID IS NOT NULL
+						AND M.PURCHASELOADID IS NOT NULL
+                        AND AL.CONTRACT_POSITION_ID_SOURCE = SLOAD.CONTRACT_POSITION_ID
+						AND M.INVLOADMATCHID IS NOT NULL)
+				))L2
+WHERE  $X{IN, L2.COMPANY, company_p}
+       AND $X{IN, L2.S_PROFIT_CENTER_GROUP, profit_center_group_p}
+       AND $X{IN, L2.S_PROFIT_CENTER, profit_center_p}
+       AND $X{IN, L2.S_STRATEGY, strategy_p}
+       AND $X{IN, L2.S_COUNTERPARTY_GROUP, counterparty_group_p}
+       AND $X{IN, L2.S_COUNTERPARTY, counterparty_p}
+       AND $X{IN, L2.S_COMMODITY, commodity_p}
+       AND $X{IN, L2.S_GRADE, grade_p}
+       AND L2.S_MONTHNUMBER >= COALESCE($P{shipment_month_from},L2.S_MONTHNUMBER)
+       AND L2.S_MONTHNUMBER <= COALESCE($P{shipment_month_to},L2.S_MONTHNUMBER)
+       AND $X{IN,CTRBOOKCODE,cbk}
+       )L3
+       JOIN JCSHIPMONTHSMAPPING MIN_MON
+         ON L3.MIN_MONTHNUMBER = MIN_MON.MONTHNUMBER
+       JOIN JCSHIPMONTHSMAPPING MAX_MON
+         ON L3.MAX_MONTHNUMBER = MAX_MON.MONTHNUMBER
+       FULL JOIN (SELECT A.SHORTNAME AS SHIPFROM,
+                         B.SHORTNAME AS SHIPTO
+                  FROM   JCSHIPMONTHSMAPPING A
+                         LEFT JOIN JCSHIPMONTHSMAPPING B
+                                ON B.MONTHNUMBER = $P{shipment_month_to}
+                  WHERE  A.MONTHNUMBER = $P{shipment_month_from}) MON
+        ON 1 = 1]]>
+	</queryString>
+	<field name="SHIPFROM" class="java.lang.String"/>
+	<field name="SHIPTO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="57">
+			<staticText>
+				<reportElement positionType="Float" mode="Opaque" x="230" y="0" width="2142" height="27" forecolor="#FFFFFF" backcolor="#1F497D" uuid="fe1f3633-e952-443a-9149-b50b594afd47">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<box topPadding="0" leftPadding="10" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="0.5" lineColor="#2A529B"/>
+					<leftPen lineWidth="0.5" lineColor="#2A529B"/>
+					<bottomPen lineWidth="0.5" lineColor="#2A529B"/>
+					<rightPen lineWidth="2.0" lineColor="#1F497D"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="13" isBold="true" isItalic="false"/>
+					<paragraph leftIndent="1"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="1685" y="27" width="687" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="db8c6ab7-b186-442b-8518-2f2bea6b79fe">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="1.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="2.0" lineColor="#1F497D"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="10" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Run Date : "+DATEFORMAT(TODAY( ),"dd-MMM-yy h:mm:ss a")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="27" width="1685" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="491c4e53-b582-49c5-ac57-d852553dab14">
+					<property name="local_mesure_unitx" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="1" leftPadding="3" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="1.0" lineColor="#2A529B"/>
+					<topPen lineWidth="1.0" lineColor="#2A529B"/>
+					<leftPen lineWidth="2.0" lineColor="#2A529B"/>
+					<bottomPen lineWidth="1.0" lineColor="#2A529B"/>
+					<rightPen lineWidth="1.0" lineColor="#2A529B"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Linked orders detail as of  "+DATEFORMAT(TODAY( ),"dd-MMM-yy")+"  for shipment months from " +($F{SHIPFROM}.substring( 0, 1 ).toUpperCase()+$F{SHIPFROM}.substring( 1 ).toLowerCase()) +" To " +($F{SHIPTO}.substring( 0, 1 ).toUpperCase()+$F{SHIPTO}.substring( 1 ).toLowerCase())]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="0" y="0" width="230" height="27" backcolor="#1F497D" uuid="00be2ae0-6554-4c1a-b58a-0fbd9c774f90">
+					<property name="net.sf.jasperreports.export.xls.column.width.ratio" value="1.15"/>
+				</reportElement>
+				<imageExpression><![CDATA["repo:OlamLogo"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="186" splitType="Stretch">
+			<componentElement>
+				<reportElement mode="Transparent" x="0" y="0" width="1198" height="186" forecolor="#010101" backcolor="#FFFFFF" uuid="69010606-4fec-4659-b367-e11ed684ab55">
+					<property name="local_mesure_unitwidth" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Dataset1" uuid="f31bf7aa-b843-407e-af7b-e696bf64f56c">
+						<datasetParameter name="company_p">
+							<datasetParameterExpression><![CDATA[$P{company_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="profit_center_group_p">
+							<datasetParameterExpression><![CDATA[$P{profit_center_group_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="profit_center_p">
+							<datasetParameterExpression><![CDATA[$P{profit_center_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="strategy_p">
+							<datasetParameterExpression><![CDATA[$P{strategy_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="counterparty_group_p">
+							<datasetParameterExpression><![CDATA[$P{counterparty_group_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="counterparty_p">
+							<datasetParameterExpression><![CDATA[$P{counterparty_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="commodity_p">
+							<datasetParameterExpression><![CDATA[$P{commodity_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="grade_p">
+							<datasetParameterExpression><![CDATA[$P{grade_p}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="cbk">
+							<datasetParameterExpression><![CDATA[$P{cbk}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="col_group">
+							<datasetParameterExpression><![CDATA[$P{col_group}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="invoice">
+							<datasetParameterExpression><![CDATA[$P{invoice}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="LE_Filter">
+							<datasetParameterExpression><![CDATA[$P{LE_Filter}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="QSTR_Filter">
+							<datasetParameterExpression><![CDATA[$P{QSTR_Filter}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="230" uuid="cec18f9e-5298-47fa-bfc0-91d91d6db35e">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="230" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="fb43835f-1f4e-499f-abc2-078a0055e44c"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="UnitWiseGroup" pattern="" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="230" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="30870415-c95a-4d0e-886b-8138f625bbaa"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{UnitGroup}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="CommonityGroup" pattern="" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="230" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="24ce7b22-ad77-4be7-93b8-91b22e90a5a7"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{CoomonityGroup}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="110" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="5603e9e1-ebfe-41d1-bbdf-0a3befd2c61d">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="Start"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Sales Order]]></text>
+							</staticText>
+							<staticText>
+								<reportElement mode="Opaque" x="110" y="0" width="120" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="6922d31c-8ba6-4f50-87fb-889d098380b0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Buyer]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="230" uuid="d728cf0c-91e5-46f6-a077-350b42d6a01b">
+							<jr:tableFooter height="0" rowSpan="1"/>
+							<jr:detailCell height="30" rowSpan="1">
+								<textField pattern="" isBlankWhenNull="false">
+									<reportElement mode="Transparent" x="0" y="0" width="110" height="30" forecolor="#000000" backcolor="#FFFFFF" uuid="52c6ad2b-e9b5-4442-aca6-2ac369cde5ee"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_CONTRACT_REF}]]></textFieldExpression>
+								</textField>
+								<textField pattern="" isBlankWhenNull="true">
+									<reportElement mode="Transparent" x="110" y="0" width="120" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="5700123e-0da2-477a-af39-7beb98510759"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$F{S_BUYER}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="0" uuid="01d77ed7-4f99-4c97-aafa-bb586465050a">
+							<jr:tableFooter height="0" rowSpan="1"/>
+							<jr:detailCell height="30" rowSpan="1"/>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="150" uuid="6accc085-2696-440c-9443-a49a41b7dea8">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#1F497D" uuid="b19e5c6b-b8c2-4a90-84f8-96b89e669ba8"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#1F497D" uuid="0e80f574-92f9-4b2c-ade1-51aefb4dad53"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="150" height="30" backcolor="#8DB4E2" uuid="44fcf083-95ff-4fab-bcc8-39799af5f816"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="150" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="b9c28696-f42b-4fd5-b76f-911ebfba9c9c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Profit Centre]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="150" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="9ba71c51-05a3-45da-a276-734f7091db3f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_PROFIT_CENTER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bba65032-990d-4003-9ad3-6421676510c0">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="c0c102a4-0cb5-4e9a-9a0e-c79cd90714fd"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="efc82970-3d92-4df4-bcc7-75a372044631"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="145a6ddb-858f-4805-b7ce-2fae2f859c0e"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="73d2a156-fe0f-4811-b092-56eb711e6fab">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Grade]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="398146ae-4962-44bd-8a2c-5262613d8776"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_GRADE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="58" uuid="f5f79b9d-7a87-43d8-8a3e-25058b29a5af">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="58" height="30" backcolor="#1F497D" uuid="db459c3e-4eca-4eac-91fc-81c0e6020b7e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="58" height="30" backcolor="#1F497D" uuid="312a1aea-82da-4925-9300-1a6335447bee"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="58" height="30" backcolor="#8DB4E2" uuid="c66df5cc-6282-4950-8851-d075c2dddad2"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="58" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="c27015c1-0f3d-45a6-bf5b-ffc68c247d08">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<text><![CDATA[Ship Month]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField pattern="MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="58" height="30" uuid="6c115a0e-4f8d-4592-a48b-535e32a7a96d"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SHIPMENT_FROM_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="152" uuid="2f877570-5821-498b-9679-49171ebbd0f5">
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#1F497D" uuid="b5790b45-1eec-4a13-93f4-5fde3d45dbcd"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#1F497D" uuid="55d846f6-d52b-47d0-8817-bf2f49aba740"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#8DB4E2" uuid="e0712be7-baae-440a-bb00-de3c5de6660b"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="152" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="475f0562-912e-4ce4-9f26-7452a3bedc6a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Party Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="152" height="30" forecolor="#010101" uuid="f7d2629f-a71a-461c-96f8-d4a97d251434">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_COUNTERPARTY_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="194" uuid="70d3b9fe-b830-48e0-aa6a-6a95dc15a15b">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="194" height="30" backcolor="#1F497D" uuid="3b6afd64-65ae-4994-9ce3-c0583b70756b"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="194" height="30" backcolor="#1F497D" uuid="3a1cd739-843d-4beb-886b-84b05c1c9dd4"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="194" height="30" backcolor="#8DB4E2" uuid="cfc8ba67-4bdf-44c0-97ae-a8c83ab7a071"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="194" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="294d1ef3-26db-4745-8026-50a57897f2b6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Quality]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="194" height="30" forecolor="#010101" uuid="604b3fa9-a164-47c1-b405-93b1baeaf6dd">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_QUALITY_BASIS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="cac4eded-2b70-4955-870f-1a83ae5a1948">
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="ce09a7cd-4c9b-4519-a60f-c2caf94f8b85"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="ea699a26-f9d1-48c0-81b8-ed4e8f8c8634"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="9fbef9b9-be90-4dd9-bde9-564776ec47b9"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="debca1f0-9e71-4206-9952-4fd7f99d24ab">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="20a35fc8-66d5-4789-9e9d-8b52beb80d79">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_CONTRACT_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="d9776fba-43ad-4a24-a86e-928d9f8c3d57">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00#;(#,##0.00#)">
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="750c1614-28a9-4a5a-9e00-bcba0c35d1c3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="SansSerif" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_ALLOCATION_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="UnitWiseGroup" pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="cdccedf1-5380-4f83-aa01-25abdab19317">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="10" isBold="true" isItalic="false"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell style="Table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="CommonityGroup" pattern="#,##0.00#;(#,##0.00#)">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="48a0fa32-b0b9-4c7c-971b-5306c524a2d3">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_ALLOCATION_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="5e228446-fd93-4ae1-87f1-7cf56f56d6f5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="15d37a3c-717d-4645-9d77-9e9ef8113b60">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{ALLOCATION_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="75b057b7-2e13-45a2-92b6-56b5bb34e8d1">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="6a57a3f7-e5df-49cc-858f-b18137bae9f3"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="a038212b-96ac-4db2-b28d-bf91d0e01d48"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="c7028e99-5cfa-4b2e-83ac-cb96a553a337"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="4b1a41d2-2bf6-4869-ada6-30ccda72483b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#1F497D"/>
+								<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+								<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="d44dd577-e442-458a-9f72-0b06b01a7596">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_INV_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bdf1edb8-d8d9-4f4a-b570-d0712e61f681">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00#;(#,##0.00#)">
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="6a412872-3557-4c7c-8057-0e3630784e97">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial" size="10" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_S_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="UnitWiseGroup" pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="ab83b622-9b88-487a-babb-198b26935703">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="10" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" evaluationTime="Group" evaluationGroup="CommonityGroup" pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="e5609a8e-44b2-44cc-9f2a-b96c63c24d22">
+										<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									</reportElement>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_S_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="e06eea7a-297c-40f1-800b-25316f95e0c6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Balance]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="99b087fd-0569-4359-b8c5-e9781d1c2059">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="72" uuid="aed9389f-0edb-4e3a-8f45-96975a2060b5">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="72" height="30" backcolor="#1F497D" uuid="ed1d9aad-49ea-4b3d-b04a-8f341817fc94"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="72" height="30" backcolor="#1F497D" uuid="e5ad12c4-165c-4782-a4db-5894064d7563"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="72" height="30" backcolor="#8DB4E2" uuid="3461ee83-c8ca-46e6-a885-9f7c1eb02c2e"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="72" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="fb13290c-760e-4a1d-99e6-7671a0bf4bd9">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="72" height="30" forecolor="#010101" uuid="e31b9ba2-dfbd-49d6-8d87-17244f023bf5">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{S_AVR_FLAT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="10a184c0-a696-4a90-b402-bd1e356dc18b">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#1F497D" uuid="ed199af4-f2e0-4900-9913-4c7f072e28b5"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#1F497D" uuid="7df8daa0-655a-485a-916e-78bd292f6c43"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#8DB4E2" uuid="bb7e06e0-c909-4efb-bbba-4d604ee967c2"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="a3bfdd8d-44b5-4899-b661-fcabcc0c76e6">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price  Cur]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="45" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="fa8d4aab-e556-45bd-844a-a05086b087c0"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SALES_CONTRACT_CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="86" uuid="50a41039-f2d5-4559-89c4-cd3b6933ef6f">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="86" height="30" backcolor="#1F497D" uuid="26615bf5-755e-4a94-864c-442923614f2e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="86" height="30" backcolor="#1F497D" uuid="de8367c5-8558-4c2e-8575-a2cf9f2df736"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="86" height="30" backcolor="#8DB4E2" uuid="84b65237-38fa-4989-9784-0dea2377e4bb"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="86" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="e7ff1af2-bfa6-4ebd-abc8-3af2fee6dff4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Purchase Order]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="86" height="30" forecolor="#010101" uuid="cc42859b-b363-4dec-9514-a9b56ab9f339">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_CONTRACT_REF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="96" uuid="2d93a959-bd78-4d5a-83f6-22e705c4177a">
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="30" backcolor="#1F497D" uuid="e6589204-da4e-43c3-b937-bdf3a0c2580f"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="96" height="30" backcolor="#1F497D" uuid="be71dae3-492e-44f2-b394-38f68679d372"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="96" height="30" backcolor="#8DB4E2" uuid="14ebbe7d-1052-4017-8ad8-da0a6afdc1c5"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="96" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="78d0b1a7-db72-4fcc-abb8-ea716d65ff2f">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Supplier]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="96" height="30" forecolor="#010101" uuid="e94b601b-679b-4fb1-b9f3-55fb31853e26">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_SELLER}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="152" uuid="e78e67a6-a0a4-4f50-b920-482b1aa61167">
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#1F497D" uuid="7207d883-39dd-40a8-a3f2-83d7d8472c11"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#1F497D" uuid="8b2c525a-2ccd-4690-9655-e3c5266b0d8a"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="152" height="30" backcolor="#8DB4E2" uuid="bceaacd0-6c22-4b38-9a95-49898a1bcc84"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="152" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="56237152-23c8-49ff-b8a6-7b63d212f58c">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Party Ref.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="152" height="30" forecolor="#010101" uuid="5a830090-f04d-4f7a-a236-38d5c846b955">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_COUNTERPARTY_REFERENCE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="186" uuid="10b19aa7-3009-4fe5-a08c-c34042e365df">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="186" height="30" backcolor="#1F497D" uuid="af5f2a8f-f2cc-45b2-a1ae-22146c113d77"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement>
+									<font size="12"/>
+								</textElement>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="186" height="30" backcolor="#1F497D" uuid="86e1987e-e0f9-4d5d-99e3-18b6a0c0ba10"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="186" height="30" backcolor="#8DB4E2" uuid="cf259566-e331-490c-a48b-cf25134cc4bd"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="186" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="96fdb9eb-0ac4-4153-9fdb-b1c2022154ac">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Quality]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="186" height="30" forecolor="#010101" uuid="2da359d5-540a-43a0-920e-451b7aca1d8b">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_QUALITY_BASIS}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="97531406-dd4a-4dcc-83be-120d5d65cf3a">
+						<jr:tableFooter height="30" rowSpan="2">
+							<textField pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="false">
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d22e615f-439a-4348-bf59-f01451224edc"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_P_COTRACT_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="UnitWiseGroup" pattern="#,##0.00;(#,##0.00)">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="de6190ba-9b50-44d9-a434-7c2dc1fd82a2"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" size="10" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{Sum_P_CONTRACT_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="CommonityGroup" pattern="#,##0.00;(#,##0.00)">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="62021499-8651-4a97-ae02-0e20ae9faf0a"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle">
+										<font fontName="Arial" isBold="true"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_P_CONTARCT_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="00869e9b-1656-4aa0-9afb-e2d04a955c6a">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Contract Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="a00432dd-e7b9-471d-8982-a6d44616c6f4">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_CONTRACT_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="3347450c-1525-42d1-b9e2-acdf09648f28">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="35b207e4-5b1a-46b3-adbb-3016e665dab4"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#1F497D" uuid="033ad32a-b8f7-4e77-988a-6006904947c8"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" backcolor="#8DB4E2" uuid="ef6c649c-46d4-4f0b-8f4e-dc1f4adc901c"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="611665cc-7b86-4891-8020-ce50881ecb43">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Invoice Qty]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#1F497D"/>
+								<leftPen lineWidth="0.5" lineColor="#1F497D"/>
+								<bottomPen lineWidth="0.5" lineColor="#1F497D"/>
+								<rightPen lineWidth="0.5" lineColor="#1F497D"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="7df77524-c431-49e7-8b73-14cd417920fc">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_INV_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="08631460-d656-4a4a-9a79-98a2f4cc3546">
+						<jr:tableFooter height="30" rowSpan="2">
+							<textField pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="false">
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="015baaed-0d57-4a04-85bb-321e847cec34"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{TOTAL_P_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="CommonityGroup" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="false">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#8DB4E2" uuid="16f62fed-02cc-4f0a-8f37-bff4b892eb65"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_COMPANY_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<textField evaluationTime="Group" evaluationGroup="UnitWiseGroup" pattern="#,##0.00#;(#,##0.00#)" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#1F497D" uuid="d31595d5-e9d6-43fe-9ef3-7c3c42a3db1b"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+										<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+										<paragraph lineSpacing="Single"/>
+									</textElement>
+									<textFieldExpression><![CDATA[$V{SUM_PC_P_OPEN_QTY}]]></textFieldExpression>
+								</textField>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="d9f1fe2e-4cc9-4dc0-8862-fbf942704190">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Linked Balance]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" pattern="#,##0.00;(#,##0.00)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="90" height="30" forecolor="#010101" uuid="595b2e42-9635-4548-a9f6-ef58ca94e526">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_OPEN_QTY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="64" uuid="d1148b01-b705-4e0f-a81e-9db6120dc0f3">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="64" height="30" backcolor="#1F497D" uuid="7c0a3e49-8a05-4487-a511-0df5b99ba03e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="64" height="30" backcolor="#1F497D" uuid="dac2fef0-2791-446a-8445-54c1b83f59c7"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="64" height="30" backcolor="#8DB4E2" uuid="609ac570-7053-4d22-ba55-d4a4632c0972"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="64" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="7d4130dc-f23e-4a93-9f8b-a1d7452d6ec3">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="64" height="30" forecolor="#010101" uuid="ea8675a4-65d7-4c02-b186-9ba549a7dc86">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{P_AVR_FLAT_PRICE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="45" uuid="52b00616-5b54-46af-bf44-747a8708521b">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#1F497D" uuid="427702e0-8a21-40ca-8a04-7aea7eaa0391"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#1F497D" uuid="1f0422b2-e10d-4020-b99b-598460a97e69"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="45" height="30" backcolor="#8DB4E2" uuid="86333814-4625-43b6-b4b0-b9aa882a3bb5"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="45" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="f1caf7db-bec4-423a-83bf-7b1c972c51e0">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Price  Cur]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<textField pattern="" isBlankWhenNull="true">
+								<reportElement mode="Transparent" x="0" y="0" width="45" height="30" forecolor="#010101" backcolor="#FFFFFF" uuid="c6ac893f-03d8-4d1e-82e2-5db3ac61c13e"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None" markup="none">
+									<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+									<paragraph lineSpacing="Single"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{PURCHASE_CONTRACT_CURRENCY}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="63" uuid="e15af15f-f411-4ade-b655-7e776d30a2d1">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="63" height="30" backcolor="#1F497D" uuid="2db7c627-5f68-4fa4-b5cf-039b0cde83e9"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="63" height="30" backcolor="#1F497D" uuid="169dc844-48a2-454e-8d19-58802a3212bb"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="63" height="30" backcolor="#8DB4E2" uuid="9d8ee971-dcac-436e-9ab6-b37d17653669"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="63" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="1ace9822-3e2e-4630-a923-fef8e517112a">
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[SI Sent Date]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineColor="#010101"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="63" height="30" forecolor="#010101" uuid="37c15201-56da-4095-a9b0-2b5afb98a761">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SI_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="59" uuid="5029b968-0218-41e9-8500-54b82d0a4b30">
+						<property name="local_mesure_unitwidth" value="pixel"/>
+						<jr:tableFooter height="30" rowSpan="2">
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="59" height="30" backcolor="#1F497D" uuid="fc09aa47-7bb5-4651-a036-64278a98a011"/>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<text><![CDATA[]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:groupHeader groupName="UnitWiseGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="59" height="30" backcolor="#1F497D" uuid="fd2bb83f-30f9-4072-a1d7-29337e9d4d90"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:groupHeader groupName="CommonityGroup">
+							<jr:cell height="30" rowSpan="1">
+								<staticText>
+									<reportElement mode="Opaque" x="0" y="0" width="59" height="30" backcolor="#8DB4E2" uuid="2f26c9af-f1d8-4c18-9e57-2e15b63b8820"/>
+									<box>
+										<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+										<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+									</box>
+									<text><![CDATA[]]></text>
+								</staticText>
+							</jr:cell>
+						</jr:groupHeader>
+						<jr:columnHeader style="table 1_CH" height="30" rowSpan="1">
+							<box>
+								<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+								<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+							</box>
+							<staticText>
+								<reportElement mode="Opaque" x="0" y="0" width="59" height="30" forecolor="#010101" backcolor="#8DB4E2" uuid="37013b98-6b35-4d7f-80c5-ac02f3379d11">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+									<property name="local_mesure_unitwidth" value="pixel"/>
+									<property name="net.sf.jasperreports.export.xls.auto.filter" value="End"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Arial" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Expt Ship Dt.]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30" rowSpan="1">
+							<box>
+								<topPen lineColor="#010101"/>
+								<leftPen lineColor="#010101"/>
+								<bottomPen lineColor="#010101"/>
+								<rightPen lineWidth="2.0" lineColor="#1F497D"/>
+							</box>
+							<textField isStretchWithOverflow="true" pattern="dd-MMM-yy" isBlankWhenNull="true">
+								<reportElement x="0" y="0" width="59" height="30" forecolor="#010101" uuid="68b0ccc3-bd60-48e6-b904-f73711f1ac92">
+									<property name="com.jaspersoft.studio.unit.width" value="px"/>
+								</reportElement>
+								<box>
+									<topPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<leftPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<bottomPen lineWidth="0.5" lineColor="#4F81BD"/>
+									<rightPen lineWidth="0.5" lineColor="#4F81BD"/>
+								</box>
+								<textElement textAlignment="Right" verticalAlignment="Middle">
+									<font fontName="Arial"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{SHIPMENT_FROM_DATE}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<property name="local_mesure_unitheight" value="pixel"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</pageFooter>
+</jasperReport>

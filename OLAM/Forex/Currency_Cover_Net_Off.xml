@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Forex</folder>
+    <name>Currency_Cover_Net_Off</name>
+    <version>19</version>
+    <label>Currency Cover Net Off Report</label>
+    <description>Currency Cover Net Off Report</description>
+    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+    <updateDate>2015-12-28T19:07:46.400+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="currency_cover_net_off_report_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>currency_cover_net_off_report_</name>
+            <version>1</version>
+            <label>currency_cover_net_off_report</label>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-20T18:36:45.183+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>profitcenter</name>
+            <version>1</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-20T18:45:01.127+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/profitcenter_files</folder>
+                    <name>profitcenter</name>
+                    <version>0</version>
+                    <label>profitcenter</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-20T18:45:01.127+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT JP.PCNAME AS LABEL,
+       JP.PCNAME AS VALUE
+FROM   JCPROFITCENTER JP
+LEFT JOIN JCPROFITCENTERGROUP JPG
+ON JP.PCGROUPID=JPG.GROUPID
+WHERE  JP.ISACTIVE = 1 AND $X{IN,JPG.SHORTNAME,profitcenter_group}
+ORDER  BY
+          LABEL</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>product</name>
+            <version>1</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-20T19:06:18.270+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/product_files</folder>
+                    <name>product</name>
+                    <version>0</version>
+                    <label>product</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-20T19:06:18.270+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT IVITEMID AS LABEL,
+       IVITEMID AS VALUE
+FROM   JCIVITEMS
+WHERE  ISACTIVE = 1
+ORDER  BY 
+          LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>currency</name>
+            <version>1</version>
+            <label>Currency</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-20T19:21:02.830+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/currency_files</folder>
+                    <name>currency</name>
+                    <version>0</version>
+                    <label>currency</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-20T19:21:02.830+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT CURRENCYID AS LABEL,
+       CURRENCYID AS VALUE
+FROM   JCCURRENCY
+ORDER  BY 
+          LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>df_ndf</name>
+            <version>1</version>
+            <label>DF/NDF</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-20T21:04:08.540+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/df_ndf_files</folder>
+                    <name>df_ndf</name>
+                    <version>0</version>
+                    <label>df_ndf</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-20T21:04:08.540+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT 'DF' AS LABEL,'Deliverable' AS VALUE
+UNION
+SELECT 'NDF' AS LABEL,'Non-Deliverable' AS VALUE
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>ctrbook</name>
+            <version>1</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-21T23:14:31.873+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-21T23:14:31.873+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT  CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername}) 
+AND CBK.ACTIVE = 1
+ORDER BY  LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>from_cover_date</name>
+            <version>1</version>
+            <label>Cover From Date</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:31:48.197+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/from_cover_date_files</folder>
+                    <name>from_cover_date</name>
+                    <version>0</version>
+                    <label>from_cover_date</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:31:48.197+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>to_cover_date</name>
+            <version>1</version>
+            <label>Cover To Date</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:33:03.133+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/to_cover_date_files</folder>
+                    <name>to_cover_date</name>
+                    <version>0</version>
+                    <label>to_cover_date</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:33:03.133+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>netoff_from_date</name>
+            <version>1</version>
+            <label>NetOff From Date</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:34:51.353+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/netoff_from_date_files</folder>
+                    <name>netoff_from_date</name>
+                    <version>0</version>
+                    <label>netoff_from_date</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:34:51.353+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>netoff_to_date</name>
+            <version>1</version>
+            <label>NetOff To Date</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:35:51.323+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/netoff_to_date_files</folder>
+                    <name>netoff_to_date</name>
+                    <version>0</version>
+                    <label>netoff_to_date</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:35:51.323+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>company</name>
+            <version>1</version>
+            <label>Company</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:49:26.090+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/company_files</folder>
+                    <name>company</name>
+                    <version>0</version>
+                    <label>company</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:49:26.090+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT JM.MBRNAME AS LABEL,
+       JM.MBRNAME AS VALUE
+FROM   GLCOMPANY GC
+       JOIN JCMBR JM
+         ON JM.MBRID = GC.COMPANYID
+WHERE  JM.ISACTIVE = 1
+       AND JM.MBRID &gt; 0
+ORDER  BY LABEL
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>strategy</name>
+            <version>1</version>
+            <label>Strategy</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T20:51:45.250+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/strategy_files</folder>
+                    <name>strategy</name>
+                    <version>0</version>
+                    <label>strategy</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T20:51:45.250+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT NAME AS LABEL,
+       NAME AS VALUE
+FROM   JCSTRATEGY A
+WHERE  ISACTIVE = 1
+ORDER  BY 
+          LABEL 
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>trader</name>
+            <version>1</version>
+            <label>Trader</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T21:46:15.987+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/trader_files</folder>
+                    <name>trader</name>
+                    <version>0</version>
+                    <label>trader</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T21:46:15.987+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT JS.USERNAME AS LABEL,
+       JS.USERNAME AS VALUE
+FROM   JC_USER_DESIGNATION JSD
+       JOIN JC_USER JS
+         ON JSD.USR_ID = JS.ID
+WHERE  JSD.DESIGNATION = 'TRADER'
+       AND ACTIVE = 1
+ORDER  BY
+          LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files</folder>
+            <name>profitcenter_group</name>
+            <version>1</version>
+            <label>Profit Center Group</label>
+            <description></description>
+            <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+            <updateDate>2015-08-28T22:40:35.177+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Forex/Currency_Cover_Net_Off_files/profitcenter_group_files</folder>
+                    <name>profitcenter_group</name>
+                    <version>0</version>
+                    <label>profitcenter_group</label>
+                    <description></description>
+                    <creationDate>2016-11-19T15:57:42.807+08:00</creationDate>
+                    <updateDate>2015-08-28T22:40:35.177+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT SHORTNAME AS LABEL,
+       SHORTNAME AS VALUE
+FROM   JCPROFITCENTERGROUP
+WHERE  ISACTIVE = 1
+ORDER  BY 
+          LABEL </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL</queryVisibleColumn>
+            <queryValueColumn>VALUE</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <uri>/organizations/organization_1/standard/inputcontrol/LE_Filter</uri>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>

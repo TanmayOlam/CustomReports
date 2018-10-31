@@ -1,0 +1,283 @@
+<unifiedState dataSize="full" filterPanelShowing="true" hasMargins="true" ignoreMaxRows="true" initedSubFilterList="true" launchType="ADH_045a_DOMAIN" maxDisplayColumns="0" maxDisplayRows="0" maxRowChoices="0" maxRows="100" mode="crosstab" pageOrientation="Landscape" paperSize="content" showTableDetails="true" showTableTotals="false" summaryRowTitle="Totals" theme="default" titleBarShowing="true" titleHeight="40" topicName="PNL Attribution">
+  <chartState availableChartHeight="0" availableChartWidth="0" backgroundFilled="false" chartHeight="0" chartIsVertical="true" chartWidth="0" displayXAxisLabel="true" displayYAxisLabel="false" offsetX="0" offsetY="0">
+    <chartTitle />
+    <chartType>1_bar</chartType>
+    <displayLegendMap>
+      <entry key="5_scatter">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="2_pie">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="6_timeSeries">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="3_line">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="1_bar">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="4_area">
+        <boolean>true</boolean>
+      </entry>
+    </displayLegendMap>
+    <gradient>topDown</gradient>
+    <hasLinesMap>
+      <entry key="5_scatter">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="2_pie">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="6_timeSeries">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="3_line">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="1_bar">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="4_area">
+        <boolean>false</boolean>
+      </entry>
+    </hasLinesMap>
+    <hasPointsMap>
+      <entry key="5_scatter">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="2_pie">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="6_timeSeries">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="3_line">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="1_bar">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="4_area">
+        <boolean>false</boolean>
+      </entry>
+    </hasPointsMap>
+    <stackedMap>
+      <entry key="5_scatter">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="2_pie">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="6_timeSeries">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="3_line">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="1_bar">
+        <boolean>false</boolean>
+      </entry>
+      <entry key="4_area">
+        <boolean>false</boolean>
+      </entry>
+    </stackedMap>
+    <threeDMap>
+      <entry key="5_scatter">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="2_pie">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="6_timeSeries">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="3_line">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="1_bar">
+        <boolean>true</boolean>
+      </entry>
+      <entry key="4_area">
+        <boolean>true</boolean>
+      </entry>
+    </threeDMap>
+  </chartState>
+  <crosstabState numberOfColumns="24" safeColumnMode="true" safeRowMode="false" showLabels="true">
+    <columnGroups>
+      <queryDimension fieldName="Measures" includeAll="true" name="Measures" sortStatus="0" type="java.lang.String">
+        <expandedLevels>
+          <string>Measures</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>Measures</string>
+        </visibleLevels>
+      </queryDimension>
+    </columnGroups>
+    <rowGroups>
+      <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.CONTRACT_BOOK" includeAll="true" name="PNL_ATTRIBUTION.CONTRACT_BOOK" sortStatus="0" type="java.lang.String">
+        <expandedLevels>
+          <string>PNL_ATTRIBUTION.CONTRACT_BOOK</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.CONTRACT_BOOK</string>
+        </visibleLevels>
+      </queryDimension>
+      <queryDimension categorizerName="day" fieldName="PNL_ATTRIBUTION.ATTRIBUTION_DATE" includeAll="true" mask="medium,hide" name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" sortStatus="0" type="java.util.Date">
+        <expandedLevels>
+          <string>PNL_ATTRIBUTION.ATTRIBUTION_DATE</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.ATTRIBUTION_DATE</string>
+        </visibleLevels>
+      </queryDimension>
+      <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.PROFIT_CENTER" includeAll="true" name="PNL_ATTRIBUTION.PROFIT_CENTER" sortStatus="0" type="java.lang.String">
+        <expandedLevels>
+          <string>PNL_ATTRIBUTION.PROFIT_CENTER</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.PROFIT_CENTER</string>
+        </visibleLevels>
+      </queryDimension>
+      <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.COMMODITY" includeAll="true" name="PNL_ATTRIBUTION.COMMODITY" sortStatus="0" type="java.lang.String">
+        <expandedLevels>
+          <string>PNL_ATTRIBUTION.COMMODITY</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.COMMODITY</string>
+        </visibleLevels>
+      </queryDimension>
+      <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.INSTRUMENT_TYPE" includeAll="true" name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" sortStatus="0" type="java.lang.String">
+        <expandedLevels>
+          <string>PNL_ATTRIBUTION.INSTRUMENT_TYPE</string>
+        </expandedLevels>
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.INSTRUMENT_TYPE</string>
+        </visibleLevels>
+      </queryDimension>
+      <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.SHIPMENT_MONTH" includeAll="true" name="PNL_ATTRIBUTION.SHIPMENT_MONTH" sortStatus="0" type="java.lang.String">
+        <visibleLevels>
+          <string>PNL_ATTRIBUTION.SHIPMENT_MONTH</string>
+        </visibleLevels>
+      </queryDimension>
+    </rowGroups>
+    <sortingState />
+    <uncollapsedRowNodes>
+      <string>/PALM/2016-03-01/Palm-ACACIA-SCM+Bulk/RPL/FOREX/MAR+2016</string>
+      <string>/PALM/2016-03-01/Palm-ACACIA-SCM+Bulk/CPO/FOREX/MAR+2016</string>
+    </uncollapsedRowNodes>
+  </crosstabState>
+  <groups>
+    <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.CONTRACT_BOOK" includeAll="true" name="PNL_ATTRIBUTION.CONTRACT_BOOK" sortStatus="0" type="java.lang.String">
+      <expandedLevels>
+        <string>PNL_ATTRIBUTION.CONTRACT_BOOK</string>
+      </expandedLevels>
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.CONTRACT_BOOK</string>
+      </visibleLevels>
+    </queryDimension>
+    <queryDimension categorizerName="day" fieldName="PNL_ATTRIBUTION.ATTRIBUTION_DATE" includeAll="true" mask="medium,hide" name="PNL_ATTRIBUTION.ATTRIBUTION_DATE" sortStatus="0" type="java.util.Date">
+      <expandedLevels>
+        <string>PNL_ATTRIBUTION.ATTRIBUTION_DATE</string>
+      </expandedLevels>
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.ATTRIBUTION_DATE</string>
+      </visibleLevels>
+    </queryDimension>
+    <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.PROFIT_CENTER" includeAll="true" name="PNL_ATTRIBUTION.PROFIT_CENTER" sortStatus="0" type="java.lang.String">
+      <expandedLevels>
+        <string>PNL_ATTRIBUTION.PROFIT_CENTER</string>
+      </expandedLevels>
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.PROFIT_CENTER</string>
+      </visibleLevels>
+    </queryDimension>
+    <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.COMMODITY" includeAll="true" name="PNL_ATTRIBUTION.COMMODITY" sortStatus="0" type="java.lang.String">
+      <expandedLevels>
+        <string>PNL_ATTRIBUTION.COMMODITY</string>
+      </expandedLevels>
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.COMMODITY</string>
+      </visibleLevels>
+    </queryDimension>
+    <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.INSTRUMENT_TYPE" includeAll="true" name="PNL_ATTRIBUTION.INSTRUMENT_TYPE" sortStatus="0" type="java.lang.String">
+      <expandedLevels>
+        <string>PNL_ATTRIBUTION.INSTRUMENT_TYPE</string>
+      </expandedLevels>
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.INSTRUMENT_TYPE</string>
+      </visibleLevels>
+    </queryDimension>
+    <queryDimension categorizerName="all" fieldName="PNL_ATTRIBUTION.SHIPMENT_MONTH" includeAll="true" name="PNL_ATTRIBUTION.SHIPMENT_MONTH" sortStatus="0" type="java.lang.String">
+      <visibleLevels>
+        <string>PNL_ATTRIBUTION.SHIPMENT_MONTH</string>
+      </visibleLevels>
+    </queryDimension>
+  </groups>
+  <intelligentChartState XAxisRotation="-45" XAxisStep="1" YAxisRotation="0" YAxisStep="1" showDataPoints="true" showMeasureOnValueAxis="true" typeString="column" />
+  <measures>
+    <measure aggregateType="java.math.BigDecimal" fieldName="OpenQuantity" function="Sum" mask="#,##0.00" measure="true" name="OpenQuantity" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="RealizedQuantity" function="Sum" mask="#,##0.00" measure="true" name="RealizedQuantity" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="TotalQuantity" function="Sum" mask="#,##0.00" measure="true" name="TotalQuantity" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="QuantityAmendment" function="Sum" mask="#,##0.00" measure="true" name="QuantityAmendment" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="PNL_ATTRIBUTION.NEW_QTY" function="Sum" mask="#,##0.00" measure="true" name="PNL_ATTRIBUTION.NEW_QTY" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="ITDPNL" function="Sum" mask="#,##0.00" measure="true" name="ITDPNL" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="DailyPnL" function="Sum" mask="#,##0.00" measure="true" name="DailyPnL" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="ExplainedPnL" function="Sum" mask="#,##0.00" measure="true" name="ExplainedPnL" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="RealizedPnL" function="Sum" mask="#,##0.00" measure="true" name="RealizedPnL" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="MarketShift" function="AggregateFormula" mask="#,##0.00" measure="true" name="MarketShift" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="FXShift" function="AggregateFormula" mask="#,##0.00" measure="true" name="FXShift" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="NewPNL" function="Sum" mask="#,##0.00" measure="true" name="NewPNL" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="PriceAmendment" function="AggregateFormula" mask="#,##0.00" measure="true" name="PriceAmendment" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="CostChange" function="AggregateFormula" mask="#,##0.00" measure="true" name="CostChange" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="QuantityChange" function="Sum" mask="#,##0.00" measure="true" name="QuantityChange" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="VoidDefualt" function="Sum" mask="#,##0.00" measure="true" name="VoidDefualt" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="PnLShift" function="AggregateFormula" mask="#,##0.00" measure="true" name="PnLShift" showSummary="false" width="125" />
+    <measure aggregateType="java.math.BigDecimal" fieldName="UnexplainedPnL" function="Sum" mask="#,##0.00" measure="true" name="UnexplainedPnL" showSummary="false" width="125" />
+  </measures>
+  <propertyMap>
+    <entry key="hideEmptyRows">
+      <string>false</string>
+    </entry>
+    <entry key="crosstabRows">
+      <int>174</int>
+    </entry>
+    <entry key="modFlags">
+      <string />
+    </entry>
+    <entry key="typeOfViewChange">
+      <string>willReflectChanges</string>
+    </entry>
+    <entry key="crosstabColumns">
+      <int>18</int>
+    </entry>
+  </propertyMap>
+  <subFilterList>
+    <subFilter id="filter_2" letter="A" sourceString="DYNAMIC">
+      <expressionString>betweenDates(PNL_ATTRIBUTION.ATTRIBUTION_DATE, d'2016-03-07', d'2016-03-07')</expressionString>
+      <parameterizedExpressionString>betweenDates(PNL_ATTRIBUTION.ATTRIBUTION_DATE, ATTRIBUTION_DATE_1, ATTRIBUTION_DATE_2)</parameterizedExpressionString>
+    </subFilter>
+    <subFilter id="filter_3" letter="B" sourceString="DYNAMIC">
+      <expressionString>isAnyValue(PNL_ATTRIBUTION.CONTRACT_BOOK)</expressionString>
+      <parameterizedExpressionString>PNL_ATTRIBUTION.CONTRACT_BOOK in CONTRACT_BOOK_1</parameterizedExpressionString>
+    </subFilter>
+    <subFilter id="filter_4" letter="C" sourceString="DYNAMIC">
+      <expressionString>isAnyValue(PNL_ATTRIBUTION.PROFIT_CENTER)</expressionString>
+      <parameterizedExpressionString>PNL_ATTRIBUTION.PROFIT_CENTER in PROFIT_CENTER_1</parameterizedExpressionString>
+    </subFilter>
+    <subFilter id="filter_5" letter="D" sourceString="DYNAMIC">
+      <expressionString>isAnyValue(PNL_ATTRIBUTION.COMMODITY)</expressionString>
+      <parameterizedExpressionString>PNL_ATTRIBUTION.COMMODITY in COMMODITY_1</parameterizedExpressionString>
+    </subFilter>
+    <subFilter id="filter_6" letter="E" sourceString="DYNAMIC">
+      <expressionString>isAnyValue(PNL_ATTRIBUTION.INSTRUMENT_TYPE)</expressionString>
+      <parameterizedExpressionString>PNL_ATTRIBUTION.INSTRUMENT_TYPE in INSTRUMENT_TYPE_1</parameterizedExpressionString>
+    </subFilter>
+    <subFilter id="filter_7" letter="F" sourceString="DYNAMIC">
+      <expressionString>isAnyValue(PNL_ATTRIBUTION.SHIPMENT_MONTH)</expressionString>
+      <parameterizedExpressionString>PNL_ATTRIBUTION.SHIPMENT_MONTH in SHIPMENT_MONTH_1</parameterizedExpressionString>
+    </subFilter>
+  </subFilterList>
+  <title>PnL Attribution Report</title>
+</unifiedState>

@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportUnit exportedWithPermissions="true">
+    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports</folder>
+    <name>Trading_Position_Summary</name>
+    <version>5</version>
+    <label>Trading Position Summary</label>
+    <description>Commodity wise summary of physicals position and Strategy wise summary of overall position.</description>
+    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+    <updateDate>2018-09-12T15:46:11.350+08:00</updateDate>
+    <mainReport>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false"
+            dataFile="Trading_Position_Summary_.data" xsi:type="fileResource">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>Trading_Position_Summary_</name>
+            <version>4</version>
+            <label>Trading Position Summary</label>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <fileType>jrxml</fileType>
+        </localResource>
+    </mainReport>
+    <dataSource>
+        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+    </dataSource>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>asofdate</name>
+            <version>5</version>
+            <label>EOD Date</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>2</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <dataType>
+                <localResource exportedWithPermissions="false" xsi:type="dataType">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/asofdate_files</folder>
+                    <name>asofdate</name>
+                    <version>0</version>
+                    <label>asofdate</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <type>3</type>
+                    <regularExpr></regularExpr>
+                    <strictMin>false</strictMin>
+                    <strictMax>false</strictMax>
+                </localResource>
+            </dataType>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>ctrbook</name>
+            <version>5</version>
+            <label>Contract Book</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>4</type>
+            <mandatory>true</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/ctrbook_files</folder>
+                    <name>ctrbook</name>
+                    <version>0</version>
+                    <label>ctrbook</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>SELECT '%'   AS VALUE_FIELD,
+       'ALL' AS LABEL_FIELD,
+	   1 AS ORDERBY
+UNION
+SELECT CBK.NAME AS VALUE_FIELD, CBK.NAME AS LABEL_FIELD, 2  AS ORDERBY
+FROM   JC_USER_CONTRACT_BOOK UCB
+       JOIN JC_CONTRACT_BOOK CBK
+         ON UCB.CONTRACT_BOOK_ID = CBK.ID
+       JOIN JC_USER USR
+         ON UCB.USR_ID = USR.ID
+WHERE  Lower(USR.USERNAME) = Lower($P{LoggedInUsername})
+AND CBK.ACTIVE = 1
+ORDER BY ORDERBY,
+LABEL_FIELD</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdata</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>strategy</name>
+            <version>5</version>
+            <label>Strategy</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/strategy_files</folder>
+                    <name>strategy</name>
+                    <version>0</version>
+                    <label>strategy</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct STRATEGY  AS VALUE_FIELD,
+STRATEGY  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and STRATEGY is not null  
+union 
+
+Select distinct STRATEGY  AS VALUE_FIELD,
+STRATEGY  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_FOR_DERIVATIVES_E
+WHERE [Exchange] &lt;&gt; 'FOREX'
+and STRATEGY is not null order by 1  </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>commodity</name>
+            <version>5</version>
+            <label>Commodity</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/commodity_files</folder>
+                    <name>commodity</name>
+                    <version>0</version>
+                    <label>commodity</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct Commodity  AS VALUE_FIELD,
+Commodity  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and Commodity is not null 
+union 
+
+Select distinct Commodity  AS VALUE_FIELD,
+Commodity  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_FOR_DERIVATIVES_E
+WHERE [Exchange] &lt;&gt; 'FOREX'
+and Commodity is not null order by 1  </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>pc</name>
+            <version>5</version>
+            <label>Profit Center</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/pc_files</folder>
+                    <name>pc</name>
+                    <version>0</version>
+                    <label>pc</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct PROFIT_CENTER  AS VALUE_FIELD,
+PROFIT_CENTER  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and PROFIT_CENTER is not null  
+
+
+union 
+
+Select distinct PROFIT_CENTER  AS VALUE_FIELD,
+PROFIT_CENTER  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_FOR_DERIVATIVES_E
+WHERE [Exchange] &lt;&gt; 'FOREX'
+and PROFIT_CENTER is not null order by 1  
+
+
+
+
+</queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>incoterm</name>
+            <version>5</version>
+            <label>Inco Term</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/incoterm_files</folder>
+                    <name>incoterm</name>
+                    <version>0</version>
+                    <label>incoterm</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct INCOTERM  AS VALUE_FIELD,
+INCOTERM  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and INCOTERM is not null order by 1 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>origin</name>
+            <version>5</version>
+            <label>origin</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/origin_files</folder>
+                    <name>origin</name>
+                    <version>0</version>
+                    <label>origin</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct Origin  AS VALUE_FIELD,
+Origin  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and Origin is not null order by 1 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>pol</name>
+            <version>5</version>
+            <label>Load Port</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/pol_files</folder>
+                    <name>pol</name>
+                    <version>0</version>
+                    <label>pol</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct POL  AS VALUE_FIELD,
+POL  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and POL is not null order by 1 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/Data_Source/JNDIcxcdataBI</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControl>
+        <localResource
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            exportedWithPermissions="false" xsi:type="inputControl">
+            <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files</folder>
+            <name>pod</name>
+            <version>5</version>
+            <label>Discharge Port</label>
+            <description></description>
+            <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+            <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+            <type>7</type>
+            <mandatory>false</mandatory>
+            <readOnly>false</readOnly>
+            <visible>true</visible>
+            <query>
+                <localResource exportedWithPermissions="false" xsi:type="query">
+                    <folder>/organizations/organization_1/OLAM/Custom_Reports/EOD_Reports/Trading_Position_Summary_files/pod_files</folder>
+                    <name>pod</name>
+                    <version>0</version>
+                    <label>pod</label>
+                    <description></description>
+                    <creationDate>2018-09-05T00:16:49.793+08:00</creationDate>
+                    <updateDate>2018-09-05T00:16:49.793+08:00</updateDate>
+                    <language>sql</language>
+                    <queryString>Select distinct POD  AS VALUE_FIELD,
+POD  AS LABEL_FIELD
+FROM OLAM_PENDING_PNS_REPORT
+WHERE [ALLOCATION_TYPE] in ('OPEN','STOCK')
+and 
+pod is not null order by 1 </queryString>
+                    <dataSource>
+                        <uri>/organizations/organization_1/standard/datasource/JNDIcxcdatabi</uri>
+                    </dataSource>
+                </localResource>
+            </query>
+            <queryVisibleColumn>LABEL_FIELD</queryVisibleColumn>
+            <queryValueColumn>VALUE_FIELD</queryValueColumn>
+        </localResource>
+    </inputControl>
+    <inputControlRenderingView></inputControlRenderingView>
+    <alwaysPromptControls>true</alwaysPromptControls>
+    <controlsLayout>1</controlsLayout>
+</reportUnit>
